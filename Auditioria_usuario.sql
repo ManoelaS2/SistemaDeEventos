@@ -50,7 +50,7 @@ begin
 end $$
 
 create trigger trg_auditoria_delete_usuario 
-after insert on usuario
+after delete on usuario
 for each row
 begin
 	insert into auditoria_usuario(
@@ -83,7 +83,7 @@ begin
 end $$
 
 create trigger trg_auditoria_insert_usuario 
-after insert on usuario
+after update on usuario
 for each row
 begin
 	insert into auditoria_usuario(
@@ -115,3 +115,4 @@ begin
     );
 end $$
 
+DELIMITER ;
