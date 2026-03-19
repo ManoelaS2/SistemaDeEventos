@@ -1,0 +1,10 @@
+instruções para executar scrip sem erro no mysql workbench
+
+1 Seguir o caminho dentro do software:
+Edit -> Preferences... -> SQL Editor
+
+2 - Alterar o valor do campo "DBMS CONNECTION KEEP-ALIVE INTERVALL(IN SECONDS)" PARA "600"
+
+3 - Alterar o valor do campo "DBMS connection read timeout interval (in seconds):" PARA "0"
+
+4 - Alterar o valor do campo "DBMS connection timeout interval (in seconds):" PARA "0"
