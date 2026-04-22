@@ -5,7 +5,7 @@ USE mydb;
 -- ============================================================
 
 -- ------------------------------------------------------------
--- CONSULTA 1 - SEM OTIMIZACAO
+-- CONSULTA 4 - SEM OTIMIZACAO
 -- ------------------------------------------------------------
 SELECT 
     c.cidade_nome AS cidade,
@@ -48,7 +48,7 @@ ORDER BY quantidade_usuarios DESC;
 -- TEMPO APROXIMADO: 3.6 sec
 
 -- ------------------------------------------------------------
--- CONSULTA 1 - COM OTIMIZACAO (INDICES)
+-- CONSULTA 4 - COM OTIMIZACAO (INDICES)
 -- ------------------------------------------------------------
 CREATE INDEX idx_endereco_usuario ON endereco(usuario_usuario_id);
 CREATE INDEX idx_endereco_cep ON endereco(CEP_cep_id);
@@ -93,7 +93,7 @@ INNER JOIN cidade c ON cep.cidade_cidade_id = c.cidade_id
 WHERE c.cidade_nome IS NOT NULL AND c.cidade_nome != ''
 GROUP BY c.cidade_id, c.cidade_nome
 ORDER BY quantidade_usuarios DESC;
--- TEMPO REAL: ~2.7 sec
+-- TEMPO APROXIMADO: 2.7 sec
 
 
 -- ============================================================
@@ -141,7 +141,7 @@ ORDER BY total_vouchers DESC;
 -- TEMPO APROXIMADO: 0.67 sec
 
 -- ------------------------------------------------------------
--- CONSULTA 7 - COM OTIMIZACAO (INDICES)
+-- CONSULTA 7 - COM OTIMIZACAO
 -- ------------------------------------------------------------
 CREATE INDEX idx_voucher_evento_disp ON voucher(eventos_eventos_id, voucher_disponivel);
 CREATE INDEX idx_eventos_id_nome ON eventos(eventos_id, eventos_nome);
@@ -182,7 +182,7 @@ FROM eventos e
 LEFT JOIN voucher v ON e.eventos_id = v.eventos_eventos_id
 GROUP BY e.eventos_id, e.eventos_nome
 ORDER BY total_vouchers DESC;
--- TEMPO REAL: ~0.04 sec
+-- TEMPO APROXIMADO: 0.04 sec
 
 
 -- ============================================================
