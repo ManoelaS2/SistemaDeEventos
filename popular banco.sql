@@ -1714,9 +1714,15 @@ SET SESSION sql_log_bin = 1;
 
 SET @tempo_fim = SYSDATE(6);
 
+ALTER TABLE `mydb`.`permissoes` DROP INDEX idx_perm_nome;
+
+ALTER TABLE `mydb`.`permissoesUsuarios` DROP INDEX idx_pu_perm_usuario;
+
+ALTER TABLE `mydb`.`tipoInscricao` DROP INDEX idx_tipoInsc_evento;
+
 -- Exibe o relatorio final de performance na sua tela
 
-SELECT 
+SELECT +
     @tempo_inicio AS 'Inicio da Execucao',
     @tempo_fim AS 'Fim da Execucao',
     -- Calcula os segundos exatos com decimais (ex: 1.453 segundos)
