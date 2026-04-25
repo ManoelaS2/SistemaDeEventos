@@ -1,10 +1,6 @@
 -- consulta 1
 
-select * from usuario inner join inscricao i on i.usuario_usuario_id = usuario_id inner join eventos on eventos_id = eventos_eventos_id inner join certificados on inscricao_inscricao_id = inscricao_id where i.usuario_usuario_id = 106504;
-
-CREATE INDEX idx_inscricao_usuario_evento ON inscricao (usuario_usuario_id, eventos_eventos_id, inscricao_id);
-CREATE INDEX idx_certificados_inscricao_emissao ON certificados (inscricao_inscricao_id, certificados_dataDeEmissao DESC);
-CREATE INDEX idx_eventos_dados ON eventos (eventos_id, eventos_nome, eventos_dataInicio, eventos_dataFim);
+select * from usuario inner join inscricao i on i.usuario_usuario_id = usuario_id inner join eventos on eventos_id = eventos_eventos_id inner join certificados on inscricao_inscricao_id = inscricao_id where i.usuario_usuario_id = 106504 order by certificados_dataDeEmissao desc;
 
 select usuario_nome, eventos_nome, eventos_descricao, eventos_dataInicio, eventos_dataFim, certificados_cargaHorariaTotal, certificados_dataDeEmissao from usuario inner join inscricao i on i.usuario_usuario_id = usuario_id inner join eventos on eventos_id = eventos_eventos_id inner join certificados on inscricao_inscricao_id = inscricao_id where i.usuario_usuario_id = 106504 order by certificados_dataDeEmissao desc;
 
