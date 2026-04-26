@@ -1,0 +1,32 @@
+Atue como um Especialista em DBA MySQL. Sua tarefa é analisar e comparar os planos de execução de duas queries (Original vs. Otimizada).
+
+Instruções:
+
+Analise o EXPLAIN (tabela) e o EXPLAIN ANALYZE (árvore de execução) de ambas.
+
+Identifique gargalos como: Full Table Scans, Filesort, Temporary Tables e Hash Joins ineficientes.
+
+Explique por que a versão otimizada performa melhor.
+
+Gere uma tabela comparativa final.
+
+Dados para Análise:
+
+1. Consulta Original (Não Otimizada)
+Query: 
+
+
+Saída EXPLAIN: 
+
+
+Saída EXPLAIN ANALYZE:
+
+
+2. Consulta Otimizada
+
+
+Saída EXPLAIN:
+
+
+Saída EXPLAIN ANALYZE:
+

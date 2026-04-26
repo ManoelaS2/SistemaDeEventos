@@ -1059,10 +1059,10 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS GerarPagamentosDinamicosV2$$
 
 CREATE PROCEDURE GerarPagamentosDinamicosV2(
-    IN p_min_percentual_pagantes DECIMAL(5,2), -- Ex: 20.0 (20%)
-    IN p_max_percentual_pagantes DECIMAL(5,2), -- Ex: 70.0 (70%)
-    IN p_min_valor_ingresso DECIMAL(9,2),      -- Ex: 50.00
-    IN p_max_valor_ingresso DECIMAL(9,2)       -- Ex: 500.00
+    IN p_min_percentual_pagantes DECIMAL(5,2), 
+    IN p_max_percentual_pagantes DECIMAL(5,2), 
+    IN p_min_valor_ingresso DECIMAL(9,2),      
+    IN p_max_valor_ingresso DECIMAL(9,2)       
 )
 BEGIN
     DECLARE v_done INT DEFAULT FALSE;
@@ -1071,19 +1071,14 @@ BEGIN
     DECLARE v_qtd_pagar INT;
     DECLARE v_valor_evento DECIMAL(9,2);
     
-    -- IDs para sorteio
     DECLARE v_min_metodo, v_max_metodo INT;
     DECLARE v_min_tipo_desc, v_max_tipo_desc INT;
-    DECLARE v_max_voucher INT;
 
-    -- Cursor para percorrer cada evento
     DECLARE cur_eventos CURSOR FOR SELECT eventos_id FROM `mydb`.`eventos`;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = TRUE;
 
-    -- 1. Mapeia IDs das tabelas de apoio para o sorteio
     SELECT MIN(metodoPagamento_id), MAX(metodoPagamento_id) INTO v_min_metodo, v_max_metodo FROM `mydb`.`metodoPagamento`;
     SELECT MIN(tipoDesconto_id), MAX(tipoDesconto_id) INTO v_min_tipo_desc, v_max_tipo_desc FROM `mydb`.`tipoDesconto`;
-    SELECT MAX(voucher_id) INTO v_max_voucher FROM `mydb`.`voucher`;
 
     SET FOREIGN_KEY_CHECKS = 0;
     SET AUTOCOMMIT = 0;
@@ -1096,16 +1091,14 @@ BEGIN
             LEAVE read_loop;
         END IF;
 
-        -- 2. Define o VALOR DO INGRESSO para ESTE evento (Sorteio dentro do range)
         SET v_valor_evento = ROUND(p_min_valor_ingresso + (RAND() * (p_max_valor_ingresso - p_min_valor_ingresso)), 2);
 
-        -- 3. Calcula QUANTOS vão pagar (Baseado na % sorteada sobre o total de inscritos do evento)
         SELECT COUNT(*) INTO v_total_inscritos FROM `mydb`.`inscricao` WHERE eventos_eventos_id = v_evento_id;
         
         SET v_qtd_pagar = FLOOR(v_total_inscritos * ( (p_min_percentual_pagantes + (RAND() * (p_max_percentual_pagantes - p_min_percentual_pagantes))) / 100 ));
 
-        -- 4. Insere os pagamentos se houver inscritos e meta de pagantes > 0
         IF v_qtd_pagar > 0 THEN
+            -- 1. Inserção dos pagamentos
             INSERT INTO `mydb`.`pagamento` (
                 `pagamento_valorTotal`,
                 `pagamento_valorPagamento`,
@@ -1118,25 +1111,38 @@ BEGIN
             )
             SELECT 
                 v_valor_evento,
-                -- Valor Pago: Valor do evento - valor do voucher (se houver sorteio de voucher)
-                GREATEST(v_valor_evento - IFNULL(v.voucher_valor, 0), 0),
+                -- Busca o valor do voucher diretamente na subquery para garantir o cálculo correto
+                GREATEST(v_valor_evento - IFNULL((SELECT valor FROM (SELECT voucher_id, voucher_valor as valor FROM `mydb`.`voucher`) as v_temp WHERE v_temp.voucher_id = rand_voucher.v_id), 0), 0),
                 ELT(FLOOR(RAND() * 3) + 1, 'Pendente', 'Pago', 'Agendado'),
                 DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 60) DAY),
-                -- Método de Pagamento Aleatório
                 FLOOR(v_min_metodo + RAND() * (v_max_metodo - v_min_metodo + 1)),
-                -- Voucher do Próprio Evento (30% de chance)
-                IF(RAND() < 0.3, (SELECT voucher_id FROM `mydb`.`voucher` WHERE eventos_eventos_id = v_evento_id ORDER BY RAND() LIMIT 1), NULL),
+                rand_voucher.v_id,
                 i.inscricao_id,
-                -- Tipo de Desconto Aleatório
                 IF(RAND() < 0.3, FLOOR(v_min_tipo_desc + RAND() * (v_max_tipo_desc - v_min_tipo_desc + 1)), NULL)
             FROM `mydb`.`inscricao` i
-            LEFT JOIN `mydb`.`voucher` v ON v.eventos_eventos_id = v_evento_id AND RAND() < 0.3
+            -- Subquery lateral para sortear o voucher disponível UMA vez por linha
+            LEFT JOIN (
+                SELECT voucher_id as v_id 
+                FROM `mydb`.`voucher` 
+                WHERE eventos_eventos_id = v_evento_id 
+                AND voucher_disponivel = 1 
+                ORDER BY RAND() 
+            ) AS rand_voucher ON RAND() < 0.3 -- 30% de chance de aplicar um voucher
             WHERE i.eventos_eventos_id = v_evento_id
-            ORDER BY RAND() -- Sorteia quais inscritos serão os pagantes
+            ORDER BY RAND()
             LIMIT v_qtd_pagar;
+
+            -- 2. UPDATE nos vouchers que acabaram de ser vinculados a um pagamento
+            -- Atualiza para 0 (indisponível) apenas os vouchers que estão na tabela de pagamento
+            UPDATE `mydb`.`voucher` v
+            INNER JOIN `mydb`.`pagamento` p ON v.voucher_id = p.voucher_voucher_id
+            SET v.voucher_disponivel = 0
+            WHERE v.eventos_eventos_id = v_evento_id 
+            AND v.voucher_disponivel = 1;
+
         END IF;
 
-        COMMIT; -- Salva os pagamentos deste evento
+        COMMIT; 
 
     END LOOP;
 
