@@ -30,7 +30,7 @@ ORDER BY certificados_dataDeEmissao DESC;
 
 -- consulta 2
 
-SELECT * FROM inscricao 
+explain analyze SELECT * FROM inscricao 
 INNER JOIN pagamento 
     ON pagamento_inscricao_id = inscricao_id 
 INNER JOIN usuario 
@@ -39,19 +39,25 @@ WHERE inscricao_eventos_id = 2
   AND pagamento_status = 'Pago' 
 ORDER BY pagamento_dataHora ASC;
 
-CREATE INDEX idx_inscricao_evento_usuario ON inscricao (inscricao_eventos_id, inscricao_usuario_id);
-CREATE INDEX idx_pagamento_performance ON pagamento (pagamento_inscricao_id, pagamento_status, pagamento_dataHora);
+
+CREATE INDEX idx_inscricao_performance ON inscricao (inscricao_eventos_id, inscricao_usuario_id, inscricao_id);
+
+CREATE INDEX idx_pagamento_status_data ON pagamento (pagamento_status, pagamento_inscricao_id, pagamento_dataHora);
+
 CREATE INDEX idx_usuario_id_nome ON usuario (usuario_id, usuario_nome);
 	 
-SELECT usuario_nome 
-FROM inscricao 
-INNER JOIN pagamento 
-    ON pagamento_inscricao_id = inscricao_id 
-INNER JOIN usuario 
-    ON inscricao_usuario_id = usuario_id 
-WHERE inscricao_eventos_id = 2
-  AND pagamento_status = 'Pago' 
-ORDER BY pagamento_dataHora ASC;
+SELECT 
+    usuario_nome
+FROM inscricao
+INNER JOIN pagamento
+    ON pagamento_inscricao_id = inscricao_id
+INNER JOIN usuario
+    ON inscricao_usuario_id = usuario_id
+WHERE 
+    inscricao_eventos_id = 2 
+    AND pagamento_status = 'Pago'
+ORDER BY 
+    pagamento_dataHora ASC;
 	
 -- consulta 3
 
