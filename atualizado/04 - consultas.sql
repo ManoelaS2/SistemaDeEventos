@@ -267,93 +267,100 @@ LEFT JOIN permissoes
 	
 -- pesquisa 9
 
-SELECT 
-    (SELECT eventos_nome FROM eventos WHERE eventos_id = programacao_eventos_id) AS EVENTO, 
-    programacao_nome AS ATIVIDADE, 
-    DATE_FORMAT(programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA, 
+SET @id_programacao = 1;
+
+explain analyze SELECT 
+    (SELECT e.eventos_nome FROM eventos e WHERE e.eventos_id = p.programacao_eventos_id) AS EVENTO,
+    p.programacao_nome AS ATIVIDADE,
+    DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA,
     COALESCE(
-        (SELECT papel_nome 
-         FROM papel 
-         JOIN papelProgramacao 
-            ON papel_id = papelProgramacao_papel_id 
-         WHERE papelProgramacao_inscricao_id = inscricao_id 
-           AND papelProgramacao_programacao_id = programacao_id 
-         LIMIT 1), 
+        (SELECT pap.papel_nome 
+         FROM papelProgramacao pp
+         INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
+         WHERE pp.papelProgramacao_programacao_id = p.programacao_id 
+           AND pp.papelProgramacao_inscricao_id = i.inscricao_id
+         LIMIT 1),
         'Participante'
-    ) AS FUNCAO, 
-    usuario_nome AS NOME, 
-    usuario_email AS EMAIL, 
+    ) AS FUNCAO,
+    (SELECT u.usuario_nome FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id) AS NOME,
+    (SELECT u.usuario_email FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id) AS EMAIL,
     CASE 
-        WHEN (SELECT inscritosProgramacao_FrequenciaConfirmada 
-              FROM inscritosProgramacao 
-              WHERE inscritosProgramacao_programacao_id = programacao_id 
-                AND inscritosProgramacao_inscritos_id = inscricao_id
-              LIMIT 1) = 1 THEN 'Confirmado' 
-        WHEN (SELECT inscritosProgramacao_FrequenciaConfirmada 
-              FROM inscritosProgramacao 
-              WHERE inscritosProgramacao_programacao_id = programacao_id 
-                AND inscritosProgramacao_inscritos_id = inscricao_id 
-              LIMIT 1) = 0 THEN 'Ausente' 
-        ELSE 'Pendente' 
-    END AS STATUS_PRESENCA, 
-    DATE_FORMAT(
-        (SELECT inscritosProgramacao_dataHoraFrequencia 
-         FROM inscritosProgramacao 
-         WHERE inscritosProgramacao_programacao_id = programacao_id 
-           AND inscritosProgramacao_inscritos_id = inscricao_id 
-         LIMIT 1), 
-        '%d/%m/%Y %H:%i:%s'
-    ) AS DATA_CHECKIN 
-FROM programacao 
-INNER JOIN inscritosProgramacao 
-    ON programacao_id = inscritosProgramacao_programacao_id 
-INNER JOIN inscricao 
-    ON inscritosProgramacao_inscritos_id = inscricao_id 
-INNER JOIN usuario 
-    ON inscricao_usuario_id = usuario_id 
-WHERE programacao_id = 3 
-ORDER BY usuario_nome ASC;
-
-
-		
-CREATE INDEX idx_programacao_id_evento ON programacao(programacao_id, programacao_eventos_id);
-CREATE INDEX idx_inscritos_prog_programacao ON inscritosProgramacao(inscritosProgramacao_programacao_id, inscritosProgramacao_inscritos_id);
-CREATE INDEX idx_inscricao_id_usuario ON inscricao(inscricao_id, inscricao_usuario_id);
-CREATE INDEX idx_papel_prog_composto ON papelProgramacao(papelProgramacao_programacao_id, papelProgramacao_inscricao_id);
-
-
-SELECT 
-    e.eventos_nome AS EVENTO, 
-    p.programacao_nome AS ATIVIDADE, 
-    DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA, 
-    COALESCE(pap.papel_nome, 'Participante') AS FUNCAO, 
-    u.usuario_nome AS NOME, 
-    u.usuario_email AS EMAIL, 
-    CASE 
-        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado' 
-        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 0 THEN 'Ausente' 
-        ELSE 'Pendente' 
-    END AS STATUS_PRESENCA, 
-    DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN 
-FROM programacao p 
-INNER JOIN eventos e 
-    ON p.programacao_eventos_id = e.eventos_id 
-INNER JOIN inscritosProgramacao ip 
-    ON p.programacao_id = ip.inscritosProgramacao_programacao_id 
-INNER JOIN inscricao i 
-    ON ip.inscritosProgramacao_inscritos_id = i.inscricao_id 
-INNER JOIN usuario u 
-    ON i.inscricao_usuario_id = u.usuario_id 
-LEFT JOIN papelProgramacao pp 
-    ON i.inscricao_id = pp.papelProgramacao_inscricao_id 
-    AND p.programacao_id = pp.papelProgramacao_programacao_id 
-LEFT JOIN papel pap 
-    ON pp.papelProgramacao_papel_id = pap.papel_id 
-WHERE p.programacao_id = 3 
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado'
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 0 THEN 'Ausente'
+        ELSE 'Pendente'
+    END AS STATUS_PRESENCA,
+    DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN
+FROM programacao p
+INNER JOIN inscritosProgramacao ip ON p.programacao_id = ip.inscritosProgramacao_programacao_id
+INNER JOIN inscricao i ON ip.inscritosProgramacao_inscritos_id = i.inscricao_id
+WHERE p.programacao_id = @id_programacao
 ORDER BY 
-    FIELD(pap.papel_nome, 'Organizador', 'Coordenador', 'Palestrante', 'Staff', 'Auxiliar', 'Participante'), 
-    u.usuario_nome ASC;
-	-- consulata 10
+    FIELD(
+        COALESCE(
+            (SELECT pap.papel_nome 
+             FROM papelProgramacao pp
+             INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
+             WHERE pp.papelProgramacao_programacao_id = p.programacao_id 
+               AND pp.papelProgramacao_inscricao_id = i.inscricao_id
+             LIMIT 1),
+            'Participante'
+        ),
+        'Organizador', 'Coordenador', 'Palestrante', 'Staff', 'Auxiliar', 'Participante'),
+    (SELECT u.usuario_nome FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id);
+
+
+CREATE INDEX idx_ip_prog_inscrito 
+ON inscritosProgramacao (inscritosProgramacao_programacao_id, inscritosProgramacao_inscritos_id);
+
+CREATE INDEX idx_pp_prog_inscricao_papel 
+ON papelProgramacao (papelProgramacao_programacao_id, papelProgramacao_inscricao_id, papelProgramacao_papel_id);
+
+CREATE INDEX idx_inscricao_usuario 
+ON inscricao (inscricao_usuario_id);
+
+CREATE INDEX idx_prog_evento 
+ON programacao (programacao_eventos_id);
+
+-- atualização
+
+SET @id_programacao = 1;
+
+explain analyze SELECT 
+    e.eventos_nome AS EVENTO,
+    p.programacao_nome AS ATIVIDADE,
+    DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA,
+    COALESCE(pap.papel_nome, 'Participante') AS FUNCAO,
+    u.usuario_nome AS NOME,
+    u.usuario_email AS EMAIL,
+    CASE 
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado'
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 0 THEN 'Ausente'
+        ELSE 'Pendente'
+    END AS STATUS_PRESENCA,
+    DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN
+FROM programacao p
+INNER JOIN inscritosProgramacao ip 
+    ON p.programacao_id = ip.inscritosProgramacao_programacao_id
+INNER JOIN inscricao i 
+    ON ip.inscritosProgramacao_inscritos_id = i.inscricao_id
+INNER JOIN eventos e 
+    ON e.eventos_id = p.programacao_eventos_id
+INNER JOIN usuario u 
+    ON u.usuario_id = i.inscricao_usuario_id
+LEFT JOIN papelProgramacao pp 
+    ON pp.papelProgramacao_programacao_id = p.programacao_id 
+    AND pp.papelProgramacao_inscricao_id = i.inscricao_id
+LEFT JOIN papel pap 
+    ON pp.papelProgramacao_papel_id = pap.papel_id
+WHERE p.programacao_id = @id_programacao
+ORDER BY 
+    FIELD(
+        COALESCE(pap.papel_nome, 'Participante'),
+        'Organizador', 'Coordenador', 'Palestrante', 'Staff', 'Auxiliar', 'Participante'
+    ),
+    u.usuario_nome;
+
+-- consulata 10
 
 	select * from telefone where telefone_usuario_id = 1;
 
