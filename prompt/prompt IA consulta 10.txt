@@ -14,19 +14,26 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+select * from telefone left join usuario on usuario_id = telefone_usuario_id where usuario_id = 1;
 
 
-Saída EXPLAIN: 
-
+Saída EXPLAIN:	
+1	SIMPLE	usuario		const	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	PRIMARY	4	const	1	100.00	
+1	SIMPLE	telefone		ref	fk_telefone_usuario1_idx	fk_telefone_usuario1_idx	4	const	2	100.00	
 
 Saída EXPLAIN ANALYZE:
-
+-> Index lookup on telefone using fk_telefone_usuario1_idx (telefone_usuario_id=1)  (cost=0.7 rows=2) (actual time=0.0153..0.0167 rows=2 loops=1)
+   
 
 2. Consulta Otimizada
+Query:
+select usuario_nome, telefone_ddi, telefone_ddd, telefone_telefone from usuario inner join telefone on usuario_id = telefone_usuario_id where usuario_id = 1
 
 
 Saída EXPLAIN:
-
+1	SIMPLE	usuario		const	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email,idx_usuario_cover	PRIMARY	4	const	1	100.00	
+1	SIMPLE	telefone		ref	fk_telefone_usuario1_idx,idx_telefone_cover	fk_telefone_usuario1_idx	4	const	2	100.00	
 
 Saída EXPLAIN ANALYZE:
-
+-> Index lookup on telefone using fk_telefone_usuario1_idx (telefone_usuario_id=1)  (cost=0.7 rows=2) (actual time=0.0413..0.0434 rows=2 loops=1)
+  

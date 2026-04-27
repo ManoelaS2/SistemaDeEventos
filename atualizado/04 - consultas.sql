@@ -139,26 +139,26 @@ ORDER BY quantidade_usuarios DESC;
 
 -- pesquisa 5
 
-SELECT 
-    SUM(CASE WHEN inscricao_credenciamento = 1 AND pagamento_status = 'Pago' THEN pagamento_valorTotal ELSE 0 END) AS Valor_total_arrecadado, 
-    SUM(CASE WHEN inscricao_credenciamento = 1 THEN 1 ELSE 0 END) AS Quantidade_Inscritos_confirmados, 
-    SUM(CASE WHEN inscricao_credenciamento = 0 THEN 1 ELSE 0 END) AS Quantidade_Inscritos_Nao_confirmados, 
-    SUM(CASE WHEN inscricao_credenciamento = 0 THEN pagamento_valorTotal ELSE 0 END) AS Valor_total_estimado 
-FROM pagamento 
-LEFT JOIN inscricao 
-    ON pagamento_inscricao_id = inscricao_id;
-    
-CREATE INDEX idx_inscricao_id_credenciamento ON inscricao (inscricao_id, inscricao_credenciamento);
-CREATE INDEX idx_pagamento_inscricaoId_valorpagamento_status ON pagamento (pagamento_inscricao_id, pagamento_valorTotal, pagamento_status);
-	
-SELECT 
-    SUM(CASE WHEN inscricao_credenciamento = 1 AND pagamento_status = 'Pago' THEN pagamento_valorTotal ELSE 0 END) AS Valor_total_arrecadado, 
-    COALESCE(SUM(inscricao_credenciamento = 1), 0) AS Quantidade_Inscritos_confirmados, 
-    COALESCE(SUM(inscricao_credenciamento = 0), 0) AS Quantidade_Inscritos_Nao_confirmados, 
-    SUM(CASE WHEN inscricao_credenciamento = 0 THEN pagamento_valorTotal ELSE 0 END) AS Valor_total_estimado 
-FROM pagamento 
-LEFT JOIN inscricao 
-    ON pagamento_inscricao_id = inscricao_id;
+select 
+sum(case when pagamento_status = "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Recebido,
+sum(case when pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Nao_Recebido,
+sum(case when pagamento_status = "Pago" or pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Esperado,
+sum(case when inscricao_credenciamento = 1 then 1 else 0 end) as Inscricao_Confirmada,
+sum(case when inscricao_credenciamento = 0 then 1 else 0 end) as Inscricao_Nao_Confirmada
+from pagamento inner join inscricao on pagamento_inscricao_id = inscricao_id
+where inscricao_eventos_id = 1;
+
+CREATE INDEX idx_inscricao_evento_cover ON inscricao (inscricao_eventos_id, inscricao_id, inscricao_credenciamento);
+CREATE INDEX idx_pagamento_inscricao_cover ON pagamento (pagamento_inscricao_id, pagamento_status, pagamento_valorTotal);                                      
+
+select 
+sum(case when pagamento_status = "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Recebido,
+sum(case when pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Nao_Recebido,
+sum(pagamento_valorTotal) as Valor_Total_Esperado,
+coalesce(sum(inscricao_credenciamento = 1), 0) as Inscricao_Confirmada,
+coalesce(sum(inscricao_credenciamento = 0) ,0 ) as Incricao_Nao_Confirmada
+from pagamento inner join inscricao on inscricao_id = pagamento_inscricao_id
+where inscricao_eventos_id = 1;
     
 -- select 6
 
@@ -362,8 +362,9 @@ ORDER BY
 
 -- consulata 10
 
-	select * from telefone where telefone_usuario_id = 1;
+select * from telefone left join usuario on usuario_id = telefone_usuario_id where usuario_id = 1;
 
-	create index idx_telefone_ddi_ddd_telefone_usuario on telefone(telefone_ddi,telefone_ddd, telefone_telefone, telefone_usuario_id);
+CREATE INDEX idx_telefone_cover ON telefone (telefone_usuario_id, telefone_ddi, telefone_ddd, telefone_telefone);
+CREATE INDEX idx_usuario_cover ON usuario (usuario_id, usuario_nome);
 
-	select telefone_ddi, telefone_ddd, telefone_telefone from telefone where telefone_usuario_id = 1;
+select usuario_nome, telefone_ddi, telefone_ddd, telefone_telefone from usuario inner join telefone on usuario_id = telefone_usuario_id where usuario_id = 1;

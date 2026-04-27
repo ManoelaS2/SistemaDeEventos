@@ -14,19 +14,41 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+select 
+sum(case when pagamento_status = "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Recebido,
+sum(case when pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Nao_Recebido,
+sum(case when pagamento_status = "Pago" or pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Esperado,
+sum(case when inscricao_credenciamento = 1 then 1 else 0 end) as Inscricao_Confirmada,
+sum(case when inscricao_credenciamento = 0 then 1 else 0 end) as Inscricao_Nao_Confirmada
+from pagamento inner join inscricao on pagamento_inscricao_id = inscricao_id
+where inscricao_eventos_id = 1;
 
 
 Saída EXPLAIN: 
+1	SIMPLE	inscricao		ref	PRIMARY,fk_inscritos_eventos1_idx,idx_insc_ev,idx_inscricao_evento_usuario,idx_inscricao_id_credenciamento,idx_inscricao_id_usuario	fk_inscritos_eventos1_idx	4	const	1959	100.00	
+1	SIMPLE	pagamento		ref	fk_pagamento_inscricao1_idx,idx_pagamento_performance,idx_pagamento_inscricaoId_valorpagamento_status	fk_pagamento_inscricao1_idx	4	eventos.inscricao.inscricao_id	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Aggregate: sum((case when (pagamento.pagamento_status = \'Pago\') then pagamento.pagamento_valorTotal else 0 end)), sum((case when (pagamento.pagamento_status <> \'Pago\') then pagamento.pagamento_valorTotal else 0 end)), sum((case when ((pagamento.pagamento_status = \'Pago\') or (pagamento.pagamento_status <> \'Pago\')) then pagamento.pagamento_valorTotal else 0 end)), sum((case when (inscricao.inscricao_credenciamento = 1) then 1 else 0 end)), sum((case when (inscricao.inscricao_credenciamento = 0) then 1 else 0 end))  (cost=1851 rows=1) (actual time=28.1..28.1 rows=1 loops=1)\n    -> Nested loop inner join  (cost=1656 rows=1959) (actual time=2.79..24.9 rows=1743 loops=1)\n        -> Index lookup on inscricao using fk_inscritos_eventos1_idx (inscricao_eventos_id=1)  (cost=762 rows=1959) (actual time=2.72..5.73 rows=1959 loops=1)\n        -> Index lookup on pagamento using fk_pagamento_inscricao1_idx (pagamento_inscricao_id=inscricao.inscricao_id)  (cost=0.356 rows=1) (actual time=0.00771..0.00933 rows=0.89 loops=1959)\n'
 
 
 2. Consulta Otimizada
-
+Query:
+select 
+sum(case when pagamento_status = "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Recebido,
+sum(case when pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Nao_Recebido,
+sum(pagamento_valorTotal) as Valor_Total_Esperado,
+coalesce(sum(inscricao_credenciamento = 1), 0) as Inscricao_Confirmada,
+coalesce(sum(inscricao_credenciamento = 0) ,0 ) as Incricao_Nao_Confirmada
+from pagamento inner join inscricao on inscricao_id = pagamento_inscricao_id
+where inscricao_eventos_id = 1;
 
 Saída EXPLAIN:
+1	SIMPLE	inscricao		ref	PRIMARY,fk_inscritos_eventos1_idx,idx_insc_ev,idx_inscricao_evento_usuario,idx_inscricao_id_credenciamento,idx_inscricao_id_usuario,idx_inscricao_evento_cover	idx_inscricao_evento_cover	4	const	1959	100.00	Using index
+1	SIMPLE	pagamento		ref	fk_pagamento_inscricao1_idx,idx_pagamento_performance,idx_pagamento_inscricaoId_valorpagamento_status,idx_pagamento_inscricao_cover	fk_pagamento_inscricao1_idx	4	eventos.inscricao.inscricao_id	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Aggregate: sum((inscricao.inscricao_credenciamento = 0)), sum((inscricao.inscricao_credenciamento = 1)), sum((case when (pagamento.pagamento_status = \'Pago\') then pagamento.pagamento_valorTotal else 0 end)), sum((case when (pagamento.pagamento_status <> \'Pago\') then pagamento.pagamento_valorTotal else 0 end)), sum(pagamento.pagamento_valorTotal)  (cost=1427 rows=1) (actual time=18.7..18.7 rows=1 loops=1)\n    -> Nested loop inner join  (cost=1231 rows=1959) (actual time=0.863..16.1 rows=1743 loops=1)\n        -> Covering index lookup on inscricao using idx_inscricao_evento_cover (inscricao_eventos_id=1)  (cost=200 rows=1959) (actual time=0.652..1.57 rows=1959 loops=1)\n        -> Index lookup on pagamento using fk_pagamento_inscricao1_idx (pagamento_inscricao_id=inscricao.inscricao_id)  (cost=0.426 rows=1) (actual time=0.00625..0.00708 rows=0.89 loops=1959)\n'
 
