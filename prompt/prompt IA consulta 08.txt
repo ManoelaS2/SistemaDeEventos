@@ -14,19 +14,65 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SELECT DISTINCT 
+    *, 
+    (SELECT 
+        CASE WHEN LOWER(permissoes_nome) LIKE '%criar_evento%' THEN 'SIM' ELSE 'NÃO' END 
+     FROM permissoes 
+     JOIN permissoesusuarios 
+        ON permissoes_id = permissoesusuarios_permissoes_id 
+     WHERE permissoesusuarios_usuario_id = usuario_id 
+     LIMIT 1
+    ) AS pode_criar_evento 
+FROM eventos 
+JOIN usuario 
+    ON usuario_id = eventos_criador_usuario_id 
+LEFT JOIN permissoesusuarios 
+    ON permissoesusuarios_usuario_id = usuario_id 
+LEFT JOIN permissoes 
+    ON permissoes_id = permissoesusuarios_permissoes_id 
+ORDER BY RAND();
 
 
 Saída EXPLAIN: 
+1	PRIMARY	eventos		ALL	fk_eventos_usuario1_idx				250	100.00	Using temporary; Using filesort
+1	PRIMARY	usuario		eq_ref	PRIMARY,idx_usuario_id_nome	PRIMARY	4	eventos.eventos.eventos_criador_usuario_id	1	100.00	
+1	PRIMARY	permissoesusuarios		ref	fk_permissoes_has_usuario_usuario1_idx	fk_permissoes_has_usuario_usuario1_idx	4	eventos.eventos.eventos_criador_usuario_id	1	100.00	Using index
+1	PRIMARY	permissoes		ALL	PRIMARY				4	100.00	Using where; Using join buffer (hash join)
+2	DEPENDENT SUBQUERY	permissoesusuarios		ref	PRIMARY,fk_permissoes_has_usuario_usuario1_idx,fk_permissoes_has_usuario_permissoes1_idx	fk_permissoes_has_usuario_usuario1_idx	4	eventos.usuario.usuario_id	1	100.00	Using index
+2	DEPENDENT SUBQUERY	permissoes		eq_ref	PRIMARY	PRIMARY	4	eventos.permissoesusuarios.permissoesUsuarios_permissoes_id	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: `rand()`  (actual time=27.4..27.5 rows=433 loops=1)\n    -> Table scan on <temporary>  (cost=233..250 rows=1155) (actual time=27.2..27.2 rows=433 loops=1)\n        -> Temporary table with deduplication  (cost=233..233 rows=1155) (actual time=27.2..27.2 rows=433 loops=1)\n            -> Left hash join (permissoes.permissoes_id = permissoesusuarios.permissoesUsuarios_permissoes_id)  (cost=118 rows=1155) (actual time=3.5..22.4 rows=433 loops=1)\n                -> Nested loop left join  (cost=518 rows=289) (actual time=0.901..19.6 rows=433 loops=1)\n                    -> Nested loop inner join  (cost=252 rows=250) (actual time=0.0668..13.6 rows=250 loops=1)\n                        -> Table scan on eventos  (cost=26 rows=250) (actual time=0.0211..0.199 rows=250 loops=1)\n                        -> Single-row index lookup on usuario using PRIMARY (usuario_id=eventos.eventos_criador_usuario_id)  (cost=0.804 rows=1) (actual time=0.0533..0.0533 rows=1 loops=250)\n                    -> Covering index lookup on permissoesusuarios using fk_permissoes_has_usuario_usuario1_idx (permissoesUsuarios_usuario_id=eventos.eventos_criador_usuario_id)  (cost=0.951 rows=1.15) (actual time=0.0226..0.0238 rows=1.73 loops=250)\n                -> Hash\n                    -> Table scan on permissoes  (cost=0.00908 rows=4) (actual time=2.56..2.57 rows=4 loops=1)\n-> Select #2 (subquery in projection; dependent)\n    -> Limit: 1 row(s)  (cost=2.34 rows=1) (actual time=0.00497..0.005 rows=1 loops=433)\n        -> Nested loop inner join  (cost=2.34 rows=1.15) (actual time=0.00487..0.00487 rows=1 loops=433)\n            -> Covering index lookup on permissoesusuarios using fk_permissoes_has_usuario_usuario1_idx (permissoesUsuarios_usuario_id=usuario.usuario_id)  (cost=1.07 rows=1.15) (actual time=0.00339..0.00339 rows=1 loops=433)\n            -> Single-row index lookup on permissoes using PRIMARY (permissoes_id=permissoesusuarios.permissoesUsuarios_permissoes_id)  (cost=1.09 rows=1) (actual time=0.00132..0.00132 rows=1 loops=433)\n'
 
 
 2. Consulta Otimizada
+Query:
+SELECT 
+    eventos_nome, 
+    eventos_descricao, 
+    eventos_dataInicio, 
+    eventos_dataFim, 
+    usuario_nome, 
+    usuario_email, 
+    CASE WHEN permissoes_nome = 'criar_evento' THEN 'SIM' ELSE 'NÃO' END AS pode_criar_evento 
+FROM eventos 
+JOIN usuario 
+    ON usuario_id = eventos_criador_usuario_id 
+LEFT JOIN permissoesusuarios 
+    ON permissoesusuarios_usuario_id = usuario_id 
+LEFT JOIN permissoes 
+    ON permissoes_id = permissoesusuarios_permissoes_id;
 
 
 Saída EXPLAIN:
+1	SIMPLE	eventos		ALL	fk_eventos_usuario1_idx				250	100.00	
+1	SIMPLE	usuario		eq_ref	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	PRIMARY	4	eventos.eventos.eventos_criador_usuario_id	1	100.00	
+1	SIMPLE	permissoesusuarios		ref	fk_permissoes_has_usuario_usuario1_idx	fk_permissoes_has_usuario_usuario1_idx	4	eventos.eventos.eventos_criador_usuario_id	1	100.00	Using index
+1	SIMPLE	permissoes		eq_ref	PRIMARY	PRIMARY	4	eventos.permissoesusuarios.permissoesUsuarios_permissoes_id	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Nested loop left join  (cost=306 rows=289) (actual time=0.08..2.38 rows=433 loops=1)\n    -> Nested loop left join  (cost=205 rows=289) (actual time=0.0747..2.06 rows=433 loops=1)\n        -> Nested loop inner join  (cost=114 rows=250) (actual time=0.0619..0.87 rows=250 loops=1)\n            -> Table scan on eventos  (cost=26 rows=250) (actual time=0.0445..0.153 rows=250 loops=1)\n            -> Single-row index lookup on usuario using PRIMARY (usuario_id=eventos.eventos_criador_usuario_id)  (cost=0.25 rows=1) (actual time=0.00274..0.00275 rows=1 loops=250)\n        -> Covering index lookup on permissoesusuarios using fk_permissoes_has_usuario_usuario1_idx (permissoesUsuarios_usuario_id=eventos.eventos_criador_usuario_id)  (cost=0.251 rows=1.15) (actual time=0.00397..0.00462 rows=1.73 loops=250)\n    -> Single-row index lookup on permissoes using PRIMARY (permissoes_id=permissoesusuarios.permissoesUsuarios_permissoes_id)  (cost=0.25 rows=1) (actual time=605e-6..624e-6 rows=1 loops=433)\n'
 
