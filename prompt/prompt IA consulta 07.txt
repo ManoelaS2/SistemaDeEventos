@@ -14,19 +14,58 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SELECT 
+    eventos_nome,
+    (SELECT COUNT(*) 
+       FROM voucher 
+      WHERE voucher_eventos_id = eventos_id) AS total_vouchers,
+    (SELECT COALESCE(SUM(voucher_disponivel = 1), 0) 
+       FROM voucher
+      WHERE voucher_eventos_id = eventos_id) AS disponiveis,
+    (SELECT COALESCE(SUM(voucher_disponivel = 0), 0) 
+       FROM voucher
+      WHERE voucher_eventos_id = eventos_id) AS usados
+FROM eventos
+ORDER BY total_vouchers DESC;
 
 
 Saída EXPLAIN: 
+1	PRIMARY	eventos		index		idx_evento_id_nome_inicio_fim_limiteInscricao	152		250	100.00	Using index; Using temporary; Using filesort
+4	DEPENDENT SUBQUERY	voucher		ref	fk_voucher_eventos1_idx	fk_voucher_eventos1_idx	4	eventos.eventos.eventos_id	56	100.00	
+3	DEPENDENT SUBQUERY	voucher		ref	fk_voucher_eventos1_idx	fk_voucher_eventos1_idx	4	eventos.eventos.eventos_id	56	100.00	
+2	DEPENDENT SUBQUERY	voucher		ref	fk_voucher_eventos1_idx	fk_voucher_eventos1_idx	4	eventos.eventos.eventos_id	56	100.00	Using index
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: total_vouchers DESC  (actual time=18.4..18.4 rows=250 loops=1)\n    -> Stream results  (cost=26 rows=250) (actual time=0.113..18.3 rows=250 loops=1)\n        -> Covering index scan on eventos using idx_evento_id_nome_inicio_fim_limiteInscricao  (cost=26 rows=250) (actual time=0.0619..0.15 rows=250 loops=1)\n-> Select #2 (subquery in projection; dependent)\n    -> Aggregate: count(0)  (cost=11.6 rows=1) (actual time=0.00956..0.00958 rows=1 loops=250)\n        -> Covering index lookup on voucher using fk_voucher_eventos1_idx (voucher_eventos_id=eventos.eventos_id)  (cost=5.92 rows=56.6) (actual time=0.00339..0.00839 rows=28.3 loops=250)\n-> Select #3 (subquery in projection; dependent)\n    -> Aggregate: sum((voucher.voucher_disponivel = 1))  (cost=25.5 rows=1) (actual time=0.0319..0.0319 rows=1 loops=250)\n        -> Index lookup on voucher using fk_voucher_eventos1_idx (voucher_eventos_id=eventos.eventos_id)  (cost=19.8 rows=56.6) (actual time=0.0126..0.0295 rows=28.3 loops=250)\n-> Select #4 (subquery in projection; dependent)\n    -> Aggregate: sum((voucher.voucher_disponivel = 0))  (cost=25.5 rows=1) (actual time=0.0285..0.0285 rows=1 loops=250)\n        -> Index lookup on voucher using fk_voucher_eventos1_idx (voucher_eventos_id=eventos.eventos_id)  (cost=19.8 rows=56.6) (actual time=0.0112..0.026 rows=28.3 loops=250)\n'
 
 
 2. Consulta Otimizada
+Query:
+ELECT 
+    eventos_nome,
+    COALESCE(total_vouchers, 0) AS total_vouchers,
+    COALESCE(disponiveis, 0) AS disponiveis,
+    COALESCE(usados, 0) AS usados
+FROM eventos
+LEFT JOIN (
+    SELECT 
+        voucher_eventos_id,
+        COUNT(*) AS total_vouchers,
+        SUM(CASE WHEN voucher_disponivel = 1 THEN 1 ELSE 0 END) AS disponiveis,
+        SUM(CASE WHEN voucher_disponivel = 0 THEN 1 ELSE 0 END) AS usados
+    FROM voucher
+    GROUP BY voucher_eventos_id
+) AS resumo ON eventos_id = voucher_eventos_id
+ORDER BY total_vouchers DESC;
 
 
 Saída EXPLAIN:
+1	PRIMARY	eventos		index		idx_eventos_id_nome	141		250	100.00	Using index; Using temporary; Using filesort
+1	PRIMARY	<derived2>		ref	<auto_key0>	<auto_key0>	4	eventos.eventos.eventos_id	28	100.00	
+2	DERIVED	voucher		index	fk_voucher_eventos1_idx,idx_voucher_evento_disp	idx_voucher_evento_disp	5		7186	100.00	Using index
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: total_vouchers DESC  (actual time=3.18..3.2 rows=250 loops=1)\n    -> Stream results  (cost=4998 rows=31750) (actual time=2.78..3.1 rows=250 loops=1)\n        -> Nested loop left join  (cost=4998 rows=31750) (actual time=2.78..2.99 rows=250 loops=1)\n            -> Covering index scan on eventos using idx_eventos_id_nome  (cost=26 rows=250) (actual time=0.0305..0.0972 rows=250 loops=1)\n            -> Index lookup on resumo using <auto_key0> (voucher_eventos_id=eventos.eventos_id)  (cost=1457..1464 rows=28.7) (actual time=0.0114..0.0114 rows=0.508 loops=250)\n                -> Materialize  (cost=1457..1457 rows=127) (actual time=2.74..2.74 rows=127 loops=1)\n                    -> Group aggregate: count(0), sum((case when (voucher.voucher_disponivel = 1) then 1 else 0 end)), sum((case when (voucher.voucher_disponivel = 0) then 1 else 0 end))  (cost=1444 rows=127) (actual time=0.157..2.65 rows=127 loops=1)\n                        -> Covering index scan on voucher using idx_voucher_evento_disp  (cost=726 rows=7186) (actual time=0.137..1.53 rows=7073 loops=1)\n'
 
