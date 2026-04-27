@@ -191,30 +191,40 @@ FROM eventos;
 
 -- pesquisa 7
 
-SELECT 
-    eventos_nome, 
-    COUNT(voucher_id) AS total_vouchers, 
-    SUM(CASE WHEN voucher_disponivel = 1 THEN 1 ELSE 0 END) AS disponiveis, 
-    SUM(CASE WHEN voucher_disponivel = 0 THEN 1 ELSE 0 END) AS usados 
-FROM eventos 
-LEFT JOIN voucher 
-    ON eventos_id = voucher_eventos_id 
-GROUP BY eventos_id, eventos_nome 
+-- pesquisa 7
+
+explain analyze SELECT 
+    eventos_nome,
+    (SELECT COUNT(*) 
+       FROM voucher 
+      WHERE voucher_eventos_id = eventos_id) AS total_vouchers,
+    (SELECT COALESCE(SUM(voucher_disponivel = 1), 0) 
+       FROM voucher
+      WHERE voucher_eventos_id = eventos_id) AS disponiveis,
+    (SELECT COALESCE(SUM(voucher_disponivel = 0), 0) 
+       FROM voucher
+      WHERE voucher_eventos_id = eventos_id) AS usados
+FROM eventos
 ORDER BY total_vouchers DESC;
 	
 CREATE INDEX idx_voucher_evento_disp ON voucher (voucher_eventos_id, voucher_disponivel);
 CREATE INDEX idx_eventos_id_nome ON eventos (eventos_id, eventos_nome);
 
-SELECT 
-    eventos_nome, 
-    COUNT(voucher_id) AS total_vouchers, 
-    COALESCE(SUM(voucher_disponivel = 1), 0) AS disponiveis, 
-    COALESCE(SUM(voucher_disponivel = 0), 0) AS usados, 
-    COALESCE(ROUND(SUM(voucher_disponivel = 0) * 100.0 / NULLIF(COUNT(voucher_id), 0), 2), 0) AS percentual_uso 
-FROM eventos 
-LEFT JOIN voucher 
-    ON eventos_id = voucher_eventos_id 
-GROUP BY eventos_id, eventos_nome 
+explain analyze SELECT 
+    eventos_nome,
+    COALESCE(total_vouchers, 0) AS total_vouchers,
+    COALESCE(disponiveis, 0) AS disponiveis,
+    COALESCE(usados, 0) AS usados
+FROM eventos
+LEFT JOIN (
+    SELECT 
+        voucher_eventos_id,
+        COUNT(*) AS total_vouchers,
+        SUM(CASE WHEN voucher_disponivel = 1 THEN 1 ELSE 0 END) AS disponiveis,
+        SUM(CASE WHEN voucher_disponivel = 0 THEN 1 ELSE 0 END) AS usados
+    FROM voucher
+    GROUP BY voucher_eventos_id
+) AS resumo ON eventos_id = voucher_eventos_id
 ORDER BY total_vouchers DESC;
 
 -- pesqisa 8
