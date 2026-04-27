@@ -14,19 +14,45 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SELECT 
+    *, 
+    CASE 
+        WHEN NOW() <= eventos_dataLimiteInscricao THEN 'INSCRIÇÕES ABERTAS' 
+        WHEN NOW() BETWEEN eventos_dataInicio AND eventos_dataFim THEN 'EM ANDAMENTO' 
+        WHEN NOW() < eventos_dataInicio THEN 'FUTURO' 
+        ELSE 'ENCERRADO' 
+    END AS status_evento 
+FROM eventos;
 
 
 Saída EXPLAIN: 
+1	SIMPLE	eventos		ALL					250	100.00		
 
 
 Saída EXPLAIN ANALYZE:
+'-> Table scan on eventos  (cost=26 rows=250) (actual time=0.0729..0.206 rows=250 loops=1)\n'
 
 
 2. Consulta Otimizada
-
+Query:
+SELECT 
+    eventos_id, 
+    eventos_nome, 
+    eventos_dataInicio, 
+    eventos_dataFim, 
+    eventos_dataLimiteInscricao, 
+    CASE 
+        WHEN NOW() <= eventos_dataLimiteInscricao THEN 'INSCRIÇÕES ABERTAS' 
+        WHEN NOW() BETWEEN eventos_dataInicio AND eventos_dataFim THEN 'EM ANDAMENTO' 
+        WHEN NOW() < eventos_dataInicio THEN 'FUTURO' 
+        ELSE 'ENCERRADO' 
+    END AS status_evento 
+FROM eventos;
 
 Saída EXPLAIN:
+1	SIMPLE	eventos		index		idx_evento_id_nome_inicio_fim_limiteInscricao	152		250	100.00	Using index
 
 
 Saída EXPLAIN ANALYZE:
+'-> Covering index scan on eventos using idx_evento_id_nome_inicio_fim_limiteInscricao  (cost=26 rows=250) (actual time=0.0494..0.127 rows=250 loops=1)\n'
 
