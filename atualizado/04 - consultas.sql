@@ -191,8 +191,6 @@ FROM eventos;
 
 -- pesquisa 7
 
--- pesquisa 7
-
 explain analyze SELECT 
     eventos_nome,
     (SELECT COUNT(*) 
@@ -229,7 +227,7 @@ ORDER BY total_vouchers DESC;
 
 -- pesqisa 8
 
-SELECT DISTINCT 
+explain analyze SELECT DISTINCT 
     *, 
     (SELECT 
         CASE WHEN LOWER(permissoes_nome) LIKE '%criar_evento%' THEN 'SIM' ELSE 'NÃO' END 
@@ -251,13 +249,11 @@ ORDER BY RAND();
 CREATE INDEX idx_eventos_id_nome_inicio_fim ON eventos (eventos_id, eventos_nome, eventos_dataInicio, eventos_dataFim);
 CREATE INDEX idx_usuario_id_nome_email ON usuario (usuario_id, usuario_nome, usuario_email);
 
-SELECT 
-    eventos_id, 
+explain analyze SELECT 
     eventos_nome, 
     eventos_descricao, 
     eventos_dataInicio, 
     eventos_dataFim, 
-    usuario_id, 
     usuario_nome, 
     usuario_email, 
     CASE WHEN permissoes_nome = 'criar_evento' THEN 'SIM' ELSE 'NÃO' END AS pode_criar_evento 
