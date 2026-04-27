@@ -14,19 +14,54 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SELECT 
+    cidade_nome AS cidade, 
+    COUNT(DISTINCT usuario_id) AS quantidade_usuarios 
+FROM usuario 
+INNER JOIN endereco 
+    ON endereco_usuario_id = usuario_id 
+INNER JOIN cep 
+    ON endereco_cep_id = cep_id 
+INNER JOIN cidade 
+    ON cep_cidade_id = cidade_id 
+WHERE cidade_nome IS NOT NULL 
+  AND cidade_nome != '' 
+GROUP BY cidade_id, cidade_nome 
+ORDER BY quantidade_usuarios DESC;
 
 
 Saída EXPLAIN: 
+1	SIMPLE	usuario		index	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	usuario_cpf_UNIQUE	44		15100	100.00	Using index; Using temporary; Using filesort
+1	SIMPLE	endereco		ref	fk_endereco_usuario1_idx,fk_endereco_CEP1_idx	fk_endereco_usuario1_idx	4	eventos.usuario.usuario_id	1	100.00	
+1	SIMPLE	cep		eq_ref	PRIMARY,fk_CEP_cidade1_idx	PRIMARY	4	eventos.endereco.endereco_cep_id	1	100.00	
+1	SIMPLE	cidade		eq_ref	PRIMARY,index3	PRIMARY	4	eventos.cep.cep_cidade_id	1	50.00	Using where
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: quantidade_usuarios DESC  (actual time=157..158 rows=11179 loops=1)\n    -> Stream results  (actual time=145..153 rows=11179 loops=1)\n        -> Group aggregate: count(distinct usuario.usuario_id)  (actual time=145..151 rows=11179 loops=1)\n            -> Sort: cidade.cidade_id, cidade.cidade_nome  (actual time=145..146 rows=24043 loops=1)\n                -> Stream results  (cost=27081 rows=12165) (actual time=0.2..126 rows=24043 loops=1)\n                    -> Nested loop inner join  (cost=27081 rows=12165) (actual time=0.197..118 rows=24043 loops=1)\n                        -> Nested loop inner join  (cost=18566 rows=24329) (actual time=0.187..85.3 rows=24043 loops=1)\n                            -> Nested loop inner join  (cost=10050 rows=24329) (actual time=0.178..52.8 rows=24043 loops=1)\n                                -> Covering index scan on usuario using usuario_cpf_UNIQUE  (cost=1535 rows=15100) (actual time=0.118..3.12 rows=15000 loops=1)\n                                -> Index lookup on endereco using fk_endereco_usuario1_idx (endereco_usuario_id=usuario.usuario_id)  (cost=0.403 rows=1.61) (actual time=0.00251..0.00319 rows=1.6 loops=15000)\n                            -> Single-row index lookup on cep using PRIMARY (cep_id=endereco.endereco_cep_id)  (cost=0.25 rows=1) (actual time=0.00123..0.00125 rows=1 loops=24043)\n                        -> Filter: (cidade.cidade_nome <> \'\')  (cost=0.25 rows=0.5) (actual time=0.0012..0.00126 rows=1 loops=24043)\n                            -> Single-row index lookup on cidade using PRIMARY (cidade_id=cep.cep_cidade_id)  (cost=0.25 rows=1) (actual time=0.00105..0.00107 rows=1 loops=24043)\n'
+
 
 
 2. Consulta Otimizada
+Query:
+SELECT 
+    cidade_nome AS cidade, 
+    COUNT(endereco_usuario_id) AS quantidade_usuarios 
+FROM cidade 
+INNER JOIN cep 
+    ON cidade_id = cep_cidade_id
+INNER JOIN endereco 
+    ON cep_id = endereco_cep_id
+WHERE cidade_nome > ''
+GROUP BY cidade_id, cidade_nome
+ORDER BY quantidade_usuarios DESC;
 
 
 Saída EXPLAIN:
+1	SIMPLE	endereco		index	fk_endereco_CEP1_idx,idx_endereco_cep_usuario	idx_endereco_cep_usuario	8		24168	100.00	Using index; Using temporary; Using filesort
+1	SIMPLE	cep		eq_ref	PRIMARY,fk_CEP_cidade1_idx,idx_cep_cidade_id	PRIMARY	4	eventos.endereco.endereco_cep_id	1	100.00	
+1	SIMPLE	cidade		eq_ref	PRIMARY,index3,idx_cidade_nome,idx_cidade_performance	PRIMARY	4	eventos.cep.cep_cidade_id	1	50.00	Using where
 
 
 Saída EXPLAIN ANALYZE:
-
+'-> Sort: quantidade_usuarios DESC  (actual time=80.1..80.6 rows=11179 loops=1)\n    -> Table scan on <temporary>  (actual time=75.5..76.4 rows=11179 loops=1)\n        -> Aggregate using temporary table  (actual time=75.5..75.5 rows=11179 loops=1)\n            -> Nested loop inner join  (cost=19375 rows=12083) (actual time=0.258..52.9 rows=24043 loops=1)\n                -> Nested loop inner join  (cost=10916 rows=24168) (actual time=0.246..34 rows=24043 loops=1)\n                    -> Covering index scan on endereco using idx_endereco_cep_usuario  (cost=2457 rows=24168) (actual time=0.22..7.05 rows=24043 loops=1)\n                    -> Single-row index lookup on cep using PRIMARY (cep_id=endereco.endereco_cep_id)  (cost=0.25 rows=1) (actual time=0.00101..0.00102 rows=1 loops=24043)\n                -> Filter: (cidade.cidade_nome > \'\')  (cost=0.25 rows=0.5) (actual time=630e-6..682e-6 rows=1 loops=24043)\n                    -> Single-row index lookup on cidade using PRIMARY (cidade_id=cep.cep_cidade_id)  (cost=0.25 rows=1) (actual time=516e-6..533e-6 rows=1 loops=24043)\n'
