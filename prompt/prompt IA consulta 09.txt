@@ -14,19 +14,115 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SET @id_programacao = 1;
+
+SELECT 
+    (SELECT e.eventos_nome FROM eventos e WHERE e.eventos_id = p.programacao_eventos_id) AS EVENTO,
+    p.programacao_nome AS ATIVIDADE,
+    DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA,
+    COALESCE(
+        (SELECT pap.papel_nome 
+         FROM papelProgramacao pp
+         INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
+         WHERE pp.papelProgramacao_programacao_id = p.programacao_id 
+           AND pp.papelProgramacao_inscricao_id = i.inscricao_id
+         LIMIT 1),
+        'Participante'
+    ) AS FUNCAO,
+    (SELECT u.usuario_nome FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id) AS NOME,
+    (SELECT u.usuario_email FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id) AS EMAIL,
+    CASE 
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado'
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 0 THEN 'Ausente'
+        ELSE 'Pendente'
+    END AS STATUS_PRESENCA,
+    DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN
+FROM programacao p
+INNER JOIN inscritosProgramacao ip ON p.programacao_id = ip.inscritosProgramacao_programacao_id
+INNER JOIN inscricao i ON ip.inscritosProgramacao_inscritos_id = i.inscricao_id
+WHERE p.programacao_id = @id_programacao
+ORDER BY 
+    FIELD(
+        COALESCE(
+            (SELECT pap.papel_nome 
+             FROM papelProgramacao pp
+             INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
+             WHERE pp.papelProgramacao_programacao_id = p.programacao_id 
+               AND pp.papelProgramacao_inscricao_id = i.inscricao_id
+             LIMIT 1),
+            'Participante'
+        ),
+        'Organizador', 'Coordenador', 'Palestrante', 'Staff', 'Auxiliar', 'Participante'),
+    (SELECT u.usuario_nome FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id);
 
 
 Saída EXPLAIN: 
+1	PRIMARY	p		const	PRIMARY,idx_programacao_id_evento	PRIMARY	4	const	1	100.00	Using temporary; Using filesort
+1	PRIMARY	ip		ref	fk_inscritos_has_programacao_programacao1_idx,fk_inscritos_has_programacao_inscritos1_idx,idx_inscritos_prog_programacao	fk_inscritos_has_programacao_programacao1_idx	4	const	120	100.00	
+1	PRIMARY	i		eq_ref	PRIMARY,idx_inscricao_id_usuario,idx_inscricao_id_credenciamento,idx_inscricao_id_cred	PRIMARY	4	eventos.ip.inscritosProgramacao_inscritos_id	1	100.00	
+7	DEPENDENT SUBQUERY	u		eq_ref	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	PRIMARY	4	eventos.i.inscricao_usuario_id	1	100.00	
+6	DEPENDENT SUBQUERY	pp		ref	fk_inscricao_has_papel_papel1_idx,fk_inscricao_has_papel_inscricao1_idx,fk_papelProgramacao_programacao1_idx,idx_papel_prog_composto	idx_papel_prog_composto	8	const,eventos.i.inscricao_id	1	100.00	
+6	DEPENDENT SUBQUERY	pap		eq_ref	PRIMARY	PRIMARY	4	eventos.pp.papelProgramacao_papel_id	1	100.00	
+5	DEPENDENT SUBQUERY	u		eq_ref	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	PRIMARY	4	eventos.i.inscricao_usuario_id	1	100.00	
+4	DEPENDENT SUBQUERY	u		eq_ref	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	PRIMARY	4	eventos.i.inscricao_usuario_id	1	100.00	
+3	DEPENDENT SUBQUERY	pp		ref	fk_inscricao_has_papel_papel1_idx,fk_inscricao_has_papel_inscricao1_idx,fk_papelProgramacao_programacao1_idx,idx_papel_prog_composto	idx_papel_prog_composto	8	const,eventos.i.inscricao_id	1	100.00	
+3	DEPENDENT SUBQUERY	pap		eq_ref	PRIMARY	PRIMARY	4	eventos.pp.papelProgramacao_papel_id	1	100.00	
+2	DEPENDENT SUBQUERY	e		const	PRIMARY,idx_evento_id_nome_inicio_fim_limiteInscricao,idx_eventos_id_nome_inicio_fim	PRIMARY	4	const	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: `field(coalesce((select #6),\'Participante\'),\'Organizador\',\'Coordenador\',\'Palestrante\',\'Staff\',\'Auxiliar\',\'Participante\')`, `(select #7)`  (actual time=3.4..3.41 rows=120 loops=1)\n    -> Stream results  (cost=76.8 rows=120) (actual time=0.527..3.29 rows=120 loops=1)\n        -> Nested loop inner join  (cost=76.8 rows=120) (actual time=0.476..0.838 rows=120 loops=1)\n            -> Index lookup on ip using fk_inscritos_has_programacao_programacao1_idx (inscritosProgramacao_programacao_id=(@id_programacao))  (cost=21 rows=120) (actual time=0.468..0.496 rows=120 loops=1)\n            -> Single-row index lookup on i using PRIMARY (inscricao_id=ip.inscritosProgramacao_inscritos_id)  (cost=0.365 rows=1) (actual time=0.00268..0.0027 rows=1 loops=120)\n-> Select #7 (subquery in projection; dependent)\n    -> Single-row index lookup on u using PRIMARY (usuario_id=i.inscricao_usuario_id)  (cost=0.35 rows=1) (actual time=0.00153..0.00154 rows=1 loops=120)\n-> Select #6 (subquery in projection; dependent)\n    -> Limit: 1 row(s)  (cost=0.71 rows=1) (actual time=0.00738..0.00741 rows=1 loops=120)\n        -> Nested loop inner join  (cost=0.71 rows=1.01) (actual time=0.0073..0.0073 rows=1 loops=120)\n            -> Index lookup on pp using idx_papel_prog_composto (papelProgramacao_programacao_id=\'1\', papelProgramacao_inscricao_id=i.inscricao_id)  (cost=0.355 rows=1.01) (actual time=0.00604..0.00604 rows=1 loops=120)\n            -> Single-row index lookup on pap using PRIMARY (papel_id=pp.papelProgramacao_papel_id)  (cost=0.349 rows=1) (actual time=0.00113..0.00113 rows=1 loops=120)\n-> Select #2 (subquery in projection; dependent)\n    -> Rows fetched before execution  (cost=0..0 rows=1) (actual time=34.2e-6..45.8e-6 rows=1 loops=120)\n-> Select #3 (subquery in projection; dependent)\n    -> Limit: 1 row(s)  (cost=0.71 rows=1) (actual time=0.00408..0.00411 rows=1 loops=120)\n        -> Nested loop inner join  (cost=0.71 rows=1.01) (actual time=0.00401..0.00401 rows=1 loops=120)\n            -> Index lookup on pp using idx_papel_prog_composto (papelProgramacao_programacao_id=\'1\', papelProgramacao_inscricao_id=i.inscricao_id)  (cost=0.355 rows=1.01) (actual time=0.00286..0.00286 rows=1 loops=120)\n            -> Single-row index lookup on pap using PRIMARY (papel_id=pp.papelProgramacao_papel_id)  (cost=0.349 rows=1) (actual time=0.001..0.001 rows=1 loops=120)\n-> Select #4 (subquery in projection; dependent)\n    -> Single-row index lookup on u using PRIMARY (usuario_id=i.inscricao_usuario_id)  (cost=0.35 rows=1) (actual time=0.00115..0.00116 rows=1 loops=120)\n-> Select #5 (subquery in projection; dependent)\n    -> Single-row index lookup on u using PRIMARY (usuario_id=i.inscricao_usuario_id)  (cost=0.35 rows=1) (actual time=0.00106..0.00108 rows=1 loops=120)\n'
 
 
 2. Consulta Otimizada
+Query:
+SET @id_programacao = 1;
+
+SELECT 
+    e.eventos_nome AS EVENTO,
+    p.programacao_nome AS ATIVIDADE,
+    DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA,
+    COALESCE(pap.papel_nome, 'Participante') AS FUNCAO,
+    u.usuario_nome AS NOME,
+    u.usuario_email AS EMAIL,
+    CASE 
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado'
+        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 0 THEN 'Ausente'
+        ELSE 'Pendente'
+    END AS STATUS_PRESENCA,
+    DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN
+FROM programacao p
+INNER JOIN inscritosProgramacao ip 
+    ON p.programacao_id = ip.inscritosProgramacao_programacao_id
+INNER JOIN inscricao i 
+    ON ip.inscritosProgramacao_inscritos_id = i.inscricao_id
+INNER JOIN eventos e 
+    ON e.eventos_id = p.programacao_eventos_id
+INNER JOIN usuario u 
+    ON u.usuario_id = i.inscricao_usuario_id
+LEFT JOIN papelProgramacao pp 
+    ON pp.papelProgramacao_programacao_id = p.programacao_id 
+    AND pp.papelProgramacao_inscricao_id = i.inscricao_id
+LEFT JOIN papel pap 
+    ON pp.papelProgramacao_papel_id = pap.papel_id
+WHERE p.programacao_id = @id_programacao
+ORDER BY 
+    FIELD(
+        COALESCE(pap.papel_nome, 'Participante'),
+        'Organizador', 'Coordenador', 'Palestrante', 'Staff', 'Auxiliar', 'Participante'
+    ),
+    u.usuario_nome;
 
 
 Saída EXPLAIN:
-
+1	SIMPLE	p		const	PRIMARY,fk_programacao_eventos1_idx,idx_programacao_evento_hora,idx_programacao_id_evento,idx_prog_evento	PRIMARY	4	const	1	100.00	Using temporary; Using filesort
+1	SIMPLE	e		const	PRIMARY,idx_evento_id_nome_inicio_fim_limiteInscricao,idx_eventos_id_nome_inicio_fim	PRIMARY	4	const	1	100.00	
+1	SIMPLE	ip		ref	fk_inscritos_has_programacao_programacao1_idx,fk_inscritos_has_programacao_inscritos1_idx,idx_inscritos_prog_programacao,idx_ip_prog_inscrito	fk_inscritos_has_programacao_programacao1_idx	4	const	120	100.00	
+1	SIMPLE	i		eq_ref	PRIMARY,fk_inscritos_usuario1_idx,idx_inscricao_id_usuario,idx_inscricao_id_credenciamento,idx_inscricao_id_cred,idx_inscricao_usuario	PRIMARY	4	eventos.ip.inscritosProgramacao_inscritos_id	1	100.00	
+1	SIMPLE	pp		ref	fk_inscricao_has_papel_inscricao1_idx,fk_papelProgramacao_programacao1_idx,idx_papel_prog_composto,idx_pp_prog_inscricao_papel	idx_papel_prog_composto	8	const,eventos.ip.inscritosProgramacao_inscritos_id	1	100.00	
+1	SIMPLE	pap		eq_ref	PRIMARY	PRIMARY	4	eventos.pp.papelProgramacao_papel_id	1	100.00	
+1	SIMPLE	u		eq_ref	PRIMARY,idx_usuario_id_nome,idx_usuario_id_nome_email	PRIMARY	4	eventos.i.inscricao_usuario_id	1	100.00	
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: `field(coalesce(pap.papel_nome,\'Participante\'),\'Organizador\',\'Coordenador\',\'Palestrante\',\'Staff\',\'Auxiliar\',\'Participante\')`, u.usuario_nome  (actual time=2.04..2.05 rows=120 loops=1)\n    -> Stream results  (cost=192 rows=122) (actual time=0.455..1.94 rows=120 loops=1)\n        -> Nested loop inner join  (cost=192 rows=122) (actual time=0.447..1.75 rows=120 loops=1)\n            -> Nested loop left join  (cost=150 rows=122) (actual time=0.442..1.57 rows=120 loops=1)\n                -> Nested loop left join  (cost=107 rows=122) (actual time=0.438..1.45 rows=120 loops=1)\n                    -> Nested loop inner join  (cost=64.8 rows=120) (actual time=0.429..0.75 rows=120 loops=1)\n                        -> Index lookup on ip using fk_inscritos_has_programacao_programacao1_idx (inscritosProgramacao_programacao_id=(@id_programacao))  (cost=21 rows=120) (actual time=0.42..0.441 rows=120 loops=1)\n                        -> Single-row index lookup on i using PRIMARY (inscricao_id=ip.inscritosProgramacao_inscritos_id)  (cost=0.266 rows=1) (actual time=0.00245..0.00247 rows=1 loops=120)\n                    -> Index lookup on pp using idx_papel_prog_composto (papelProgramacao_programacao_id=(@id_programacao), papelProgramacao_inscricao_id=ip.inscritosProgramacao_inscritos_id)  (cost=0.255 rows=1.01) (actual time=0.00504..0.00572 rows=1 loops=120)\n                -> Single-row index lookup on pap using PRIMARY (papel_id=pp.papelProgramacao_papel_id)  (cost=0.251 rows=1) (actual time=816e-6..827e-6 rows=1 loops=120)\n            -> Single-row index lookup on u using PRIMARY (usuario_id=i.inscricao_usuario_id)  (cost=0.247 rows=1) (actual time=0.00133..0.00135 rows=1 loops=120)\n'
 
