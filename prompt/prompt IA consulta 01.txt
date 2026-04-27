@@ -13,20 +13,57 @@ Gere uma tabela comparativa final.
 Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
-Query: 
-
-
-Saída EXPLAIN: 
-
-
-Saída EXPLAIN ANALYZE:
-
-
-2. Consulta Otimizada
+Query:
+select * FROM usuario
+INNER JOIN inscricao 
+    ON inscricao_usuario_id = usuario_id
+INNER JOIN eventos 
+    ON eventos_id = inscricao_eventos_id
+INNER JOIN certificados 
+    ON certificados_inscricao_id = inscricao_id
+WHERE inscricao_usuario_id = 8
+ORDER BY certificados_dataDeEmissao DESC;
 
 
 Saída EXPLAIN:
+1	SIMPLE	usuario		const	PRIMARY	PRIMARY	4	const	1	100.00	Using temporary; Using filesort
+1	SIMPLE	inscricao		ref	PRIMARY,fk_inscritos_eventos1_idx,fk_inscritos_usuario1_idx,idx_insc_ev	fk_inscritos_usuario1_idx	4	const	90	100.00	
+1	SIMPLE	eventos		eq_ref	PRIMARY	PRIMARY	4	eventos.inscricao.inscricao_eventos_id	1	100.00	
+1	SIMPLE	certificados		ref	fk_certificados_inscricao1_idx	fk_certificados_inscricao1_idx	4	eventos.inscricao.inscricao_id	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort row IDs: certificados.certificados_dataDeEmissao DESC  (actual time=14.2..14.2 rows=0 loops=1)\n    -> Table scan on <temporary>  (cost=123..126 rows=90) (actual time=14.2..14.2 rows=0 loops=1)\n        -> Temporary table  (cost=123..123 rows=90) (actual time=14.2..14.2 rows=0 loops=1)\n            -> Nested loop inner join  (cost=114 rows=90) (actual time=13.7..13.7 rows=0 loops=1)\n                -> Nested loop inner join  (cost=82.2 rows=90) (actual time=13.3..13.5 rows=90 loops=1)\n                    -> Index lookup on inscricao using fk_inscritos_usuario1_idx (inscricao_usuario_id=8)  (cost=50.7 rows=90) (actual time=13.3..13.3 rows=90 loops=1)\n                    -> Single-row index lookup on eventos using PRIMARY (eventos_id=inscricao.inscricao_eventos_id)  (cost=0.251 rows=1) (actual time=0.00212..0.00214 rows=1 loops=90)\n                -> Index lookup on certificados using fk_certificados_inscricao1_idx (certificados_inscricao_id=inscricao.inscricao_id)  (cost=0.251 rows=1) (actual time=0.00148..0.00148 rows=0 loops=90)\n'
+
+
+2. Consulta Otimizada
+Query:
+SELECT 
+    usuario_nome, 
+    eventos_nome, 
+    eventos_descricao, 
+    eventos_dataInicio, 
+    eventos_dataFim, 
+    certificados_cargaHorariaTotal, 
+    certificados_dataDeEmissao 
+FROM usuario 
+INNER JOIN inscricao 
+    ON inscricao_usuario_id = usuario_id 
+INNER JOIN eventos 
+    ON eventos_id = inscricao_eventos_id 
+INNER JOIN certificados 
+    ON certificados_inscricao_id = inscricao_id 
+WHERE inscricao_usuario_id = 8 
+ORDER BY certificados_dataDeEmissao DESC;
+
+
+Saída EXPLAIN:
+1	SIMPLE	usuario		const	PRIMARY	PRIMARY	4	const	1	100.00	Using temporary; Using filesort
+1	SIMPLE	inscricao		ref	PRIMARY,fk_inscritos_eventos1_idx,fk_inscritos_usuario1_idx,idx_insc_ev	fk_inscritos_usuario1_idx	4	const	90	100.00	
+1	SIMPLE	eventos		eq_ref	PRIMARY	PRIMARY	4	eventos.inscricao.inscricao_eventos_id	1	100.00	
+1	SIMPLE	certificados		ref	fk_certificados_inscricao1_idx	fk_certificados_inscricao1_idx	4	eventos.inscricao.inscricao_id	1	100.00	
+
+
+Saída EXPLAIN ANALYZE:
+'-> Sort: certificados.certificados_dataDeEmissao DESC  (actual time=0.715..0.715 rows=0 loops=1)\n    -> Stream results  (cost=113 rows=90) (actual time=0.708..0.708 rows=0 loops=1)\n        -> Nested loop inner join  (cost=113 rows=90) (actual time=0.706..0.706 rows=0 loops=1)\n            -> Nested loop inner join  (cost=81.2 rows=90) (actual time=0.378..0.57 rows=90 loops=1)\n                -> Index lookup on inscricao using fk_inscritos_usuario1_idx (inscricao_usuario_id=8)  (cost=49.7 rows=90) (actual time=0.368..0.381 rows=90 loops=1)\n                -> Single-row index lookup on eventos using PRIMARY (eventos_id=inscricao.inscricao_eventos_id)  (cost=0.251 rows=1) (actual time=0.00197..0.00198 rows=1 loops=90)\n            -> Index lookup on certificados using fk_certificados_inscricao1_idx (certificados_inscricao_id=inscricao.inscricao_id)  (cost=0.251 rows=1) (actual time=0.0014..0.0014 rows=0 loops=90)\n'
 

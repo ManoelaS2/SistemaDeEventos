@@ -30,7 +30,7 @@ ORDER BY certificados_dataDeEmissao DESC;
 
 -- consulta 2
 
-SELECT * FROM inscricao 
+explain analyze SELECT * FROM inscricao 
 INNER JOIN pagamento 
     ON pagamento_inscricao_id = inscricao_id 
 INNER JOIN usuario 
@@ -39,19 +39,25 @@ WHERE inscricao_eventos_id = 2
   AND pagamento_status = 'Pago' 
 ORDER BY pagamento_dataHora ASC;
 
-CREATE INDEX idx_inscricao_evento_usuario ON inscricao (inscricao_eventos_id, inscricao_usuario_id);
-CREATE INDEX idx_pagamento_performance ON pagamento (pagamento_inscricao_id, pagamento_status, pagamento_dataHora);
+
+CREATE INDEX idx_inscricao_performance ON inscricao (inscricao_eventos_id, inscricao_usuario_id, inscricao_id);
+
+CREATE INDEX idx_pagamento_status_data ON pagamento (pagamento_status, pagamento_inscricao_id, pagamento_dataHora);
+
 CREATE INDEX idx_usuario_id_nome ON usuario (usuario_id, usuario_nome);
 	 
-SELECT usuario_nome 
-FROM inscricao 
-INNER JOIN pagamento 
-    ON pagamento_inscricao_id = inscricao_id 
-INNER JOIN usuario 
-    ON inscricao_usuario_id = usuario_id 
-WHERE inscricao_eventos_id = 2
-  AND pagamento_status = 'Pago' 
-ORDER BY pagamento_dataHora ASC;
+SELECT 
+    usuario_nome
+FROM inscricao
+INNER JOIN pagamento
+    ON pagamento_inscricao_id = inscricao_id
+INNER JOIN usuario
+    ON inscricao_usuario_id = usuario_id
+WHERE 
+    inscricao_eventos_id = 2 
+    AND pagamento_status = 'Pago'
+ORDER BY 
+    pagamento_dataHora ASC;
 	
 -- consulta 3
 
@@ -86,7 +92,7 @@ ORDER BY programacao_horaInicio ASC;
 
 SELECT 
     cidade_nome AS cidade, 
-    COUNT(DISTINCT usuario_id) AS quantidade_usuarios 
+    COUNT(DISTINCT usuario_id) AS quantidade_usuarios
 FROM usuario 
 INNER JOIN endereco 
     ON endereco_usuario_id = usuario_id 
@@ -100,11 +106,12 @@ GROUP BY cidade_id, cidade_nome
 ORDER BY quantidade_usuarios DESC;
 
 CREATE INDEX idx_endereco_usuario ON endereco (endereco_usuario_id);
-CREATE INDEX idx_endereco_cep ON endereco (endereco_cep_id);
-CREATE INDEX idx_cep_cidade ON cep (cep_cidade_id);
 CREATE INDEX idx_cidade_nome ON cidade (cidade_nome);
+CREATE INDEX idx_cidade_performance ON cidade (cidade_id, cidade_nome);
+CREATE INDEX idx_cep_cidade_id ON cep (cep_cidade_id, cep_id);
+CREATE INDEX idx_endereco_cep_usuario ON endereco (endereco_cep_id, endereco_usuario_id);
 
-SELECT 
+explain analyze SELECT 
     cidade_nome AS cidade, 
     COUNT(usuario_id) AS quantidade_usuarios 
 FROM cidade 
@@ -116,6 +123,18 @@ INNER JOIN usuario
     ON endereco_usuario_id = usuario_id 
 WHERE cidade_nome > '' 
 GROUP BY cidade_id 
+ORDER BY quantidade_usuarios DESC;
+
+explain analyze SELECT 
+    cidade_nome AS cidade, 
+    COUNT(endereco_usuario_id) AS quantidade_usuarios 
+FROM cidade 
+INNER JOIN cep 
+    ON cidade_id = cep_cidade_id
+INNER JOIN endereco 
+    ON cep_id = endereco_cep_id
+WHERE cidade_nome > ''
+GROUP BY cidade_id, cidade_nome
 ORDER BY quantidade_usuarios DESC;
 
 -- pesquisa 5

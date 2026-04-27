@@ -14,19 +14,48 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SELECT * FROM inscricao 
+INNER JOIN pagamento 
+    ON pagamento_inscricao_id = inscricao_id 
+INNER JOIN usuario 
+    ON inscricao_usuario_id = usuario_id 
+WHERE inscricao_eventos_id = 2 
+  AND pagamento_status = 'Pago' 
+ORDER BY pagamento_dataHora ASC;
 
 
 Saída EXPLAIN: 
-
+1	SIMPLE	inscricao		ref	PRIMARY,fk_inscritos_eventos1_idx,fk_inscritos_usuario1_idx,idx_insc_ev	fk_inscritos_eventos1_idx	4	const	3417	100.00	Using temporary; Using filesort
+1	SIMPLE	usuario		eq_ref	PRIMARY	PRIMARY	4	eventos.inscricao.inscricao_usuario_id	1	100.00	
+1	SIMPLE	pagamento		ref	fk_pagamento_inscricao1_idx	fk_pagamento_inscricao1_idx	4	eventos.inscricao.inscricao_id	1	33.33	Using where
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: pagamento.pagamento_dataHora  (actual time=45.1..45.2 rows=1021 loops=1)\n    -> Stream results  (cost=9454 rows=1186) (actual time=2.51..44.2 rows=1021 loops=1)\n        -> Nested loop inner join  (cost=9454 rows=1186) (actual time=2.5..42.7 rows=1021 loops=1)\n            -> Nested loop inner join  (cost=5583 rows=3417) (actual time=0.773..24.2 rows=3417 loops=1)\n                -> Index lookup on inscricao using fk_inscritos_eventos1_idx (inscricao_eventos_id=2)  (cost=1889 rows=3417) (actual time=0.76..5.79 rows=3417 loops=1)\n                -> Single-row index lookup on usuario using PRIMARY (usuario_id=inscricao.inscricao_usuario_id)  (cost=0.981 rows=1) (actual time=0.00525..0.00527 rows=1 loops=3417)\n            -> Filter: (pagamento.pagamento_status = \'Pago\')  (cost=1.03 rows=0.347) (actual time=0.00508..0.00527 rows=0.299 loops=3417)\n                -> Index lookup on pagamento using fk_pagamento_inscricao1_idx (pagamento_inscricao_id=inscricao.inscricao_id)  (cost=1.03 rows=1.04) (actual time=0.00459..0.00504 rows=0.904 loops=3417)\n'
 
 
 2. Consulta Otimizada
+Query:
+SELECT 
+    usuario_nome
+FROM inscricao
+INNER JOIN pagamento
+    ON pagamento_inscricao_id = inscricao_id
+INNER JOIN usuario
+    ON inscricao_usuario_id = usuario_id
+WHERE 
+    inscricao_eventos_id = 2 
+    AND pagamento_status = 'Pago'
+ORDER BY 
+    pagamento_dataHora ASC;
 
 
 Saída EXPLAIN:
+1	SIMPLE	inscricao		ref	PRIMARY,fk_inscritos_eventos1_idx,fk_inscritos_usuario1_idx,idx_insc_ev,idx_inscricao_performance	idx_inscricao_performance	4	const	3417	100.00	Using index; Using temporary; Using filesort
+1	SIMPLE	pagamento		ref	fk_pagamento_inscricao1_idx,idx_pagamento_status_data	fk_pagamento_inscricao1_idx	4	eventos.inscricao.inscricao_id	1	50.00	Using where
+1	SIMPLE	usuario		eq_ref	PRIMARY,idx_usuario_id_nome	PRIMARY	4	eventos.inscricao.inscricao_usuario_id	1	100.00	
 
 
 Saída EXPLAIN ANALYZE:
+'-> Sort: pagamento.pagamento_dataHora  (actual time=14.6..14.7 rows=1021 loops=1)\n    -> Stream results  (cost=2775 rows=1778) (actual time=0.127..14.4 rows=1021 loops=1)\n        -> Nested loop inner join  (cost=2775 rows=1778) (actual time=0.121..13.9 rows=1021 loops=1)\n            -> Nested loop inner join  (cost=2152 rows=1778) (actual time=0.112..12.6 rows=1021 loops=1)\n                -> Covering index lookup on inscricao using idx_inscricao_performance (inscricao_eventos_id=2)  (cost=349 rows=3417) (actual time=0.0661..0.905 rows=3417 loops=1)\n                -> Filter: (pagamento.pagamento_status = \'Pago\')  (cost=0.424 rows=0.52) (actual time=0.00318..0.00336 rows=0.299 loops=3417)\n                    -> Index lookup on pagamento using fk_pagamento_inscricao1_idx (pagamento_inscricao_id=inscricao.inscricao_id)  (cost=0.424 rows=1.04) (actual time=0.00273..0.00316 rows=0.904 loops=3417)\n            -> Single-row index lookup on usuario using PRIMARY (usuario_id=inscricao.inscricao_usuario_id)  (cost=0.25 rows=1) (actual time=0.00108..0.00109 rows=1 loops=1021)\n'
+
 
