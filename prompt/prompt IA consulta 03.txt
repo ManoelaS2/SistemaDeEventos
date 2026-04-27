@@ -14,19 +14,49 @@ Dados para Análise:
 
 1. Consulta Original (Não Otimizada)
 Query: 
+SELECT * FROM programacao 
+LEFT JOIN imagemprogramacao 
+    ON programacao_id = imagemprogramacao_programacao_id 
+LEFT JOIN sublocalEvento 
+    ON programacao_sublocaEvento_id = sublocalEvento_id 
+WHERE programacao_eventos_id = 5 
+ORDER BY programacao_horaInicio ASC;
 
 
 Saída EXPLAIN: 
+1	SIMPLE	programacao		ref	fk_programacao_eventos1_idx	fk_programacao_eventos1_idx	4	const	1	100.00	Using filesort
+1	SIMPLE	imagemprogramacao		ref	fk_imagemProgramacao_programacao1_idx	fk_imagemProgramacao_programacao1_idx	4	eventos.programacao.programacao_id	1	100.00	
+1	SIMPLE	sublocalEvento		eq_ref	PRIMARY	PRIMARY	4	eventos.programacao.programacao_sublocaEvento_id	1	100.00
 
 
 Saída EXPLAIN ANALYZE:
+'-> Nested loop left join  (cost=2.51 rows=1) (actual time=0.0329..0.0329 rows=0 loops=1)\n    -> Nested loop left join  (cost=1.45 rows=1) (actual time=0.0325..0.0325 rows=0 loops=1)\n        -> Sort: programacao.programacao_horaInicio  (cost=0.35 rows=1) (actual time=0.0321..0.0321 rows=0 loops=1)\n            -> Index lookup on programacao using fk_programacao_eventos1_idx (programacao_eventos_id=5)  (cost=0.35 rows=1) (actual time=0.0249..0.0249 rows=0 loops=1)\n        -> Index lookup on imagemprogramacao using fk_imagemProgramacao_programacao1_idx (imagemProgramacao_programacao_id=programacao.programacao_id)  (cost=1.1 rows=1) (never executed)\n    -> Single-row index lookup on sublocalEvento using PRIMARY (sublocalEvento_id=programacao.programacao_sublocaEvento_id)  (cost=1.06 rows=1) (never executed)\n'
 
 
 2. Consulta Otimizada
+SELECT 
+    programacao_nome, 
+    programacao_horaInicio, 
+    programacao_horaFim, 
+    programacao_descricao, 
+    imagemProgramacao_caminho, 
+    imagemProgramacao_descricao, 
+    sublocalEvento_nome, 
+    sublocalEvento_descricao 
+FROM programacao 
+INNER JOIN imagemProgramacao 
+    ON programacao_id = imagemProgramacao_programacao_id 
+INNER JOIN sublocalEvento 
+    ON programacao_sublocaEvento_id = sublocalEvento_id 
+WHERE programacao_eventos_id = 5 
+ORDER BY programacao_horaInicio ASC;
 
 
 Saída EXPLAIN:
+1	SIMPLE	programacao		ref	PRIMARY,fk_programacao_eventos1_idx,fk_programacao_sublocaEvento1_idx,idx_programacao_evento_hora	idx_programacao_evento_hora	4	const	1	100.00	
+1	SIMPLE	sublocalEvento		eq_ref	PRIMARY	PRIMARY	4	eventos.programacao.programacao_sublocaEvento_id	1	100.00	
+1	SIMPLE	imagemProgramacao		ref	fk_imagemProgramacao_programacao1_idx	fk_imagemProgramacao_programacao1_idx	4	eventos.programacao.programacao_id	2	100.00	
 
 
 Saída EXPLAIN ANALYZE:
-
+'-> Nested loop inner join  (cost=4.28 rows=2.61) (actual time=0.0153..0.0153 rows=0 loops=1)\n    -> Nested loop inner join  (cost=1.41 rows=1) (actual time=0.0149..0.0149 rows=0 loops=1)\n        -> Index lookup on programacao using idx_programacao_evento_hora (programacao_eventos_id=5)  (cost=0.35 rows=1) (actual time=0.0143..0.0143 rows=0 loops=1)\n        -> Single-row index lookup on sublocalEvento using PRIMARY (sublocalEvento_id=programacao.programacao_sublocaEvento_id)  (cost=1.06 rows=1) (never executed)\n    -> Index lookup on imagemProgramacao using fk_imagemProgramacao_programacao1_idx (imagemProgramacao_programacao_id=programacao.programacao_id)  (cost=2.87 rows=2.61) (never executed)\n'
