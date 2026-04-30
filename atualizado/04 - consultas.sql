@@ -1,5 +1,7 @@
 use eventos;
 
+-- Consulta 1 sem otimização
+
 SELECT * FROM usuario
 INNER JOIN inscricao 
     ON inscricao_usuario_id = usuario_id
@@ -9,6 +11,8 @@ INNER JOIN certificados
     ON certificados_inscricao_id = inscricao_id
 WHERE inscricao_usuario_id = 8
 ORDER BY certificados_dataDeEmissao DESC;
+
+-- Consulta 1 com otimização
 
 SELECT 
     usuario_nome, 
@@ -28,9 +32,9 @@ INNER JOIN certificados
 WHERE inscricao_usuario_id = 8 
 ORDER BY certificados_dataDeEmissao DESC;
 
--- consulta 2
+-- consulta 2 sem otimização
 
-explain analyze SELECT * FROM inscricao 
+SELECT * FROM inscricao 
 INNER JOIN pagamento 
     ON pagamento_inscricao_id = inscricao_id 
 INNER JOIN usuario 
@@ -39,13 +43,14 @@ WHERE inscricao_eventos_id = 2
   AND pagamento_status = 'Pago' 
 ORDER BY pagamento_dataHora ASC;
 
-
 CREATE INDEX idx_inscricao_performance ON inscricao (inscricao_eventos_id, inscricao_usuario_id, inscricao_id);
 
 CREATE INDEX idx_pagamento_status_data ON pagamento (pagamento_status, pagamento_inscricao_id, pagamento_dataHora);
 
 CREATE INDEX idx_usuario_id_nome ON usuario (usuario_id, usuario_nome);
 	 
+-- Consulta 2 com otimização
+     
 SELECT 
     usuario_nome
 FROM inscricao
@@ -59,7 +64,7 @@ WHERE
 ORDER BY 
     pagamento_dataHora ASC;
 	
--- consulta 3
+-- consulta 3 sem otimização
 
 SELECT * FROM programacao 
 LEFT JOIN imagemprogramacao 
@@ -70,6 +75,8 @@ WHERE programacao_eventos_id = 5
 ORDER BY programacao_horaInicio ASC;
 
 CREATE INDEX idx_programacao_evento_hora ON programacao (programacao_eventos_id, programacao_horaInicio);
+
+-- consulta 3 com otimização
 
 SELECT 
     programacao_nome, 
@@ -88,7 +95,7 @@ INNER JOIN sublocalEvento
 WHERE programacao_eventos_id = 5 
 ORDER BY programacao_horaInicio ASC;
 
--- pesquisa 4
+-- pesquisa 4 sem otimização
 
 SELECT 
     cidade_nome AS cidade, 
@@ -109,23 +116,10 @@ CREATE INDEX idx_endereco_usuario ON endereco (endereco_usuario_id);
 CREATE INDEX idx_cidade_nome ON cidade (cidade_nome);
 CREATE INDEX idx_cidade_performance ON cidade (cidade_id, cidade_nome);
 CREATE INDEX idx_cep_cidade_id ON cep (cep_cidade_id, cep_id);
-CREATE INDEX idx_endereco_cep_usuario ON endereco (endereco_cep_id, endereco_usuario_id);
 
-explain analyze SELECT 
-    cidade_nome AS cidade, 
-    COUNT(usuario_id) AS quantidade_usuarios 
-FROM cidade 
-INNER JOIN cep 
-    ON cidade_id = cep_cidade_id 
-INNER JOIN endereco 
-    ON cep_id = endereco_cep_id 
-INNER JOIN usuario 
-    ON endereco_usuario_id = usuario_id 
-WHERE cidade_nome > '' 
-GROUP BY cidade_id 
-ORDER BY quantidade_usuarios DESC;
+-- Consulta 4 com otimização
 
-explain analyze SELECT 
+SELECT 
     cidade_nome AS cidade, 
     COUNT(endereco_usuario_id) AS quantidade_usuarios 
 FROM cidade 
@@ -137,7 +131,7 @@ WHERE cidade_nome > ''
 GROUP BY cidade_id, cidade_nome
 ORDER BY quantidade_usuarios DESC;
 
--- pesquisa 5
+-- pesquisa 5 sem otimização
 
 select 
 sum(case when pagamento_status = "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Recebido,
@@ -151,6 +145,8 @@ where inscricao_eventos_id = 1;
 CREATE INDEX idx_inscricao_evento_cover ON inscricao (inscricao_eventos_id, inscricao_id, inscricao_credenciamento);
 CREATE INDEX idx_pagamento_inscricao_cover ON pagamento (pagamento_inscricao_id, pagamento_status, pagamento_valorTotal);                                      
 
+-- consulta 5 com otimização
+
 select 
 sum(case when pagamento_status = "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Recebido,
 sum(case when pagamento_status != "Pago" then pagamento_valorTotal else 0 end) as Valor_Total_Nao_Recebido,
@@ -160,7 +156,7 @@ coalesce(sum(inscricao_credenciamento = 0) ,0 ) as Incricao_Nao_Confirmada
 from pagamento inner join inscricao on inscricao_id = pagamento_inscricao_id
 where inscricao_eventos_id = 1;
     
--- select 6
+-- consulta 6 sem otimização
 
 SELECT 
     *, 
@@ -174,6 +170,8 @@ FROM eventos;
 
 CREATE INDEX idx_evento_id_nome_inicio_fim_limiteInscricao 
 ON eventos (eventos_id, eventos_nome, eventos_dataInicio, eventos_dataFim, eventos_dataLimiteInscricao);
+
+-- Consulta 6 com otimização
 
 SELECT 
     eventos_id, 
@@ -189,9 +187,9 @@ SELECT
     END AS status_evento 
 FROM eventos;
 
--- pesquisa 7
+-- Consulta 7 com otimização
 
-explain analyze SELECT 
+SELECT 
     eventos_nome,
     (SELECT COUNT(*) 
        FROM voucher 
@@ -208,7 +206,9 @@ ORDER BY total_vouchers DESC;
 CREATE INDEX idx_voucher_evento_disp ON voucher (voucher_eventos_id, voucher_disponivel);
 CREATE INDEX idx_eventos_id_nome ON eventos (eventos_id, eventos_nome);
 
-explain analyze SELECT 
+-- Consulta 7 com otimização
+
+SELECT 
     eventos_nome,
     COALESCE(total_vouchers, 0) AS total_vouchers,
     COALESCE(disponiveis, 0) AS disponiveis,
@@ -225,9 +225,9 @@ LEFT JOIN (
 ) AS resumo ON eventos_id = voucher_eventos_id
 ORDER BY total_vouchers DESC;
 
--- pesqisa 8
+-- Consulta 8 sem otimização
 
-explain analyze SELECT DISTINCT 
+SELECT DISTINCT 
     *, 
     (SELECT 
         CASE WHEN LOWER(permissoes_nome) LIKE '%criar_evento%' THEN 'SIM' ELSE 'NÃO' END 
@@ -249,7 +249,9 @@ ORDER BY RAND();
 CREATE INDEX idx_eventos_id_nome_inicio_fim ON eventos (eventos_id, eventos_nome, eventos_dataInicio, eventos_dataFim);
 CREATE INDEX idx_usuario_id_nome_email ON usuario (usuario_id, usuario_nome, usuario_email);
 
-explain analyze SELECT 
+-- Consula 8 com otimização 
+
+SELECT 
     eventos_nome, 
     eventos_descricao, 
     eventos_dataInicio, 
@@ -265,39 +267,29 @@ LEFT JOIN permissoesusuarios
 LEFT JOIN permissoes 
     ON permissoes_id = permissoesusuarios_permissoes_id;
 	
--- pesquisa 9
+-- Consulta 9
 
 SET @id_programacao = 1;
-
-explain analyze SELECT 
-    (SELECT e.eventos_nome FROM eventos e WHERE e.eventos_id = p.programacao_eventos_id) AS EVENTO,
-    p.programacao_nome AS ATIVIDADE,
-    DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA,
-    COALESCE(
-        (SELECT pap.papel_nome 
-         FROM papelProgramacao pp
-         INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
+SELECT (SELECT e.eventos_nome FROM eventos e WHERE e.eventos_id = p.programacao_eventos_id) AS EVENTO,
+    p.programacao_nome AS ATIVIDADE,DATE_FORMAT(p.programacao_horaInicio, '%d/%m/%Y %H:%i') AS DATA_HORA,
+    COALESCE( (SELECT pap.papel_nome 
+         FROM papelProgramacao pp  INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
          WHERE pp.papelProgramacao_programacao_id = p.programacao_id 
            AND pp.papelProgramacao_inscricao_id = i.inscricao_id
-         LIMIT 1),
-        'Participante'
+         LIMIT 1), 'Participante'
     ) AS FUNCAO,
     (SELECT u.usuario_nome FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id) AS NOME,
     (SELECT u.usuario_email FROM usuario u WHERE u.usuario_id = i.inscricao_usuario_id) AS EMAIL,
-    CASE 
-        WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado'
+    CASE WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 1 THEN 'Confirmado'
         WHEN ip.inscritosProgramacao_FrequenciaConfirmada = 0 THEN 'Ausente'
         ELSE 'Pendente'
     END AS STATUS_PRESENCA,
-    DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN
+DATE_FORMAT(ip.inscritosProgramacao_dataHoraFrequencia, '%d/%m/%Y %H:%i:%s') AS DATA_CHECKIN
 FROM programacao p
 INNER JOIN inscritosProgramacao ip ON p.programacao_id = ip.inscritosProgramacao_programacao_id
 INNER JOIN inscricao i ON ip.inscritosProgramacao_inscritos_id = i.inscricao_id
 WHERE p.programacao_id = @id_programacao
-ORDER BY 
-    FIELD(
-        COALESCE(
-            (SELECT pap.papel_nome 
+ORDER BY FIELD( COALESCE(  (SELECT pap.papel_nome 
              FROM papelProgramacao pp
              INNER JOIN papel pap ON pp.papelProgramacao_papel_id = pap.papel_id
              WHERE pp.papelProgramacao_programacao_id = p.programacao_id 
@@ -321,7 +313,7 @@ ON inscricao (inscricao_usuario_id);
 CREATE INDEX idx_prog_evento 
 ON programacao (programacao_eventos_id);
 
--- atualização
+-- Consulta 9 como otimização
 
 SET @id_programacao = 1;
 
@@ -360,11 +352,13 @@ ORDER BY
     ),
     u.usuario_nome;
 
--- consulata 10
+-- consulata 10 sem otimização
 
 select * from telefone left join usuario on usuario_id = telefone_usuario_id where usuario_id = 1;
 
 CREATE INDEX idx_telefone_cover ON telefone (telefone_usuario_id, telefone_ddi, telefone_ddd, telefone_telefone);
 CREATE INDEX idx_usuario_cover ON usuario (usuario_id, usuario_nome);
+
+-- Consulta 10 com otimização
 
 select usuario_nome, telefone_ddi, telefone_ddd, telefone_telefone from usuario inner join telefone on usuario_id = telefone_usuario_id where usuario_id = 1;

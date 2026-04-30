@@ -1169,6 +1169,21 @@ INSERT INTO `eventos`.`metodoPagamento` (`metodoPagamento_formaDePagamento`) VAL
 
 DELIMITER $$
 
+DELIMITER $$
+
+CREATE TRIGGER tg_desativar_voucher_apos_pagamento
+AFTER INSERT ON `eventos`.`pagamento`
+FOR EACH ROW
+BEGIN
+    -- Verifica se um voucher foi utilizado na inserção
+    IF NEW.pagamento_voucher_id IS NOT NULL THEN
+        UPDATE `eventos`.`voucher`
+        SET voucher_disponivel = 0
+        WHERE voucher_id = NEW.pagamento_voucher_id;
+    END IF;
+END$$
+
+
 DROP PROCEDURE IF EXISTS GerarPagamentos$$
 
 CREATE PROCEDURE GerarPagamentos(
@@ -1178,13 +1193,11 @@ CREATE PROCEDURE GerarPagamentos(
 BEGIN
     DECLARE v_done INT DEFAULT FALSE;
     DECLARE v_evento_id INT;
-    DECLARE v_qtd_pagar INT;
     DECLARE v_min_metodo, v_max_metodo INT;
 
     DECLARE cur_eventos CURSOR FOR SELECT eventos_id FROM `eventos`.`eventos`;
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_done = TRUE;
 
-    -- Cache de limites para evitar SELECT repetitivo
     SELECT MIN(metodoPagamento_id), MAX(metodoPagamento_id) INTO v_min_metodo, v_max_metodo FROM `eventos`.`metodoPagamento`;
 
     SET FOREIGN_KEY_CHECKS = 0;
@@ -1196,8 +1209,6 @@ BEGIN
         FETCH cur_eventos INTO v_evento_id;
         IF v_done THEN LEAVE read_loop; END IF;
 
-        -- Inserção direta via JOIN (Removi o ORDER BY RAND do voucher)
-        -- Usamos uma técnica de sorteio mais leve baseada no ID da inscrição
         INSERT IGNORE INTO `eventos`.`pagamento` (
             `pagamento_valorTotal`,
             `pagamento_valorPagamento`,
@@ -1210,20 +1221,27 @@ BEGIN
         )
         SELECT 
             ti.tipoInscricao_valor,
-            -- Cálculo simplificado: 10% de chance de aplicar um desconto fixo de 20% caso não tenha voucher
-            ti.tipoInscricao_valor * (IF(RAND() < 0.1, 0.8, 1.0)), 
+            -- Se houver voucher (subquery abaixo), o valor pago vira 0 (ou o desconto que desejar)
+            -- Caso contrário, mantém o cálculo original com chance de 10% de desconto
+            (SELECT IF(v.voucher_id IS NOT NULL, 0, ti.tipoInscricao_valor * (IF(RAND() < 0.1, 0.8, 1.0)))),
             ELT(FLOOR(RAND() * 3) + 1, 'Pendente', 'Pago', 'Agendado'),
             DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 30) DAY),
             FLOOR(v_min_metodo + RAND() * (v_max_metodo - v_min_metodo + 1)),
-            NULL, -- Vouchers em massa via cursor são lentos, setamos NULL para velocidade
+            -- SUBQUERY PARA PEGAR UM VOUCHER DISPONÍVEL
+            (SELECT v.voucher_id 
+             FROM `eventos`.`voucher` v 
+             WHERE v.voucher_eventos_id = v_evento_id 
+               AND v.voucher_tipoInscricao_id = ti.tipoInscricao_id
+               AND v.voucher_disponivel = 1
+               AND RAND() < 0.2 -- Chance de 20% de tentar usar um voucher se ele existir
+             LIMIT 1),
             i.inscricao_id,
             NULL
         FROM `eventos`.`inscricao` i
         INNER JOIN `eventos`.`tipoInscricao` ti ON i.inscricao_tipoInscricao_id = ti.tipoInscricao_id
         WHERE i.inscricao_eventos_id = v_evento_id
-        -- Sorteio de percentual de linhas sem ORDER BY RAND total
         AND RAND() <= (p_max_percentual_pagantes / 100)
-        LIMIT 5000; -- Limite de segurança por evento para não estourar memória
+        LIMIT 5000;
 
         COMMIT; 
     END LOOP;
