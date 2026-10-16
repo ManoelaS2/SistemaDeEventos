@@ -1,9 +1,23 @@
+:root {
+    --ciano: #01E8A2;
+    --ciano2: #05AD92;
+    --ciano3: #078788;
+    --alerta: #FB2C36;
+    --aviso: #FE9A00;
+    --fundo: #F1F1F1;
+    --fundo2: #222222;  
+}
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+    background: var(--fundo);
 }
 
 .cabecalho {
@@ -28,7 +42,7 @@
     height: 50px;
 }
 
-.cabecalho .logo-figure h2 {
+.cabecalho .logo-figure h1 {
     margin: 0 0 0 10px ;
     font-size: 40px;
     align-self: center;
@@ -126,3 +140,44 @@
   .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
     transform: rotate(-35deg);
   }
+
+
+.rodape {
+    position: absolute;
+    top: 100%;
+    display: flex;
+    background: #01E8A2;
+    background: linear-gradient(180deg, rgba(1, 232, 162, 1) 0%, rgba(5, 173, 146, 1) 100%);
+    width: 100%;
+    height: 200px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+.rodape .logo-figure {
+    display: flex;
+}
+
+.rodape .logo-figure img {
+    width: 80px;
+    height: 80px;
+}
+
+.rodape .logo-figure h1 {
+    margin: 0 0 0 10px ;
+    color: #fff;
+    font-size: 64px;
+    align-self: center;
+    justify-self: center;
+}
+
+.rodape a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 32px;
+}
+
+.rodape .copywrite {
+    color: #fff;
+    font-size: 20px;
+}
