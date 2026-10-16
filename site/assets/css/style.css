@@ -142,7 +142,7 @@ body {
   }
 
   #form-exemplo {
-    display: flex;
+    display: flex;flex-direction: column;
     width: 100%;
     margin: 20px 0 0 10px;
   }
@@ -152,7 +152,7 @@ body {
     padding: 10px 10px;
   }
 
-  #form-exemplo label {
+  #form-exemplo .texto-label {
     display: block;
     margin: 15px 0 0 0;
   }
@@ -166,6 +166,59 @@ body {
     background-color: var(--fundo);
     border-bottom: 1px solid black;
   }
+
+#form-exemplo .exemplo-radio-checbox {
+    display: flex;
+    flex-direction: column;
+}
+
+#form-exemplo .radios{
+    display: flex;
+}
+
+.radio-label{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: 1.5em auto;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-input {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 23px;
+    accent-color: var(--ciano2);
+}
+
+#form-exemplos .checks {
+    margin-top: 20px;
+    display: flex;
+}
+
+.checkbox-label {
+    margin: 15px;
+    display: grid;
+    grid-template-columns: 1.5em auto;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-input {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 23px;
+    accent-color: var(--ciano2);
+}
+
+
+
 
 .rodape {
     position: absolute;
