@@ -141,6 +141,31 @@ body {
     transform: rotate(-35deg);
   }
 
+  #form-exemplo {
+    display: flex;
+    width: 100%;
+    margin: 20px 0 0 10px;
+  }
+  
+  #form-exemplo fieldset {
+    width: 100%;
+    padding: 10px 10px;
+  }
+
+  #form-exemplo label {
+    display: block;
+    margin: 15px 0 0 0;
+  }
+
+  #form-exemplo .campo-texto {
+    outline: 0 none black;
+    border: 0 none black;
+    padding: 10px 35px;
+    width: 99%;
+    height: 40px;
+    background-color: var(--fundo);
+    border-bottom: 1px solid black;
+  }
 
 .rodape {
     position: absolute;
