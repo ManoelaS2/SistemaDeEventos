@@ -1,0 +1,45 @@
+Atue como um especialista em banco de dados MySQL. Eu preciso que você crie uma Stored Procedure completa para testar e comparar o tempo de execução entre duas consultas diferentes (uma normal e uma otimizada) antes e depois da aplicação de índices.
+
+Siga ESTRITAMENTE esta estrutura e regras para criar o código:
+
+Use DELIMITER $$ e faça o DROP PROCEDURE IF EXISTS.
+
+Crie uma tabela temporária para armazenar os tempos com as colunas: versao (VARCHAR), execucao (INT) e tempo_ms (DECIMAL(10,3)).
+
+Adicione um silenciador de erros (DECLARE CONTINUE HANDLER FOR 1091 BEGIN END;) para evitar que a procedure quebre ao tentar apagar índices que não existem.
+
+Faça o DROP INDEX dos índices que serão testados (para garantir que a primeira execução seja sem eles).
+
+Crie um loop de 50 execuções para a "Pesquisa Normal". Dentro do loop:
+
+Capture o tempo inicial usando SYSDATE(6).
+
+Execute a [QUERY 1 - NORMAL], mas a encapsule EXATAMENTE desta forma para evitar erros de colunas duplicadas (Erro 1060) e para silenciar o output: SELECT COUNT(*) INTO @dummy_var FROM ( [QUERY 1 - NORMAL] ) AS t;
+
+Capture o tempo final, calcule a duração em milissegundos e faça o INSERT na tabela temporária.
+
+Faça o CREATE INDEX dos índices informados.
+
+Crie um novo loop de 50 execuções para a "Pesquisa Otimizada", seguindo a mesma lógica de tempo e encapsulamento, mas agora executando a [QUERY 2 - OTIMIZADA].
+
+No final, retorne apenas um SELECT da tabela temporária com as seguintes colunas calculadas: "Versão da Consulta", "Tempo Médio (ms)", "Tempo Mínimo (ms)" e "Tempo Máximo (ms)", agrupadas por versão.
+
+Faça novamente o DROP INDEX de todos os índices criados no passo 6, para limpar o banco de dados e retornar ao estado original.
+
+Faça o DROP da tabela temporária e encerre o DELIMITER.
+
+No final do código, inclua o comando CALL da procedure para eu rodar.
+
+Baseado nessas regras, gere o código SQL completo usando as informações abaixo:
+
+NOME DA PROCEDURE:
+**
+
+QUERY 1 - NORMAL:
+**
+
+QUERY 2 - OTIMIZADA:
+**
+
+MEUS ÍNDICES:
+**
