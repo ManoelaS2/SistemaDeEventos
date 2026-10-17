@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EAS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header class="header">
+    <a href="#" class="logo">
+    <img src="assets/img/Logo.png" alt="EAS">
+    </a>
+
+    <form class="search" role="search">
+      <input type="search" placeholder="Evento X" aria-label="Buscar evento">
+      <button type="submit" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+        </svg>
+      </button>
+    </form>
+
+    <a href="#"><ion-icon name="log-in-outline" class="icons-cabecalho"></ion-icon>Entrar</a>
+  </header>
+
+  <main>
+    <!-- EVENTO EM DESTAQUE -->
+    <section class="hero">
+      <h2 class="hero-title">Evento em destaque</h2>
+
+      <button class="arrow arrow-left" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <button class="arrow arrow-right" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- EVENTOS EM ANDAMENTO -->
+    <section class="events">
+      <h2 class="events-title">Eventos em andamento</h2>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-img"></div>
+          <div class="card-info">
+            <div class="card-row">
+              <span>Evento A</span>
+              <span>10/06/2026</span>
+            </div>
+            <div class="card-row">
+              <span>Pago</span>
+              <span class="badge">Andamento</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img"></div>
+          <div class="card-info">
+            <div class="card-row">
+              <span>Evento B</span>
+              <span>08/06/2026</span>
+            </div>
+            <div class="card-row">
+              <span>Gratuito</span>
+              <span class="badge">Andamento</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-img"></div>
+          <div class="card-info">
+            <div class="card-row">
+              <span>Evento C</span>
+              <span>09/06/2026</span>
+            </div>
+            <div class="card-row">
+              <span>Pago</span>
+              <span class="badge">Andamento</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="footer">
+    <a href="#" class="logo logo-big">
+    <img src="assets/img/Logo.png" alt="EAS">
+    </a>
+
+    <nav class="footer-nav">
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
+      <a href="#">Termos</a>
+    </nav>
+
+    <span class="copyright">© EAS 2026</span>
+  </footer>
+
+</body>
+</html>
