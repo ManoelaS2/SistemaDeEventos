@@ -1,0 +1,104 @@
+:root {
+  --verde: #00b894;
+  --verde-escuro: #00a383;
+  --fundo: #f3f3f8;
+  --cartao: #dedede;
+  --texto: #1a1a1a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Fundo da página: centraliza o cartão */
+html {
+  background: var(--fundo);
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* O body vira o cartão cinza */
+body {
+  position: relative;
+  width: calc(100% - 32px);
+  max-width: 420px;
+  margin: 70px 16px 40px;
+  padding: 62px 40px 36px;
+  background: var(--cartao);
+  border-radius: 14px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .35);
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: var(--texto);
+  text-align: center;
+}
+
+/* Círculo com ícone de usuário no topo do cartão */
+body::before {
+  content: "";
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--cartao)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='%23111' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='19' cy='15' r='8'/%3E%3Cpath d='M4 42c0-9 7-14 15-14 3 0 5 .6 7 1.6'/%3E%3Cpath d='m28 42 2-7 13-13 5 5-13 13z'/%3E%3C/svg%3E")
+    center / 38px no-repeat;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 26px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+label {
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+/* Campos só com a linha embaixo, como no protótipo */
+input {
+  width: 100%;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid #111;
+  outline: 0;
+  font: inherit;
+  font-size: 14px;
+  color: var(--texto);
+  padding: 4px 2px;
+}
+input:focus { border-bottom-color: var(--verde-escuro); }
+
+button {
+  align-self: center;
+  margin-top: 26px;
+  width: 86px;
+  padding: 11px 0;
+  border: 0;
+  border-radius: 4px;
+  background: var(--verde);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+  transition: background .15s;
+}
+button:hover { background: var(--verde-escuro); }
+
+:focus-visible { outline: 2px solid #005f4a; outline-offset: 2px; }
+
+@media (max-width: 480px) {
+  body { padding: 62px 22px 28px; }
+}
