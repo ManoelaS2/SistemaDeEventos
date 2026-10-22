@@ -4,44 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EAS</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://googleapis.com" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.4.0/dist/ionicons/ionicons.js"></script>
+  <script src="assets/js/main.js" defer></script>
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
-  <header class="header">
-    <a href="#" class="logo">
-    <img src="assets/img/Logo.png" alt="EAS">
-    </a>
-
-    <form class="search" role="search">
-      <input type="search" placeholder="Evento X" aria-label="Buscar evento">
-      <button type="submit" aria-label="Buscar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
-        </svg>
-      </button>
-    </form>
-
-    <a href="#"><ion-icon name="log-in-outline" class="icons-cabecalho"></ion-icon>Entrar</a>
-  </header>
+  <!-- CABEÇALHO (carregado de assets/componentes/header.html) -->
+  <div id="header-container"></div>
 
   <main>
-    <!-- EVENTO EM DESTAQUE -->
-    <section class="hero">
-      <h2 class="hero-title">Evento em destaque</h2>
 
-      <button class="arrow arrow-left" aria-label="Anterior">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
-      </button>
-      <button class="arrow arrow-right" aria-label="Próximo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-      </button>
+    <!-- EVENTOS EM DESTAQUE -->
+    <section class="hero" aria-labelledby="titulo-destaque">
+      <h2 class="hero-title" id="titulo-destaque">Eventos em destaque</h2>
 
-      <div class="dots">
+      <div class="hero-slider">
+        <button class="arrow arrow-left" type="button" aria-label="Anterior">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+
+        <div class="hero-slide">
+          <!-- <img src="assets/img/destaque-1.jpg" alt="Nome do evento"> -->
+        </div>
+
+        <button class="arrow arrow-right" type="button" aria-label="Próximo">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
+      </div>
+
+      <div class="dots" aria-hidden="true">
         <span class="dot active"></span>
         <span class="dot"></span>
         <span class="dot"></span>
@@ -52,70 +49,119 @@
       </div>
     </section>
 
-    <!-- EVENTOS EM ANDAMENTO -->
-    <section class="events">
-      <h2 class="events-title">Eventos em andamento</h2>
+    <!-- CATEGORIAS -->
+    <section class="section" aria-labelledby="titulo-categorias">
+      <div class="section-head">
+        <h2 id="titulo-categorias">Conheça nossas categorias</h2>
+        <a href="#" class="see-all">Ver tudo</a>
+      </div>
 
-      <div class="cards">
-        <article class="card">
-          <div class="card-img"></div>
-          <div class="card-info">
-            <div class="card-row">
-              <span>Evento A</span>
-              <span>10/06/2026</span>
-            </div>
-            <div class="card-row">
-              <span>Pago</span>
-              <span class="badge">Andamento</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img"></div>
-          <div class="card-info">
-            <div class="card-row">
-              <span>Evento B</span>
-              <span>08/06/2026</span>
-            </div>
-            <div class="card-row">
-              <span>Gratuito</span>
-              <span class="badge">Andamento</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-img"></div>
-          <div class="card-info">
-            <div class="card-row">
-              <span>Evento C</span>
-              <span>09/06/2026</span>
-            </div>
-            <div class="card-row">
-              <span>Pago</span>
-              <span class="badge">Andamento</span>
-            </div>
-          </div>
-        </article>
+      <div class="categories">
+        <a href="#" class="category">
+          <img src="assets/img/MicrofoneBlack.png" alt="">
+          <span>Palestras e Seminários</span>
+        </a>
+        <a href="#" class="category">
+          <img src="assets/img/CertificadoBlack.png" alt="">
+          <span>Minicursos e Workshops</span>
+        </a>
+        <a href="#" class="category">
+          <img src="assets/img/TrofeuBlack.png" alt="">
+          <span>Atléticas e Esportes</span>
+        </a>
+        <a href="#" class="category">
+          <img src="assets/img/TaçaBlack.png" alt="">
+          <span>Festas Universitárias</span>
+        </a>
+        <a href="#" class="category">
+          <img src="assets/img/LaptopBlack.png" alt="">
+          <span>Hackathons e Maratonas</span>
+        </a>
+        <button class="categories-next" type="button" aria-label="Próximas categorias">
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
       </div>
     </section>
+
+    <!-- EVENTOS EM ANDAMENTO -->
+    <section class="section" aria-labelledby="titulo-andamento">
+      <div class="section-head">
+        <h2 id="titulo-andamento">Eventos em andamento</h2>
+        <a href="#" class="see-all">Ver tudo</a>
+      </div>
+
+      <div class="cards">
+
+        <article class="card">
+          <a href="#" class="card-link">
+            <div class="card-img">Imagem<br>Evento A</div>
+            <div class="card-info">
+              <div class="card-row"><span class="card-title">Evento A</span><span>10/06/2026</span></div>
+              <div class="card-row"><span>Pago</span><span class="badge">Andamento</span></div>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="card-link">
+            <div class="card-img">Imagem<br>Evento B</div>
+            <div class="card-info">
+              <div class="card-row"><span class="card-title">Evento B</span><span>08/06/2026</span></div>
+              <div class="card-row"><span>Gratuito</span><span class="badge">Andamento</span></div>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="card-link">
+            <div class="card-img">Imagem<br>Evento C</div>
+            <div class="card-info">
+              <div class="card-row"><span class="card-title">Evento C</span><span>09/06/2026</span></div>
+              <div class="card-row"><span>Pago</span><span class="badge">Andamento</span></div>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="card-link">
+            <div class="card-img">Imagem<br>Evento D</div>
+            <div class="card-info">
+              <div class="card-row"><span class="card-title">Evento D</span><span>12/06/2026</span></div>
+              <div class="card-row"><span>Gratuito</span><span class="badge">Andamento</span></div>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="card-link">
+            <div class="card-img">Imagem<br>Evento E</div>
+            <div class="card-info">
+              <div class="card-row"><span class="card-title">Evento E</span><span>14/06/2026</span></div>
+              <div class="card-row"><span>Pago</span><span class="badge">Andamento</span></div>
+            </div>
+          </a>
+        </article>
+
+        <article class="card">
+          <a href="#" class="card-link">
+            <div class="card-img">Imagem<br>Evento F</div>
+            <div class="card-info">
+              <div class="card-row"><span class="card-title">Evento F</span><span>15/06/2026</span></div>
+              <div class="card-row"><span>Gratuito</span><span class="badge">Andamento</span></div>
+            </div>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- RODAPÉ -->
-  <footer class="footer">
-    <a href="#" class="logo logo-big">
-    <img src="assets/img/Logo.png" alt="EAS">
-    </a>
-
-    <nav class="footer-nav">
-      <a href="#">Sobre</a>
-      <a href="#">Contato</a>
-      <a href="#">Termos</a>
-    </nav>
-
-    <span class="copyright">© EAS 2026</span>
-  </footer>
+  <!-- RODAPÉ (carregado de assets/componentes/footer.html) -->
+  <div id="footer-container"></div>
+    <script src="./assets/js/componente.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 
 </body>
 </html>
