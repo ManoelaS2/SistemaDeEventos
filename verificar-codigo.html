@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificar Código | EAS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <section id="section-verificar-codigo" class="secao-cartao">
+      <main class="cartao">
+        <h1>Enviamos um código para <span class="email-enviado">xx*@gmail.com</span></h1>
+
+        <form action="login.html" method="get" id="form-verificar-codigo" class="form-cartao">
+          <fieldset>
+            <legend>Digite o código para redefinir sua senha.</legend>
+            <div class="campos-codigo">
+              <input type="text" class="campo-codigo" name="codigo1" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0" aria-label="Primeiro dígito" autocomplete="one-time-code" required />
+              <input type="text" class="campo-codigo" name="codigo2" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0" aria-label="Segundo dígito" required />
+              <input type="text" class="campo-codigo" name="codigo3" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0" aria-label="Terceiro dígito" required />
+              <input type="text" class="campo-codigo" name="codigo4" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0" aria-label="Quarto dígito" required />
+            </div>
+          </fieldset>
+
+          <p class="texto-pequeno">Mudou de e-mail? <a href="#">Atualizar e-mail</a></p>
+          <p class="texto-pequeno">Não recebeu o código? <a href="recuperar-senha.html">Reenviar código</a></p>
+
+          <input class="botao-confirmacao" type="submit" value="Verificar" />
+        </form>
+
+        <p class="texto-pequeno texto-centro">Ainda precisa de ajuda? <a href="#">Fale conosco</a></p>
+      </main>
+    </section>
+
+    <div id="footer-container"></div>
+    <script src="./assets/js/componente.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+  </body>
+</html>

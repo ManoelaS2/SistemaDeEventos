@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Entrar | EAS</title>
+</head>
+<body class="page-login">
+  <div id="header-container"></div>
+
+  <main class="login-main">
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="login-avatar"><ion-icon name="person-add-outline" aria-hidden="true"></ion-icon></div>
+      <h1 id="login-title">Entrar</h1>
+      <form class="login-form" action="index.html" method="get">
+        <label class="field-row">
+          <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
+          <input type="text" placeholder="E-mail ou CPF" aria-label="E-mail ou CPF" autocomplete="username" required>
+        </label>
+        <label class="field-row">
+          <ion-icon name="lock-closed-outline" aria-hidden="true"></ion-icon>
+          <input id="senha" type="password" placeholder="Senha" aria-label="Senha" autocomplete="current-password" required>
+          <button class="password-toggle" type="button" aria-label="Mostrar senha"><ion-icon name="eye-off-outline"></ion-icon></button>
+        </label>
+        <a class="forgot-password" href="recuperar-senha.html">Esqueci minha senha</a>
+        <button class="primary-button login-submit" type="submit">Entrar</button>
+      </form>
+      <div class="or-divider"><span>ou</span></div>
+      <button class="google-login" type="button" title="Login Google depende de integração com servidor" aria-label="Login com Google indisponível nesta versão demonstrativa"><img src="assets/img/google.png" alt="" width="32" height="32">Entrar com Google</button>
+      <p class="signup-prompt">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+  <script src="./assets/js/componente.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
