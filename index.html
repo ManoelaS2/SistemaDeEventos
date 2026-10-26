@@ -1,0 +1,185 @@
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>EAS</title>
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title">Eventos em destaque</h1>
+        <div class="hero-slider">
+          <button
+            class="slider-arrow"
+            type="button"
+            aria-label="Evento anterior"
+          >
+            <ion-icon name="chevron-back"></ion-icon>
+          </button>
+          <a
+            class="hero-placeholder"
+            href="evento.html?evento=A"
+            aria-label="Conhecer o evento em destaque"
+          ></a>
+          <button
+            class="slider-arrow"
+            type="button"
+            aria-label="Próximo evento"
+          >
+            <ion-icon name="chevron-forward"></ion-icon>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="section categories-section"
+        aria-labelledby="categories-title"
+      >
+        <div class="section-heading">
+          <h2 id="categories-title">Conheça nossas categorias</h2>
+          <a href="#eventos">Ver tudo</a>
+        </div>
+        <div class="category-list">
+          <a href="#eventos" class="category-card"
+            ><ion-icon name="mic-outline" aria-hidden="true"></ion-icon
+            ><span>Palestras e Seminários</span></a
+          >
+          <a href="#eventos" class="category-card"
+            ><ion-icon name="ribbon-outline" aria-hidden="true"></ion-icon
+            ><span>Minicursos e Workshops</span></a
+          >
+          <a href="#eventos" class="category-card"
+            ><ion-icon name="trophy-outline" aria-hidden="true"></ion-icon
+            ><span>Atléticas e Esportes</span></a
+          >
+          <a href="#eventos" class="category-card"
+            ><ion-icon name="wine-outline" aria-hidden="true"></ion-icon
+            ><span>Festas Universitárias</span></a
+          >
+          <a href="#eventos" class="category-card"
+            ><ion-icon name="laptop-outline" aria-hidden="true"></ion-icon
+            ><span>Hackathons e Maratonas</span></a
+          >
+          <a class="category-next" href="#eventos" aria-label="Mais categorias"
+            ><ion-icon name="chevron-forward"></ion-icon
+          ></a>
+        </div>
+      </section>
+
+      <section
+        class="section events-section"
+        id="eventos"
+        aria-labelledby="events-title"
+      >
+        <div class="section-heading">
+          <h2 id="events-title">Eventos em andamento</h2>
+          <a href="#eventos">Ver tudo</a>
+        </div>
+        <div class="events-grid">
+          <a href="evento.html?evento=A" class="event-card">
+            <div class="event-thumbnail">
+              <span class="event-tag"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento A</span>
+            </div>
+            <div class="event-info">
+              <h3>Título Evento A</h3>
+              <p>Local Evento A</p>
+              <span>Inscreva-se de:</span>
+              <strong>DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=B" class="event-card">
+            <div class="event-thumbnail">
+              <span class="event-tag"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento B</span>
+            </div>
+            <div class="event-info">
+              <h3>Título Evento B</h3>
+              <p>Local Evento B</p>
+              <span>Inscreva-se de:</span>
+              <strong>DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=C" class="event-card">
+            <div class="event-thumbnail">
+              <span class="event-tag"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento C</span>
+            </div>
+            <div class="event-info">
+              <h3>Título Evento C</h3>
+              <p>Local Evento C</p>
+              <span>Inscreva-se de:</span>
+              <strong>DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=D" class="event-card">
+            <div class="event-thumbnail">
+              <span class="event-tag"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento D</span>
+            </div>
+            <div class="event-info">
+              <h3>Título Evento D</h3>
+              <p>Local Evento D</p>
+              <span>Inscreva-se de:</span>
+              <strong>DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=E" class="event-card">
+            <div class="event-thumbnail">
+              <span class="event-tag"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span
+              >
+              <span>Imagem<br />Evento E</span>
+            </div>
+            <div class="event-info">
+              <h3>Título Evento E</h3>
+              <p>Local Evento E</p>
+              <span>Inscreva-se de:</span>
+              <strong>DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=F" class="event-card">
+            <div class="event-thumbnail">
+              <span class="event-tag"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span
+              >
+              <span>Imagem<br />Evento F</span>
+            </div>
+            <div class="event-info">
+              <h3>Título Evento F</h3>
+              <p>Local Evento F</p>
+              <span>Inscreva-se de:</span>
+              <strong>DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+    <script src="./assets/js/componente.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
