@@ -191,9 +191,17 @@ ion-icon {
   width: 100%;
   background: linear-gradient(90deg, var(--green), var(--green-deep));
   color: var(--white);
-  position: relative;
+  position: fixed ;
   z-index: 5;
 }
+
+.spam-header {
+  height: var(--header-height);
+  width: 100%;
+  display: block;
+}
+
+
 .header-inner {
   max-width: var(--container);
   height: 100%;
