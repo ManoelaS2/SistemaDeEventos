@@ -10,6 +10,7 @@
   --green-deep: #05ad92;
   --teal: #078788;
   --orange: #fe9a00;
+  --red: #fb2c36;
 
   /* Neutros */
   --background: #f1f1f1;
@@ -150,6 +151,16 @@ ion-icon {
   border-bottom-color: var(--green-deep);
 }
 
+a {
+  color: var(--green-deep);
+  font-weight: bolder;
+}
+
+/* =====================================================================
+   4.1. Botões 
+   ===================================================================== */
+
+
 /* --- Botão principal --- */
 .primary-button,
 .botao-confirmacao {
@@ -158,14 +169,58 @@ ion-icon {
   font-weight: 600;
   border: 0;
   border-radius: var(--radius-button);
+  min-width: 140px;
+  height: 40px;
+  margin-top: 30px;
+  padding: 0 24px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--shadow-button);
 }
+
 .primary-button:hover,
 .botao-confirmacao:hover {
-  background: var(--teal);
+  background: var(--teal);  
 }
-.secondary-button {
-  background: var(--border-soft);
+
+.botao-aviso {
+  background: var(--orange);
+  color: var(--white);
+  font-weight: 600;
+  border: 0;
   border-radius: var(--radius-button);
+  min-width: 140px;
+  height: 40px;
+  margin-top: 30px;
+  padding: 0 24px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--shadow-button);
+}
+
+
+.botao-aviso:hover {
+  background:color-mix(in srgb, var(--orange) 90%, black 10%) ;
+}
+
+
+.botao-alerta{
+  background: var(--red);
+  color: var(--white);
+  font-weight: 600;
+  border: 0;
+  border-radius: var(--radius-button);
+  min-width: 140px;
+  height: 40px;
+  margin-top: 30px;
+  padding: 0 24px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--shadow-button);
+}
+
+.botao-alerta:hover{
+  background:color-mix(in srgb, var(--red) 80%, black 20%) ;
 }
 
 /* --- Links de destaque --- */
@@ -874,15 +929,7 @@ ion-icon {
 .campo-codigo:focus {
   background: var(--background);
 }
-.botao-confirmacao {
-  min-width: 140px;
-  height: 40px;
-  margin-top: 30px;
-  padding: 0 24px;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: var(--shadow-button);
-}
+
 .cartao a:focus-visible,
 .botao-confirmacao:focus-visible {
   outline: 3px solid var(--teal);
