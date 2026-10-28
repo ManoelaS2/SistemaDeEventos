@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/inscricao.css">
     <title>Inscrição no evento - EAS</title>
 </head>
 <body>
@@ -18,11 +19,9 @@
 
             <form action="#" method="post" id="form-inscricao" class="inscricao-card">
 
-                <div class="inscricao-conteudo">
-
                     <!-- Programação -->
-                    <fieldset>
-                        <legend>Programação e Local Evento:</legend>
+                    <fieldset class="inscricao-fieldset">
+                        <legend><h3>Programação e Local Evento:</h3></legend>
 
                         <label class="checkbox-label atividade">
                             <input type="checkbox" name="atividades" value="seguranca-digital" class="checkbox-input">
@@ -66,29 +65,27 @@
                         <figure class="palestrante">
                             <div class="palestrante-foto"></div>
                             <!-- <img class="palestrante-foto" src="assets/img/fulano1.jpg" alt="Foto de Fulano 1"> -->
-                            <figcaption>Fulano 1</figcaption>
+                            <figcaption><h2>Fulano 1</h2></figcaption>
                         </figure>
 
                         <figure class="palestrante">
                             <div class="palestrante-foto"></div>
-                            <figcaption>Fulano 2</figcaption>
+                            <figcaption><h2>Fulano 2</h2></figcaption>
                         </figure>
 
                         <figure class="palestrante">
                             <div class="palestrante-foto"></div>
-                            <figcaption>Fulano 3</figcaption>
+                            <figcaption><h2>Fulano 3</h2></figcaption>
                         </figure>
                     </aside>
 
-                </div>
 
                 <div class="inscricao-acoes">
-                    <a href="index.html" class="btn-inscricao">Fazer Inscrição</a>
+                    <input type="submit" class="botao-confirmacao btn-grande" value="Fazer Inscrição">
                 </div>
             </form>
         </section>
     </main>
-
     <div id="footer-container"></div>
 
     <script src="./assets/js/componente.js"></script>
