@@ -157,8 +157,6 @@ ion-icon {
 
 /* --- Botão principal --- */
 .btn-confirmacao {
-  width: 250px;
-  height: 58px;
   background: var(--green-deep);
   color: var(--white);
   font-weight: 600;
@@ -169,6 +167,7 @@ ion-icon {
   font-size: 15px;
   cursor: pointer;
   box-shadow: var(--shadow-button);
+  text-align: center;
 }
 
 .btn-confirmacao:hover {
@@ -187,6 +186,7 @@ ion-icon {
   cursor: pointer;
   box-shadow: var(--shadow-button);
   color: var(--text);
+  text-align: center;
 }
 
 .btn-segundario:hover {
