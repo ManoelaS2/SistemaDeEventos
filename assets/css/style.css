@@ -151,14 +151,14 @@ ion-icon {
   border-bottom-color: var(--green-deep);
 }
 
-
 /* =====================================================================
    4.1. Botões 
    ===================================================================== */
 
-
 /* --- Botão principal --- */
 .btn-confirmacao {
+  width: 250px;
+  height: 58px;
   background: var(--green-deep);
   color: var(--white);
   font-weight: 600;
@@ -172,7 +172,7 @@ ion-icon {
 }
 
 .btn-confirmacao:hover {
-  background: var(--teal);  
+  background: var(--teal);
 }
 
 .btn-segundario {
@@ -189,10 +189,9 @@ ion-icon {
   color: var(--text);
 }
 
-.btn-segundario:hover{
+.btn-segundario:hover {
   background-color: var(--gray-arrow);
 }
-
 
 .btn-aviso {
   background: var(--orange);
@@ -207,13 +206,11 @@ ion-icon {
   box-shadow: var(--shadow-button);
 }
 
-
 .btn-aviso:hover {
-  background:color-mix(in srgb, var(--orange) 90%, black 10%) ;
+  background: color-mix(in srgb, var(--orange) 90%, black 10%);
 }
 
-
-.btn-alerta{
+.btn-alerta {
   background: var(--red);
   color: var(--white);
   font-weight: 600;
@@ -226,8 +223,8 @@ ion-icon {
   box-shadow: var(--shadow-button);
 }
 
-.btn-alerta:hover{
-  background:color-mix(in srgb, var(--red) 80%, black 20%) ;
+.btn-alerta:hover {
+  background: color-mix(in srgb, var(--red) 80%, black 20%);
 }
 
 .btn-grande {
@@ -244,41 +241,41 @@ ion-icon {
 /* --- Checkbox --- */
 
 .checkbox-label {
-    margin: 15px;
-    display: grid;
-    grid-template-columns: 1.5em auto;
-    gap: 10px;
-    align-items: center;
-    cursor: pointer;
+  margin: 15px;
+  display: grid;
+  grid-template-columns: 1.5em auto;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .checkbox-input {
-    position: relative;
-    top: 0;
-    left: 0;  
-    width: 23px;
-    height: 23px;
-    accent-color: var(--green-deep);
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 23px;
+  height: 23px;
+  accent-color: var(--green-deep);
 }
 
 /* --- Radio --- */
 
-.radio-label{
-    margin: 15px;
-    display: grid;
-    grid-template-columns: 1.5em auto;
-    gap: 10px;
-    align-items: center;
-    cursor: pointer;
+.radio-label {
+  margin: 15px;
+  display: grid;
+  grid-template-columns: 1.5em auto;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .radio-input {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 23px;
-    height: 23px;
-    accent-color: var(--ciano2);
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 23px;
+  height: 23px;
+  accent-color: var(--ciano2);
 }
 
 /* --- Links de destaque --- */

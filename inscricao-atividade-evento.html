@@ -1,86 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Inscrição no evento | EAS</title>
-</head>
-<body class="page-details">
+  </head>
+  <body class="page-details">
     <div id="header-container"></div>
 
     <main class="interior-page">
-        <h1>Inscrever-se no evento</h1>
+      <h1>Inscrever-se no evento</h1>
 
-        <form action="#" method="post" id="form-inscricao" class="event-detail">
+      <form
+        action="index.html"
+        method="get"
+        id="form-inscricao"
+        class="event-detail"
+      >
+        <!-- Programação -->
+        <fieldset class="atividades">
+          <legend>Programação e Local do Evento:</legend>
 
-            <!-- Programação -->
-            <fieldset class="atividades">
-                <legend>Programação e Local do Evento:</legend>
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              name="atividades"
+              value="seguranca-digital"
+              class="checkbox-input"
+            />
+            <span class="atividade-info">
+              <span>Palestra: Segurança Digital</span>
+              <span>Palestrante: Fulano 1</span>
+              <span>Horário: das 8h às 9h</span>
+            </span>
+          </label>
 
-                <label class="checkbox-label">
-                    <input type="checkbox" name="atividades" value="seguranca-digital" class="checkbox-input">
-                    <span class="atividade-info">
-                        <span>Palestra: Segurança Digital</span>
-                        <span>Palestrante: Fulano 1</span>
-                        <span>Horário: das 8h às 9h</span>
-                    </span>
-                </label>
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              name="atividades"
+              value="inteligencia-artificial"
+              class="checkbox-input"
+            />
+            <span class="atividade-info">
+              <span>Palestra: Inteligência Artificial no Dia a Dia</span>
+              <span>Palestrante: Fulano 2</span>
+              <span>Horário: das 9h30 às 10h30</span>
+            </span>
+          </label>
 
-                <label class="checkbox-label">
-                    <input type="checkbox" name="atividades" value="inteligencia-artificial" class="checkbox-input">
-                    <span class="atividade-info">
-                        <span>Palestra: Inteligência Artificial no Dia a Dia</span>
-                        <span>Palestrante: Fulano 2</span>
-                        <span>Horário: das 9h30 às 10h30</span>
-                    </span>
-                </label>
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              name="atividades"
+              value="workshop-web"
+              class="checkbox-input"
+            />
+            <span class="atividade-info">
+              <span>Workshop: Introdução ao Desenvolvimento Web</span>
+              <span>Palestrante: Fulano 1</span>
+              <span>Horário: das 14h às 17h</span>
+            </span>
+          </label>
 
-                <label class="checkbox-label">
-                    <input type="checkbox" name="atividades" value="workshop-web" class="checkbox-input">
-                    <span class="atividade-info">
-                        <span>Workshop: Introdução ao Desenvolvimento Web</span>
-                        <span>Palestrante: Fulano 1</span>
-                        <span>Horário: das 14h às 17h</span>
-                    </span>
-                </label>
+          <label class="checkbox-label">
+            <input
+              type="checkbox"
+              name="atividades"
+              value="carreiras-ti"
+              class="checkbox-input"
+            />
+            <span class="atividade-info">
+              <span>Palestra e Debate: Carreiras na Área de TI</span>
+              <span>Palestrante: Fulano 3</span>
+              <span>Horário: das 20h às 22h</span>
+            </span>
+          </label>
+        </fieldset>
 
-                <label class="checkbox-label">
-                    <input type="checkbox" name="atividades" value="carreiras-ti" class="checkbox-input" checked>
-                    <span class="atividade-info">
-                        <span>Palestra e Debate: Carreiras na Área de TI</span>
-                        <span>Palestrante: Fulano 3</span>
-                        <span>Horário: das 20h às 22h</span>
-                    </span>
-                </label>
-            </fieldset>
+        <!-- Palestrantes (dps add as imagens) -->
+        <div class="palestrantes">
+          <figure class="palestrante">
+            <div class="palestrante-foto"></div>
+            <figcaption>Fulano 1</figcaption>
+          </figure>
+          <figure class="palestrante">
+            <div class="palestrante-foto"></div>
+            <figcaption>Fulano 2</figcaption>
+          </figure>
+          <figure class="palestrante">
+            <div class="palestrante-foto"></div>
+            <figcaption>Fulano 3</figcaption>
+          </figure>
+        </div>
 
-            <!-- Palestrantes (dps add as imagens) -->
-            <div class="palestrantes">
-                <figure class="palestrante">
-                    <div class="palestrante-foto"></div>
-                    <figcaption>Fulano 1</figcaption>
-                </figure>
-                <figure class="palestrante">
-                    <div class="palestrante-foto"></div>
-                    <figcaption>Fulano 2</figcaption>
-                </figure>
-                <figure class="palestrante">
-                    <div class="palestrante-foto"></div>
-                    <figcaption>Fulano 3</figcaption>
-                </figure>
-            </div>
-
-            <div class="event-actions">
-                <a class="btn-confirmacao btn-compacto" href="index.html">Fazer Inscrição</a>
-            </div>
-        </form>
+        <input type="submit" class="btn-confirmacao" value="Fazer inscrição" />
+      </form>
     </main>
 
     <div id="footer-container"></div>
 
     <script src="./assets/js/componente.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
