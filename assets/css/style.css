@@ -995,6 +995,56 @@ ion-icon {
   outline-offset: 2px;
 }
 
+/* --- Inscrição no evento --- */
+.atividades {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.atividades legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.atividades .checkbox-label {
+  margin: 0 0 22px;
+}
+.atividade-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.35;
+}
+.palestrantes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 24px;
+}
+.palestrante {
+  margin: 0;
+  width: calc(50% - 12px);
+  max-width: 170px;
+  text-align: center;
+}
+.palestrante-foto {
+  width: 100%;
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  background: var(--green-deep);
+  border-radius: var(--radius-button);
+  margin-bottom: 10px;
+}
+.palestrante figcaption {
+  font-size: 16px;
+  font-weight: 700;
+}
+
 /* =====================================================================
    7. RESPONSIVO (do maior para o menor)
    ===================================================================== */
