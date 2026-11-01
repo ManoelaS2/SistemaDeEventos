@@ -798,9 +798,11 @@ ion-icon {
   gap: 24px;
   text-align: center;
 }
+
 .speaker-photo {
   background: var(--orange);
   height: 210px;
+  display: block;
   border-radius: 8px;
   margin-bottom: 13px;
 }
@@ -1030,6 +1032,7 @@ ion-icon {
   text-align: center;
 }
 .palestrante-foto {
+  display: block;
   width: 100%;
   aspect-ratio: 6 / 7;
   object-fit: cover;
@@ -1040,6 +1043,12 @@ ion-icon {
 .palestrante figcaption {
   font-size: 16px;
   font-weight: 700;
+}
+
+.btn-inscricao {
+  grid-row: 2 / 2;
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
 /* =====================================================================
