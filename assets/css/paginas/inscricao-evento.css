@@ -1,0 +1,93 @@
+/* ==========================================================
+   EAS — INSCRIÇÃO E EDIÇÃO DE ATIVIDADES
+   ÚNICO CSS para inscricao-atividade-evento.html e
+   editar-atividade-evento.html.
+   Itens reutilizáveis ficam em componentes.css.
+   Não há cores fixas nem novas variáveis obrigatórias.
+   ========================================================== */
+
+.pagina-atividades-evento {
+  padding-bottom: 65px;
+}
+
+/* Reutiliza as classes .cartao e .grade do CSS compartilhado. */
+.formulario-atividades-evento {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+}
+
+.grupo-selecao-atividades {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.grupo-selecao-atividades legend {
+  margin-bottom: 12px;
+  padding: 0;
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.pagina-atividades-instrucao {
+  margin: 0 0 18px;
+  font-family: var(--fonte-corpo);
+  color: var(--texto-secundario);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.painel-palestrantes {
+  gap: 22px;
+  align-content: start;
+  min-width: 0;
+}
+
+/* O terceiro perfil fica centralizado abaixo dos dois primeiros. */
+.painel-palestrantes .perfil:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: 50%;
+  min-width: 0;
+}
+
+.grupo-acoes--atividades {
+  grid-column: 1 / -1;
+  padding-top: 6px;
+}
+
+@media (max-width: 850px) {
+  .pagina-atividades-evento {
+    padding-bottom: 50px;
+  }
+
+  .formulario-atividades-evento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .painel-palestrantes {
+    width: 100%;
+    max-width: 450px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagina-atividades-evento {
+    padding-bottom: 40px;
+  }
+
+  .pagina-atividades-titulo {
+    font-size: 23px;
+  }
+
+  .grupo-selecao-atividades legend {
+    font-size: 18px;
+  }
+
+  .painel-palestrantes { gap: 12px; }
+
+  .grupo-acoes--atividades .btn-confirmacao {
+    max-width: 100%;
+  }
+}

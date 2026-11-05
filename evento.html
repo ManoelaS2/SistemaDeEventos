@@ -1,61 +1,75 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Sobre o evento | EAS</title>
-  </head>
-  <body class="page-details">
-    <div id="header-container"></div>
-    <main class="interior-page">
-      <h1>Sobre o Evento:</h1>
-      <article class="event-detail">
-        <div class="event-detail-description">
-          <h2 id="event-detail-name">Evento A:</h2>
-          <p>
-            O maior encontro de tecnologia e inovação do campus está de volta!
-            Este evento foi desenhado para conectar estudantes, pesquisadores e
-            profissionais do mercado em uma imersão completa sobre as tendências
-            que estão moldando o futuro da nossa sociedade. Durante toda a
-            programação, os participantes terão a oportunidade de explorar temas
-            como Inteligência Artificial, Desenvolvimento Web, UX/UI Design e a
-            importância da sustentabilidade no ecossistema tecnológico.
-          </p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre o evento | EAS</title>
+
+  <!-- Estilos compartilhados em todas as páginas -->
+  <link rel="stylesheet" href="assets/css/variaveis.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+
+  <!-- Estilos específicos da página do evento -->
+  <link rel="stylesheet" href="assets/css/paginas/evento.css">
+</head>
+<body class="page-details page-evento">
+  <!-- Header e footer carregados pelo componente.js -->
+  <div id="header-container"></div>
+
+  <main class="secao pagina-evento" id="conteudo-principal">
+    <h1 class="pagina-evento-titulo">Sobre o Evento:</h1>
+
+    <!-- Componentes reutilizados: cartao + grade -->
+    <article class="cartao grade cartao--detalhe-evento" aria-labelledby="event-detail-name">
+      <div class="detalhe-evento-descricao">
+        <!-- ID preservado para compatibilidade com código existente -->
+        <h2 class="cartao-titulo detalhe-evento-nome" id="event-detail-name">Evento A:</h2>
+        <p class="cartao-descricao detalhe-evento-texto">
+          O maior encontro de tecnologia e inovação do campus está de volta!
+          Este evento foi desenhado para conectar estudantes, pesquisadores e
+          profissionais do mercado em uma imersão completa sobre as tendências
+          que estão moldando o futuro da nossa sociedade. Durante toda a
+          programação, os participantes terão a oportunidade de explorar temas
+          como Inteligência Artificial, Desenvolvimento Web, UX/UI Design e a
+          importância da sustentabilidade no ecossistema tecnológico.
+        </p>
+      </div>
+
+      <div class="detalhe-evento-midia">
+        <div class="cartao-imagem detalhe-evento-capa"
+             role="img" aria-label="Área reservada à imagem de capa do evento"></div>
+
+        <div class="grade detalhe-evento-palestrantes" aria-label="Palestrantes do evento">
+          <!-- Perfil é componente reutilizável em eventos e programação -->
+          <figure class="perfil">
+            <span class="perfil-foto perfil-foto--palestrante" role="img"
+                  aria-label="Área reservada à foto do palestrante 1"></span>
+            <figcaption class="perfil-nome">Palestrante 1</figcaption>
+          </figure>
+          <figure class="perfil">
+            <span class="perfil-foto perfil-foto--palestrante" role="img"
+                  aria-label="Área reservada à foto do palestrante 2"></span>
+            <figcaption class="perfil-nome">Palestrante 2</figcaption>
+          </figure>
         </div>
-        <div class="event-detail-media">
-          <div class="event-cover" aria-label="Imagem de capa do evento"></div>
-          <div class="speaker-row">
-            <div>
-              <span class="speaker-photo"></span>
-              <strong>Palestrante 1</strong>
-            </div>
-            <div>
-              <span class="speaker-photo"></span>
-              <strong>Palestrante 2</strong>
-            </div>
-          </div>
-        </div>
-        <div class="event-actions">
-          <a
-            class="btn-confirmacao btn-compacto"
-            href="inscricao-atividade-evento.html"
-            >Inscrever-se</a
-          ><a class="btn-segundario btn-compacto" href="index.html#eventos"
-            >Voltar aos eventos</a
-          >
-        </div>
-      </article>
-    </main>
-    <div id="footer-container"></div>
-    <script src="./assets/js/componente.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
+      </div>
+
+      <!-- Mantidos os destinos do HTML original. -->
+      <div class="grupo-acoes grupo-acoes--evento">
+        <a class="btn-segundario" href="index.html#eventos">Voltar aos eventos</a>
+        <a class="btn-confirmacao" href="inscricao-atividade-evento.html">Inscrever-se</a>
+      </div>
+    </article>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <!-- JavaScript apenas para componentes compartilhados e tema -->
+  <script src="assets/js/componente.js"></script>
+  <script src="assets/js/tema.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
 </html>

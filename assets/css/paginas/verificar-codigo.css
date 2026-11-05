@@ -1,0 +1,31 @@
+/* Verificar código — apenas particularidades desta página. */
+.page-verificar-codigo .cartao--verificacao {
+  --cartao-acesso-largura: var(--cartao-verificacao-largura);
+  --cartao-acesso-altura-minima: 520px;
+}
+
+.page-verificar-codigo .formulario-acesso--centralizado {
+  margin-top: 42px;
+}
+
+.page-verificar-codigo .grupo-verificacao {
+  margin-bottom: 26px;
+}
+
+.page-verificar-codigo .opcoes-codigo {
+  width: 100%;
+  text-align: left;
+}
+
+.page-verificar-codigo .opcoes-codigo .texto-auxiliar + .texto-auxiliar {
+  margin-top: 8px;
+}
+
+.page-verificar-codigo .formulario-acesso--centralizado .btn-confirmacao {
+  margin-top: 26px;
+}
+
+.page-verificar-codigo .suporte-acesso {
+  margin-top: 28px;
+  text-align: center;
+}

@@ -1,49 +1,60 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recuperar Senha | EAS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-  <body>
-    <div id="header-container"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar senha | EAS</title>
 
-    <section id="section-recuperar-senha" class="secao-cartao">
-      <main class="cartao">
-        <h1>Recuperar senha</h1>
-        <p class="texto-intro">
-          Esqueceu sua senha? Sem problemas. Digite o e-mail cadastrado na sua
-          conta e enviaremos um link para redefinir sua senha.
-        </p>
+  <!-- Estilos compartilhados em todas as páginas -->
+  <link rel="stylesheet" href="assets/css/variaveis.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
 
-        <form action="verificar-codigo.html" method="get" id="form-recuperar-senha" class="form-cartao">
+  <!-- Apenas particularidades da página -->
+  <link rel="stylesheet" href="assets/css/paginas/recuperar-senha.css">
+
+  <script src="assets/js/tema.js"></script>
+</head>
+<body class="page-acesso page-recuperar-senha">
+  <div id="header-container"></div>
+
+  <main class="area-acesso" id="section-recuperar-senha">
+    <section class="cartao cartao--acesso cartao--recuperacao" aria-labelledby="titulo-recuperacao">
+      <div class="avatar avatar--acesso" aria-hidden="true">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </div>
+
+      <h1 class="titulo-acesso" id="titulo-recuperacao">Recuperar senha</h1>
+      <p class="mensagem-acesso">
+        Esqueceu sua senha? Sem problemas. Digite o e-mail cadastrado na sua
+        conta e enviaremos um link para redefinir sua senha.
+      </p>
+
+      <!-- Protótipo estático: valida o formato do e-mail e navega para a próxima tela.
+           O input não tem name para NÃO enviar o e-mail na URL. -->
+      <form class="formulario-acesso formulario-acesso--centralizado"
+            action="verificar-codigo.html" method="get" id="form-recuperar-senha">
+        <div class="campo-linha">
+          <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
           <label for="campo-email" class="texto-oculto">E-mail</label>
-          <input
-            type="email"
-            class="campo-email"
-            placeholder="E-mail"
-            id="campo-email"
-            name="email"
-            autocomplete="email"
-            required
-          />
-          <input class="btn-confirmacao btn-compacto" type="submit" value="Enviar link" />
-        </form>
+          <input id="campo-email" type="email" placeholder="E-mail"
+                 autocomplete="email" required>
+        </div>
+        <button type="submit" class="btn-confirmacao">Enviar link</button>
+      </form>
 
-        <a href="login.html" class="link-cartao"><span aria-hidden="true">&larr;</span> Voltar para o login</a>
-      </main>
+      <a href="login.html" class="link-retorno">
+        <span aria-hidden="true">&larr;</span> Voltar para o login
+      </a>
+      <p class="texto-prototipo">Protótipo: o formulário apenas abre a tela de verificação; nenhum e-mail é enviado.</p>
     </section>
+  </main>
 
-    <div id="footer-container"></div>
-    <script src="./assets/js/componente.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-  </body>
+  <div id="footer-container"></div>
+  <!-- JavaScript utilizado somente para os componentes de layout existentes -->
+  <script src="assets/js/componente.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
 </html>

@@ -1,0 +1,86 @@
+/* ==========================================================
+   EAS — INFORMAÇÕES
+   Somente layout específico. Componentes compartilhados:
+   .secao e .link-destaque (componentes.css).
+   Todas as cores são definidas em variaveis.css.
+   ========================================================== */
+
+.pagina-informacoes {
+  padding-top: 48px;
+  padding-bottom: 78px;
+}
+
+.informacoes-conteudo {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.informacoes-bloco {
+  padding: 22px 24px 34px;
+  border-bottom: 1px solid var(--borda-padrao);
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.informacoes-bloco:last-child {
+  border-bottom: 0;
+}
+
+.informacoes-bloco h1,
+.informacoes-bloco h2 {
+  margin: 0 0 18px;
+  color: var(--texto-principal);
+  font-family: var(--fonte-titulo);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.informacoes-bloco p {
+  margin: 0;
+  color: var(--texto-principal);
+  font-family: var(--fonte-corpo);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* O visual dos links vem de .link-destaque em componentes.css. */
+.informacoes-bloco .link-destaque:hover {
+  text-decoration: underline;
+}
+
+.informacoes-bloco .link-destaque:focus-visible {
+  outline: 2px solid var(--marca-hover);
+  outline-offset: 3px;
+}
+
+@media (max-width: 850px) {
+  .pagina-informacoes {
+    padding-top: 32px;
+    padding-bottom: 56px;
+  }
+  .informacoes-bloco {
+    padding-inline: 12px;
+  }
+  .informacoes-bloco h1,
+  .informacoes-bloco h2 {
+    font-size: 24px;
+  }
+  .informacoes-bloco p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagina-informacoes {
+    padding-top: 20px;
+    padding-bottom: 36px;
+  }
+  .informacoes-bloco {
+    padding: 20px 4px 28px;
+  }
+  .informacoes-bloco h1,
+  .informacoes-bloco h2 {
+    font-size: 22px;
+  }
+}

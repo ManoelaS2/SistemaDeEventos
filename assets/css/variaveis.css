@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;600;700;900&family=Sora:wght@400;500;600;700;800&display=swap");
+
+:root {
+  /* Fontes: manter as 3 famílias escolhidas */
+  --fonte-titulo: "Sora", sans-serif;
+  --fonte-corpo: "DM Sans", sans-serif;
+  --fonte-marca: "Poppins", sans-serif;
+  --font-title: var(--fonte-titulo);
+  --font-body: var(--fonte-corpo);
+  --font-brand: var(--fonte-marca);
+
+  /* Estrutura */
+  --container: 1440px;
+  --content-width: 1120px;
+  --largura-secao: 1290px;
+  --header-height: 50px;
+  --footer-height: 200px;
+
+  /* Raio e sombra */
+  --radius-card: 5px;
+  --radius-button: 10px;
+  --sombra-card: 4px 4px 4px rgba(0, 0, 0, 0.4);
+  --sombra-button: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --sombra-categoria: 0 4px 4px rgba(0, 0, 0, 0.22);
+  --sombra-elevacao: 0 5px 18px rgba(0, 0, 0, 0.12);
+
+  /* Dimensões compartilhadas */
+  --botao-largura: 200px;
+  --botao-altura: 50px;
+  --botao-padding-horizontal: 20px;
+  --botao-fonte-tamanho: 15px;
+  --campo-altura: 45px;
+  --campo-fonte-tamanho: 16px;
+  --seletor-tamanho: 23px;
+  --espacamento-componentes: 10px;
+  --espacamento-grade: 24px;
+  --evento-largura: 940px;
+  --evento-capa-altura: 260px;
+  --perfil-foto-tamanho: 140px;
+
+
+  /* Acesso: Login, Cadastro e Recuperação de senha */
+  --cartao-acesso-largura: 561px;
+  --cartao-acesso-altura-minima: 0px;
+  --cartao-acesso-padding-horizontal: 64px;
+  --cartao-acesso-padding-superior: 66px;
+  --cartao-acesso-padding-inferior: 36px;
+  --avatar-acesso-tamanho: 104px;
+  --campo-acesso-icone-tamanho: 38px;
+  --campo-acesso-fonte-tamanho: 19px;
+  --campo-acesso-gap: 14px;
+  --campo-acesso-espacamento: 27px;
+
+  /* Recuperação e confirmação (dimensões reutilizáveis) */
+  --cartao-recuperacao-largura: 470px;
+  --cartao-verificacao-largura: 440px;
+  --codigo-campo-largura: 44px;
+  --codigo-campo-altura: 50px;
+  --codigo-gap: 14px;
+
+  /* Tema claro: cores mantidas */
+  color-scheme: light;
+  --marca-primaria: #05ad92;
+  --marca-secundaria: #01e8a2;
+  --marca-hover: #078788;
+  --texto-fundo-escuro: #f1f1f1;
+  --texto-principal: #222222;
+  --texto-secundario: #666666;
+  --borda-padrao: #c5cbc8;
+  --aviso: #fe9a00;
+  --erro: #fb2c36;
+  --fundo-pagina: #f1f1f1;
+  --fundo-cartao: #e2e2e2;
+  --fundo-campo: #f1f1f1;
+  --fundo-elevado: #ffffff;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --texto-principal: #f1f1f1;
+  --texto-secundario: #b5bfbb;
+  --borda-padrao: #46514d;
+  --aviso: #fead32;
+  --erro: #ff5961;
+  --fundo-pagina: #171c1b;
+  --fundo-cartao: #242b29;
+  --fundo-campo: #202624;
+  --fundo-elevado: #2d3532;
+}
+
+/* Dimensões responsivas compartilhadas pelo cabeçalho e rodapé. */
+@media (max-width: 850px) {
+  :root {
+    --header-height: 76px;
+    --footer-height: 130px;
+  }
+}

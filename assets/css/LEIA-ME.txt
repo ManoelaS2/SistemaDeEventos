@@ -1,0 +1,49 @@
+EAS — Refatoração dos arquivos CSS
+==================================
+
+Todos os arquivos CSS foram incluídos, preservando os nomes de classes existentes.
+A nomenclatura de arquivos foi normalizada (sem os sufixos '(1)', '(2)' e '(4)').
+
+Mudanças principais:
+- Remoção de 7 regras integralmente duplicadas em componentes.css.
+- Centralização do padding e min-height móvel dos cartões de recuperar senha e verificar código.
+- Preservação da largura e altura individuais das duas telas por propriedades customizadas.
+- Centralização da estrutura, títulos, dimensões e regras responsivas compartilhadas
+  entre as páginas de detalhes do evento e inscrição/edição de atividades.
+- Remoção das duas sobrescritas redundantes de .perfil-foto.
+- Remoção de quatro cores redefinidas sem necessidade no tema escuro.
+- Movimentação das variáveis de header/footer do @media de layout.css para variaveis.css.
+- Preservação dos nomes e propriedades específicas dos botões .btn-confirmacao,
+  .btn-segundario, .btn-aviso e .btn-alerta.
+- Nenhuma mudança na implementação de JavaScript.
+
+Arquivos CSS alterados:
+  - variaveis.css
+  - componentes.css
+  - layout.css
+  - inscricao-evento.css
+  - recuperar-senha.css
+  - verificar-codigo.css
+  - evento.css
+
+Arquivos incluídos sem alteração de regras:
+  - base.css
+  - home.css
+  - login.css
+  - cadastro.css
+
+Ordem de importação esperada em cada HTML:
+  1. variaveis.css
+  2. base.css
+  3. componentes.css
+  4. layout.css
+  5. CSS específico da página (home.css, evento.css etc.)
+
+Para evitar regras duplicadas por carregamento, importe cada arquivo uma única vez.
+OBS: Alterações estruturais do HTML e testes das páginas reais não fazem parte desta revisão.
+
+Validação automática efetuada:
+  - 84 cenários de comparação, 7 tipos de página x 6 larguras x 2 temas.
+  - 31 propriedades CSS verificadas em elementos relevantes por cenário.
+  - 0 divergências entre os estilos computados originais e os refatorados.
+  - Nenhuma regra exatamente duplicada dentro dos arquivos e nenhuma variável var() sem definição.

@@ -1,0 +1,424 @@
+/* ============================================================
+   EAS — LAYOUT GLOBAL
+   Cabeçalho e rodapé compartilhados por todas as páginas.
+
+   Dependências:
+   1. variaveis.css
+   2. base.css
+   3. componentes.css
+   4. layout.css (este arquivo)
+
+   O HTML do header inclui .spam-header para compensar
+   o posicionamento fixo do cabeçalho.
+   ============================================================ */
+
+/* ============================================================
+   1. ESTRUTURA GERAL — RODAPÉ NO FINAL DA PÁGINA
+   ============================================================ */
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* O footer é injetado pelo JavaScript neste contêiner. */
+#footer-container {
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Compatibilidade caso o footer seja usado diretamente no body. */
+body > .site-footer {
+  margin-top: auto;
+}
+
+/* ============================================================
+   2. IDENTIDADE VISUAL — MARCA DO HEADER E FOOTER
+   ============================================================ */
+
+.site-header .brand,
+.site-footer .brand {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--texto-fundo-escuro);
+  font-family: var(--fonte-marca);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.site-header .brand img,
+.site-footer .brand img {
+  display: block;
+  width: 46px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* ============================================================
+   3. CABEÇALHO
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: var(--header-height);
+  color: var(--texto-fundo-escuro);
+  background: linear-gradient(
+    90deg,
+    var(--marca-secundaria),
+    var(--marca-primaria)
+  );
+}
+
+/* Espaço deixado no fluxo normal para o header fixo. */
+.spam-header {
+  display: block;
+  width: 100%;
+  height: var(--header-height);
+  flex-shrink: 0;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: var(--container);
+  height: 100%;
+  padding: 0 31px;
+  margin: 0 auto;
+}
+
+/* Pesquisa */
+.header-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 1;
+  width: 336px;
+  height: 38px;
+  padding: 0 16px;
+  margin-right: auto;
+  border-radius: 50px;
+  background: var(--marca-hover);
+}
+
+.header-search ion-icon {
+  flex-shrink: 0;
+  font-size: 27px;
+}
+
+.header-search input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--texto-fundo-escuro);
+  font-family: var(--fonte-corpo);
+  font-size: 18px;
+}
+
+.header-search input::placeholder {
+  color: var(--texto-fundo-escuro);
+}
+
+/* Navegação */
+.main-nav {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0;
+  white-space: nowrap;
+  font-family: var(--fonte-corpo);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.main-nav a,
+.main-nav .nav-location {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 48px;
+  padding: 0 18px;
+  border: 0;
+  border-right: 1px solid var(--texto-fundo-escuro);
+  background: none;
+  color: var(--texto-fundo-escuro);
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.main-nav ion-icon {
+  flex-shrink: 0;
+  font-size: 22px;
+}
+
+.nav-location ion-icon:first-child {
+  font-size: 26px;
+}
+
+.main-nav .theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 0;
+  background: none;
+  color: var(--texto-fundo-escuro);
+}
+
+.main-nav .theme-button ion-icon {
+  font-size: 36px;
+}
+
+/* Botão do menu — visível também no desktop, como no protótipo. */
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  margin-left: 3px;
+  border: 0;
+  background: none;
+  color: var(--texto-fundo-escuro);
+}
+
+.menu-toggle ion-icon {
+  font-size: 43px;
+}
+
+/* Links visíveis conforme a página (classes no body). */
+.home-only {
+  display: none !important;
+}
+
+.page-home .home-only,
+.page-login .login-only,
+.page-acesso .login-only {
+  display: inline-flex !important;
+}
+
+.page-home .login-only,
+.page-details .login-only,
+.page-info .login-only {
+  display: none !important;
+}
+
+/* ============================================================
+   4. RODAPÉ
+   ============================================================ */
+
+.site-footer {
+  width: 100%;
+  min-height: var(--footer-height);
+  background: linear-gradient(
+    105deg,
+    var(--marca-secundaria),
+    var(--marca-primaria)
+  );
+  color: var(--texto-fundo-escuro);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  width: 100%;
+  max-width: var(--container);
+  min-height: var(--footer-height);
+  padding: 24px 38px;
+  margin: 0 auto;
+}
+
+.site-footer .brand-footer {
+  gap: 18px;
+  font-size: 64px;
+}
+
+.site-footer .brand-footer img {
+  width: 76px;
+  height: 83px;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(22px, 4vw, 72px);
+}
+
+.footer-nav a {
+  color: var(--texto-fundo-escuro);
+  font-family: var(--fonte-marca);
+  font-size: 30px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.footer-inner small {
+  margin-left: auto;
+  color: var(--texto-fundo-escuro);
+  font-family: var(--fonte-marca);
+  font-size: 18px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   5. RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .header-inner {
+    gap: 20px;
+    padding: 0 18px;
+  }
+
+  .main-nav {
+    font-size: 13px;
+  }
+
+  .main-nav a,
+  .main-nav .nav-location {
+    padding: 0 10px;
+  }
+
+  .header-search {
+    width: 260px;
+  }
+
+  .footer-inner {
+    gap: 32px;
+  }
+
+  .footer-nav a {
+    font-size: 22px;
+  }
+
+  .site-footer .brand-footer {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 850px) {
+  .header-inner {
+    gap: 15px;
+  }
+
+  .site-header .brand {
+    gap: 9px;
+    font-size: 30px;
+  }
+
+  .site-header .brand img {
+    width: 38px;
+    height: 42px;
+  }
+
+  .header-search {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    margin-right: 0;
+  }
+
+  .header-search input {
+    font-size: 14px;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    right: 0;
+    z-index: 11;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 100%;
+    padding: 14px 12px;
+    border-radius: 0 0 0 14px;
+    background: var(--marca-hover);
+    box-shadow: var(--sombra-card);
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .main-nav a,
+  .main-nav .nav-location {
+    justify-content: flex-start;
+    border: 0;
+    font-size: 16px;
+  }
+
+  .main-nav .theme-button {
+    justify-content: flex-start;
+    padding: 8px 10px;
+  }
+
+  .menu-toggle {
+    margin-left: auto;
+  }
+
+  .menu-toggle ion-icon {
+    font-size: 35px;
+  }
+
+  .footer-inner {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 25px 20px;
+  }
+
+  .site-footer .brand-footer {
+    gap: 9px;
+    font-size: 35px;
+  }
+
+  .site-footer .brand-footer img {
+    width: 45px;
+    height: 50px;
+  }
+
+  .footer-nav {
+    gap: 20px;
+  }
+
+  .footer-nav a {
+    font-size: 17px;
+  }
+
+  .footer-inner small {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-search {
+    display: none;
+  }
+
+  .menu-toggle {
+    margin-left: auto;
+  }
+
+  .footer-nav {
+    width: 100%;
+  }
+}

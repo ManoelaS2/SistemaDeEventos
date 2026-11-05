@@ -1,0 +1,21 @@
+/* Recuperar senha — apenas particularidades desta página. */
+.page-recuperar-senha .cartao--recuperacao {
+  --cartao-acesso-largura: var(--cartao-recuperacao-largura);
+  --cartao-acesso-altura-minima: 465px;
+}
+
+.page-recuperar-senha .mensagem-acesso {
+  margin-top: 24px;
+}
+
+.page-recuperar-senha .formulario-acesso--centralizado {
+  margin-top: 32px;
+}
+
+.page-recuperar-senha .formulario-acesso--centralizado .btn-confirmacao {
+  margin-top: 28px;
+}
+
+.page-recuperar-senha .link-retorno {
+  margin-top: 26px;
+}
