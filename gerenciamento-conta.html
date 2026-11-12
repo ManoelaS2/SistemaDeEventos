@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- viewport: faz a página se ajustar bem ao tamanho da tela do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EAS - Gerenciamento de Conta</title>
+
+  <!-- O nome aqui precisa ser IGUAL ao nome do arquivo CSS
+       e o arquivo precisa estar na mesma pasta deste HTML -->
+  <link rel="stylesheet" href="gerenciamento-conta.css">
+</head>
+<body>
+
+  <!-- onclick="trocarTema()": quando clicar, o navegador chama a
+       função trocarTema() que está no arquivo .js -->
+  <button id="btn-tema" class="btn-tema" onclick="trocarTema()">🌙</button>
+
+  <main class="conta">
+    <h1>Minha Conta</h1>
+
+    <div class="perfil">
+      <div class="avatar">👤</div>
+      <div>
+        <div>Nome do Usuário</div>
+        <a href="#" class="perfil-link">Ver perfil</a>
+      </div>
+    </div>
+
+    <hr class="divisor">
+
+    <h2>Configurações de perfil</h2>
+    <p class="descricao">Alterar detalhes de identificação da sua conta</p>
+
+    <!-- onsubmit="salvar(event)": ao enviar o formulário, chama salvar().
+         O "event" é passado para a função poder cancelar o recarregamento.
+         Os campos já aceitam digitação; o lápis só leva o cursor até o campo. -->
+    <form class="caixa" onsubmit="salvar(event)">
+      <div class="linha-campo">
+        <label for="usuario">Usuário:</label>
+        <input id="usuario" type="text" placeholder="Nome completo">
+        <button type="button" class="btn-lapis" onclick="editar('usuario')">✎</button>
+      </div>
+
+      <div class="linha-campo">
+        <label for="nome-tela">Nome de tela:</label>
+        <input id="nome-tela" type="text" placeholder="Nome social / Apelido">
+        <button type="button" class="btn-lapis" onclick="editar('nome-tela')">✎</button>
+      </div>
+
+      <div class="linha-campo">
+        <label for="email">E-mail:</label>
+        <input id="email" type="email" placeholder="seuemail@gmail.com">
+        <button type="button" class="btn-lapis" onclick="editar('email')">✎</button>
+      </div>
+
+      <div class="linha-campo">
+        <label for="senha">Senha:</label>
+        <input id="senha" type="password" placeholder="********">
+        <button type="button" class="btn-lapis" onclick="editar('senha')">✎</button>
+      </div>
+
+      <button type="submit" class="btn">Salvar alterações</button>
+      <p class="mensagem" id="mensagem"></p>
+    </form>
+
+    <hr class="divisor">
+
+    <h2>Zona de Perigo</h2>
+    <p class="descricao">Desativar completamente a sua conta</p>
+
+    <div class="perigo-linha">
+      <strong>Desabilitar a sua conta EAS:</strong>
+      <span>Caso deseje desabilitar sua conta EAS, acesse a página <a href="#">Desabilitar conta.</a></span>
+    </div>
+    <div class="perigo-linha">
+      <strong>Excluir sua conta EAS:</strong>
+      <span>Se quiser excluir sua conta EAS, você pode fazer isso na página <a href="#">Apagar conta.</a></span>
+    </div>
+  </main>
+
+  <script src="gerenciamento-conta.js"></script>
+</body>
+</html>

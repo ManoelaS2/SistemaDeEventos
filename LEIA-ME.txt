@@ -1,0 +1,29 @@
+EAS — Inscrição e edição de atividades
+
+1. Copie os dois HTMLs para a raiz EAS-ORGANIZADO.
+   - inscricao-atividade-evento.html
+   - editar-atividade-evento.html
+   O arquivo original edittar-atividade-evento(1).html foi renomeado para
+   editar-atividade-evento.html. Atualize eventuais links que usem o nome antigo.
+
+2. Copie assets/css/paginas/inscricao-evento.css para o mesmo caminho no projeto.
+   As DUAS páginas usam esse único CSS específico.
+
+3. Copie o conteúdo de ADICIONAR-AO-COMPONENTES.css para o FINAL do seu
+   assets/css/componentes.css, apenas uma vez. Não substitua o arquivo inteiro.
+
+4. Os HTMLs reutilizam componentes anteriormente criados para evento.html:
+   .secao, .grade, .cartao, .checkbox-label, .checkbox-input,
+   .perfil, .perfil-foto, .perfil-foto--palestrante, .perfil-nome,
+   .grupo-acoes e .btn-confirmacao.
+   Se você ainda não adicionou os perfis e os grupos de ações da etapa
+   evento.html ao componentes.css, integre primeiro as regras dessa etapa.
+
+5. O mesmo formulario GET continua enviando para index.html, conforme os
+   HTMLs originais. Isso apenas navega: NÃO salva nem atualiza inscrições.
+   Na edição, a atividade Carreiras na Área de TI já aparece marcada,
+   como no arquivo original. As seleções não são carregadas de servidor.
+
+6. Não há novo JavaScript. Mantidos componente.js e tema.js.
+   Cores exclusivamente por tokens já existentes em variaveis.css.
+   Botões com uma única dimensão global; classes btn-grande removidas.

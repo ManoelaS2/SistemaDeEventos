@@ -1,0 +1,77 @@
+/* ==========================================================
+   EAS — PÁGINA DO EVENTO
+   Somente estilos específicos desta página.
+   Componentes compartilhados permanecem em componentes.css.
+   Todas as cores vêm do variaveis.css.
+   ========================================================== */
+
+.pagina-evento {
+  padding-bottom: 50px;
+}
+
+/* A estrutura base vem das classes .cartao e .grade. */
+.cartao--detalhe-evento {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.detalhe-evento-descricao {
+  min-width: 0;
+}
+
+.detalhe-evento-nome {
+  margin: 0 0 22px;
+  font-size: 27px;
+}
+
+.detalhe-evento-texto {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.detalhe-evento-midia {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Reutiliza .cartao-imagem, com tamanho específico da capa. */
+.detalhe-evento-capa {
+  height: var(--evento-capa-altura);
+  border-radius: var(--radius-button);
+  background: var(--texto-secundario);
+}
+
+.detalhe-evento-palestrantes {
+  gap: 20px;
+}
+
+/* Apenas o posicionamento das ações é exclusivo do evento. */
+.grupo-acoes--evento {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+
+@media (max-width: 850px) {
+  .pagina-evento {
+    padding-bottom: 45px;
+  }
+
+  .pagina-evento-titulo { font-size: 25px; }
+
+  .cartao--detalhe-evento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detalhe-evento-nome { font-size: 24px; }
+  .detalhe-evento-texto { font-size: 16px; }
+  .grupo-acoes--evento { grid-column: 1; }
+}
+
+@media (max-width: 480px) {
+  .pagina-evento-titulo { font-size: 23px; }
+  .detalhe-evento-capa { height: 220px; }
+  .detalhe-evento-palestrantes { gap: 10px; }
+}

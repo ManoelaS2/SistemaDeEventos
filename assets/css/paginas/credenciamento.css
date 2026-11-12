@@ -1,0 +1,339 @@
+/* ============================================================
+   EAS — CREDENCIAMENTO (painel do organizador)
+   Somente regras específicas desta página.
+   Cartão, grade, botões, campo e etiqueta vêm de componentes.css.
+   Todas as cores vêm de variaveis.css.
+   ============================================================ */
+
+/* ESTRUTURA: menu lateral + conteúdo */
+.painel-organizador {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.painel-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding: 24px 28px 0;
+}
+
+/* MENU LATERAL */
+.painel-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 0 18px;
+  background: var(--fundo-elevado);
+}
+
+.painel-lateral-titulo {
+  margin: 0;
+  padding: 0 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.painel-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.painel-menu a {
+  display: block;
+  padding: 12px 20px;
+  border-left: 3px solid transparent;
+  font-size: 14px;
+}
+
+.painel-menu a:hover {
+  background: color-mix(in srgb, var(--marca-primaria) 8%, transparent);
+}
+
+.painel-menu a:focus-visible {
+  outline: 2px solid var(--marca-hover);
+  outline-offset: -2px;
+}
+
+.painel-menu a[aria-current="page"] {
+  border-left-color: var(--marca-primaria);
+  background: color-mix(in srgb, var(--marca-primaria) 12%, var(--fundo-elevado));
+  color: var(--marca-hover);
+  font-weight: 600;
+}
+
+.painel-lateral-rodape {
+  margin-top: auto;
+  padding: 14px 20px 0;
+  border-top: 1px solid var(--borda-padrao);
+  font-size: 11px;
+}
+
+/* CABEÇALHO DA PÁGINA */
+.painel-trilha {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.painel-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.painel-cabecalho .pagina-evento-titulo {
+  margin-bottom: 6px;
+}
+
+.painel-selo {
+  color: var(--marca-hover);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* CARTÕES DO PAINEL: fundo claro em vez do cinza padrão */
+.painel-conteudo .cartao {
+  border-radius: 8px;
+  background: var(--fundo-elevado);
+  box-shadow: var(--sombra-elevacao);
+}
+
+.painel-conteudo .cartao-conteudo {
+  height: 100%;
+  gap: 12px;
+  padding: 18px 20px;
+}
+
+.painel-conteudo h2.cartao-titulo {
+  font-size: 18px;
+}
+
+/* RESUMO */
+.painel-estatisticas {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.painel-conteudo .cartao--estatistica {
+  border: 1px solid var(--borda-padrao);
+  box-shadow: none;
+}
+
+.cartao--estatistica .cartao-conteudo {
+  gap: 6px;
+}
+
+.cartao--estatistica .cartao-legenda {
+  font-size: 13px;
+}
+
+.cartao--estatistica .cartao-dado {
+  color: var(--marca-hover);
+  font-family: var(--fonte-titulo);
+  font-size: 26px;
+}
+
+/* QR CODE + MANUAL */
+.painel-paineis {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.leitor-qr {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 170px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: var(--fundo-pagina);
+}
+
+/* Marcadores do topo e linha de leitura (ilustrativos) */
+.leitor-qr::before,
+.leitor-qr::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--marca-primaria);
+}
+
+.leitor-qr::before {
+  left: 26%;
+}
+
+.leitor-qr::after {
+  left: 64%;
+}
+
+.leitor-linha {
+  align-self: center;
+  justify-self: center;
+  width: 60%;
+  height: 2px;
+  background: var(--marca-primaria);
+}
+
+.painel-conteudo .campo-formulario > label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.painel-conteudo .campo-formulario > input {
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--fundo-pagina);
+  font-size: 13px;
+}
+
+.participante-encontrado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--fundo-pagina);
+}
+
+.participante-nome {
+  font-size: 15px;
+}
+
+.participante-encontrado .texto-auxiliar {
+  margin-top: 4px;
+}
+
+.etiqueta--aguardando {
+  background: color-mix(in srgb, var(--aviso) 22%, var(--fundo-elevado));
+  color: var(--texto-principal);
+}
+
+/* Botões ocupam a largura do cartão e ficam no rodapé dele */
+.grupo-acoes--painel {
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.grupo-acoes--painel > * {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* TABELA */
+.tabela-rolagem {
+  overflow-x: auto;
+}
+
+.tabela-painel {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.tabela-painel th,
+.tabela-painel td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--borda-padrao);
+  white-space: nowrap;
+}
+
+.tabela-painel th {
+  color: var(--texto-secundario);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tabela-painel tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabela-hora {
+  color: var(--marca-hover);
+  font-weight: 700;
+}
+
+.tabela-destaque {
+  font-weight: 700;
+}
+
+/* RESPONSIVO */
+@media (max-width: 850px) {
+  .painel-organizador {
+    grid-template-columns: minmax(0, 1fr);
+    padding-bottom: 30px;
+  }
+
+  .painel-conteudo {
+    padding: 20px 18px 0;
+  }
+
+  /* Menu lateral vira uma faixa horizontal rolável */
+  .painel-lateral {
+    gap: 8px;
+    padding: 14px 0 0;
+  }
+
+  .painel-menu {
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .painel-menu a {
+    padding: 10px 16px;
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+
+  .painel-menu a[aria-current="page"] {
+    border-bottom-color: var(--marca-primaria);
+  }
+
+  .painel-lateral-rodape {
+    display: none;
+  }
+
+  .painel-estatisticas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .painel-paineis {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grupo-acoes--painel {
+    flex-wrap: wrap;
+  }
+
+  .grupo-acoes--painel > * {
+    flex-basis: 100%;
+  }
+}

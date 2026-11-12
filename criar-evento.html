@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cadastre e configure um novo evento na plataforma EAS."
+    />
+    <title>Criar novo evento | EAS</title>
+
+    <!-- Componentes e identidade visual já existentes no projeto. -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+
+    <link rel="stylesheet" href="assets/css/paginas/criar-evento.css" />
+
+    <script src="assets/js/tema.js" defer></script>
+  </head>
+
+  <body class="page-home page-criar-evento">
+    <!-- Cabeçalho compartilhado, injetado por componente.js. -->
+    <div id="header-container"></div>
+
+    <div class="secao estrutura-criar-evento">
+      <!-- Reservado exclusivamente à injeção futura do menu lateral via JavaScript. -->
+      <div id="painel-adm"></div>
+
+      <main class="conteudo-criar-evento" id="conteudo-principal">
+        <nav class="trilha-criar-evento" aria-label="Localização no painel">
+          <ol>
+            <li>Painel do organizador</li>
+            <li>Eventos</li>
+            <li aria-current="page">Novo evento</li>
+          </ol>
+        </nav>
+
+        <div class="cabecalho-criar-evento">
+          <div>
+            <h1>Criar novo evento</h1>
+            <p>
+              Cadastre as informações e personalize o evento antes da
+              publicação.
+            </p>
+          </div>
+          <span class="etiqueta etiqueta-modelo">Modelo de tela</span>
+        </div>
+
+        <!-- Formulário estrutural: gravação e publicação dependem de um backend. -->
+        <form
+          id="form-criar-evento"
+          class="grade grade-criar-evento"
+          action="#"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <section
+            class="cartao painel-formulario painel-informacoes"
+            aria-labelledby="titulo-informacoes"
+          >
+            <div class="cabecalho-painel">
+              <h2 id="titulo-informacoes">Informações do evento</h2>
+              <p>
+                Preencha os dados principais que serão exibidos para o público.
+              </p>
+            </div>
+
+            <div class="grade campos-informacoes">
+              <div class="campo-formulario campo-largura-total">
+                <label for="nome-evento">Nome do evento</label>
+                <input
+                  id="nome-evento"
+                  name="nome_evento"
+                  type="text"
+                  maxlength="150"
+                  placeholder="Escolha um nome para seu evento"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="categoria-evento">Categoria</label>
+                <select id="categoria-evento" name="categoria" required>
+                  <option value="" selected disabled>
+                    Selecione uma categoria
+                  </option>
+                  <option value="tecnologia">Tecnologia</option>
+                  <option value="educacao">Educação</option>
+                  <option value="ciencia">Ciência e pesquisa</option>
+                  <option value="cultura">Cultura</option>
+                  <option value="empreendedorismo">Empreendedorismo</option>
+                  <option value="esportes">Esportes</option>
+                  <option value="outros">Outros</option>
+                </select>
+              </div>
+
+              <div class="campo-formulario">
+                <label for="modalidade-evento">Modalidade</label>
+                <select id="modalidade-evento" name="modalidade" required>
+                  <option value="presencial" selected>Presencial</option>
+                  <option value="online">Online</option>
+                  <option value="hibrido">Híbrido</option>
+                </select>
+              </div>
+
+              <div class="campo-formulario">
+                <label for="data-inicio">Data de início</label>
+                <input
+                  id="data-inicio"
+                  name="data_inicio"
+                  type="date"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="data-termino">Data de término</label>
+                <input
+                  id="data-termino"
+                  name="data_termino"
+                  type="date"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario campo-largura-total">
+                <label for="local-evento">Local</label>
+                <input
+                  id="local-evento"
+                  name="local"
+                  type="text"
+                  maxlength="200"
+                  placeholder="Ex.: Auditório principal"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario campo-largura-total">
+                <label for="descricao-evento">Descrição</label>
+                <textarea
+                  id="descricao-evento"
+                  name="descricao"
+                  rows="2"
+                  maxlength="3000"
+                  placeholder="Evento com palestras, oficinas e atividades acadêmicas."
+                ></textarea>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="cartao painel-formulario painel-identidade"
+            aria-labelledby="titulo-identidade"
+          >
+            <div class="cabecalho-painel">
+              <h2 id="titulo-identidade">Identidade e publicação</h2>
+              <p>Configure a apresentação visual.</p>
+            </div>
+
+            <div class="area-imagem-capa">
+              <input
+                class="entrada-capa texto-oculto"
+                id="imagem-capa"
+                name="imagem_capa"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                aria-describedby="ajuda-imagem-capa"
+              />
+              <label class="rotulo-imagem-capa" for="imagem-capa">
+                <strong>Imagem de capa</strong>
+                <span class="texto-auxiliar" id="ajuda-imagem-capa"
+                  >Arraste uma imagem ou selecione</span
+                >
+                <span class="btn-segundario seletor-imagem"
+                  >Selecionar arquivo</span
+                >
+              </label>
+            </div>
+
+            <div class="campos-identidade">
+              <div class="campo-formulario">
+                <label for="organizador-evento">Organizador</label>
+                <input
+                  id="organizador-evento"
+                  name="organizador"
+                  type="text"
+                  value="IF Goiano • Campus Ceres"
+                  maxlength="150"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="visibilidade-evento">Visibilidade</label>
+                <select id="visibilidade-evento" name="visibilidade" required>
+                  <option value="publico" selected>Público</option>
+                  <option value="privado">Privado</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="cartao painel-formulario painel-inscricoes"
+            aria-labelledby="titulo-inscricoes"
+          >
+            <div class="cabecalho-painel">
+              <h2 id="titulo-inscricoes">Inscrições e configurações</h2>
+              <p>Defina vagas, inscrições e informações opcionais.</p>
+            </div>
+
+            <div class="grade campos-inscricoes">
+              <div class="campo-formulario">
+                <label for="limite-vagas">Limite de vagas</label>
+                <input
+                  id="limite-vagas"
+                  name="limite_vagas"
+                  type="number"
+                  min="1"
+                  step="1"
+                  value="250"
+                  required
+                />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="prazo-inscricao">Prazo de inscrição</label>
+                <input
+                  id="prazo-inscricao"
+                  name="prazo_inscricao"
+                  type="date"
+                />
+              </div>
+
+              <div class="campo-formulario">
+                <label for="taxa-inscricao">Taxa de inscrição</label>
+                <select id="taxa-inscricao" name="taxa_inscricao">
+                  <option value="gratuito" selected>Gratuito</option>
+                  <option value="pago">Pago</option>
+                </select>
+              </div>
+
+              <div class="campo-formulario">
+                <label for="certificados-evento">Certificados</label>
+                <select id="certificados-evento" name="certificados">
+                  <option value="apos-evento" selected>
+                    Emitir após o evento
+                  </option>
+                  <option value="sem-certificado">Não emitir</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Acesso visual à programação. A persistência do evento e das atividades
+               será implementada na integração com o backend. -->
+            <section
+              class="atalho-programacao"
+              aria-labelledby="titulo-programacao"
+            >
+              <div>
+                <h3 id="titulo-programacao">Programação do evento</h3>
+                <p>
+                  Organize palestras, oficinas e outras atividades deste evento.
+                </p>
+              </div>
+              <a class="btn-segundario" href="adicionar-atividade.html"
+                >Adicionar atividade</a
+              >
+            </section>
+
+            <div class="rodape-formulario">
+              <p class="texto-auxiliar">
+                Os campos poderão ser revisados antes da publicação.
+              </p>
+              <div class="grupo-acoes acoes-criar-evento">
+                <button
+                  class="btn-segundario"
+                  type="submit"
+                  name="acao"
+                  value="rascunho"
+                  formnovalidate
+                >
+                  Salvar rascunho
+                </button>
+                <button
+                  class="btn-confirmacao"
+                  type="submit"
+                  name="acao"
+                  value="publicar"
+                >
+                  Publicar evento
+                </button>
+              </div>
+            </div>
+          </section>
+        </form>
+      </main>
+    </div>
+
+    <!-- Rodapé compartilhado, injetado por componente.js. -->
+    <div id="footer-container"></div>
+
+    <script src="assets/js/componente.js"></script>
+    <script src="assets/js/paineladm.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>

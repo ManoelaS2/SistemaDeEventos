@@ -1,0 +1,43 @@
+/* EAS — Apenas as particularidades visuais da tela de Login.
+   Cartão, campo, avatar, botões, separador e textos: componentes.css. */
+
+.page-login .cartao--login {
+  min-height: 586px;
+}
+
+.page-login .cartao--login h1 {
+  margin: 0 0 46px;
+  color: var(--texto-principal);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.page-login .link-recuperar {
+  display: inline-block;
+  margin: -5px 0 18px;
+  color: var(--texto-principal);
+  font-family: var(--fonte-corpo);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.page-login .link-recuperar:hover,
+.page-login .link-recuperar:focus-visible {
+  color: var(--marca-hover);
+  text-decoration: underline;
+}
+
+.page-login .botao-entrar {
+  display: flex;
+  margin: 0 auto;
+}
+
+.page-login .btn-google {
+  display: flex;
+  margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+  .page-login .cartao--login { min-height: 0; }
+  .page-login .cartao--login h1 { margin-bottom: 32px; }
+}

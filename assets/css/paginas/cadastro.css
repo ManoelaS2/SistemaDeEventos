@@ -1,0 +1,54 @@
+/* ============================================================
+   EAS — CADASTRO
+   Regras específicas; estilos reutilizáveis em componentes.css
+   ============================================================ */
+
+.page-cadastro .cartao--cadastro {
+  --cartao-acesso-largura: 620px;
+  --cartao-acesso-padding-horizontal: 55px;
+}
+
+.page-cadastro .titulo-acesso {
+  margin-bottom: 28px;
+}
+
+.page-cadastro .formulario-acesso--cadastro {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.page-cadastro .termos-cadastro {
+  margin: 18px 0 0;
+  text-align: center;
+}
+
+.page-cadastro .formulario-acesso--cadastro > .btn-confirmacao {
+  margin: 22px auto 0;
+}
+
+.page-cadastro .separador-texto {
+  margin: 22px 0;
+}
+
+.page-cadastro .btn-google {
+  margin: 0 auto;
+}
+
+.page-cadastro .texto-acesso {
+  text-align: center;
+}
+
+.page-cadastro .texto-prototipo {
+  margin-top: 18px;
+}
+
+@media (max-width: 600px) {
+  .page-cadastro .cartao--cadastro {
+    --cartao-acesso-padding-horizontal: 26px;
+  }
+
+  .page-cadastro .titulo-acesso {
+    margin-bottom: 22px;
+  }
+}

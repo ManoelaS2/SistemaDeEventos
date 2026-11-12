@@ -1,0 +1,177 @@
+.painel {
+    display: grid;
+    grid-template-areas: 
+        'menu painel painel'
+        'menu resumo resumo'
+        'menu integrantes integrantes'
+        'menu inscricoes mapa'
+    ;
+    gap: 1.5rem;
+    margin-right: 1rem;
+}
+
+#painel-adm {
+    grid-area: menu;
+}
+
+.titulo-painel {
+    grid-area: painel;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.btn-painel {
+    height: 1.5rem;
+}
+
+.card-informativos {
+    grid-area: resumo;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-informacao {
+    border: var(--borda-padrao) solid 1px;
+    border-radius: 10px;
+    border-left: var(--marca-hover) solid 5px;
+    padding: 1rem 1.5rem;
+    min-width: 18rem;
+}
+
+.integrantes-equipe {
+    grid-area: integrantes;
+    background-color: var(--fundo-elevado);
+    padding: 1rem 1.5rem;
+    border-radius: 11px;
+}
+
+.integrantes-equipe table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 100px;
+}
+
+.integrantes-equipe thead {
+    background-color: var(--fundo-cartao);
+    text-align: start;
+}
+
+.integrantes-equipe th {
+    padding: 1rem;
+    text-align: start;
+}
+
+.integrantes-equipe tbody tr {
+    border-bottom: var(--fundo-cartao) solid 2px;
+}
+
+.integrante {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.foto-integrante {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    display: block;
+    background-color: var(--fundo-cartao);
+}
+
+.elemento-table {
+    background-color: var(--fundo-cartao);
+    border-radius: 100px;
+    padding: 10px;
+    color: var(--marca-hover);
+    font-weight: 700;
+}
+
+.table-amrelo {
+    background-color: #FFF1D9;
+    color: var(--aviso);
+}
+
+.integrantes-equipe a {
+    color: var(--marca-hover);
+    font-weight: 600;
+}
+
+.integrantes-equipe td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.integrantes-equipe td h5{
+    display: inline;
+    align-self: center;
+    justify-self: center;
+}
+
+.inscricoes {
+    grid-area: inscricoes;
+    background-color: var(--fundo-elevado);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.inscricoes-elemt {
+    background-color: var(--fundo-cartao);
+    border-radius: 100px;
+    padding: 1rem;
+    color: var(--marca-hover);
+    font-weight: 700;
+}
+
+.elemt-amrelo {
+    background-color: #FFF1D9;
+    color: var(--aviso);
+}
+
+.micro-table {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px var(--borda-padrao);
+    margin-bottom: 10px;
+}
+
+.mapa-atividades {
+    grid-area: mapa;
+    background-color: var(--fundo-elevado);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+}
+
+.mapa-container {
+    display: flex;
+    height: 90%;
+    justify-content: space-between;
+}
+
+.mapa {
+    display: flex;
+    width: 50%;
+    height: 70%;
+    background-color: var(--fundo-cartao);
+    border: 2px solid var(--borda-padrao);
+    border-radius: 7px;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.elemento-mapa {
+    width: 40%;
+    height: 40%;
+    background-color: #EAF7F2;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: var(--marca-hover);
+}

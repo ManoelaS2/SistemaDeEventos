@@ -1,0 +1,173 @@
+/* ============================================================
+   EAS — CERTIFICADOS
+   Visual limpo, flat e adaptado para Modo Claro/Escuro.
+   ============================================================ */
+
+/* Layout principal */
+.certificados-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 40px 20px 60px;
+}
+
+.certificados-container {
+  width: 100%;
+  max-width: 800px; /* Um pouco mais estreito para ficar igual ao print */
+  margin: 0 auto;
+}
+
+/* Título principal */
+.page-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin: 0 0 24px 0;
+}
+
+/* Caixa de busca cinza arredondada (Estilo Flat) */
+.search-certificados-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(
+    --fundo-elevado
+  ); /* Cinza claro no modo claro, escuro no dark */
+  border-radius: 6px; /* Borda mais sutil que o cartão */
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  border: 1px solid transparent; /* Reserva espaço para borda no modo escuro */
+}
+
+/* Efeito ao clicar na busca */
+.search-certificados-box:focus-within {
+  border-color: var(--marca-primaria);
+}
+
+.search-icon {
+  font-size: 1.3rem;
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+}
+
+.search-input-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--texto-principal);
+  font-family: var(--fonte-corpo);
+}
+
+.search-input-wrapper input::placeholder {
+  color: var(--texto-secundario);
+  opacity: 1;
+}
+
+/* Acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Responsividade da tabela */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Tabela de Certificados (Estilo Clássico com Bordas Finas) */
+.certificados-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-family: var(--fonte-corpo);
+  background-color: var(--fundo-cartao);
+}
+
+/* Linha do Cabeçalho */
+.certificados-table thead {
+  background-color: var(--fundo-elevado);
+}
+
+.certificados-table th {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--texto-principal);
+  padding: 10px 12px;
+  text-align: left;
+  border: 1px solid var(--borda-padrao);
+}
+
+/* Células da Tabela */
+.certificados-table td {
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--texto-principal);
+  text-align: left;
+  border: 1px solid var(--borda-padrao);
+}
+
+/* Hover sutil nas linhas */
+.certificados-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.certificados-table tbody tr:hover {
+  background-color: var(--fundo-elevado);
+}
+
+/* Link / Botão de Download */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--texto-principal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.btn-download ion-icon {
+  font-size: 1.1rem;
+  color: var(--texto-principal);
+}
+
+.btn-download:hover {
+  color: var(--marca-primaria);
+}
+
+.btn-download:hover ion-icon {
+  color: var(--marca-primaria);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 600px) {
+  .certificados-main {
+    padding: 25px 15px 40px;
+  }
+
+  .certificados-table th {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .certificados-table td {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}

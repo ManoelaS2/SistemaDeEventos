@@ -1,0 +1,68 @@
+/* EAS — Cadastro de palestrante. Apenas cores já declaradas em variaveis.css. */
+.estrutura-cadastrar-palestrante {
+  display: grid;
+  grid-template-columns: clamp(175px, 17vw, 220px) minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+  flex: 1;
+  padding-top: 28px;
+  padding-bottom: 72px;
+}
+.page-cadastrar-palestrante #navbarADM-container { min-width: 0; min-height: 1px; }
+.conteudo-cadastrar-palestrante { min-width: 0; width: 100%; }
+.trilha-cadastrar-palestrante { margin-bottom: 12px; color: var(--texto-secundario); font-size: 12px; }
+.trilha-cadastrar-palestrante ol { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.trilha-cadastrar-palestrante li:not(:last-child)::after { content: "/"; margin-left: 7px; color: var(--borda-padrao); }
+.trilha-cadastrar-palestrante li[aria-current="page"] { color: var(--marca-hover); font-weight: 700; }
+.cabecalho-cadastrar-palestrante { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+.cabecalho-cadastrar-palestrante h1 { margin: 0 0 7px; font-size: clamp(24px, 2.5vw, 32px); line-height: 1.2; }
+.cabecalho-cadastrar-palestrante p { margin: 0; color: var(--texto-secundario); font-size: 13px; line-height: 1.5; }
+.page-cadastrar-palestrante .etiqueta-modelo { flex-shrink: 0; padding: 7px 14px; background: var(--fundo-cartao); color: var(--marca-hover); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
+.grade-cadastrar-palestrante { grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1fr); gap: 18px; align-items: stretch; }
+.page-cadastrar-palestrante .painel-formulario { min-width: 0; padding: 22px; border-radius: var(--radius-button); background: var(--fundo-elevado); box-shadow: none; }
+.page-cadastrar-palestrante .cabecalho-painel { margin-bottom: 18px; }
+.page-cadastrar-palestrante .cabecalho-painel h2 { margin: 0 0 5px; font-size: 18px; line-height: 1.3; font-weight: 700; }
+.page-cadastrar-palestrante .cabecalho-painel p { margin: 0; color: var(--texto-secundario); font-size: 12px; line-height: 1.5; }
+.grade-campos-palestrante, .grade-campos-profissionais { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.campo-largura-total { grid-column: 1 / -1; }
+.page-cadastrar-palestrante .campo-formulario { min-width: 0; gap: 6px; }
+.page-cadastrar-palestrante .campo-formulario > label { color: var(--texto-principal); font-size: 12px; line-height: 1.4; font-weight: 700; }
+.page-cadastrar-palestrante .campo-formulario > :is(input, select, textarea) { display: block; width: 100%; min-width: 0; min-height: var(--campo-altura); padding: 9px 11px; border: 1px solid var(--borda-padrao); border-radius: var(--radius-card); outline: none; background: var(--fundo-elevado); color: var(--texto-principal); font-family: var(--fonte-corpo); font-size: 13px; font-weight: 400; }
+.page-cadastrar-palestrante .campo-formulario > textarea { min-height: 100px; resize: vertical; background: var(--fundo-campo); }
+.page-cadastrar-palestrante .campo-formulario > :is(input, textarea)::placeholder { color: var(--texto-secundario); opacity: 1; }
+.page-cadastrar-palestrante .campo-formulario > :is(input, select, textarea):focus-visible { border-color: var(--marca-primaria); outline: 2px solid var(--marca-primaria); outline-offset: 2px; }
+.page-cadastrar-palestrante .indicacao-obrigatorio { color: var(--marca-hover); }
+.area-imagem-palestrante { margin-top: 8px; }
+.rotulo-upload { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; min-height: 243px; padding: 18px 12px; border: 1px dashed var(--borda-padrao); border-radius: var(--radius-button); background: var(--fundo-campo); text-align: center; cursor: pointer; }
+.icone-upload { display: grid; place-items: center; width: 112px; height: 112px; border-radius: 50%; border: 1px solid var(--borda-padrao); background: var(--fundo-elevado); color: var(--texto-secundario); }
+.icone-upload svg { width: 62px; height: 62px; }
+.page-cadastrar-palestrante .acao-upload { width: auto; min-width: 160px; min-height: 38px; padding: 6px 16px; box-shadow: none; font-size: 12px; }
+.rotulo-upload .texto-auxiliar, .nota-foto { color: var(--texto-secundario); font-size: 11px; }
+.nota-foto { margin: 13px 0 0; line-height: 1.5; }
+.entrada-foto:focus-visible + .rotulo-upload { outline: 2px solid var(--marca-primaria); outline-offset: 3px; }
+.painel-perfil-profissional, .painel-salvamento-palestrante { grid-column: 1 / -1; }
+.page-cadastrar-palestrante .painel-salvamento-palestrante { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.painel-salvamento-palestrante strong { display: block; margin-bottom: 6px; font-size: 13px; }
+.painel-salvamento-palestrante .texto-auxiliar { margin: 0; color: var(--texto-secundario); font-size: 11px; max-width: 470px; line-height: 1.5; }
+.acoes-palestrante { justify-content: flex-end; flex-shrink: 0; gap: 12px; }
+.page-cadastrar-palestrante .acoes-palestrante :is(a, button) { width: auto; min-width: 174px; padding-inline: 12px; min-height: 42px; font-size: 12px; box-shadow: none; }
+.page-cadastrar-palestrante :is(a, button):focus-visible { outline: 2px solid var(--marca-hover); outline-offset: 3px; }
+@media (max-width: 1150px) {
+  .estrutura-cadastrar-palestrante { grid-template-columns: 175px minmax(0, 1fr); gap: 24px; }
+  .grade-cadastrar-palestrante { grid-template-columns: minmax(0, 1.4fr) minmax(230px, 1fr); }
+}
+@media (max-width: 950px) {
+  .estrutura-cadastrar-palestrante { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-top: 24px; }
+  .page-cadastrar-palestrante #navbarADM-container:empty { display: none; }
+  .grade-cadastrar-palestrante { grid-template-columns: minmax(0, 1fr); }
+  .painel-perfil-profissional, .painel-salvamento-palestrante { grid-column: auto; }
+}
+@media (max-width: 620px) {
+  .cabecalho-cadastrar-palestrante { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .page-cadastrar-palestrante .painel-formulario { padding: 18px; }
+  .grade-campos-palestrante, .grade-campos-profissionais { grid-template-columns: minmax(0, 1fr); }
+  .campo-largura-total { grid-column: auto; }
+  .page-cadastrar-palestrante .painel-salvamento-palestrante { flex-direction: column; align-items: stretch; }
+  .acoes-palestrante { flex-direction: column; }
+  .page-cadastrar-palestrante .acoes-palestrante :is(a, button) { width: 100%; }
+}

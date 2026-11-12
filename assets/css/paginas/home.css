@@ -1,0 +1,207 @@
+/* EAS — somente elementos e variações exclusivos da Home */
+
+/* Destaque principal */
+.destaque {
+  background: var(--marca-hover);
+  padding: 70px 0 105px;
+}
+
+.destaque-titulo {
+  margin: 0 0 24px;
+  color: var(--texto-fundo-escuro);
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.destaque-carrossel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 32px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.destaque-imagem {
+  display: block;
+  width: min(1150px, 85vw);
+  height: 516px;
+  border-radius: 7px;
+  background: var(--fundo-pagina);
+}
+
+.botao-icone--carrossel {
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+}
+
+/* Categorias: usa secao, grade, cartao e botao-icone compartilhados */
+.secao--categorias {
+  padding-top: 85px;
+  padding-bottom: 80px;
+}
+
+.grade--categorias {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+  align-items: center;
+}
+
+.cartao--categoria {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-width: 0;
+  min-height: 180px;
+  padding: 14px;
+  gap: 7px;
+  border-radius: 8px;
+  background: var(--fundo-cartao);
+  box-shadow: var(--sombra-categoria);
+  color: var(--texto-principal);
+  text-align: center;
+}
+
+.cartao--categoria ion-icon {
+  font-size: 85px;
+  opacity: 0.7;
+}
+
+.cartao--categoria span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.botao-icone--proximo {
+  width: 44px;
+  height: 44px;
+  font-size: 27px;
+  background: var(--marca-primaria);
+}
+
+/* Grade de eventos: reutiliza os cartões e suas subpartes */
+.secao--eventos {
+  padding-bottom: 150px;
+}
+
+.grade--eventos {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 65px 70px;
+}
+
+.cartao--evento {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius-button);
+  background: var(--fundo-pagina);
+  box-shadow: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cartao--evento:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-elevacao);
+}
+
+.cartao--evento .cartao-imagem {
+  height: 218px;
+  font-family: var(--fonte-titulo);
+  font-size: 38px;
+  font-weight: 700;
+}
+
+.cartao--evento .cartao-conteudo {
+  background: var(--fundo-cartao);
+}
+
+.etiqueta--evento {
+  position: absolute;
+  left: 18px;
+  top: 12px;
+}
+
+/* Breakpoints seguindo o CSS antigo */
+@media (max-width: 1200px) {
+  .grade--categorias {
+    gap: 12px;
+  }
+
+  .grade--eventos {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  .destaque {
+    padding: 45px 0 65px;
+  }
+
+  .destaque-titulo {
+    font-size: 26px;
+  }
+
+  .destaque-carrossel {
+    padding: 0 15px;
+    gap: 8px;
+  }
+
+  .destaque-imagem {
+    width: 100%;
+    height: clamp(180px, 40vw, 390px);
+  }
+
+  .botao-icone--carrossel {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .secao--categorias {
+    padding-top: 45px;
+    padding-bottom: 45px;
+  }
+
+  .grade--categorias {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .categorias-proximo {
+    display: none;
+  }
+
+  .cartao--categoria {
+    min-height: 135px;
+  }
+
+  .cartao--categoria ion-icon {
+    font-size: 53px;
+  }
+
+  .cartao--categoria span {
+    font-size: 12px;
+  }
+
+  .grade--eventos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .cartao--evento .cartao-imagem {
+    height: 150px;
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grade--categorias {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grade--eventos {
+    grid-template-columns: 1fr;
+  }
+}

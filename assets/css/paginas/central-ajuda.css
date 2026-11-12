@@ -1,0 +1,234 @@
+/* ============================================================
+   EAS — AJUDA
+   Somente regras específicas desta página.
+   Cartão, lista, título e cores vêm de componentes.css e variaveis.css.
+   ============================================================ */
+
+.pagina-ajuda {
+  max-width: 780px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.pagina-ajuda .titulo-acesso {
+  margin-bottom: 32px;
+  font-size: 30px;
+}
+
+/* ACORDEÃO */
+.ajuda-item {
+  overflow: hidden;
+}
+
+.ajuda-pergunta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.ajuda-pergunta::-webkit-details-marker {
+  display: none;
+}
+
+.ajuda-pergunta:focus-visible {
+  outline: 2px solid var(--marca-hover);
+  outline-offset: -2px;
+}
+
+/* Pergunta aberta: o corpo da resposta fica um tom mais escuro */
+.ajuda-resposta {
+  padding: 14px 24px 34px;
+  background: color-mix(in srgb, var(--fundo-cartao), var(--texto-principal) 7%);
+}
+
+.ajuda-resposta p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Ícones: + quando fechado, − quando aberto */
+.ajuda-icone {
+  font-size: 34px;
+}
+
+.ajuda-icone--menos,
+.ajuda-item[open] .ajuda-icone--mais {
+  display: none;
+}
+
+.ajuda-item[open] .ajuda-icone--menos {
+  display: block;
+}
+
+/* PAGINAÇÃO */
+.ajuda-paginacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.ajuda-paginacao button {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: var(--texto-principal);
+  font-size: 24px;
+}
+
+.ajuda-paginacao button ion-icon + ion-icon {
+  margin-left: -14px;
+}
+
+.ajuda-paginacao button:focus-visible {
+  outline: 2px solid var(--marca-hover);
+  outline-offset: 2px;
+}
+
+.ajuda-paginacao button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 850px) {
+  .pagina-ajuda {
+    padding-top: 40px;
+  }
+
+  .pagina-ajuda .titulo-acesso {
+    margin-bottom: 26px;
+    font-size: 25px;
+  }
+
+  .ajuda-pergunta .cartao-descricao {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagina-ajuda {
+    padding-top: 28px;
+  }
+
+  .ajuda-pergunta {
+    padding: 10px 14px;
+  }
+
+  .ajuda-resposta {
+    padding: 12px 14px 24px;
+  }
+
+  .ajuda-icone {
+    font-size: 28px;
+  }
+
+  
+}
+
+/* ============================================================
+   MODAIS (Sobre, Contato, Termos)
+   ============================================================ */
+.modal {
+  width: min(670px, 92vw);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--fundo-elevado);
+  color: var(--texto-principal);
+  box-shadow: var(--sombra-elevacao);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Impede a rolagem da página enquanto há um modal aberto */
+body:has(.modal[open]) {
+  overflow: hidden;
+}
+
+.modal-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 32px;
+  background: var(--marca-primaria);
+  color: var(--texto-fundo-escuro);
+}
+
+.modal-titulo {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.modal-fechar {
+  display: inline-grid;
+  place-items: center;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 28px;
+}
+
+.modal-fechar:focus-visible {
+  outline: 2px solid var(--texto-fundo-escuro);
+  outline-offset: 2px;
+}
+
+.modal-corpo {
+  padding: 28px 32px 36px;
+  font-family: var(--fonte-corpo);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.modal-corpo p {
+  margin: 0 0 16px;
+}
+
+.modal-corpo ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.modal-corpo li + li {
+  margin-top: 6px;
+}
+
+.modal-corpo > :last-child {
+  margin-bottom: 0;
+}
+
+/* Botão da Central de Ajuda centralizado */
+.modal-acoes {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+@media (max-width: 480px) {
+  .modal-cabecalho {
+    padding: 18px 20px;
+  }
+
+  .modal-titulo {
+    font-size: 24px;
+  }
+
+  .modal-corpo {
+    padding: 22px 20px 28px;
+    font-size: 16px;
+  }
+}

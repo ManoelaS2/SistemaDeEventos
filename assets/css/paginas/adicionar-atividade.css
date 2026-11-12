@@ -1,0 +1,319 @@
+/* ============================================================
+   EAS — ADICIONAR ATIVIDADE
+   Exclusivamente para adicionar-atividade.html.
+   Todos os valores de cor vêm de variaveis.css.
+   ============================================================ */
+
+.estrutura-adicionar-atividade {
+  display: grid;
+  grid-template-columns: clamp(175px, 17vw, 220px) minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+  flex: 1;
+  padding-top: 28px;
+  padding-bottom: 72px;
+}
+
+.page-adicionar-atividade #navbarADM-container {
+  min-width: 0;
+  min-height: 1px;
+}
+
+.conteudo-adicionar-atividade {
+  min-width: 0;
+  width: 100%;
+}
+
+.trilha-adicionar-atividade {
+  margin-bottom: 12px;
+  color: var(--texto-secundario);
+  font-family: var(--fonte-corpo);
+  font-size: 12px;
+}
+
+.trilha-adicionar-atividade ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trilha-adicionar-atividade li:not(:last-child)::after {
+  content: "/";
+  margin-left: 7px;
+  color: var(--borda-padrao);
+}
+
+.trilha-adicionar-atividade li[aria-current="page"] {
+  color: var(--marca-hover);
+  font-weight: 700;
+}
+
+.cabecalho-adicionar-atividade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+
+.cabecalho-adicionar-atividade h1 {
+  margin: 0 0 7px;
+  font-family: var(--fonte-titulo);
+  font-size: clamp(24px, 2.5vw, 32px);
+  line-height: 1.2;
+}
+
+.cabecalho-adicionar-atividade p {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.page-adicionar-atividade .etiqueta-modelo {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  background: var(--fundo-cartao);
+  color: var(--marca-hover);
+  font-size: 10px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.grade-adicionar-atividade {
+  grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1fr);
+  align-items: stretch;
+  gap: 18px;
+}
+
+.page-adicionar-atividade .painel-formulario {
+  min-width: 0;
+  padding: 22px;
+  border-radius: var(--radius-button);
+  background: var(--fundo-elevado);
+  box-shadow: none;
+}
+
+.page-adicionar-atividade .cabecalho-painel { margin-bottom: 18px; }
+
+.page-adicionar-atividade .cabecalho-painel h2 {
+  margin: 0 0 5px;
+  font-family: var(--fonte-titulo);
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.page-adicionar-atividade .cabecalho-painel p {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.page-adicionar-atividade .campo-formulario {
+  min-width: 0;
+  gap: 6px;
+}
+
+.page-adicionar-atividade .campo-formulario > label,
+.page-adicionar-atividade .rotulo-foto {
+  color: var(--texto-principal);
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.page-adicionar-atividade .campo-formulario > input,
+.page-adicionar-atividade .campo-formulario > select,
+.page-adicionar-atividade .campo-formulario > textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--campo-altura);
+  padding: 9px 11px;
+  border: 1px solid var(--borda-padrao);
+  border-radius: var(--radius-card);
+  outline: none;
+  background: var(--fundo-elevado);
+  color: var(--texto-principal);
+  font-family: var(--fonte-corpo);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.page-adicionar-atividade .campo-formulario > textarea {
+  min-height: 56px;
+  resize: vertical;
+  background: var(--fundo-campo);
+}
+
+.page-adicionar-atividade .campo-formulario > :is(input,textarea)::placeholder {
+  color: var(--texto-secundario);
+  opacity: 1;
+}
+
+.page-adicionar-atividade .campo-formulario > :is(input,select,textarea):focus-visible {
+  border-color: var(--marca-primaria);
+  outline: 2px solid var(--marca-primaria);
+  outline-offset: 2px;
+}
+
+.indicacao-obrigatorio { color: var(--marca-hover); }
+
+.campos-dados { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 16px; }
+.campo-largura-total { grid-column: 1 / -1; }
+.grade-horarios { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+
+.campos-vinculacao { display: flex; flex-direction: column; gap: 16px; }
+
+/* Seleção de 1 ou N palestrantes — apenas vínculo na atividade. */
+.painel-palestrantes-selecao,
+.painel-salvamento { grid-column: 1 / -1; }
+
+.cabecalho-palestrantes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.page-adicionar-atividade .botao-novo-palestrante {
+  width: auto;
+  min-width: 232px;
+  min-height: 42px;
+  gap: 8px;
+  padding-inline: 14px;
+  font-size: 12px;
+  box-shadow: none;
+}
+
+.lista-palestrantes {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.lista-palestrantes legend {
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.grade-opcoes-palestrantes {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.opcao-palestrante {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--borda-padrao);
+  border-radius: var(--radius-button);
+  background: var(--fundo-elevado);
+  cursor: pointer;
+}
+
+.opcao-palestrante:has(input:checked) {
+  border-color: var(--marca-primaria);
+  background: var(--fundo-campo);
+}
+
+.opcao-palestrante:has(input:focus-visible) {
+  outline: 2px solid var(--marca-hover);
+  outline-offset: 2px;
+}
+
+.opcao-palestrante input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 0;
+  accent-color: var(--marca-primaria);
+}
+
+.avatar-iniciais {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--fundo-cartao);
+  color: var(--marca-hover);
+  font-family: var(--fonte-titulo);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dados-opcao { display: flex; flex-direction: column; min-width: 0; gap: 4px; }
+.dados-opcao strong { font-size: 13px; line-height: 1.4; }
+.dados-opcao small { font-size: 11px; line-height: 1.45; color: var(--texto-secundario); }
+
+.detalhe-selecao {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding-top: 14px;
+  color: var(--texto-secundario);
+}
+
+.detalhe-selecao p { max-width: 460px; margin: 0; font-size: 11px; line-height: 1.5; }
+.detalhe-selecao strong { color: var(--texto-principal); }
+
+.page-adicionar-atividade .painel-salvamento {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.painel-salvamento strong { display: block; margin-bottom: 6px; font-size: 13px; }
+.painel-salvamento .texto-auxiliar { font-size: 11px; max-width: 460px; }
+
+.acoes-atividade { display: flex; justify-content: flex-end; flex-shrink: 0; gap: 12px; }
+
+.page-adicionar-atividade .acoes-atividade button:focus-visible {
+  outline: 2px solid var(--marca-hover);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1150px) {
+  .estrutura-adicionar-atividade { grid-template-columns: 175px minmax(0,1fr); gap: 24px; }
+  .grade-adicionar-atividade { grid-template-columns: minmax(0,1.4fr) minmax(230px,1fr); }
+}
+
+@media (max-width: 950px) {
+  .estrutura-adicionar-atividade { grid-template-columns: minmax(0,1fr); gap: 18px; padding-top: 24px; }
+  .page-adicionar-atividade #navbarADM-container:empty { display: none; }
+  .grade-adicionar-atividade { grid-template-columns: minmax(0,1fr); }
+  .painel-palestrantes-selecao, .painel-salvamento { grid-column: auto; }
+}
+
+@media (max-width: 760px) {
+  .grade-opcoes-palestrantes { grid-template-columns: minmax(0, 1fr); }
+  .page-adicionar-atividade .painel-salvamento { align-items: stretch; flex-direction: column; }
+  .acoes-atividade { justify-content: flex-start; }
+}
+
+@media (max-width: 560px) {
+  .estrutura-adicionar-atividade { padding-bottom: 48px; }
+  .cabecalho-adicionar-atividade { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .page-adicionar-atividade .painel-formulario { padding: 18px; }
+  .campos-dados { grid-template-columns: minmax(0,1fr); }
+  .campo-largura-total { grid-column: auto; }
+  .cabecalho-palestrantes { align-items: stretch; flex-direction: column; }
+  .page-adicionar-atividade .botao-novo-palestrante { min-width: 0; width: 100%; }
+  .acoes-atividade { flex-direction: column; }
+  .acoes-atividade button { width: 100%; }
+}

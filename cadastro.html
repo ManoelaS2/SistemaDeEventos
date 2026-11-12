@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar conta | EAS</title>
+
+  <!-- Estilos compartilhados por todas as páginas -->
+  <link rel="stylesheet" href="assets/css/variaveis.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+
+  <!-- Estilos exclusivos do Cadastro -->
+  <link rel="stylesheet" href="assets/css/paginas/cadastro.css">
+
+  <script src="assets/js/tema.js"></script>
+</head>
+
+<body class="page-acesso page-cadastro">
+  <div id="header-container"></div>
+
+  <main class="area-acesso">
+    <section class="cartao cartao--acesso cartao--cadastro" aria-labelledby="titulo-cadastro">
+      <div class="avatar avatar--acesso" aria-hidden="true">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </div>
+
+      <h1 class="titulo-acesso" id="titulo-cadastro">Cadastre-se</h1>
+
+      <!-- Demonstração sem backend: valida os campos obrigatórios e navega ao Login.
+           Nenhum campo possui name; portanto nenhum dado (inclusive senha)
+           é enviado na URL pelo método GET. -->
+      <form class="formulario-acesso formulario-acesso--cadastro" action="login.html" method="get" id="form-cadastro">
+        <div class="formulario-campos">
+          <div class="campo-formulario">
+            <label for="cadastro-nome">Nome completo</label>
+            <input id="cadastro-nome" type="text" autocomplete="name" placeholder="Nome completo" required>
+          </div>
+
+          <div class="campo-formulario">
+            <label for="cadastro-identificacao">E-mail ou CPF</label>
+            <input id="cadastro-identificacao" type="text" autocomplete="username" placeholder="E-mail ou CPF" required>
+          </div>
+
+          <div class="campo-formulario">
+            <label for="cadastro-senha">Crie uma senha</label>
+            <input id="cadastro-senha" type="password" autocomplete="new-password" placeholder="Crie uma senha"
+              required>
+          </div>
+
+          <div class="campo-formulario">
+            <label for="cadastro-confirmar-senha">Confirmar senha</label>
+            <input id="cadastro-confirmar-senha" type="password" autocomplete="new-password"
+              placeholder="Confirmar senha" required>
+          </div>
+        </div>
+
+        <p class="texto-auxiliar termos-cadastro">
+          Ao criar sua conta, você concorda com os
+          <a href="informacoes.html#termos">Termos de Uso</a>.
+        </p>
+
+        <button class="btn-confirmacao" type="submit">Criar conta</button>
+      </form>
+
+      <div class="separador-texto" aria-hidden="true"><span>ou</span></div>
+
+      <!-- A integração com o Google será feita futuramente no backend. -->
+      <button class="btn-segundario btn-google" type="button" disabled
+        title="Cadastro com Google indisponível neste protótipo">
+        <img src="assets/img/google.png" alt="">
+        Cadastrar com Google
+      </button>
+
+      <p class="texto-acesso">Já tem conta?
+        <a class="link-destaque" href="login.html">Entrar</a>
+      </p>
+      <p class="texto-prototipo">
+        Protótipo: o botão Criar conta abre o Login sem cadastrar usuários.
+        A comparação entre as senhas dependerá do backend.
+      </p>
+    </section>
+  </main>
+
+  <div id="footer-container"></div>
+
+  <!-- Nenhum JavaScript de cadastro. Este arquivo carrega os componentes globais. -->
+  <script src="assets/js/componente.js"></script>
+  <!-- Ionicons: apenas apresentação dos ícones já usados no projeto. -->
+  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

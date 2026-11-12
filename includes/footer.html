@@ -1,0 +1,81 @@
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="brand brand-footer" href="index.html" aria-label="EAS - Página inicial">
+      <img src="assets/img/logo-eas-transparente.png" alt="" width="76" height="83">
+      <span>EAS</span>
+    </a>
+    <nav class="footer-nav" aria-label="Links do rodapé">
+      <a href="informacoes.html#sobre">Sobre</a>
+      <a href="informacoes.html#contato">Contato</a>
+      <a href="informacoes.html#termos">Termos</a>
+      <a href="central-ajuda.html">Ajuda</a>
+    </nav>
+    <small>© EAS 2026</small>
+  </div>
+</footer>
+
+<!-- Modais abertos pelos links Sobre, Contato e Termos -->
+<dialog class="modal" id="modal-sobre" aria-labelledby="modal-sobre-titulo">
+  <form method="dialog" class="modal-cabecalho">
+    <h2 class="modal-titulo" id="modal-sobre-titulo">Sobre o EAS</h2>
+    <button class="modal-fechar" aria-label="Fechar">
+      <ion-icon name="close" aria-hidden="true"></ion-icon>
+    </button>
+  </form>
+  <div class="modal-corpo">
+    <p>
+      O EAS é um protótipo acadêmico de sistema para organização,
+      divulgação e participação em eventos, pensado para aproximar quem
+      organiza de quem participa.
+    </p>
+    <p>Com ele, você pode:</p>
+    <ul>
+      <li>conhecer os eventos em andamento e suas categorias;</li>
+      <li>consultar a programação, o local e os palestrantes;</li>
+      <li>inscrever-se escolhendo as atividades de seu interesse;</li>
+      <li>atualizar sua inscrição em <strong>Meus Eventos</strong>.</li>
+    </ul>
+    <p>
+      Esta é uma versão de demonstração: ainda não há autenticação,
+      pagamentos ou inscrições reais. Explore as telas para conhecer as
+      funcionalidades.
+    </p>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-contato" aria-labelledby="modal-contato-titulo">
+  <form method="dialog" class="modal-cabecalho">
+    <h2 class="modal-titulo" id="modal-contato-titulo">Contato</h2>
+    <button class="modal-fechar" aria-label="Fechar">
+      <ion-icon name="close" aria-hidden="true"></ion-icon>
+    </button>
+  </form>
+  <div class="modal-corpo">
+    <p>
+      Canal de atendimento institucional:
+      <a class="link-destaque" href="mailto:email.institucional@aaabbbccc">email.institucional@aaabbbccc</a>.
+    </p>
+    <p>
+      Antes de escrever, confira as dúvidas mais comuns na Central de
+      Ajuda: muitas respostas já estão lá.
+    </p>
+    <div class="modal-acoes">
+      <a class="btn-confirmacao" href="central-ajuda.html">Abrir Central de Ajuda</a>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="modal" id="modal-termos" aria-labelledby="modal-termos-titulo">
+  <form method="dialog" class="modal-cabecalho">
+    <h2 class="modal-titulo" id="modal-termos-titulo">Termos</h2>
+    <button class="modal-fechar" aria-label="Fechar">
+      <ion-icon name="close" aria-hidden="true"></ion-icon>
+    </button>
+  </form>
+  <div class="modal-corpo">
+    <p>
+      Esta versão é uma demonstração acadêmica. Não há autenticação,
+      pagamentos ou inscrições reais, e nenhum dado informado é armazenado.
+    </p>
+  </div>
+</dialog>
