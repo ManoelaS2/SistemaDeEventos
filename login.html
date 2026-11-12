@@ -1,77 +1,114 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrar | EAS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar | EAS</title>
 
-  <!-- Estilos compartilhados: mesma ordem da Home -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Estilos compartilhados: mesma ordem da Home -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <!-- Apenas os ajustes da página de Login -->
-  <link rel="stylesheet" href="assets/css/paginas/login.css">
+    <!-- Apenas os ajustes da página de Login -->
+    <link rel="stylesheet" href="assets/css/paginas/login.css" />
 
-  <script src="assets/js/tema.js"></script>
-</head>
-<body class="page-login">
-  <div id="header-container"></div>
+    <script src="assets/js/tema.js"></script>
+  </head>
+  <body class="page-login">
+    <div id="header-container"></div>
 
-  <main class="area-acesso">
-    <section class="cartao cartao--acesso cartao--login" aria-labelledby="login-title">
-      <div class="avatar avatar--acesso" aria-hidden="true">
-        <ion-icon name="person-add-outline"></ion-icon>
-      </div>
-
-      <h1 id="login-title">Entrar</h1>
-
-      <!-- Demonstração de interface: ainda não envia credenciais ao servidor. -->
-      <form class="formulario-acesso" id="login-form">
-        <div class="campo-linha">
-          <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
-          <label class="texto-oculto" for="usuario">E-mail ou CPF</label>
-          <input id="usuario" name="usuario" type="text"
-                 placeholder="E-mail ou CPF" autocomplete="username" required>
+    <main class="area-acesso">
+      <section
+        class="cartao cartao--acesso cartao--login"
+        aria-labelledby="login-title"
+      >
+        <div class="avatar avatar--acesso" aria-hidden="true">
+          <ion-icon name="person-add-outline"></ion-icon>
         </div>
 
-        <div class="campo-linha">
-          <ion-icon name="lock-closed-outline" aria-hidden="true"></ion-icon>
-          <label class="texto-oculto" for="senha">Senha</label>
-          <input id="senha" name="senha" type="password"
-                 placeholder="Senha" autocomplete="current-password" required>
-          <button class="password-toggle" type="button" aria-label="Mostrar senha">
-            <ion-icon name="eye-off-outline" aria-hidden="true"></ion-icon>
+        <h1 id="login-title">Entrar</h1>
+
+        <!-- Demonstração de interface: ainda não envia credenciais ao servidor. -->
+        <form class="formulario-acesso" id="login-form">
+          <div class="campo-linha">
+            <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
+            <label class="texto-oculto" for="usuario">E-mail ou CPF</label>
+            <input
+              id="usuario"
+              name="usuario"
+              type="text"
+              placeholder="E-mail ou CPF"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="campo-linha">
+            <ion-icon name="lock-closed-outline" aria-hidden="true"></ion-icon>
+            <label class="texto-oculto" for="senha">Senha</label>
+            <input
+              id="senha"
+              name="senha"
+              type="password"
+              placeholder="Senha"
+              autocomplete="current-password"
+              required
+            />
+            <button
+              class="password-toggle"
+              type="button"
+              aria-label="Mostrar senha"
+            >
+              <ion-icon name="eye-off-outline" aria-hidden="true"></ion-icon>
+            </button>
+          </div>
+
+          <a class="link-recuperar" href="recuperar-senha.html"
+            >Esqueci minha senha</a
+          >
+          <button class="btn-confirmacao botao-entrar" type="submit">
+            Entrar
           </button>
-        </div>
+          <p
+            class="formulario-mensagem"
+            id="login-estado"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
 
-        <a class="link-recuperar" href="recuperar-senha.html">Esqueci minha senha</a>
-        <button class="btn-confirmacao botao-entrar" type="submit">Entrar</button>
-        <p class="formulario-mensagem" id="login-estado" role="status" aria-live="polite"></p>
-      </form>
+        <div class="separador-texto" aria-hidden="true"><span>ou</span></div>
 
-      <div class="separador-texto" aria-hidden="true"><span>ou</span></div>
+        <button
+          class="btn-segundario btn-google"
+          type="button"
+          disabled
+          title="Login com Google depende de integração com o servidor"
+        >
+          <img src="assets/img/google.png" alt="" />
+          Entrar com Google
+        </button>
 
-      <button class="btn-segundario btn-google" type="button" disabled
-              title="Login com Google depende de integração com o servidor">
-        <img src="assets/img/google.png" alt="">
-        Entrar com Google
-      </button>
+        <p class="texto-acesso">
+          Não tem conta?
+          <a class="link-destaque" href="cadastro.html">Cadastre-se</a>
+        </p>
+      </section>
+    </main>
 
-      <p class="texto-acesso">Não tem conta?
-        <a class="link-destaque" href="cadastro.html">Cadastre-se</a>
-      </p>
-    </section>
-  </main>
+    <div id="footer-container"></div>
 
-  <div id="footer-container"></div>
-
-  <!-- Mantém a injeção do header/footer e o botão de exibir senha. -->
-  <script src="assets/js/componente.js"></script>
-  <!-- A tela não deve enviar senhas via GET enquanto não houver backend. -->
-  <script src="assets/js/login.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+    <!-- Mantém a injeção do header/footer e o botão de exibir senha. -->
+    <script src="assets/js/componente.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

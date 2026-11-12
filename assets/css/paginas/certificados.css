@@ -30,7 +30,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background-color: var(--fundo-elevado); /* Cinza claro no modo claro, escuro no dark */
+  background-color: var(
+    --fundo-elevado
+  ); /* Cinza claro no modo claro, escuro no dark */
   border-radius: 6px; /* Borda mais sutil que o cartão */
   padding: 8px 16px;
   margin-bottom: 24px;

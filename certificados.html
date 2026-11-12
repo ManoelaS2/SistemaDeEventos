@@ -1,78 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificados | EAS</title>
-  
-  <!-- Importação do Ionicons (já utilizado no seu script) -->
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificados | EAS</title>
 
-  <link rel="stylesheet" href="assets/css/paginas/certificados.css">
-</head>
-<body>
+    <!-- Importação do Ionicons (já utilizado no seu script) -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
 
-  <div id="header-container"></div>
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <main class="certificados-main">
-    <div class="certificados-container">
-      <h1 class="page-title">Certificados</h1>
+    <link rel="stylesheet" href="assets/css/paginas/certificados.css" />
 
-      <!-- Barra de Pesquisa -->
-      <div class="search-certificados-box">
-        <ion-icon name="search-outline" class="search-icon"></ion-icon>
-        <div class="search-input-wrapper">
-          <label for="filtro-certificado" class="sr-only">Consultar Certificados</label>
-          <input 
-            type="text" 
-            id="filtro-certificado" 
-            placeholder="Consultar Certificados:" 
-            autocomplete="off"
-          >
+    <script src="assets/js/tema.js"></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main class="certificados-main">
+      <div class="certificados-container">
+        <h1 class="page-title">Certificados</h1>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-certificados-box">
+          <ion-icon name="search-outline" class="search-icon"></ion-icon>
+          <div class="search-input-wrapper">
+            <label for="filtro-certificado" class="sr-only"
+              >Consultar Certificados</label
+            >
+            <input
+              type="text"
+              id="filtro-certificado"
+              placeholder="Consultar Certificados:"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- Tabela de Certificados -->
+        <div class="table-responsive">
+          <table class="certificados-table" id="tabela-certificados">
+            <thead>
+              <tr>
+                <th>Certificado</th>
+                <th>Tipo Evento</th>
+                <th>Data</th>
+                <th>Baixar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Certificado de Ecologia</td>
+                <td>Evento de Ecologia</td>
+                <td>30/10/2026</td>
+                <td>
+                  <a
+                    href="arquivos/nomecertificado.pdf"
+                    download
+                    class="btn-download"
+                  >
+                    <ion-icon name="download-outline"></ion-icon>
+                    <span>nomecertificado.pdf</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+    </main>
 
-      <!-- Tabela de Certificados -->
-      <div class="table-responsive">
-        <table class="certificados-table" id="tabela-certificados">
-          <thead>
-            <tr>
-              <th>Certificado</th>
-              <th>Tipo Evento</th>
-              <th>Data</th>
-              <th>Baixar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Certificado de Ecologia</td>
-              <td>Evento de Ecologia</td>
-              <td>30/10/2026</td>
-              <td>
-                <a href="arquivos/nomecertificado.pdf" download class="btn-download">
-                  <ion-icon name="download-outline"></ion-icon>
-                  <span>nomecertificado.pdf</span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </main>
+    <div id="footer-container"></div>
 
-  <div id="footer-container"></div>
-
-  <!-- Seu script principal que carrega header, footer e eventos -->
-  <script src="assets/js/componente.js"></script>
-  <script src="assets/js/tema.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+    <!-- Seu script principal que carrega header, footer e eventos -->
+    <script src="assets/js/componente.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

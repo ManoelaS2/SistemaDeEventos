@@ -1,121 +1,143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Programação</title>
-    <link rel="stylesheet" href="assets/css/base.css">
-    <link rel="stylesheet" href="assets/css/componentes.css">
-    <link rel="stylesheet" href="assets/css/layout.css">
-    <link rel="stylesheet" href="assets/css/variaveis.css">
-    <link rel="stylesheet" href="assets/css/paginas/gerenciamento-evento.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/paginas/gerenciamento-evento.css" />
+
+    <script src="assets/js/tema.js"></script>
+  </head>
+  <body>
     <div id="header-container"></div>
     <main class="painel">
-        <div id="painel-adm"></div>
-        <div class="titulo-painel">
-            <div class="texto-painel">
-                <h5 class="h5-fraco">PAINEL / EVENTOS / GERENCIAMENTO</h5>
-                <h1>Gerenciar eventos</h1>
-                <p>Acompanhe inscrições, pagamentos, mapas e atividades em um só lugar.</p>
-            </div>
-            <button class="btn-confirmacao btn-painel">+ Novo evento</button>
+      <div id="painel-adm"></div>
+      <div class="titulo-painel">
+        <div class="texto-painel">
+          <h5 class="h5-fraco">PAINEL / EVENTOS / GERENCIAMENTO</h5>
+          <h1>Gerenciar eventos</h1>
+          <p>
+            Acompanhe inscrições, pagamentos, mapas e atividades em um só lugar.
+          </p>
         </div>
-        <div class="card-informativos">
-            <div class="card-informacao">
-                <h5 class="h5-fraco">Eventos ativos</h5>
-                <h2>04</h2>
-                <h5 class="h5-fraco">2 com inscrições abertas</h5>
-            </div>
-            <div class="card-informacao">
-                <h5 class="h5-fraco">Inscritos</h5>
-                <h2>1.248</h2>
-                <h5 class="h5-fraco">+84 nos últimos 7 dias</h5>
-            </div>
-            <div class="card-informacao">
-                <h5 class="h5-fraco">Pagamentos</h5>
-                <h2>87%</h2>
-                <h5 class="h5-fraco">Das inscrições pagas</h5>
-            </div>
-            <div class="card-informacao">
-                <h5 class="h5-fraco">Credenciados</h5>
-                <h2>642</h2>
-                <h5 class="h5-fraco">Atualizado hoje</h5>
-            </div>
+        <button class="btn-confirmacao btn-painel">+ Novo evento</button>
+      </div>
+      <div class="card-informativos">
+        <div class="card-informacao">
+          <h5 class="h5-fraco">Eventos ativos</h5>
+          <h2>04</h2>
+          <h5 class="h5-fraco">2 com inscrições abertas</h5>
         </div>
-        <div class="integrantes-equipe">
-            <h3>Eventos cadastrados</h3>
-            <h5 class="h5-fraco">Selecione um evento para consultar ou gerenciar.</h5>
-            <table>
-                <thead>
-                    <tr>    
-                        <th>Evento</th>
-                        <th>Período</th>
-                        <th>Inscritos</th>
-                        <th>Pagamento</th>
-                        <th>Situação</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><h5>Semana de Tecnologia 2026</h5></td>
-                        <td><p>20–22 nov</p></td>
-                        <td><p>428 / 500</p></td>
-                        <td><span class="elemento-table">Gratuito</span></td>
-                        <td><span class="elemento-table">Publicado</span></td>
-                        <td><a href="#">Gerenciar →</a></td>
-                    </tr>
-                    <tr>
-                        <td><h5>Simpósio de Pesquisa</h5></td>
-                        <td><p>04–05 dez</p></td>
-                        <td><p>172 / 300</p></td>
-                        <td><span class="elemento-table table-amrelo">Conferir</span></td>
-                        <td><span class="elemento-table">Publicado</span></td>
-                        <td><a href="#">Gerenciar →</a></td>
-                    </tr>
-                    <tr>
-                        <td><h5>Oficina de Robótica</h5></td>
-                        <td><p>13 dez</p></td>
-                        <td><p>48 / 60</p></td>
-                        <td><span class="elemento-table">Concluído</span></td>
-                        <td><span class="elemento-table">Rascunho</span></td>
-                        <td><a href="#">Editar →</a></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="card-informacao">
+          <h5 class="h5-fraco">Inscritos</h5>
+          <h2>1.248</h2>
+          <h5 class="h5-fraco">+84 nos últimos 7 dias</h5>
         </div>
-        <div class="inscricoes">
-            <h3>Inscritos e pagamentos</h3>
-            <h5 class="h5-fraco">Evento selecionado: Semana de Tecnologia 2026</h5>
-            <h1 class="numero-inscritos">428</h1>
-            <h5 class="h5-fraco texto-inscritos">participantes inscritos</h5>
-            <span class="micro-table"><p>Validar entrada dos inscritos</p> <span class="inscricoes-elemt">382</span></span>
-            <span class="micro-table"><p>Criar e gerenciar eventos</p> <span class="inscricoes-elemt elemt-amrelo">46</span></span>
-            <button class="btn-segundario">Ver lista de inscritos</button>
+        <div class="card-informacao">
+          <h5 class="h5-fraco">Pagamentos</h5>
+          <h2>87%</h2>
+          <h5 class="h5-fraco">Das inscrições pagas</h5>
         </div>
-        <div class="mapa-atividades">
-            <h3>Certificados da equipe</h3>
-            <h5 class="h5-fraco">Emita certificados para quem cumpriu as funções.</h5>
-            <div class="mapa-container">
-                <div class="mapa">
-                    <span class="elemento-mapa">AUDITÓRIO</span>
-                    <span class="elemento-mapa">LAB 02</span>
-                </div> 
-                <div class="informacoes-extra">    
-                    <h4>12 atividades programadas</h4>
-                    <h5 class="h5-fraco">4 locais cadastrados</h5>
-                    <h5 class="h5-fraco">8 palestrantes confirmados</h5>
-                    <button class="btn-confirmacao btn-cetificado">Gerenciar atividades</button>
-                </div>
-            </div> 
+        <div class="card-informacao">
+          <h5 class="h5-fraco">Credenciados</h5>
+          <h2>642</h2>
+          <h5 class="h5-fraco">Atualizado hoje</h5>
         </div>
+      </div>
+      <div class="integrantes-equipe">
+        <h3>Eventos cadastrados</h3>
+        <h5 class="h5-fraco">
+          Selecione um evento para consultar ou gerenciar.
+        </h5>
+        <table>
+          <thead>
+            <tr>
+              <th>Evento</th>
+              <th>Período</th>
+              <th>Inscritos</th>
+              <th>Pagamento</th>
+              <th>Situação</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><h5>Semana de Tecnologia 2026</h5></td>
+              <td><p>20–22 nov</p></td>
+              <td><p>428 / 500</p></td>
+              <td><span class="elemento-table">Gratuito</span></td>
+              <td><span class="elemento-table">Publicado</span></td>
+              <td><a href="#">Gerenciar →</a></td>
+            </tr>
+            <tr>
+              <td><h5>Simpósio de Pesquisa</h5></td>
+              <td><p>04–05 dez</p></td>
+              <td><p>172 / 300</p></td>
+              <td><span class="elemento-table table-amrelo">Conferir</span></td>
+              <td><span class="elemento-table">Publicado</span></td>
+              <td><a href="#">Gerenciar →</a></td>
+            </tr>
+            <tr>
+              <td><h5>Oficina de Robótica</h5></td>
+              <td><p>13 dez</p></td>
+              <td><p>48 / 60</p></td>
+              <td><span class="elemento-table">Concluído</span></td>
+              <td><span class="elemento-table">Rascunho</span></td>
+              <td><a href="#">Editar →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="inscricoes">
+        <h3>Inscritos e pagamentos</h3>
+        <h5 class="h5-fraco">Evento selecionado: Semana de Tecnologia 2026</h5>
+        <h1 class="numero-inscritos">428</h1>
+        <h5 class="h5-fraco texto-inscritos">participantes inscritos</h5>
+        <span class="micro-table"
+          ><p>Validar entrada dos inscritos</p>
+          <span class="inscricoes-elemt">382</span></span
+        >
+        <span class="micro-table"
+          ><p>Criar e gerenciar eventos</p>
+          <span class="inscricoes-elemt elemt-amrelo">46</span></span
+        >
+        <button class="btn-segundario">Ver lista de inscritos</button>
+      </div>
+      <div class="mapa-atividades">
+        <h3>Certificados da equipe</h3>
+        <h5 class="h5-fraco">
+          Emita certificados para quem cumpriu as funções.
+        </h5>
+        <div class="mapa-container">
+          <div class="mapa">
+            <span class="elemento-mapa">AUDITÓRIO</span>
+            <span class="elemento-mapa">LAB 02</span>
+          </div>
+          <div class="informacoes-extra">
+            <h4>12 atividades programadas</h4>
+            <h5 class="h5-fraco">4 locais cadastrados</h5>
+            <h5 class="h5-fraco">8 palestrantes confirmados</h5>
+            <button class="btn-confirmacao btn-cetificado">
+              Gerenciar atividades
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
     <div id="footer-container"></div>
     <script src="assets/js/componente.js"></script>
     <script src="assets/js/paineladm.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

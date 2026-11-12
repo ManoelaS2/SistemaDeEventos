@@ -1,195 +1,264 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajuda | EAS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajuda | EAS</title>
 
-  <!-- Estilos compartilhados por todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Estilos compartilhados por todas as páginas -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <!-- Estilos exclusivos da Ajuda -->
-  <link rel="stylesheet" href="assets/css/paginas/central-ajuda.css">
-</head>
-<body class="page-details page-ajuda">
-  <div id="header-container"></div>
+    <!-- Estilos exclusivos da Ajuda -->
+    <link rel="stylesheet" href="assets/css/paginas/central-ajuda.css" />
 
-  <main class="secao pagina-ajuda" id="conteudo-principal">
-    <h1 class="titulo-acesso">Precisa de ajuda?</h1>
+    <script src="assets/js/tema.js"></script>
+  </head>
+  <body class="page-details page-ajuda">
+    <div id="header-container"></div>
 
-    <!-- o atributo name faz com que só um item fique aberto-->
-    <div class="lista-opcoes">
-      <details class="cartao ajuda-item">
-        <summary class="ajuda-pergunta">
-          <span class="cartao-descricao">Como recupero minha senha se eu esquecer?</span>
-          <ion-icon class="ajuda-icone ajuda-icone--mais" name="add-outline" aria-hidden="true"></ion-icon>
-          <ion-icon class="ajuda-icone ajuda-icone--menos" name="remove-outline" aria-hidden="true"></ion-icon>
-        </summary>
-        <div class="ajuda-resposta">
-          <p>
-            Na tela de Login, clique em <strong>"Esqueci minha senha"</strong>,
-            digite seu e-mail e insira o <strong>código de verificação</strong>
-            que enviaremos para criar uma nova senha.
-          </p>
-        </div>
-      </details>
+    <main class="secao pagina-ajuda" id="conteudo-principal">
+      <h1 class="titulo-acesso">Precisa de ajuda?</h1>
 
-      <details class="cartao ajuda-item">
-        <summary class="ajuda-pergunta">
-          <span class="cartao-descricao">Como faço para me inscrever em um evento?</span>
-          <ion-icon class="ajuda-icone ajuda-icone--mais" name="add-outline" aria-hidden="true"></ion-icon>
-          <ion-icon class="ajuda-icone ajuda-icone--menos" name="remove-outline" aria-hidden="true"></ion-icon>
-        </summary>
-        <div class="ajuda-resposta">
-          <p>
-            Na página inicial, escolha o evento desejado e clique em
-            <strong>"Inscrever-se"</strong>. Depois, selecione as atividades de
-            que deseja participar e confirme a inscrição.
-          </p>
-        </div>
-      </details>
+      <!-- o atributo name faz com que só um item fique aberto-->
+      <div class="lista-opcoes">
+        <details class="cartao ajuda-item">
+          <summary class="ajuda-pergunta">
+            <span class="cartao-descricao"
+              >Como recupero minha senha se eu esquecer?</span
+            >
+            <ion-icon
+              class="ajuda-icone ajuda-icone--mais"
+              name="add-outline"
+              aria-hidden="true"
+            ></ion-icon>
+            <ion-icon
+              class="ajuda-icone ajuda-icone--menos"
+              name="remove-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </summary>
+          <div class="ajuda-resposta">
+            <p>
+              Na tela de Login, clique em
+              <strong>"Esqueci minha senha"</strong>, digite seu e-mail e insira
+              o <strong>código de verificação</strong>
+              que enviaremos para criar uma nova senha.
+            </p>
+          </div>
+        </details>
 
-      <details class="cartao ajuda-item">
-        <summary class="ajuda-pergunta">
-          <span class="cartao-descricao">Onde encontro o comprovante do meu evento?</span>
-          <ion-icon class="ajuda-icone ajuda-icone--mais" name="add-outline" aria-hidden="true"></ion-icon>
-          <ion-icon class="ajuda-icone ajuda-icone--menos" name="remove-outline" aria-hidden="true"></ion-icon>
-        </summary>
-        <div class="ajuda-resposta">
-          <p>
-            Acesse <strong>"Meus Eventos"</strong> no menu superior e selecione o
-            evento. O comprovante da inscrição fica disponível nos detalhes dele.
-          </p>
-        </div>
-      </details>
+        <details class="cartao ajuda-item">
+          <summary class="ajuda-pergunta">
+            <span class="cartao-descricao"
+              >Como faço para me inscrever em um evento?</span
+            >
+            <ion-icon
+              class="ajuda-icone ajuda-icone--mais"
+              name="add-outline"
+              aria-hidden="true"
+            ></ion-icon>
+            <ion-icon
+              class="ajuda-icone ajuda-icone--menos"
+              name="remove-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </summary>
+          <div class="ajuda-resposta">
+            <p>
+              Na página inicial, escolha o evento desejado e clique em
+              <strong>"Inscrever-se"</strong>. Depois, selecione as atividades
+              de que deseja participar e confirme a inscrição.
+            </p>
+          </div>
+        </details>
 
-      <details class="cartao ajuda-item">
-        <summary class="ajuda-pergunta">
-          <span class="cartao-descricao">Como faço para criar e divulgar meu próprio evento?</span>
-          <ion-icon class="ajuda-icone ajuda-icone--mais" name="add-outline" aria-hidden="true"></ion-icon>
-          <ion-icon class="ajuda-icone ajuda-icone--menos" name="remove-outline" aria-hidden="true"></ion-icon>
-        </summary>
-        <div class="ajuda-resposta">
-          <p>
-            Com a conta de organizador, abra o menu, clique em
-            <strong>"Criar evento"</strong> e preencha título, local, datas e
-            programação. Depois de publicado, ele aparece na lista de eventos.
-          </p>
-        </div>
-      </details>
+        <details class="cartao ajuda-item">
+          <summary class="ajuda-pergunta">
+            <span class="cartao-descricao"
+              >Onde encontro o comprovante do meu evento?</span
+            >
+            <ion-icon
+              class="ajuda-icone ajuda-icone--mais"
+              name="add-outline"
+              aria-hidden="true"
+            ></ion-icon>
+            <ion-icon
+              class="ajuda-icone ajuda-icone--menos"
+              name="remove-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </summary>
+          <div class="ajuda-resposta">
+            <p>
+              Acesse <strong>"Meus Eventos"</strong> no menu superior e
+              selecione o evento. O comprovante da inscrição fica disponível nos
+              detalhes dele.
+            </p>
+          </div>
+        </details>
 
-      <details class="cartao ajuda-item">
-        <summary class="ajuda-pergunta">
-          <span class="cartao-descricao">Posso alterar ou cancelar minha inscrição?</span>
-          <ion-icon class="ajuda-icone ajuda-icone--mais" name="add-outline" aria-hidden="true"></ion-icon>
-          <ion-icon class="ajuda-icone ajuda-icone--menos" name="remove-outline" aria-hidden="true"></ion-icon>
-        </summary>
-        <div class="ajuda-resposta">
-          <p>
-            Sim. Em <strong>"Meus Eventos"</strong>, escolha o evento e clique em
-            <strong>"Atualizar inscrição"</strong> para manter ou remover
-            atividades, dentro do prazo de inscrição.
-          </p>
-        </div>
-      </details>
-    </div>
+        <details class="cartao ajuda-item">
+          <summary class="ajuda-pergunta">
+            <span class="cartao-descricao"
+              >Como faço para criar e divulgar meu próprio evento?</span
+            >
+            <ion-icon
+              class="ajuda-icone ajuda-icone--mais"
+              name="add-outline"
+              aria-hidden="true"
+            ></ion-icon>
+            <ion-icon
+              class="ajuda-icone ajuda-icone--menos"
+              name="remove-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </summary>
+          <div class="ajuda-resposta">
+            <p>
+              Com a conta de organizador, abra o menu, clique em
+              <strong>"Criar evento"</strong> e preencha título, local, datas e
+              programação. Depois de publicado, ele aparece na lista de eventos.
+            </p>
+          </div>
+        </details>
 
-    <!--a paginação é apenas visual, sem backend -->
-    <nav class="ajuda-paginacao" aria-label="Paginação das perguntas">
-      <button type="button" aria-label="Primeira página" disabled>
-        <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
-        <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
-      </button>
-      <button type="button" aria-label="Página anterior" disabled>
-        <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
-      </button>
-      <button type="button" aria-label="Próxima página">
-        <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-      </button>
-      <button type="button" aria-label="Última página">
-        <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-        <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-      </button>
-    </nav>
-  </main>
+        <details class="cartao ajuda-item">
+          <summary class="ajuda-pergunta">
+            <span class="cartao-descricao"
+              >Posso alterar ou cancelar minha inscrição?</span
+            >
+            <ion-icon
+              class="ajuda-icone ajuda-icone--mais"
+              name="add-outline"
+              aria-hidden="true"
+            ></ion-icon>
+            <ion-icon
+              class="ajuda-icone ajuda-icone--menos"
+              name="remove-outline"
+              aria-hidden="true"
+            ></ion-icon>
+          </summary>
+          <div class="ajuda-resposta">
+            <p>
+              Sim. Em <strong>"Meus Eventos"</strong>, escolha o evento e clique
+              em <strong>"Atualizar inscrição"</strong> para manter ou remover
+              atividades, dentro do prazo de inscrição.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <!--a paginação é apenas visual, sem backend -->
+      <nav class="ajuda-paginacao" aria-label="Paginação das perguntas">
+        <button type="button" aria-label="Primeira página" disabled>
+          <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
+          <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
+        </button>
+        <button type="button" aria-label="Página anterior" disabled>
+          <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
+        </button>
+        <button type="button" aria-label="Próxima página">
+          <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+        </button>
+        <button type="button" aria-label="Última página">
+          <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+          <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+        </button>
+      </nav>
+    </main>
 
     <!-- Modais abertos pelos links do footer (sem sair da página) -->
-  <dialog class="modal" id="modal-sobre" aria-labelledby="modal-sobre-titulo">
-    <form method="dialog" class="modal-cabecalho">
-      <h2 class="modal-titulo" id="modal-sobre-titulo">Sobre o EAS</h2>
-      <button class="modal-fechar" aria-label="Fechar">
-        <ion-icon name="close" aria-hidden="true"></ion-icon>
-      </button>
-    </form>
-    <div class="modal-corpo">
-      <p>
-        O EAS é um protótipo acadêmico de sistema para organização,
-        divulgação e participação em eventos, pensado para aproximar quem
-        organiza de quem participa.
-      </p>
-      <p>Com ele, você pode:</p>
-      <ul>
-        <li>conhecer os eventos em andamento e suas categorias;</li>
-        <li>consultar a programação, o local e os palestrantes;</li>
-        <li>inscrever-se escolhendo as atividades de seu interesse;</li>
-        <li>atualizar sua inscrição em <strong>Meus Eventos</strong>.</li>
-      </ul>
-      <p>
-        Esta é uma versão de demonstração: ainda não há autenticação,
-        pagamentos ou inscrições reais. Explore as telas para conhecer as
-        funcionalidades.
-      </p>
-    </div>
-  </dialog>
-
-  <dialog class="modal" id="modal-contato" aria-labelledby="modal-contato-titulo">
-    <form method="dialog" class="modal-cabecalho">
-      <h2 class="modal-titulo" id="modal-contato-titulo">Contato</h2>
-      <button class="modal-fechar" aria-label="Fechar">
-        <ion-icon name="close" aria-hidden="true"></ion-icon>
-      </button>
-    </form>
-    <div class="modal-corpo">
-      <p>
-        Canal de atendimento institucional:
-        <a class="link-destaque" href="mailto:equipe.eas10@gmail.com">equipe.eas10@gmail.com</a>.
-      </p>
-      <p>
-        Antes de escrever, confira as dúvidas mais comuns na Central de
-        Ajuda: muitas respostas já estão aqui.
-      </p>
-      <form method="dialog" class="modal-acoes">
-        <button class="btn-confirmacao">Abrir Central de Ajuda</button>
+    <dialog class="modal" id="modal-sobre" aria-labelledby="modal-sobre-titulo">
+      <form method="dialog" class="modal-cabecalho">
+        <h2 class="modal-titulo" id="modal-sobre-titulo">Sobre o EAS</h2>
+        <button class="modal-fechar" aria-label="Fechar">
+          <ion-icon name="close" aria-hidden="true"></ion-icon>
+        </button>
       </form>
-    </div>
-  </dialog>
+      <div class="modal-corpo">
+        <p>
+          O EAS é um protótipo acadêmico de sistema para organização, divulgação
+          e participação em eventos, pensado para aproximar quem organiza de
+          quem participa.
+        </p>
+        <p>Com ele, você pode:</p>
+        <ul>
+          <li>conhecer os eventos em andamento e suas categorias;</li>
+          <li>consultar a programação, o local e os palestrantes;</li>
+          <li>inscrever-se escolhendo as atividades de seu interesse;</li>
+          <li>atualizar sua inscrição em <strong>Meus Eventos</strong>.</li>
+        </ul>
+        <p>
+          Esta é uma versão de demonstração: ainda não há autenticação,
+          pagamentos ou inscrições reais. Explore as telas para conhecer as
+          funcionalidades.
+        </p>
+      </div>
+    </dialog>
 
-  <dialog class="modal" id="modal-termos" aria-labelledby="modal-termos-titulo">
-    <form method="dialog" class="modal-cabecalho">
-      <h2 class="modal-titulo" id="modal-termos-titulo">Termos</h2>
-      <button class="modal-fechar" aria-label="Fechar">
-        <ion-icon name="close" aria-hidden="true"></ion-icon>
-      </button>
-    </form>
-    <div class="modal-corpo">
-      <p>
-        Esta versão é uma demonstração acadêmica. Não há autenticação,
-        pagamentos ou inscrições reais, e nenhum dado informado é armazenado.
-      </p>
-    </div>
-  </dialog>
+    <dialog
+      class="modal"
+      id="modal-contato"
+      aria-labelledby="modal-contato-titulo"
+    >
+      <form method="dialog" class="modal-cabecalho">
+        <h2 class="modal-titulo" id="modal-contato-titulo">Contato</h2>
+        <button class="modal-fechar" aria-label="Fechar">
+          <ion-icon name="close" aria-hidden="true"></ion-icon>
+        </button>
+      </form>
+      <div class="modal-corpo">
+        <p>
+          Canal de atendimento institucional:
+          <a class="link-destaque" href="mailto:equipe.eas10@gmail.com"
+            >equipe.eas10@gmail.com</a
+          >.
+        </p>
+        <p>
+          Antes de escrever, confira as dúvidas mais comuns na Central de Ajuda:
+          muitas respostas já estão aqui.
+        </p>
+        <form method="dialog" class="modal-acoes">
+          <button class="btn-confirmacao">Abrir Central de Ajuda</button>
+        </form>
+      </div>
+    </dialog>
 
-  <div id="footer-container"></div>
+    <dialog
+      class="modal"
+      id="modal-termos"
+      aria-labelledby="modal-termos-titulo"
+    >
+      <form method="dialog" class="modal-cabecalho">
+        <h2 class="modal-titulo" id="modal-termos-titulo">Termos</h2>
+        <button class="modal-fechar" aria-label="Fechar">
+          <ion-icon name="close" aria-hidden="true"></ion-icon>
+        </button>
+      </form>
+      <div class="modal-corpo">
+        <p>
+          Esta versão é uma demonstração acadêmica. Não há autenticação,
+          pagamentos ou inscrições reais, e nenhum dado informado é armazenado.
+        </p>
+      </div>
+    </dialog>
 
+    <div id="footer-container"></div>
 
-  <script src="assets/js/componente.js"></script>
-  <script src="assets/js/tema.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/componente.js"></script>
+    <script src="assets/js/tema.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
 
-  <script src="assets/js/central-ajuda.js"></script>
-</body>
+    <script src="assets/js/central-ajuda.js"></script>
+  </body>
 </html>

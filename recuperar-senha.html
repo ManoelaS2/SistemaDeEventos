@@ -1,60 +1,81 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recuperar senha | EAS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar senha | EAS</title>
 
-  <!-- Estilos compartilhados em todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Estilos compartilhados em todas as páginas -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <!-- Apenas particularidades da página -->
-  <link rel="stylesheet" href="assets/css/paginas/recuperar-senha.css">
+    <!-- Apenas particularidades da página -->
+    <link rel="stylesheet" href="assets/css/paginas/recuperar-senha.css" />
 
-  <script src="assets/js/tema.js"></script>
-</head>
-<body class="page-acesso page-recuperar-senha">
-  <div id="header-container"></div>
+    <script src="assets/js/tema.js"></script>
+  </head>
+  <body class="page-acesso page-recuperar-senha">
+    <div id="header-container"></div>
 
-  <main class="area-acesso" id="section-recuperar-senha">
-    <section class="cartao cartao--acesso cartao--recuperacao" aria-labelledby="titulo-recuperacao">
-      <div class="avatar avatar--acesso" aria-hidden="true">
-        <ion-icon name="lock-closed-outline"></ion-icon>
-      </div>
-
-      <h1 class="titulo-acesso" id="titulo-recuperacao">Recuperar senha</h1>
-      <p class="mensagem-acesso">
-        Esqueceu sua senha? Sem problemas. Digite o e-mail cadastrado na sua
-        conta e enviaremos um link para redefinir sua senha.
-      </p>
-
-      <!-- Protótipo estático: valida o formato do e-mail e navega para a próxima tela.
-           O input não tem name para NÃO enviar o e-mail na URL. -->
-      <form class="formulario-acesso formulario-acesso--centralizado"
-            action="verificar-codigo.html" method="get" id="form-recuperar-senha">
-        <div class="campo-linha">
-          <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
-          <label for="campo-email" class="texto-oculto">E-mail</label>
-          <input id="campo-email" type="email" placeholder="E-mail"
-                 autocomplete="email" required>
+    <main class="area-acesso" id="section-recuperar-senha">
+      <section
+        class="cartao cartao--acesso cartao--recuperacao"
+        aria-labelledby="titulo-recuperacao"
+      >
+        <div class="avatar avatar--acesso" aria-hidden="true">
+          <ion-icon name="lock-closed-outline"></ion-icon>
         </div>
-        <button type="submit" class="btn-confirmacao">Enviar link</button>
-      </form>
 
-      <a href="login.html" class="link-retorno">
-        <span aria-hidden="true">&larr;</span> Voltar para o login
-      </a>
-      <p class="texto-prototipo">Protótipo: o formulário apenas abre a tela de verificação; nenhum e-mail é enviado.</p>
-    </section>
-  </main>
+        <h1 class="titulo-acesso" id="titulo-recuperacao">Recuperar senha</h1>
+        <p class="mensagem-acesso">
+          Esqueceu sua senha? Sem problemas. Digite o e-mail cadastrado na sua
+          conta e enviaremos um link para redefinir sua senha.
+        </p>
 
-  <div id="footer-container"></div>
-  <!-- JavaScript utilizado somente para os componentes de layout existentes -->
-  <script src="assets/js/componente.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+        <!-- Protótipo estático: valida o formato do e-mail e navega para a próxima tela.
+           O input não tem name para NÃO enviar o e-mail na URL. -->
+        <form
+          class="formulario-acesso formulario-acesso--centralizado"
+          action="verificar-codigo.html"
+          method="get"
+          id="form-recuperar-senha"
+        >
+          <div class="campo-linha">
+            <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
+            <label for="campo-email" class="texto-oculto">E-mail</label>
+            <input
+              id="campo-email"
+              type="email"
+              placeholder="E-mail"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-confirmacao">Enviar link</button>
+        </form>
+
+        <a href="login.html" class="link-retorno">
+          <span aria-hidden="true">&larr;</span> Voltar para o login
+        </a>
+        <p class="texto-prototipo">
+          Protótipo: o formulário apenas abre a tela de verificação; nenhum
+          e-mail é enviado.
+        </p>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+    <!-- JavaScript utilizado somente para os componentes de layout existentes -->
+    <script src="assets/js/componente.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

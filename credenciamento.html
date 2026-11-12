@@ -1,172 +1,194 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credenciamento | EAS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credenciamento | EAS</title>
 
-  <!-- Estilos compartilhados por todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Estilos compartilhados por todas as páginas -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <!-- Estilos exclusivos do Credenciamento -->
-  <link rel="stylesheet" href="assets/css/paginas/credenciamento.css">
-</head>
-<body class="page-details page-painel">
-  <div id="header-container"></div>
+    <!-- Estilos exclusivos do Credenciamento -->
+    <link rel="stylesheet" href="assets/css/paginas/credenciamento.css" />
 
-  <div class="painel-organizador">
-    <!-- Menu lateral do painel (links ainda sem página) -->
-    <aside class="painel-lateral" aria-label="Painel do organizador">
-      <p class="painel-lateral-titulo">Painel do organizador</p>
-      <nav aria-label="Seções do painel">
-        <ul class="painel-menu">
-          <li><a href="#">Visão geral</a></li>
-          <li><a href="#">Criar evento</a></li>
-          <li><a href="#">Gerenciar eventos</a></li>
-          <li><a href="#">Equipe</a></li>
-          <li><a href="#">Frequência</a></li>
-          <li><a href="#">Programação</a></li>
-          <li><a href="credenciamento.html" aria-current="page">Credenciamento</a></li>
-        </ul>
-      </nav>
-      <p class="texto-auxiliar painel-lateral-rodape">EAS • Protótipo acadêmico</p>
-    </aside>
+    <script src="assets/js/tema.js"></script>
+  </head>
+  <body class="page-details page-painel">
+    <div id="header-container"></div>
 
-    <main class="painel-conteudo" id="conteudo-principal">
-      <p class="painel-trilha">Painel / Credenciamento</p>
+    <div class="painel-organizador">
+      <div id="painel-adm"></div>
 
-      <header class="painel-cabecalho">
-        <div>
-          <h1 class="pagina-evento-titulo">Credenciamento</h1>
-          <p class="texto-auxiliar">Registre a chegada dos inscritos via QR Code ou confirmação manual.</p>
-        </div>
-        <span class="painel-selo">Protótipo</span>
-      </header>
+      <main class="painel-conteudo" id="conteudo-principal">
+        <p class="painel-trilha">Painel / Credenciamento</p>
 
-      <!-- Resumo -->
-      <section class="grade painel-estatisticas" aria-label="Resumo do credenciamento">
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Inscritos</span>
-            <strong class="cartao-dado">428</strong>
+        <header class="painel-cabecalho">
+          <div>
+            <h1 class="pagina-evento-titulo">Credenciamento</h1>
+            <p class="texto-auxiliar">
+              Registre a chegada dos inscritos via QR Code ou confirmação
+              manual.
+            </p>
           </div>
-        </article>
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Credenciados</span>
-            <strong class="cartao-dado">316</strong>
-          </div>
-        </article>
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Aguardando</span>
-            <strong class="cartao-dado">112</strong>
-          </div>
-        </article>
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Taxa de entrada</span>
-            <strong class="cartao-dado">74%</strong>
-          </div>
-        </article>
-      </section>
+          <span class="painel-selo">Protótipo</span>
+        </header>
 
-      <!-- Leitura de QR Code + credenciamento manual -->
-      <div class="grade painel-paineis">
-        <section class="cartao" aria-labelledby="titulo-qr">
-          <div class="cartao-conteudo">
-            <h2 class="cartao-titulo" id="titulo-qr">Leitura de QR Code</h2>
-            <p class="texto-auxiliar">Posicione o código do inscrito diante do leitor.</p>
-
-            <div class="leitor-qr">
-              <span class="leitor-linha"></span>
-              <span class="texto-auxiliar">Área ilustrativa de leitura</span>
+        <!-- Resumo -->
+        <section
+          class="grade painel-estatisticas"
+          aria-label="Resumo do credenciamento"
+        >
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda">Inscritos</span>
+              <strong class="cartao-dado">428</strong>
             </div>
-
-            <div class="grupo-acoes grupo-acoes--painel">
-              <button class="btn-confirmacao" type="button">Iniciar leitura</button>
-              <a class="btn-segundario" href="central-ajuda.html">Código inválido? Ajuda</a>
+          </article>
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda">Credenciados</span>
+              <strong class="cartao-dado">316</strong>
             </div>
-          </div>
+          </article>
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda">Aguardando</span>
+              <strong class="cartao-dado">112</strong>
+            </div>
+          </article>
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda">Taxa de entrada</span>
+              <strong class="cartao-dado">74%</strong>
+            </div>
+          </article>
         </section>
 
-        <section class="cartao" aria-labelledby="titulo-manual">
-          <div class="cartao-conteudo">
-            <h2 class="cartao-titulo" id="titulo-manual">Credenciamento manual</h2>
-            <p class="texto-auxiliar">Pesquise e confirme a identidade do participante.</p>
+        <!-- Leitura de QR Code + credenciamento manual -->
+        <div class="grade painel-paineis">
+          <section class="cartao" aria-labelledby="titulo-qr">
+            <div class="cartao-conteudo">
+              <h2 class="cartao-titulo" id="titulo-qr">Leitura de QR Code</h2>
+              <p class="texto-auxiliar">
+                Posicione o código do inscrito diante do leitor.
+              </p>
 
-            <div class="campo-formulario">
-              <label for="busca-participante">Buscar nome, CPF ou e-mail</label>
-              <input id="busca-participante" type="text" placeholder="Ex.: lucas.yuji@exemplo.com">
-            </div>
-
-            <div class="participante-encontrado">
-              <div>
-                <strong class="participante-nome">Lucas Yuji</strong>
-                <p class="texto-auxiliar">Inscrição #EAS-0284 • Confirmada</p>
+              <div class="leitor-qr">
+                <span class="leitor-linha"></span>
+                <span class="texto-auxiliar">Área ilustrativa de leitura</span>
               </div>
-              <span class="etiqueta etiqueta--aguardando">Aguardando</span>
-            </div>
 
-            <div class="grupo-acoes grupo-acoes--painel">
-              <button class="btn-confirmacao" type="button">Confirmar credenciamento</button>
+              <div class="grupo-acoes grupo-acoes--painel">
+                <button class="btn-confirmacao" type="button">
+                  Iniciar leitura
+                </button>
+                <a class="btn-segundario" href="central-ajuda.html"
+                  >Código inválido? Ajuda</a
+                >
+              </div>
+            </div>
+          </section>
+
+          <section class="cartao" aria-labelledby="titulo-manual">
+            <div class="cartao-conteudo">
+              <h2 class="cartao-titulo" id="titulo-manual">
+                Credenciamento manual
+              </h2>
+              <p class="texto-auxiliar">
+                Pesquise e confirme a identidade do participante.
+              </p>
+
+              <div class="campo-formulario">
+                <label for="busca-participante"
+                  >Buscar nome, CPF ou e-mail</label
+                >
+                <input
+                  id="busca-participante"
+                  type="text"
+                  placeholder="Ex.: lucas.yuji@exemplo.com"
+                />
+              </div>
+
+              <div class="participante-encontrado">
+                <div>
+                  <strong class="participante-nome">Lucas Yuji</strong>
+                  <p class="texto-auxiliar">Inscrição #EAS-0284 • Confirmada</p>
+                </div>
+                <span class="etiqueta etiqueta--aguardando">Aguardando</span>
+              </div>
+
+              <div class="grupo-acoes grupo-acoes--painel">
+                <button class="btn-confirmacao" type="button">
+                  Confirmar credenciamento
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Histórico -->
+        <section class="cartao" aria-labelledby="titulo-ultimos">
+          <div class="cartao-conteudo">
+            <h2 class="cartao-titulo" id="titulo-ultimos">
+              Últimos credenciamentos
+            </h2>
+            <p class="texto-auxiliar">
+              Histórico de validação do evento selecionado.
+            </p>
+
+            <div class="tabela-rolagem">
+              <table class="tabela-painel">
+                <thead>
+                  <tr>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Participante</th>
+                    <th scope="col">Inscrição</th>
+                    <th scope="col">Método</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tabela-hora">09:41</td>
+                    <td class="tabela-destaque">Cleber Humberto</td>
+                    <td>#EAS-0281</td>
+                    <td>QR Code</td>
+                  </tr>
+                  <tr>
+                    <td class="tabela-hora">09:39</td>
+                    <td class="tabela-destaque">José Antônio</td>
+                    <td>#EAS-0204</td>
+                    <td>Manual</td>
+                  </tr>
+                  <tr>
+                    <td class="tabela-hora">09:37</td>
+                    <td class="tabela-destaque">Kalky Eduardo</td>
+                    <td>#EAS-0198</td>
+                    <td>QR Code</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
-      </div>
+      </main>
+    </div>
 
-      <!-- Histórico -->
-      <section class="cartao" aria-labelledby="titulo-ultimos">
-        <div class="cartao-conteudo">
-          <h2 class="cartao-titulo" id="titulo-ultimos">Últimos credenciamentos</h2>
-          <p class="texto-auxiliar">Histórico de validação do evento selecionado.</p>
+    <div id="footer-container"></div>
 
-          <div class="tabela-rolagem">
-            <table class="tabela-painel">
-              <thead>
-                <tr>
-                  <th scope="col">Horário</th>
-                  <th scope="col">Participante</th>
-                  <th scope="col">Inscrição</th>
-                  <th scope="col">Método</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tabela-hora">09:41</td>
-                  <td class="tabela-destaque">Cleber Humberto</td>
-                  <td>#EAS-0281</td>
-                  <td>QR Code</td>
-                </tr>
-                <tr>
-                  <td class="tabela-hora">09:39</td>
-                  <td class="tabela-destaque">José Antônio</td>
-                  <td>#EAS-0204</td>
-                  <td>Manual</td>
-                </tr>
-                <tr>
-                  <td class="tabela-hora">09:37</td>
-                  <td class="tabela-destaque">Kalky Eduardo</td>
-                  <td>#EAS-0198</td>
-                  <td>QR Code</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+    <!-- Somente componentes compartilhados e tema -->
+    <script src="assets/js/componente.js"></script>
+    <script src="assets/js/paineladm.js"></script>
 
-  <div id="footer-container"></div>
-
-  <!-- Somente componentes compartilhados e tema -->
-  <script src="assets/js/componente.js"></script>
-  <script src="assets/js/tema.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

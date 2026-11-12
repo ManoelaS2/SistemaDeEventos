@@ -1,79 +1,127 @@
 <!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificar código | EAS</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verificar código | EAS</title>
+    <!-- Estilos compartilhados em todas as páginas -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <!-- Estilos compartilhados em todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Apenas particularidades da página -->
+    <link rel="stylesheet" href="assets/css/paginas/verificar-codigo.css" />
 
-  <!-- Apenas particularidades da página -->
-  <link rel="stylesheet" href="assets/css/paginas/verificar-codigo.css">
+    <script src="assets/js/tema.js"></script>
+  </head>
 
-  <script src="assets/js/tema.js"></script>
-</head>
+  <body class="page-acesso page-verificar-codigo">
+    <div id="header-container"></div>
 
-<body class="page-acesso page-verificar-codigo">
-  <div id="header-container"></div>
-
-  <main class="area-acesso" id="section-verificar-codigo">
-    <section class="cartao cartao--acesso cartao--verificacao" aria-labelledby="titulo-verificacao">
-      <div class="avatar avatar--acesso" aria-hidden="true">
-        <ion-icon name="mail-unread-outline"></ion-icon>
-      </div>
-
-      <h1 class="titulo-acesso" id="titulo-verificacao">
-        Enviamos um código para <span class="email-enviado">xx*@gmail.com</span>
-      </h1>
-
-      <!-- O e-mail exibido é apenas ilustrativo; não há autenticação sem backend. -->
-      <form class="formulario-acesso formulario-acesso--centralizado" id="form-verificar-codigo" action="index.html">
-        <fieldset class="grupo-verificacao">
-          <legend>Digite o código para redefinir sua senha.</legend>
-          <div class="grupo-codigo">
-            <input class="campo-codigo" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1"
-              autocomplete="one-time-code" placeholder="0" aria-label="Primeiro dígito" required>
-            <input class="campo-codigo" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0"
-              aria-label="Segundo dígito" required>
-            <input class="campo-codigo" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0"
-              aria-label="Terceiro dígito" required>
-            <input class="campo-codigo" type="text" inputmode="numeric" pattern="[0-9]" maxlength="1" placeholder="0"
-              aria-label="Quarto dígito" required>
-          </div>
-        </fieldset>
-
-        <div class="opcoes-codigo">
-          <p class="texto-auxiliar">Mudou de e-mail?
-            <a href="recuperar-senha.html">Atualizar e-mail</a>
-          </p>
-          <p class="texto-auxiliar">Não recebeu o código?
-            <a href="recuperar-senha.html">Reenviar código</a>
-          </p>
+    <main class="area-acesso" id="section-verificar-codigo">
+      <section
+        class="cartao cartao--acesso cartao--verificacao"
+        aria-labelledby="titulo-verificacao"
+      >
+        <div class="avatar avatar--acesso" aria-hidden="true">
+          <ion-icon name="mail-unread-outline"></ion-icon>
         </div>
 
-        <!-- Sem backend, não podemos validar o código nem afirmar sucesso. -->
-        <button type="submit" class="btn-confirmacao">
-          Verificar
-        </button>
-      </form>
+        <h1 class="titulo-acesso" id="titulo-verificacao">
+          Enviamos um código para
+          <span class="email-enviado">xx*@gmail.com</span>
+        </h1>
 
-      <p class="texto-auxiliar suporte-acesso">Ainda precisa de ajuda?
-        <a href="informacoes.html#contato">Fale conosco</a>
-      </p>
-      <p class="texto-prototipo">Protótipo: o código não é validado nesta versão.</p>
-    </section>
-  </main>
+        <!-- O e-mail exibido é apenas ilustrativo; não há autenticação sem backend. -->
+        <form
+          class="formulario-acesso formulario-acesso--centralizado"
+          id="form-verificar-codigo"
+          action="index.html"
+        >
+          <fieldset class="grupo-verificacao">
+            <legend>Digite o código para redefinir sua senha.</legend>
+            <div class="grupo-codigo">
+              <input
+                class="campo-codigo"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]"
+                maxlength="1"
+                autocomplete="one-time-code"
+                placeholder="0"
+                aria-label="Primeiro dígito"
+                required
+              />
+              <input
+                class="campo-codigo"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]"
+                maxlength="1"
+                placeholder="0"
+                aria-label="Segundo dígito"
+                required
+              />
+              <input
+                class="campo-codigo"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]"
+                maxlength="1"
+                placeholder="0"
+                aria-label="Terceiro dígito"
+                required
+              />
+              <input
+                class="campo-codigo"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]"
+                maxlength="1"
+                placeholder="0"
+                aria-label="Quarto dígito"
+                required
+              />
+            </div>
+          </fieldset>
 
-  <div id="footer-container"></div>
-  <!-- JavaScript utilizado somente para os componentes de layout existentes -->
-  <script src="assets/js/componente.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+          <div class="opcoes-codigo">
+            <p class="texto-auxiliar">
+              Mudou de e-mail?
+              <a href="recuperar-senha.html">Atualizar e-mail</a>
+            </p>
+            <p class="texto-auxiliar">
+              Não recebeu o código?
+              <a href="recuperar-senha.html">Reenviar código</a>
+            </p>
+          </div>
 
+          <!-- Sem backend, não podemos validar o código nem afirmar sucesso. -->
+          <button type="submit" class="btn-confirmacao">Verificar</button>
+        </form>
+
+        <p class="texto-auxiliar suporte-acesso">
+          Ainda precisa de ajuda?
+          <a href="informacoes.html#contato">Fale conosco</a>
+        </p>
+        <p class="texto-prototipo">
+          Protótipo: o código não é validado nesta versão.
+        </p>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+    <!-- JavaScript utilizado somente para os componentes de layout existentes -->
+    <script src="assets/js/componente.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>

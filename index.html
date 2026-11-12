@@ -1,162 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EAS</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EAS</title>
+    <!-- CSS compartilhado, nesta ordem -->
+    <link rel="stylesheet" href="assets/css/variaveis.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/componentes.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
 
-  <!-- CSS compartilhado, nesta ordem -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
+    <!-- Somente o layout exclusivo da Home -->
+    <link rel="stylesheet" href="assets/css/paginas/home.css" />
 
-  <!-- Somente o layout exclusivo da Home -->
-  <link rel="stylesheet" href="assets/css/paginas/home.css">
+    <script src="assets/js/tema.js"></script>
+  </head>
 
-  <script src="assets/js/tema.js"></script>
-</head>
+  <body class="page-home">
+    <!-- Injetados por assets/js/componente.js -->
+    <div id="header-container"></div>
 
-<body class="page-home">
-  <!-- Injetados por assets/js/componente.js -->
-  <div id="header-container"></div>
+    <main>
+      <!-- Destaque: estrutura exclusiva da Home -->
+      <section class="destaque" aria-labelledby="hero-title">
+        <h1 class="destaque-titulo" id="hero-title">Eventos em destaque</h1>
+        <div class="destaque-carrossel">
+          <button
+            class="botao-icone botao-icone--carrossel"
+            type="button"
+            aria-label="Evento anterior"
+          >
+            <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
+          </button>
+          <a
+            class="destaque-imagem"
+            href="evento.html?evento=A"
+            aria-label="Conhecer o evento em destaque"
+          ></a>
+          <button
+            class="botao-icone botao-icone--carrossel"
+            type="button"
+            aria-label="Próximo evento"
+          >
+            <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+      </section>
 
-  <main>
-    <!-- Destaque: estrutura exclusiva da Home -->
-    <section class="destaque" aria-labelledby="hero-title">
-      <h1 class="destaque-titulo" id="hero-title">Eventos em destaque</h1>
-      <div class="destaque-carrossel">
-        <button class="botao-icone botao-icone--carrossel" type="button" aria-label="Evento anterior">
-          <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
-        </button>
-        <a class="destaque-imagem" href="evento.html?evento=A" aria-label="Conhecer o evento em destaque"></a>
-        <button class="botao-icone botao-icone--carrossel" type="button" aria-label="Próximo evento">
-          <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-        </button>
-      </div>
-    </section>
+      <!-- Componentes reutilizáveis: seção + cabeçalho + grade + cartão -->
+      <section
+        class="secao secao--categorias"
+        aria-labelledby="categories-title"
+      >
+        <div class="secao-cabecalho">
+          <h2 id="categories-title">Conheça nossas categorias</h2>
+          <a class="link-destaque" href="#eventos">Ver tudo</a>
+        </div>
+        <div class="grade grade--categorias">
+          <a href="#eventos" class="cartao cartao--categoria">
+            <ion-icon name="mic-outline" aria-hidden="true"></ion-icon>
+            <span>Palestras e Seminários</span>
+          </a>
+          <a href="#eventos" class="cartao cartao--categoria">
+            <ion-icon name="ribbon-outline" aria-hidden="true"></ion-icon>
+            <span>Minicursos e Workshops</span>
+          </a>
+          <a href="#eventos" class="cartao cartao--categoria">
+            <ion-icon name="trophy-outline" aria-hidden="true"></ion-icon>
+            <span>Atléticas e Esportes</span>
+          </a>
+          <a href="#eventos" class="cartao cartao--categoria">
+            <ion-icon name="wine-outline" aria-hidden="true"></ion-icon>
+            <span>Festas Universitárias</span>
+          </a>
+          <a href="#eventos" class="cartao cartao--categoria">
+            <ion-icon name="laptop-outline" aria-hidden="true"></ion-icon>
+            <span>Hackathons e Maratonas</span>
+          </a>
+          <a
+            class="botao-icone botao-icone--proximo categorias-proximo"
+            href="#eventos"
+            aria-label="Mais categorias"
+          >
+            <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </section>
 
-    <!-- Componentes reutilizáveis: seção + cabeçalho + grade + cartão -->
-    <section class="secao secao--categorias" aria-labelledby="categories-title">
-      <div class="secao-cabecalho">
-        <h2 id="categories-title">Conheça nossas categorias</h2>
-        <a class="link-destaque" href="#eventos">Ver tudo</a>
-      </div>
-      <div class="grade grade--categorias">
-        <a href="#eventos" class="cartao cartao--categoria">
-          <ion-icon name="mic-outline" aria-hidden="true"></ion-icon>
-          <span>Palestras e Seminários</span>
-        </a>
-        <a href="#eventos" class="cartao cartao--categoria">
-          <ion-icon name="ribbon-outline" aria-hidden="true"></ion-icon>
-          <span>Minicursos e Workshops</span>
-        </a>
-        <a href="#eventos" class="cartao cartao--categoria">
-          <ion-icon name="trophy-outline" aria-hidden="true"></ion-icon>
-          <span>Atléticas e Esportes</span>
-        </a>
-        <a href="#eventos" class="cartao cartao--categoria">
-          <ion-icon name="wine-outline" aria-hidden="true"></ion-icon>
-          <span>Festas Universitárias</span>
-        </a>
-        <a href="#eventos" class="cartao cartao--categoria">
-          <ion-icon name="laptop-outline" aria-hidden="true"></ion-icon>
-          <span>Hackathons e Maratonas</span>
-        </a>
-        <a class="botao-icone botao-icone--proximo categorias-proximo" href="#eventos" aria-label="Mais categorias">
-          <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-        </a>
-      </div>
-    </section>
+      <section
+        class="secao secao--eventos"
+        id="eventos"
+        aria-labelledby="events-title"
+      >
+        <div class="secao-cabecalho">
+          <h2 id="events-title">Eventos em andamento</h2>
+          <a class="link-destaque" href="#eventos">Ver tudo</a>
+        </div>
+        <div class="grade grade--eventos">
+          <a href="evento.html?evento=A" class="cartao cartao--evento">
+            <div class="cartao-imagem">
+              <span class="etiqueta etiqueta--evento"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento A</span>
+            </div>
+            <div class="cartao-conteudo">
+              <h3 class="cartao-titulo">Título Evento A</h3>
+              <p class="cartao-descricao">Local Evento A</p>
+              <span class="cartao-legenda">Inscreva-se de:</span>
+              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=B" class="cartao cartao--evento">
+            <div class="cartao-imagem">
+              <span class="etiqueta etiqueta--evento">
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento B</span>
+            </div>
+            <div class="cartao-conteudo">
+              <h3 class="cartao-titulo">Título Evento B</h3>
+              <p class="cartao-descricao">Local Evento B</p>
+              <span class="cartao-legenda">Inscreva-se de:</span>
+              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=C" class="cartao cartao--evento">
+            <div class="cartao-imagem">
+              <span class="etiqueta etiqueta--evento"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento C</span>
+            </div>
+            <div class="cartao-conteudo">
+              <h3 class="cartao-titulo">Título Evento C</h3>
+              <p class="cartao-descricao">Local Evento C</p>
+              <span class="cartao-legenda">Inscreva-se de:</span>
+              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=D" class="cartao cartao--evento">
+            <div class="cartao-imagem">
+              <span class="etiqueta etiqueta--evento"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon>
+                Gratuito</span
+              >
+              <span>Imagem<br />Evento D</span>
+            </div>
+            <div class="cartao-conteudo">
+              <h3 class="cartao-titulo">Título Evento D</h3>
+              <p class="cartao-descricao">Local Evento D</p>
+              <span class="cartao-legenda">Inscreva-se de:</span>
+              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=E" class="cartao cartao--evento">
+            <div class="cartao-imagem">
+              <span class="etiqueta etiqueta--evento"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span
+              >
+              <span>Imagem<br />Evento E</span>
+            </div>
+            <div class="cartao-conteudo">
+              <h3 class="cartao-titulo">Título Evento E</h3>
+              <p class="cartao-descricao">Local Evento E</p>
+              <span class="cartao-legenda">Inscreva-se de:</span>
+              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+          <a href="evento.html?evento=F" class="cartao cartao--evento">
+            <div class="cartao-imagem">
+              <span class="etiqueta etiqueta--evento"
+                ><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span
+              >
+              <span>Imagem<br />Evento F</span>
+            </div>
+            <div class="cartao-conteudo">
+              <h3 class="cartao-titulo">Título Evento F</h3>
+              <p class="cartao-descricao">Local Evento F</p>
+              <span class="cartao-legenda">Inscreva-se de:</span>
+              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
 
-    <section class="secao secao--eventos" id="eventos" aria-labelledby="events-title">
-      <div class="secao-cabecalho">
-        <h2 id="events-title">Eventos em andamento</h2>
-        <a class="link-destaque" href="#eventos">Ver tudo</a>
-      </div>
-      <div class="grade grade--eventos">
-        <a href="evento.html?evento=A" class="cartao cartao--evento">
-          <div class="cartao-imagem">
-            <span class="etiqueta etiqueta--evento"><ion-icon name="star" aria-hidden="true"></ion-icon> Gratuito</span>
-            <span>Imagem<br>Evento A</span>
-          </div>
-          <div class="cartao-conteudo">
-            <h3 class="cartao-titulo">Título Evento A</h3>
-            <p class="cartao-descricao">Local Evento A</p>
-            <span class="cartao-legenda">Inscreva-se de:</span>
-            <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-          </div>
-        </a>
-        <a href="evento.html?evento=B" class="cartao cartao--evento">
-          <div class="cartao-imagem">
-            <span class="etiqueta etiqueta--evento">
-              <ion-icon name="star" aria-hidden="true"></ion-icon> Gratuito</span>
-            <span>Imagem<br>Evento B</span>
-          </div>
-          <div class="cartao-conteudo">
-            <h3 class="cartao-titulo">Título Evento B</h3>
-            <p class="cartao-descricao">Local Evento B</p>
-            <span class="cartao-legenda">Inscreva-se de:</span>
-            <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-          </div>
-        </a>
-        <a href="evento.html?evento=C" class="cartao cartao--evento">
-          <div class="cartao-imagem">
-            <span class="etiqueta etiqueta--evento"><ion-icon name="star" aria-hidden="true"></ion-icon> Gratuito</span>
-            <span>Imagem<br>Evento C</span>
-          </div>
-          <div class="cartao-conteudo">
-            <h3 class="cartao-titulo">Título Evento C</h3>
-            <p class="cartao-descricao">Local Evento C</p>
-            <span class="cartao-legenda">Inscreva-se de:</span>
-            <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-          </div>
-        </a>
-        <a href="evento.html?evento=D" class="cartao cartao--evento">
-          <div class="cartao-imagem">
-            <span class="etiqueta etiqueta--evento"><ion-icon name="star" aria-hidden="true"></ion-icon> Gratuito</span>
-            <span>Imagem<br>Evento D</span>
-          </div>
-          <div class="cartao-conteudo">
-            <h3 class="cartao-titulo">Título Evento D</h3>
-            <p class="cartao-descricao">Local Evento D</p>
-            <span class="cartao-legenda">Inscreva-se de:</span>
-            <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-          </div>
-        </a>
-        <a href="evento.html?evento=E" class="cartao cartao--evento">
-          <div class="cartao-imagem">
-            <span class="etiqueta etiqueta--evento"><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span>
-            <span>Imagem<br>Evento E</span>
-          </div>
-          <div class="cartao-conteudo">
-            <h3 class="cartao-titulo">Título Evento E</h3>
-            <p class="cartao-descricao">Local Evento E</p>
-            <span class="cartao-legenda">Inscreva-se de:</span>
-            <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-          </div>
-        </a>
-        <a href="evento.html?evento=F" class="cartao cartao--evento">
-          <div class="cartao-imagem">
-            <span class="etiqueta etiqueta--evento"><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span>
-            <span>Imagem<br>Evento F</span>
-          </div>
-          <div class="cartao-conteudo">
-            <h3 class="cartao-titulo">Título Evento F</h3>
-            <p class="cartao-descricao">Local Evento F</p>
-            <span class="cartao-legenda">Inscreva-se de:</span>
-            <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-          </div>
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <div id="footer-container"></div>
-  <script src="./assets/js/componente.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
-
+    <div id="footer-container"></div>
+    <script src="./assets/js/componente.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
 </html>
