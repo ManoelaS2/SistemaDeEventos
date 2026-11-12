@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programação</title>
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/componentes.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/variaveis.css">
+    <link rel="stylesheet" href="assets/css/paginas/programacao-evento.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <main class="painel">
+        <div id="painel-adm"></div>
+        <div class="titulo-painel">
+            <h5 class="h5-fraco">PAINEL / EQUIPE / GERENCIAR</h5>
+            <h1>Gerenciamento de equipe</h1>
+            <p>Defina funções, permissões e certificados da equipe organizadora.</p>
+            <button class="btn-confirmacao">+ Adicionar membro</button>
+        </div>
+        <div class="card-informativos">
+            <div class="card-informaçao">
+                <h5 class="h5-fraco">Membros ativos</h5>
+                <h2>18</h2>
+                <h5 class="h5-fraco">Equipe vinculada ao evento</h5>
+            </div>
+            <div class="card-informaçao">
+                <h5 class="h5-fraco">Funções</h5>
+                <h2>05</h2>
+                <h5 class="h5-fraco">Perfis de acesso definidos</h5>
+            </div>
+            <div class="card-informaçao">
+                <h5 class="h5-fraco">Certificados</h5>
+                <h2>14</h2>
+                <h5 class="h5-fraco">Prontos para emissão</h5>
+            </div>
+            <div class="card-informaçao">
+                <h5 class="h5-fraco">Pendências</h5>
+                <h2>04</h2>
+                <h5 class="h5-fraco">Aguardando validação</h5>
+            </div>
+        </div>
+        <div class="integrantes-equipe">
+            <h3>Integrantes da equipe</h3>
+            <h5 class="h5-fraco"></h5>
+            <table>
+                <thead>
+                    <tr>    
+                        <th>Integrante</th>
+                        <th>Função</th>
+                        <th>Permissões</th>
+                        <th>Certificado</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="foto-integrate"></span><h5>Manoela Amaral</h5></td>
+                        <td><p>Coordenação geral</p></td>
+                        <td><span class="elemento-table">Acesso total</span></td>
+                        <td><span class="elemento-table">Apto</span></td>
+                        <td><a href="#">Editar →</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="foto-integrate"></span><h5>Gustavo Crisóstono</h5></td>
+                        <td><p>Credenciamento</p></td>
+                        <td><span class="elemento-table">Validar presença</span></td>
+                        <td><span class="elemento-table">Apto</span></td>
+                        <td><a href="#">Editar →</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="foto-integrate"></span><h5>Heitor de Souza</h5></td>
+                        <td><p>Monitora de sala</p></td>
+                        <td><span class="elemento-table">Atividades</span></td>
+                        <td><span class="elemento-table table-amrelo">Pendente</span></td>
+                        <td><a href="#">Editar →</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="foto-integrate"></span><h5>Fernando José</h5></td>
+                        <td><p>Apoio e logística</p></td>
+                        <td><span class="elemento-table">Consulta</span></td>
+                        <td><span class="elemento-table">Apto</span></td>
+                        <td><a href="#">Editar →</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="funcoes">
+            <h3>Funções e acessos</h3>
+            <h5 class="h5-fraco">Responsabilidades definidas por perfil.</h5>
+            <span class="micro-table"><h4>Coordenação</h4> <p>Criar e gerenciar eventos</p></span>
+            <span class="micro-table"><h4>Credenciamento</h4> <p>Validar entrada dos inscritos</p></span>
+            <span class="micro-table"><h4>Coordenação</h4> <p>Criar e gerenciar eventos</p></span>
+        </div>
+        <div class="certificados">
+            <h3>Certificados da equipe</h3>
+            <h5 class="h5-fraco">Emita certificados para quem cumpriu as funções.</h5>
+            <div class="descricao-certificado">
+                <div class="numero-certificado">
+                    <h2>14</h2>
+                    <h5>APTOS</h5>
+                </div>
+                <div class="texto-certificado">
+                    <p>4 participantes precisam de validação.</p>
+                    <p>Confira cargo, horas e período de atuação.</p>
+                </div>
+            </div>
+            <button class="btn-confirmacao">Emitir certificados</button>
+        </div>
+    </main>
+    <div id="footer-container"></div>
+    <script src="assets/js/componente.js"></script>
+    <script src="assets/js/paineladm.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
