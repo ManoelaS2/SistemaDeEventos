@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Cadastre atividades no evento em criação e selecione um ou mais palestrantes já cadastrados." name="description"/>
+  <title>
+   Adicionar atividade ao evento | EAS
+  </title>
+  <!-- Estilos compartilhados existentes, sem alterações. -->
+  <link href="assets/css/variaveis.css" rel="stylesheet"/>
+  <link href="assets/css/base.css" rel="stylesheet"/>
+  <link href="assets/css/componentes.css" rel="stylesheet"/>
+  <link href="assets/css/layout.css" rel="stylesheet"/>
+  <link href="assets/css/paginas/adicionar-atividade.css" rel="stylesheet"/>
+  <script defer="" src="assets/js/tema.js">
+  </script>
+ </head>
+ <body class="page-home page-adicionar-atividade">
+  <div id="header-container">
+  </div>
+  <div class="secao estrutura-adicionar-atividade">
+   <!-- O menu administrativo será injetado futuramente por JavaScript. -->
+   <div id="painel-adm"></div>
+   <main class="conteudo-adicionar-atividade" id="conteudo-principal">
+    <nav aria-label="Localização no painel" class="trilha-adicionar-atividade">
+     <ol>
+      <li>
+       Painel do organizador
+      </li>
+      <li>
+       Criar evento
+      </li>
+      <li aria-current="page">
+       Adicionar atividade
+      </li>
+     </ol>
+    </nav>
+    <div class="cabecalho-adicionar-atividade">
+     <div>
+      <h1>
+       Adicionar atividade
+      </h1>
+      <p>
+       Organize a programação do evento e vincule um ou mais palestrantes cadastrados.
+      </p>
+     </div>
+     <span class="etiqueta etiqueta-modelo">
+      Etapa: programação
+     </span>
+    </div>
+    <!--O vínculo com o evento em criação será controlado pelo fluxo de cadastro.-->
+    <form action="#" class="grade grade-adicionar-atividade" id="form-adicionar-atividade" method="post">
+     <section aria-labelledby="titulo-dados" class="cartao painel-formulario painel-dados">
+      <header class="cabecalho-painel">
+       <h2 id="titulo-dados">
+        Informações da atividade
+       </h2>
+       <p>
+        Preencha os detalhes que aparecerão na programação do evento.
+       </p>
+      </header>
+      <div class="grade campos-dados">
+       <div class="campo-formulario campo-largura-total">
+        <label for="nome-atividade">
+         Nome da atividade
+         <span aria-hidden="true" class="indicacao-obrigatorio">
+          *
+         </span>
+        </label>
+        <input id="nome-atividade" maxlength="180" name="nome_atividade" placeholder="Ex.: Inteligência Artificial no Dia a Dia" required="" type="text"/>
+       </div>
+       <div class="campo-formulario">
+        <label for="tipo-atividade">
+         Tipo de atividade
+         <span aria-hidden="true" class="indicacao-obrigatorio">
+          *
+         </span>
+        </label>
+        <select id="tipo-atividade" name="tipo_atividade" required="">
+         <option disabled="" selected="" value="">
+          Selecione o tipo
+         </option>
+         <option value="palestra">
+          Palestra
+         </option>
+         <option value="oficina">
+          Oficina
+         </option>
+         <option value="minicurso">
+          Minicurso
+         </option>
+         <option value="mesa-redonda">
+          Mesa-redonda
+         </option>
+         <option value="workshop">
+          Workshop
+         </option>
+         <option value="outros">
+          Outros
+         </option>
+        </select>
+       </div>
+       <div class="campo-formulario">
+        <label for="modalidade-atividade">
+         Modalidade
+        </label>
+        <select id="modalidade-atividade" name="modalidade">
+         <option selected="" value="presencial">
+          Presencial
+         </option>
+         <option value="online">
+          Online
+         </option>
+         <option value="hibrida">
+          Híbrida
+         </option>
+        </select>
+       </div>
+       <div class="campo-formulario">
+        <label for="data-atividade">
+         Data
+         <span aria-hidden="true" class="indicacao-obrigatorio">
+          *
+         </span>
+        </label>
+        <input id="data-atividade" name="data_atividade" required="" type="date"/>
+       </div>
+       <div class="grade grade-horarios">
+        <div class="campo-formulario">
+         <label for="horario-inicio">
+          Início
+          <span aria-hidden="true" class="indicacao-obrigatorio">
+           *
+          </span>
+         </label>
+         <input id="horario-inicio" name="horario_inicio" required="" type="time"/>
+        </div>
+        <div class="campo-formulario">
+         <label for="horario-termino">
+          Término
+          <span aria-hidden="true" class="indicacao-obrigatorio">
+           *
+          </span>
+         </label>
+         <input id="horario-termino" name="horario_termino" required="" type="time"/>
+        </div>
+       </div>
+       <div class="campo-formulario campo-largura-total">
+        <label for="local-atividade">
+         Local ou link de acesso
+        </label>
+        <input id="local-atividade" maxlength="220" name="local_atividade" placeholder="Ex.: Auditório principal • Bloco B" type="text"/>
+       </div>
+       <div class="campo-formulario campo-largura-total">
+        <label for="descricao-atividade">
+         Descrição
+        </label>
+        <textarea id="descricao-atividade" maxlength="3000" name="descricao_atividade" placeholder="Apresente o objetivo, os conteúdos e o público-alvo da atividade." rows="3"></textarea>
+       </div>
+      </div>
+     </section>
+     <section aria-labelledby="titulo-configuracoes" class="cartao painel-formulario painel-vinculacao">
+      <header class="cabecalho-painel">
+       <h2 id="titulo-configuracoes">
+        Inscrições e certificado
+       </h2>
+       <p>
+        Configure as vagas e a participação nesta atividade.
+       </p>
+      </header>
+      <div class="campos-vinculacao">
+       <div class="campo-formulario">
+        <label for="limite-vagas-atividade">
+         Limite de vagas
+        </label>
+        <input id="limite-vagas-atividade" min="1" name="limite_vagas" placeholder="Ex.: 50" step="1" type="number"/>
+       </div>
+       <div class="campo-formulario">
+        <label for="inscricao-atividade">
+         Inscrição na atividade
+        </label>
+        <select id="inscricao-atividade" name="exige_inscricao">
+         <option selected="" value="sim">
+          Obrigatória
+         </option>
+         <option value="nao">
+          Não obrigatória
+         </option>
+        </select>
+       </div>
+       <div class="campo-formulario">
+        <label for="certificado-atividade">
+         Certificado
+        </label>
+        <select id="certificado-atividade" name="certificado">
+         <option selected="" value="consolidado">
+          Integrar ao certificado do evento
+         </option>
+         <option value="nao">
+          Não contabilizar
+         </option>
+        </select>
+       </div>
+      </div>
+     </section>
+     <section aria-labelledby="titulo-palestrantes" class="cartao painel-formulario painel-palestrantes-selecao">
+      <div class="cabecalho-painel cabecalho-palestrantes">
+       <div>
+        <h2 id="titulo-palestrantes">
+         Palestrantes da atividade
+        </h2>
+        <p>
+         Selecione um ou mais palestrantes já cadastrados para participar desta atividade.
+        </p>
+       </div>
+       <a class="btn-confirmacao botao-novo-palestrante" href="cadastrar-palestrante.html?origem=atividade">
+        <svg aria-hidden="true" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="17">
+         <path d="M12 5v14M5 12h14">
+         </path>
+        </svg>
+        Cadastrar novo palestrante
+       </a>
+      </div>
+      <fieldset aria-describedby="ajuda-palestrantes" class="lista-palestrantes">
+       <legend>
+        Selecionar palestrantes cadastrados
+        <span aria-hidden="true" class="indicacao-obrigatorio">
+         *
+        </span>
+       </legend>
+       <div class="grade grade-opcoes-palestrantes">
+        <label class="opcao-palestrante">
+         <input checked="" name="palestrantes[]" type="checkbox" value="exemplo-01"/>
+         <span aria-hidden="true" class="avatar-iniciais">
+          AR
+         </span>
+         <span class="dados-opcao">
+          <strong>
+           Ana Paula Ribeiro
+          </strong>
+          <small>
+           Professora · Inteligência Artificial
+          </small>
+         </span>
+        </label>
+        <label class="opcao-palestrante">
+         <input checked="" name="palestrantes[]" type="checkbox" value="exemplo-02"/>
+         <span aria-hidden="true" class="avatar-iniciais">
+          CL
+         </span>
+         <span class="dados-opcao">
+          <strong>
+           Carlos Eduardo Lima
+          </strong>
+          <small>
+           Pesquisador · Automação
+          </small>
+         </span>
+        </label>
+        <label class="opcao-palestrante">
+         <input name="palestrantes[]" type="checkbox" value="exemplo-03"/>
+         <span aria-hidden="true" class="avatar-iniciais">
+          MC
+         </span>
+         <span class="dados-opcao">
+          <strong>
+           Mariana Costa Alves
+          </strong>
+          <small>
+           Desenvolvedora · Segurança digital
+          </small>
+         </span>
+        </label>
+        <label class="opcao-palestrante">
+         <input name="palestrantes[]" type="checkbox" value="exemplo-04"/>
+         <span aria-hidden="true" class="avatar-iniciais">
+          LF
+         </span>
+         <span class="dados-opcao">
+          <strong>
+           Lucas Ferreira
+          </strong>
+          <small>
+           Engenheiro de software · Nuvem
+          </small>
+         </span>
+        </label>
+       </div>
+      </fieldset>
+      <div class="detalhe-selecao" id="ajuda-palestrantes">
+       <p>
+        <strong>
+         Escolha pelo menos 1 palestrante.
+        </strong>
+        Você pode marcar quantos forem necessários.
+       </p>
+       <p>
+        Os nomes exibidos são exemplos visuais. A lista definitiva virá dos palestrantes cadastrados.
+       </p>
+      </div>
+     </section>
+     <section aria-label="Ações do formulário" class="cartao painel-formulario painel-salvamento">
+      <div>
+       <strong>
+        Atividade do evento em criação
+       </strong>
+       <p class="texto-auxiliar">
+        No fluxo integrado, a atividade será associada automaticamente ao evento em criação. Você poderá adicionar outras atividades antes de publicar.
+       </p>
+      </div>
+      <div class="grupo-acoes acoes-atividade">
+       <button class="btn-segundario" formnovalidate="" name="acao" type="submit" value="rascunho">
+        Salvar rascunho
+       </button>
+       <button class="btn-confirmacao" name="acao" type="submit" value="cadastrar">
+        Adicionar atividade
+       </button>
+      </div>
+     </section>
+    </form>
+   </main>
+  </div>
+  <div id="footer-container">
+  </div>
+  <script src="assets/js/componente.js">
+  </script>
+  <script src="assets/js/paineladm.js"></script>
+  <script src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js" type="module">
+  </script>
+  <script nomodule="" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js">
+  </script>
+ </body>
+</html>

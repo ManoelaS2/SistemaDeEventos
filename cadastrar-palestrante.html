@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cadastre palestrantes e suas fotos para as atividades do EAS.">
+  <title>Cadastrar palestrante | EAS</title>
+  <link rel="stylesheet" href="assets/css/variaveis.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/paginas/cadastrar-palestrante.css">
+  <script src="assets/js/tema.js" defer></script>
+</head>
+<body class="page-home page-cadastrar-palestrante">
+  <div id="header-container"></div>
+  <div class="secao estrutura-cadastrar-palestrante">
+    <!-- Área reservada para a inclusão do menu administrativo por JS. -->
+    <div id="painel-adm"></div>
+    <main class="conteudo-cadastrar-palestrante" id="conteudo-principal">
+      <nav class="trilha-cadastrar-palestrante" aria-label="Localização no painel">
+        <ol>
+          <li>Painel do organizador</li>
+          <li>Criar evento</li>
+          <li>Adicionar atividade</li>
+          <li aria-current="page">Cadastrar palestrante</li>
+        </ol>
+      </nav>
+      <div class="cabecalho-cadastrar-palestrante">
+        <div>
+          <h1>Cadastrar palestrante</h1>
+          <p>Adicione um palestrante à sua lista para vinculá-lo às atividades do evento.</p>
+        </div>
+        <span class="etiqueta etiqueta-modelo">Cadastro de palestrantes</span>
+      </div>
+      <form id="form-cadastrar-palestrante" action="#" method="post" enctype="multipart/form-data" class="grade grade-cadastrar-palestrante">
+        <section class="cartao painel-formulario painel-dados-palestrante" aria-labelledby="titulo-pessoais">
+          <header class="cabecalho-painel">
+            <h2 id="titulo-pessoais">Informações do palestrante</h2>
+            <p>Preencha os dados de identificação e contato.</p>
+          </header>
+          <div class="grade grade-campos-palestrante">
+            <div class="campo-formulario campo-largura-total">
+              <label for="nome-palestrante">Nome completo <span class="indicacao-obrigatorio" aria-hidden="true">*</span></label>
+              <input type="text" id="nome-palestrante" name="nome" maxlength="150" placeholder="Ex.: Ana Paula Ribeiro" autocomplete="name" required>
+            </div>
+            <div class="campo-formulario">
+              <label for="cargo-palestrante">Cargo ou especialidade</label>
+              <input type="text" id="cargo-palestrante" name="cargo" maxlength="150" placeholder="Ex.: Professora de Computação">
+            </div>
+            <div class="campo-formulario">
+              <label for="instituicao-palestrante">Instituição / organização</label>
+              <input type="text" id="instituicao-palestrante" name="instituicao" maxlength="180" placeholder="Ex.: IF Goiano">
+            </div>
+            <div class="campo-formulario campo-largura-total">
+              <label for="email-palestrante">E-mail para contato</label>
+              <input type="email" id="email-palestrante" name="email" maxlength="180" placeholder="nome@exemplo.com" autocomplete="email">
+            </div>
+          </div>
+        </section>
+        <section class="cartao painel-formulario painel-foto-palestrante" aria-labelledby="titulo-foto">
+          <header class="cabecalho-painel">
+            <h2 id="titulo-foto">Foto do palestrante</h2>
+            <p>Esta imagem poderá aparecer na programação do evento.</p>
+          </header>
+          <div class="area-imagem-palestrante">
+            <input class="texto-oculto entrada-foto" id="foto-palestrante" name="foto" type="file" accept="image/png,image/jpeg,image/webp" aria-describedby="orientacao-foto">
+            <label class="rotulo-upload" for="foto-palestrante">
+              <span class="icone-upload" aria-hidden="true">
+                <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="21" r="10"></circle><path d="M10 51v-4c0-11 9-20 20-20s20 9 20 20v4"></path></svg>
+              </span>
+              <span class="btn-segundario acao-upload">Selecionar foto</span>
+              <span class="texto-auxiliar" id="orientacao-foto">JPG, PNG ou WEBP</span>
+            </label>
+          </div>
+          <p class="nota-foto">Prefira uma foto nítida, centralizada e com o rosto visível.</p>
+        </section>
+        <section class="cartao painel-formulario painel-perfil-profissional" aria-labelledby="titulo-profissional">
+          <header class="cabecalho-painel">
+            <h2 id="titulo-profissional">Apresentação profissional</h2>
+            <p>Essas informações poderão aparecer no perfil público do palestrante.</p>
+          </header>
+          <div class="grade grade-campos-profissionais">
+            <div class="campo-formulario campo-largura-total">
+              <label for="biografia-palestrante">Mini biografia</label>
+              <textarea id="biografia-palestrante" name="biografia" maxlength="1500" rows="4" placeholder="Apresente a experiência, formação e principais áreas de atuação do palestrante."></textarea>
+            </div>
+            <div class="campo-formulario">
+              <label for="site-palestrante">Site ou portfólio (opcional)</label>
+              <input type="url" id="site-palestrante" name="site" placeholder="https://exemplo.com">
+            </div>
+            <div class="campo-formulario">
+              <label for="linkedin-palestrante">LinkedIn (opcional)</label>
+              <input type="url" id="linkedin-palestrante" name="linkedin" placeholder="https://linkedin.com/in/perfil">
+            </div>
+          </div>
+        </section>
+        <section class="cartao painel-formulario painel-salvamento-palestrante" aria-label="Ações do formulário">
+          <div>
+            <strong>Pronto para vincular às atividades</strong>
+            <p class="texto-auxiliar">O mesmo palestrante poderá participar de uma ou várias atividades após a integração do cadastro.</p>
+          </div>
+          <div class="grupo-acoes acoes-palestrante">
+            <a href="adicionar-atividade.html" class="btn-segundario">Voltar à atividade</a>
+            <button type="submit" class="btn-confirmacao">Salvar palestrante</button>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+  <div id="footer-container"></div>
+  <script src="assets/js/componente.js"></script>
+  <script src="assets/js/paineladm.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
