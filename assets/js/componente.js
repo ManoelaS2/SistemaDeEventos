@@ -59,3 +59,25 @@ document.querySelectorAll("form[data-demo-redirect]").forEach((form) => {
     if (form.reportValidity()) window.location.href = form.dataset.demoRedirect;
   });
 });
+
+// Modais do footer (Sobre, Contato, Termos): abrem na própria página.
+const MODAIS_FOOTER = {
+  '#sobre': 'modal-sobre',
+  '#contato': 'modal-contato',
+  '#termos': 'modal-termos'
+};
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('.site-footer a[href]');
+  const id = link && MODAIS_FOOTER[link.hash];
+  const modal = id && document.getElementById(id);
+
+  if (modal) {
+    event.preventDefault();
+    modal.showModal();
+    return;
+  }
+
+  // Clique no fundo escurecido (o alvo é o próprio <dialog>) fecha o modal.
+  if (event.target.classList.contains('modal')) event.target.close();
+});
