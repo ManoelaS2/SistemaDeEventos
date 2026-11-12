@@ -1,0 +1,360 @@
+/* =====================================================
+   frequencia.css - estilos SÓ da tela Frequência nas atividades
+   (frequencia.html)
+   ===================================================== */
+
+/* -----------------------------------------------------
+   1) VARIÁVEIS DE COR (CSS Custom Properties)
+   -----------------------------------------------------
+   Uma variável guarda um valor com um nome (--fundo) e é lida
+   com var(--fundo). Para trocar de tema, o JS só muda o atributo
+   data-tema do <html> e todas as cores mudam juntas. */
+:root {
+  --fundo: #f1f1f1;
+  --painel: #ffffff;
+  --texto: #1d2b27;
+  --texto-suave: #6b7773;
+  --borda: #dfe5e3;
+  --verde: #00a884;
+  --verde-claro: #e3f5ef;
+  --pendente-fundo: #fdebd0;
+  --pendente-texto: #b26a00;
+  --gradiente: linear-gradient(135deg, #00d68f, #00e5b0);
+}
+
+[data-tema="escuro"] {
+  --fundo: #262b29;
+  --painel: #37403c;
+  --texto: #f2f2f2;
+  --texto-suave: #a9b5b0;
+  --borda: #4a5551;
+  --verde: #1ed8a4;
+  --verde-claro: #1f4d42;
+  --pendente-fundo: #4d3a1c;
+  --pendente-texto: #f0a63c;
+}
+
+/* -----------------------------------------------------
+   2) BASE
+   ----------------------------------------------------- */
+* {
+  box-sizing: border-box; /* padding e borda entram na largura total */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------
+   3) LAYOUT: menu lateral + conteúdo
+   ----------------------------------------------------- */
+.layout {
+  display: flex;             /* menu à esquerda, conteúdo à direita */
+  min-height: 100vh;         /* 100vh = altura inteira da tela */
+}
+
+/* MENU LATERAL
+   - position: sticky + top: 0 + height: 100vh: o menu fica "grudado" na
+     lateral, ocupando a altura toda da tela, mesmo se você rolar a página.
+   - display: flex + flex-direction: column: empilha título, links e
+     botão de tema na vertical.
+   - flex-shrink: 0: impede o menu de ser espremido pelo conteúdo. */
+.menu-lateral {
+  width: 200px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--painel);
+  border-right: 1px solid var(--borda);
+  padding: 24px 14px;
+  font-size: 0.85rem;
+}
+
+.menu-lateral small {
+  display: block;
+  color: var(--texto-suave);
+  font-size: 0.65rem;
+  margin-bottom: 18px;
+}
+
+/* flex: 1 faz a lista de links ocupar todo o espaço livre do meio,
+   empurrando o botão de tema para o fim do menu */
+.menu-lateral nav {
+  flex: 1;
+}
+
+.rodape-menu {
+  border-top: 1px solid var(--borda);
+  padding-top: 14px;
+}
+
+.btn-tema {
+  width: 100%;
+  background: var(--verde-claro);
+  color: var(--verde);
+  border: none;
+  border-radius: 6px;
+  padding: 9px 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.menu-lateral a {
+  display: block;
+  padding: 9px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.menu-lateral a.ativo {
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-weight: 700;
+}
+
+.principal {
+  flex: 1;
+  padding: 24px 28px 36px;
+  min-width: 0;              /* evita que tabelas estiquem o layout flex */
+}
+
+.migalhas {
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+}
+
+.principal h1 {
+  font-size: 1.7rem;
+  margin: 6px 0;
+}
+
+.subtitulo {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+/* -----------------------------------------------------
+   4) CARTÕES
+   ----------------------------------------------------- */
+.cartao {
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+
+.cartao h2 {
+  font-size: 1rem;
+}
+
+.cartao > p {
+  color: var(--texto-suave);
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+}
+
+/* Linha com 2 colunas (Controle de presença | QR Code).
+   "2fr 1fr" = a 1ª coluna é 2x mais larga que a 2ª. */
+.duas-colunas {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+}
+
+.filtros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.filtros label,
+.rotulo {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.filtros input,
+.busca-manual {
+  width: 100%;
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  padding: 9px 10px;
+  color: var(--texto);
+  font: inherit;
+  font-size: 0.8rem;
+}
+
+.contadores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colunas iguais */
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.contador {
+  background: var(--verde-claro);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.contador strong {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--verde);
+}
+
+.contador span {
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+}
+
+/* -----------------------------------------------------
+   5) TABELA DE PARTICIPANTES
+   ----------------------------------------------------- */
+table {
+  width: 100%;
+  border-collapse: collapse; /* junta as bordas das células */
+  font-size: 0.8rem;
+}
+
+th {
+  text-align: left;
+  color: var(--texto-suave);
+  font-weight: 500;
+  padding: 6px 4px;
+}
+
+td {
+  padding: 9px 4px;
+  border-top: 1px solid var(--borda);
+}
+
+.etiqueta {
+  display: inline-block;
+  padding: 3px 14px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+
+.etiqueta.pendente {
+  background: var(--pendente-fundo);
+  color: var(--pendente-texto);
+}
+
+.btn-acao {
+  background: none;
+  border: none;
+  color: var(--verde);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* -----------------------------------------------------
+   6) QR CODE E BOTÕES
+   ----------------------------------------------------- */
+.qr-area {
+  text-align: center;
+}
+
+canvas {
+  width: 160px;
+  height: 160px;
+  margin: 8px 0 14px;
+  background: #fff;
+}
+
+.btn {
+  background: var(--verde);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+[data-tema="escuro"] .btn {
+  color: #06352b;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.manual {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.manual > div {
+  flex: 1;
+}
+
+.mensagem {
+  min-height: 1.2em;
+  font-size: 0.85rem;
+  color: var(--verde);
+  margin-top: 8px;
+}
+
+/* -----------------------------------------------------
+   7) RESPONSIVO
+   -----------------------------------------------------
+   @media aplica as regras só em telas de até 800px (celular):
+   o menu lateral vira uma faixa no topo e as colunas empilham. */
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;  /* menu em cima, conteúdo embaixo */
+  }
+  .menu-lateral {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--borda);
+  }
+  /* os links ficam lado a lado e dá para rolar para o lado */
+  .menu-lateral nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .menu-lateral a {
+    white-space: nowrap;
+  }
+  .rodape-menu {
+    margin-top: 10px;
+  }
+  .duas-colunas,
+  .filtros {
+    grid-template-columns: 1fr;
+  }
+  .manual {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
