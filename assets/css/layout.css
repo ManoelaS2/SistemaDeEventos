@@ -280,7 +280,55 @@ body > .site-footer {
 }
 
 /* ============================================================
-   5. RESPONSIVIDADE
+   5. NAV BAR DO PAINEL DO ADM
+   ============================================================ */
+
+/* Painel Organizador */
+#painel-adm {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    background-color: var(--fundo-elevado);
+    padding: 0 1rem;
+    justify-self: end;
+}
+
+.h5-fraco {
+    font-weight: 400;
+}
+
+h5, p, ul{
+    color: var(--texto-secundario);
+}
+
+#painel-adm li {
+    list-style-type: none;  
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+#painel-adm ul {
+    padding: 5px .5rem;
+}
+
+#painel-adm a {
+    padding: .5rem; 
+}
+
+.painel-selecionado {
+    background-color: #EAF7F2;
+    border-left: var(--marca-hover) 4px solid;
+    border-radius: 6px;
+    color: var(--marca-hover);
+    font-weight: 700;
+    width: 100%;
+    height: 2rem;
+}
+
+/* ============================================================
+   6. RESPONSIVIDADE
    ============================================================ */
 
 @media (max-width: 1200px) {
