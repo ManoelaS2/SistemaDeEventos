@@ -129,4 +129,106 @@
   .ajuda-icone {
     font-size: 28px;
   }
+
+  
+}
+
+/* ============================================================
+   MODAIS (Sobre, Contato, Termos)
+   ============================================================ */
+.modal {
+  width: min(670px, 92vw);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--fundo-elevado);
+  color: var(--texto-principal);
+  box-shadow: var(--sombra-elevacao);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Impede a rolagem da página enquanto há um modal aberto */
+body:has(.modal[open]) {
+  overflow: hidden;
+}
+
+.modal-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 32px;
+  background: var(--marca-primaria);
+  color: var(--texto-fundo-escuro);
+}
+
+.modal-titulo {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.modal-fechar {
+  display: inline-grid;
+  place-items: center;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 28px;
+}
+
+.modal-fechar:focus-visible {
+  outline: 2px solid var(--texto-fundo-escuro);
+  outline-offset: 2px;
+}
+
+.modal-corpo {
+  padding: 28px 32px 36px;
+  font-family: var(--fonte-corpo);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.modal-corpo p {
+  margin: 0 0 16px;
+}
+
+.modal-corpo ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.modal-corpo li + li {
+  margin-top: 6px;
+}
+
+.modal-corpo > :last-child {
+  margin-bottom: 0;
+}
+
+/* Botão da Central de Ajuda centralizado */
+.modal-acoes {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+@media (max-width: 480px) {
+  .modal-cabecalho {
+    padding: 18px 20px;
+  }
+
+  .modal-titulo {
+    font-size: 24px;
+  }
+
+  .modal-corpo {
+    padding: 22px 20px 28px;
+    font-size: 16px;
+  }
 }
