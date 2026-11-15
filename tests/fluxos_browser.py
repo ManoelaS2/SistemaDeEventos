@@ -46,7 +46,40 @@ def main():
                 page.locator('#login-form button[type=submit]').click()
                 page.wait_for_url(base+'index.html')
                 page.wait_for_function("document.documentElement.dataset.easPronto === 'sim'")
+            # O rodapé compartilhado deve abrir uma única cópia de cada modal,
+            # inclusive na Central de Ajuda, que antes tinha diálogos próprios.
+            def verificar_rodape():
+                ids = page.locator('[id]').evaluate_all('(els) => els.map(el => el.id)')
+                assert len(ids) == len(set(ids)), f'IDs repetidos em {page.url}'
+                endereco = page.url
+                for nome, chave in [('Sobre', 'sobre'), ('Contato', 'contato'), ('Termos', 'termos')]:
+                    modal = page.locator('#modal-'+chave)
+                    assert modal.count() == 1
+                    page.locator('.footer-nav').get_by_role('link', name=nome, exact=True).click()
+                    modal.wait_for(state='visible')
+                    assert modal.get_attribute('open') is not None
+                    assert page.url == endereco
+                    assert modal.locator('h2').inner_text()
+                    modal.get_by_role('button', name='Fechar', exact=True).click()
+                    modal.wait_for(state='hidden')
+                contato = page.locator('#modal-contato')
+                assert contato.locator('a[href^="mailto:"]').get_attribute('href') == 'mailto:equipe.eas10@gmail.com'
+                page.locator('.footer-nav').get_by_role('link', name='Contato', exact=True).click()
+                page.keyboard.press('Escape')
+                contato.wait_for(state='hidden')
+                page.locator('.footer-nav').get_by_role('link', name='Contato', exact=True).click()
+                contato.wait_for(state='visible')
+                page.mouse.click(1, 1)
+                contato.wait_for(state='hidden')
+                page.locator('.footer-nav').get_by_role('link', name='Contato', exact=True).click()
+                contato.get_by_role('link', name='Abrir Central de Ajuda').click()
+                page.wait_for_url(base+'central-ajuda.html')
+                page.wait_for_function("document.documentElement.dataset.easPronto === 'sim'")
+                assert page.locator('dialog[open]').count() == 0
+                print('PASS: modais do rodapé, IDs únicos, fechamento e acesso à ajuda', flush=True)
             # Catálogo, acesso anônimo e autenticação: nenhum dado de senha deve entrar na URL.
+            goto('index.html')
+            verificar_rodape()
             goto('index.html')
             assert page.locator('.cartao--evento').count() == 2
             capasPublicasIniciais = page.locator('.cartao--evento img').count()
@@ -56,7 +89,7 @@ def main():
             goto('login.html')
             page.locator('#usuario').fill('organizador@eas.test')
             page.locator('#senha').fill('invalida')
-            page.locator('button[type=submit]').click()
+            page.locator('#login-form button[type=submit]').click()
             page.locator('.eas-mensagem--erro').wait_for()
             assert '?' not in page.url
             login('organizador@eas.test')
@@ -134,7 +167,7 @@ def main():
             login('participante@eas.test')
             goto('inscricao-atividade-evento.html?evento='+eid)
             page.locator('[name=atividades]').check()
-            page.locator('button[type=submit]').click()
+            page.locator('#form-inscricao button[type=submit]').click()
             page.wait_for_url('**/meus-eventos.html')
             page.wait_for_function("document.documentElement.dataset.easPronto === 'sim'")
             iid=service("return (await b.ler()).inscricoes.find(i=>i.eventoId===arg).id",eid)
@@ -210,14 +243,14 @@ def main():
             # Exercita geração do código demonstrativo e troca efetiva da credencial.
             goto('recuperar-senha.html')
             page.locator('#campo-email').fill('qa@eas.test')
-            page.locator('button[type=submit]').click()
+            page.locator('#form-recuperar-senha button[type=submit]').click()
             page.wait_for_url('**/verificar-codigo.html')
             page.wait_for_function("document.documentElement.dataset.easPronto === 'sim'")
             code=page.evaluate("JSON.parse(sessionStorage.getItem('eas-recuperacao')).codigo")
             for i,digit in enumerate(code): page.locator('.campo-codigo').nth(i).fill(digit)
             page.locator('#nova-senha').fill('Nova123!')
             page.locator('#confirmar-nova-senha').fill('Nova123!')
-            page.locator('button[type=submit]').click()
+            page.locator('#form-verificar-codigo button[type=submit]').click()
             page.wait_for_url('**/login.html')
             assert service("return await b.entrar('qa@eas.test','Nova123!')") is not None
             print('PASS: certificados, conta, importação e recuperação', flush=True)
@@ -235,6 +268,7 @@ def main():
             goto('gerenciamento-evento.html?evento='+eid)
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+1')
             goto('central-ajuda.html')
+            verificar_rodape()
             initial=page.locator('html').get_attribute('data-theme')
             page.locator('#menu-toggle').click()
             page.locator('.theme-button').click()

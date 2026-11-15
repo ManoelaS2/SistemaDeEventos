@@ -316,6 +316,7 @@ body>.site-footer {
   background-color: var(--fundo-elevado);
   padding: 0 1rem;
   justify-self: end;
+  height: 100%;
 }
 
 /*

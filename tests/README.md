@@ -15,6 +15,8 @@ de apresentação e fixa a data em 14/11/2026 para testar os cenários do banco 
 Cobre cadastro, login, criação e edição de evento, atividade, inscrição, vagas,
 permissões, credenciamento, presença, certificados, perfil, recuperação de senha,
 importação com rollback, persistência após recarregamento, páginas e tema móvel.
+Confere também os modais compartilhados do rodapé em desktop e celular, sem IDs
+duplicados na Central de Ajuda, fechamento por botão, Escape e fundo, e acesso à ajuda.
 
 Também confere prévia de upload, capa no catálogo e no carrossel, restauração da
 imagem ao editar, remoção e substituição de foto e rejeição de arquivos corrompidos.
