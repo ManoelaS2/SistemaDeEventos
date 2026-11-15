@@ -1,103 +1,110 @@
 <!doctype html>
+<!--
+  Detalhes do evento selecionado pelo parâmetro evento na URL. Descrição, capa, palestrantes e
+  destino da inscrição são preenchidos pelo JavaScript.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Sobre o evento | EAS</title>
-
-    <!-- Estilos compartilhados em todas as páginas -->
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-
-    <!-- Estilos específicos da página do evento -->
-    <link rel="stylesheet" href="assets/css/paginas/evento.css" />
-
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/evento.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
     <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-details page-evento">
-    <!-- Header e footer carregados pelo componente.js -->
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
-
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
     <main class="secao pagina-evento" id="conteudo-principal">
       <h1 class="pagina-evento-titulo">Sobre o Evento:</h1>
-
-      <!-- Componentes reutilizados: cartao + grade -->
+      <!-- Cartão de detalhes: preenchido somente depois que o evento selecionado é encontrado no banco. -->
       <article
-        class="cartao grade cartao--detalhe-evento"
         aria-labelledby="event-detail-name"
+        class="cartao grade cartao--detalhe-evento"
+        hidden=""
       >
         <div class="detalhe-evento-descricao">
-          <!-- ID preservado para compatibilidade com código existente -->
-          <h2 class="cartao-titulo detalhe-evento-nome" id="event-detail-name">
-            Evento A:
-          </h2>
-          <p class="cartao-descricao detalhe-evento-texto">
-            O maior encontro de tecnologia e inovação do campus está de volta!
-            Este evento foi desenhado para conectar estudantes, pesquisadores e
-            profissionais do mercado em uma imersão completa sobre as tendências
-            que estão moldando o futuro da nossa sociedade. Durante toda a
-            programação, os participantes terão a oportunidade de explorar temas
-            como Inteligência Artificial, Desenvolvimento Web, UX/UI Design e a
-            importância da sustentabilidade no ecossistema tecnológico.
-          </p>
+          <h2
+            class="cartao-titulo detalhe-evento-nome"
+            id="event-detail-name"
+          ></h2>
+          <p class="cartao-descricao detalhe-evento-texto"></p>
         </div>
-
         <div class="detalhe-evento-midia">
           <div
+            aria-label="Área reservada à imagem de capa do evento"
             class="cartao-imagem detalhe-evento-capa"
             role="img"
-            aria-label="Área reservada à imagem de capa do evento"
           ></div>
-
           <div
-            class="grade detalhe-evento-palestrantes"
             aria-label="Palestrantes do evento"
+            class="grade detalhe-evento-palestrantes"
           >
-            <!-- Perfil é componente reutilizável em eventos e programação -->
-            <figure class="perfil">
-              <span
-                class="perfil-foto perfil-foto--palestrante"
-                role="img"
-                aria-label="Área reservada à foto do palestrante 1"
-              ></span>
-              <figcaption class="perfil-nome">Palestrante 1</figcaption>
-            </figure>
-            <figure class="perfil">
-              <span
-                class="perfil-foto perfil-foto--palestrante"
-                role="img"
-                aria-label="Área reservada à foto do palestrante 2"
-              ></span>
-              <figcaption class="perfil-nome">Palestrante 2</figcaption>
-            </figure>
+            <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
           </div>
         </div>
-
-        <!-- Mantidos os destinos do HTML original. -->
         <div class="grupo-acoes grupo-acoes--evento">
-          <a class="btn-segundario" href="index.html#eventos"
-            >Voltar aos eventos</a
-          >
-          <a class="btn-confirmacao" href="inscricao-atividade-evento.html"
-            >Inscrever-se</a
-          >
+          <a class="btn-segundario" href="index.html#eventos">
+            Voltar aos eventos
+          </a>
+          <a class="btn-confirmacao" href="inscricao-atividade-evento.html">
+            Inscrever-se
+          </a>
         </div>
       </article>
     </main>
-
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
-
-    <!-- JavaScript apenas para componentes compartilhados e tema -->
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
     <script
-      type="module"
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
     ></script>
     <script
-      nomodule
+      nomodule=""
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
     ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

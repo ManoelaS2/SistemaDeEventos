@@ -1,153 +1,116 @@
 <!doctype html>
+<!--
+  Inscrição da conta nas atividades de um evento. Os valores dos checkboxes identificam
+  atividades; o banco verifica prazo e vagas ao salvar.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Inscrever-se no evento | EAS</title>
-
-    <!-- Estilos globais usados em todas as páginas -->
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-
-    <!-- O mesmo CSS atende às páginas de inscrição e edição -->
-    <link rel="stylesheet" href="assets/css/paginas/inscricao-evento.css" />
-
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/inscricao-evento.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
     <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-details page-atividades-evento">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
-
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
     <main class="secao pagina-atividades-evento" id="conteudo-principal">
       <h1 class="pagina-atividades-titulo">Inscrever-se no evento</h1>
-
-      <!-- Formulário demonstrativo: não grava inscrições sem backend. -->
+      <!--
+        Formulário de entrada de dados. app.js intercepta submit com preventDefault, usa a
+        validação nativa e chama banco.js. required exige preenchimento; label com for
+        identifica o input correspondente.
+      -->
       <form
+        action="index.html"
         class="cartao grade formulario-atividades-evento"
         id="form-inscricao"
-        action="index.html"
         method="get"
       >
+        <!--
+          fieldset agrupa campos relacionados; legend dá nome ao grupo. Checkboxes permitem
+          escolher várias opções, cujos values são lidos pelo JavaScript.
+        -->
         <fieldset class="grupo-selecao-atividades">
           <legend>Programação e Local do Evento:</legend>
           <p class="pagina-atividades-instrucao">
             Selecione as atividades de que deseja participar.
           </p>
-
-          <!-- Lista genérica de opções: estilos em componentes.css -->
           <div class="lista-opcoes">
-            <label class="checkbox-label opcao-selecao">
-              <input
-                class="checkbox-input"
-                type="checkbox"
-                name="atividades"
-                value="seguranca-digital"
-              />
-              <span class="opcao-info">
-                <strong class="opcao-titulo"
-                  >Palestra: Segurança Digital</strong
-                >
-                <span class="opcao-detalhe">Palestrante: Fulano 1</span>
-                <span class="opcao-detalhe">Horário: das 8h às 9h</span>
-              </span>
-            </label>
-            <label class="checkbox-label opcao-selecao">
-              <input
-                class="checkbox-input"
-                type="checkbox"
-                name="atividades"
-                value="inteligencia-artificial"
-              />
-              <span class="opcao-info">
-                <strong class="opcao-titulo"
-                  >Palestra: Inteligência Artificial no Dia a Dia</strong
-                >
-                <span class="opcao-detalhe">Palestrante: Fulano 2</span>
-                <span class="opcao-detalhe">Horário: das 9h30 às 10h30</span>
-              </span>
-            </label>
-            <label class="checkbox-label opcao-selecao">
-              <input
-                class="checkbox-input"
-                type="checkbox"
-                name="atividades"
-                value="workshop-web"
-              />
-              <span class="opcao-info">
-                <strong class="opcao-titulo"
-                  >Workshop: Introdução ao Desenvolvimento Web</strong
-                >
-                <span class="opcao-detalhe">Palestrante: Fulano 1</span>
-                <span class="opcao-detalhe">Horário: das 14h às 17h</span>
-              </span>
-            </label>
-            <label class="checkbox-label opcao-selecao">
-              <input
-                class="checkbox-input"
-                type="checkbox"
-                name="atividades"
-                value="carreiras-ti"
-              />
-              <span class="opcao-info">
-                <strong class="opcao-titulo"
-                  >Palestra e Debate: Carreiras na Área de TI</strong
-                >
-                <span class="opcao-detalhe">Palestrante: Fulano 3</span>
-                <span class="opcao-detalhe">Horário: das 20h às 22h</span>
-              </span>
-            </label>
+            <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
+            <p class="eas-carregamento" role="status">
+              Carregando atividades disponíveis…
+            </p>
           </div>
         </fieldset>
-
-        <!-- Reutiliza os mesmos perfis da página Sobre o Evento. -->
+        <!--
+          Conteúdo complementar: Palestrantes do evento. O agrupamento organiza o conteúdo; as
+          classes determinam sua apresentação no CSS.
+        -->
         <aside
-          class="grade painel-palestrantes"
           aria-label="Palestrantes do evento"
+          class="grade painel-palestrantes"
         >
-          <figure class="perfil">
-            <span
-              class="perfil-foto perfil-foto--palestrante"
-              role="img"
-              aria-label="Espaço reservado à foto do palestrante 1"
-            ></span>
-            <figcaption class="perfil-nome">Fulano 1</figcaption>
-          </figure>
-          <figure class="perfil">
-            <span
-              class="perfil-foto perfil-foto--palestrante"
-              role="img"
-              aria-label="Espaço reservado à foto do palestrante 2"
-            ></span>
-            <figcaption class="perfil-nome">Fulano 2</figcaption>
-          </figure>
-          <figure class="perfil">
-            <span
-              class="perfil-foto perfil-foto--palestrante"
-              role="img"
-              aria-label="Espaço reservado à foto do palestrante 3"
-            ></span>
-            <figcaption class="perfil-nome">Fulano 3</figcaption>
-          </figure>
+          <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
         </aside>
-
         <div class="grupo-acoes grupo-acoes--atividades">
           <button class="btn-confirmacao" type="submit">Fazer inscrição</button>
         </div>
       </form>
     </main>
-
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
-
-    <!-- Somente carregamento de componentes e alternância de tema -->
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
     <script
-      type="module"
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
     ></script>
     <script
-      nomodule
+      nomodule=""
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
     ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

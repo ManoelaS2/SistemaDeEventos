@@ -1,0 +1,5 @@
+# Arquivos temporários de execução e capturas de teste não fazem parte do código.
+.tmp/
+# O Python gera estes arquivos automaticamente; eles podem ser recriados localmente.
+__pycache__/
+*.pyc

@@ -1,96 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  Cadastro de uma conta local. O HTML coleta nome, e-mail, CPF opcional e senha; app.js compara
+  as senhas e banco.js verifica duplicidades.
+-->
 <html lang="pt-BR">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Criar conta | EAS</title>
-
-  <!-- Estilos compartilhados por todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-
-  <!-- Estilos exclusivos do Cadastro -->
-  <link rel="stylesheet" href="assets/css/paginas/cadastro.css">
-
-  <script src="assets/js/tema.js"></script>
-</head>
-
-<body class="page-acesso page-cadastro">
-  <div id="header-container"></div>
-
-  <main class="area-acesso">
-    <section class="cartao cartao--acesso cartao--cadastro" aria-labelledby="titulo-cadastro">
-      <div class="avatar avatar--acesso" aria-hidden="true">
-        <ion-icon name="person-add-outline"></ion-icon>
-      </div>
-
-      <h1 class="titulo-acesso" id="titulo-cadastro">Cadastre-se</h1>
-
-      <!-- Demonstração sem backend: valida os campos obrigatórios e navega ao Login.
-           Nenhum campo possui name; portanto nenhum dado (inclusive senha)
-           é enviado na URL pelo método GET. -->
-      <form class="formulario-acesso formulario-acesso--cadastro" action="login.html" method="get" id="form-cadastro">
-        <div class="formulario-campos">
-          <div class="campo-formulario">
-            <label for="cadastro-nome">Nome completo</label>
-            <input id="cadastro-nome" type="text" autocomplete="name" placeholder="Nome completo" required>
-          </div>
-
-          <div class="campo-formulario">
-            <label for="cadastro-identificacao">E-mail ou CPF</label>
-            <input id="cadastro-identificacao" type="text" autocomplete="username" placeholder="E-mail ou CPF" required>
-          </div>
-
-          <div class="campo-formulario">
-            <label for="cadastro-senha">Crie uma senha</label>
-            <input id="cadastro-senha" type="password" autocomplete="new-password" placeholder="Crie uma senha"
-              required>
-          </div>
-
-          <div class="campo-formulario">
-            <label for="cadastro-confirmar-senha">Confirmar senha</label>
-            <input id="cadastro-confirmar-senha" type="password" autocomplete="new-password"
-              placeholder="Confirmar senha" required>
-          </div>
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>
+      Criar conta | EAS
+    </title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/componentes.css" rel="stylesheet">
+    <link href="assets/css/layout.css" rel="stylesheet">
+    <link href="assets/css/paginas/cadastro.css" rel="stylesheet">
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet">
+  </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
+  <body class="page-acesso page-cadastro">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
+    <div id="header-container"></div>
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
+    <main class="area-acesso">
+      <!--
+        Seção temática: Cadastre-se. O agrupamento organiza o conteúdo; as classes determinam
+        sua apresentação no CSS.
+      -->
+      <section aria-labelledby="titulo-cadastro" class="cartao cartao--acesso cartao--cadastro">
+        <div aria-hidden="true" class="avatar avatar--acesso">
+          <ion-icon name="person-add-outline"></ion-icon>
         </div>
-
-        <p class="texto-auxiliar termos-cadastro">
-          Ao criar sua conta, você concorda com os
-          <a href="informacoes.html#termos">Termos de Uso</a>.
+        <h1 class="titulo-acesso" id="titulo-cadastro">
+          Cadastre-se
+        </h1>
+        <!--
+          Formulário de entrada de dados. app.js intercepta submit com preventDefault, usa a
+          validação nativa e chama banco.js. required exige preenchimento; label com for
+          identifica o input correspondente.
+        -->
+        <form action="login.html" class="formulario-acesso formulario-acesso--cadastro" id="form-cadastro" method="get">
+          <div class="formulario-campos">
+            <!--
+              Grupo de campo: o rótulo explica o dado solicitado. O placeholder é apenas uma
+              dica visual; não substitui label. autocomplete ajuda o navegador a oferecer
+              preenchimento adequado.
+            -->
+            <div class="campo-formulario">
+              <label for="cadastro-cpf">
+                CPF (opcional, 11 dígitos)
+              </label>
+              <input autocomplete="off" id="cadastro-cpf" inputmode="numeric" maxlength="14" type="text">
+            </div>
+            <div class="campo-formulario">
+              <label for="cadastro-nome">
+                Nome completo
+              </label>
+              <input autocomplete="name" id="cadastro-nome" placeholder="Nome completo" required="" type="text">
+            </div>
+            <div class="campo-formulario">
+              <label for="cadastro-identificacao">
+                E-mail
+              </label>
+              <input autocomplete="email" id="cadastro-identificacao" placeholder="E-mail" required="" type="email">
+            </div>
+            <div class="campo-formulario">
+              <label for="cadastro-senha">
+                Crie uma senha
+              </label>
+              <input autocomplete="new-password" id="cadastro-senha" placeholder="Crie uma senha" required="" type="password">
+            </div>
+            <div class="campo-formulario">
+              <label for="cadastro-confirmar-senha">
+                Confirmar senha
+              </label>
+              <input autocomplete="new-password" id="cadastro-confirmar-senha" placeholder="Confirmar senha" required="" type="password">
+            </div>
+          </div>
+          <p class="texto-auxiliar termos-cadastro">
+            Ao criar sua conta, você concorda com os
+            <a href="informacoes.html#termos">
+              Termos de Uso
+            </a>
+            .
+          </p>
+          <button class="btn-confirmacao" type="submit">
+            Criar conta
+          </button>
+        </form>
+        <div aria-hidden="true" class="separador-texto">
+          <span>
+            ou
+          </span>
+        </div>
+        <button class="btn-segundario btn-google" disabled="" title="Cadastro com Google indisponível neste protótipo" type="button">
+          <img alt="" src="assets/img/google.png">
+          Cadastrar com Google
+        </button>
+        <p class="texto-acesso">
+          Já tem conta?
+          <a class="link-destaque" href="login.html">
+            Entrar
+          </a>
         </p>
-
-        <button class="btn-confirmacao" type="submit">Criar conta</button>
-      </form>
-
-      <div class="separador-texto" aria-hidden="true"><span>ou</span></div>
-
-      <!-- A integração com o Google será feita futuramente no backend. -->
-      <button class="btn-segundario btn-google" type="button" disabled
-        title="Cadastro com Google indisponível neste protótipo">
-        <img src="assets/img/google.png" alt="">
-        Cadastrar com Google
-      </button>
-
-      <p class="texto-acesso">Já tem conta?
-        <a class="link-destaque" href="login.html">Entrar</a>
-      </p>
-      <p class="texto-prototipo">
-        Protótipo: o botão Criar conta abre o Login sem cadastrar usuários.
-        A comparação entre as senhas dependerá do backend.
-      </p>
-    </section>
-  </main>
-
-  <div id="footer-container"></div>
-
-  <!-- Nenhum JavaScript de cadastro. Este arquivo carrega os componentes globais. -->
-  <script src="assets/js/componente.js"></script>
-  <!-- Ionicons: apenas apresentação dos ícones já usados no projeto. -->
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
-
+        <p class="texto-prototipo">
+          Demonstração local: os registros são mantidos neste navegador.
+        </p>
+      </section>
+    </main>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
+    <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
+    <script src="assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
 </html>

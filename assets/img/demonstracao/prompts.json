@@ -1,0 +1,26 @@
+{
+  "ferramenta": "image_gen (integrada)",
+  "observacao": "Mídias de demonstração criadas por IA; os retratos são personagens fictícios.",
+  "imagens": [
+    {
+      "arquivo": "semana-tecnologia.jpg",
+      "prompt": "Use case: stylized-concept. Asset type: wide event website cover, landscape 3:2 composition. Primary request: polished editorial illustration for a Brazilian university Technology and Innovation Week. Depict a luminous teal network of interconnected devices, abstract AI neural pathways, a laptop and small campus architecture, modern academic technology atmosphere, dark navy and emerald mint palette matching an emerald university events website. Clean sophisticated 3D illustration, generous space and large readable forms that survive cropped thumbnails. No text, no logos, no watermark. One single coherent cover image."
+    },
+    {
+      "arquivo": "encontro-web.jpg",
+      "prompt": "Use case: stylized-concept. Asset type: wide event website cover, landscape 3:2 composition. Primary request: polished editorial illustration for a university Web Development meetup. Show an elegant laptop with abstract browser interface panels and modular web components floating above a desk, softly lit coding workshop environment. Teal, mint and navy with warm coral accents. Cohesive dimensional editorial illustration, professional academic mood, large readable forms for thumbnails. No readable code, no text, no logos, no watermark. One single coherent cover image."
+    },
+    {
+      "arquivo": "oficina-robotica.jpg",
+      "prompt": "Use case: stylized-concept. Asset type: wide event website cover, landscape 3:2 composition. Primary request: polished editorial illustration for a university Robotics Workshop. A small educational wheeled robot with circuit boards, sensors and a precise robotic arm on a modern laboratory workbench, inviting hands-on engineering mood. Navy, emerald and mint with subtle amber accents. Sophisticated clean 3D editorial illustration with large readable forms for cropped thumbnails, coordinated with university technology event branding. No text, no logos, no watermark. One single cover image."
+    },
+    {
+      "arquivo": "palestrante-ana.jpg",
+      "prompt": "Use case: illustration-story. Asset type: square illustrated profile portrait for a fictional Brazilian university speaker. Primary request: professional friendly editorial avatar of Ana Paula Ribeiro, fictional woman computer science professor, approximately 40 years old, medium brown skin, shoulder-length dark curly hair, glasses, smart casual teal blouse and navy blazer. Head and shoulders centered, face entirely inside central 65 percent for circular crops. Soft neutral mint background, refined contemporary editorial painted illustration with natural proportions and gentle detail, welcoming academic character. This is a fictional illustrative avatar, not a real person's likeness. No text, no logos, no watermark."
+    },
+    {
+      "arquivo": "palestrante-carlos.jpg",
+      "prompt": "Use case: illustration-story. Asset type: square illustrated profile portrait for a fictional Brazilian university speaker. Primary request: professional friendly editorial avatar of Carlos Eduardo Lima, fictional man web developer, approximately 35 years old, light brown skin, short dark hair, neatly trimmed beard, navy shirt. Head and shoulders centered, face entirely inside central 65 percent for circular crops. Soft neutral mint background, refined contemporary editorial painted illustration with natural proportions and gentle detail, coordinated with an illustrated female professor avatar on an academic events website. Fictional illustrative avatar, not a real person's likeness. No text, no logos, no watermark."
+    }
+  ]
+}

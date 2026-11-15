@@ -1,3 +1,8 @@
+/*
+ * Ajustes da página inscricao evento. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ==========================================================
    EAS — INSCRIÇÃO E EDIÇÃO DE ATIVIDADES
    ÚNICO CSS para inscricao-atividade-evento.html e
@@ -10,7 +15,13 @@
   padding-bottom: 65px;
 }
 
-/* Reutiliza as classes .cartao e .grade do CSS compartilhado. */
+/*
+ * Reutiliza as classes .cartao e .grade do CSS compartilhado.
+ */
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .formulario-atividades-evento {
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
 }
@@ -44,18 +55,32 @@
   min-width: 0;
 }
 
-/* O terceiro perfil fica centralizado abaixo dos dois primeiros. */
+/*
+ * O terceiro perfil fica centralizado abaixo dos dois primeiros.
+ */
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
 .painel-palestrantes .perfil:last-child:nth-child(odd) {
   grid-column: 1 / -1;
   width: 50%;
   min-width: 0;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .grupo-acoes--atividades {
   grid-column: 1 / -1;
   padding-top: 6px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .pagina-atividades-evento {
     padding-bottom: 50px;
@@ -72,6 +97,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .pagina-atividades-evento {
     padding-bottom: 40px;
@@ -85,7 +114,9 @@
     font-size: 18px;
   }
 
-  .painel-palestrantes { gap: 12px; }
+  .painel-palestrantes {
+    gap: 12px;
+  }
 
   .grupo-acoes--atividades .btn-confirmacao {
     max-width: 100%;

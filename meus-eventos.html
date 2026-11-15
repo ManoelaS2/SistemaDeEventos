@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+  Inscrições da conta conectada, com seus códigos e opções de alteração. O contêiner vazio
+  recebe os registros da conta após a abertura do banco.
+-->
+<html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Minhas inscrições | EAS</title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
+  </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
+  <body class="page-details page-painel">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
+    <div id="header-container"></div>
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
+    <main class="secao">
+      <h1>Minhas inscrições</h1>
+      <p>
+        Consulte seus códigos de inscrição e atualize as atividades escolhidas.
+      </p>
+      <!--
+        Lista dinâmica: app.js consulta inscrições da conta atual e cria cartões aqui. O HTML
+        inicial não contém cópias permanentes desses registros.
+      -->
+      <div id="meus-eventos"></div>
+      <a class="btn-confirmacao" href="index.html#eventos">
+        Encontrar eventos
+      </a>
+    </main>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
+    <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
+    <script src="assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
+    ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
+</html>

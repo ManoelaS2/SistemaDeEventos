@@ -1,3 +1,11 @@
+/**
+ * Componentes compartilhados: evita repetir cabeçalho e rodapé em cada HTML. Use um servidor
+ * HTTP, pois fetch não funciona de forma confiável em file://.
+ */
+/**
+ * Busca um fragmento HTML local e coloca o conteúdo no contêiner indicado. Verifica a resposta
+ * HTTP antes de usar o texto; o fragmento é código confiável do próprio projeto.
+ */
 async function carregarComponente(id, arquivo) {
   const destino = document.getElementById(id);
   if (!destino) return;
@@ -6,6 +14,10 @@ async function carregarComponente(id, arquivo) {
   destino.innerHTML = await resposta.text();
 }
 
+/**
+ * Carrega cabeçalho e rodapé em paralelo e depois conecta menu e alternância de senha. A
+ * promessa componentesProntos permite que app.js aguarde a criação desses elementos.
+ */
 async function iniciar() {
   await Promise.all([
     carregarComponente("header-container", "includes/header.html"),
@@ -27,7 +39,7 @@ async function iniciar() {
 
   document
     .querySelector(".password-toggle")
-    ?.addEventListener("click", function () {
+    ?.addEventListener("click", function() {
       const senha = document.getElementById("senha");
       if (!senha) return;
       const exibindo = senha.type === "password";
@@ -43,15 +55,7 @@ async function iniciar() {
     });
 }
 
-iniciar();
-
-const eventName = document.querySelector("#event-detail-name");
-if (eventName) {
-  const key = new URLSearchParams(window.location.search).get("evento");
-  const eventId = /^[A-F]$/i.test(key || "") ? key.toUpperCase() : "A";
-  eventName.textContent = `Evento ${eventId}:`;
-  document.title = `Evento ${eventId} | EAS`;
-}
+window.componentesProntos = iniciar();
 
 document.querySelectorAll("form[data-demo-redirect]").forEach((form) => {
   form.addEventListener("submit", (event) => {

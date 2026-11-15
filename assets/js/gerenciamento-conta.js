@@ -1,3 +1,9 @@
+/**
+ * ARQUIVO LEGADO, mantido como exemplo de estudo. Não é carregado pelas páginas atuais. O
+ * comportamento em uso fica em app.js, a persistência em banco.js e o tema compartilhado em
+ * tema.js. Os exemplos abaixo usam estruturas antigas e não consultam o IndexedDB. Não
+ * adicione este script às páginas atuais: ele depende de outros IDs e temas.
+ */
 /* =====================================================
    gerenciamento-conta.js - comportamento da tela
    Gerenciamento de Conta
@@ -6,7 +12,6 @@
 const botaoTema = document.getElementById("btn-tema");
 const mensagem = document.getElementById("mensagem");
 
-
 /* =====================================================
    1) TEMA CLARO / ESCURO
    ===================================================== */
@@ -14,7 +19,7 @@ const mensagem = document.getElementById("mensagem");
 /* localStorage: "gavetinha" do navegador. Guarda um texto mesmo depois
    de fechar a página. Aqui guardamos "escuro" para lembrar o tema.
    Este if roda assim que a página abre. */
-if (localStorage.getItem("tema") == "escuro") {
+if (localStorage.getItem("tema") === "escuro") {
   document.body.classList.add("escuro");
   botaoTema.textContent = "☀️";
 }
@@ -35,7 +40,6 @@ function trocarTema() {
   }
 }
 
-
 /* =====================================================
    2) EDITAR E SALVAR
    ===================================================== */
@@ -55,7 +59,7 @@ function salvar(evento) {
   // .value é o texto que está dentro do campo agora
   const usuario = document.getElementById("usuario").value;
 
-  if (usuario == "") {
+  if (usuario === "") {
     mensagem.textContent = "Preencha pelo menos o campo Usuário.";
   } else {
     mensagem.textContent = "Alterações salvas.";

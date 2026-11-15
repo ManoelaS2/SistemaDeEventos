@@ -1,14 +1,19 @@
+/**
+ * ARQUIVO LEGADO, mantido como exemplo de estudo. Não é carregado pelas páginas atuais. O
+ * comportamento em uso fica em app.js, a persistência em banco.js e o tema compartilhado em
+ * tema.js. Os exemplos abaixo usam estruturas antigas e não consultam o IndexedDB. Não
+ * adicione este script às páginas atuais: ele depende de outros IDs e temas.
+ */
 /* =====================================================
    frequencia.js - comportamento SÓ da tela Frequência nas
    atividades (frequencia.html)
    ===================================================== */
 
-
 /* =====================================================
    1) TEMA CLARO / ESCURO
    ===================================================== */
 
-const html = document.documentElement;          // a tag <html>
+const html = document.documentElement; // a tag <html>
 const botaoTema = document.getElementById("btn-tema");
 
 /* localStorage: "gavetinha" do navegador que guarda textos mesmo
@@ -23,13 +28,12 @@ function aplicarTema(tema) {
   localStorage.setItem("tema", tema);
 }
 
-botaoTema.addEventListener("click", function () {
+botaoTema.addEventListener("click", function() {
   /* addEventListener: roda a função toda vez que o evento
      (aqui, "click") acontece no elemento. */
   const novoTema = html.dataset.tema === "escuro" ? "claro" : "escuro";
   aplicarTema(novoTema);
 });
-
 
 /* =====================================================
    2) LISTA DE PARTICIPANTES
@@ -42,19 +46,31 @@ const mensagem = document.getElementById("mensagem");
    Cada objeto é um participante com nome, e-mail e status.
    A tela é "desenhada" a partir dessa lista: se a lista muda,
    chamamos desenharTabela() e a tela se atualiza. */
-const participantes = [
-  { nome: "Fulaniho", email: "fulaninho@email.com", status: "presente" },
-  { nome: "Alguem", email: "alguem2@email.com", status: "pendente" },
-  { nome: "Cidadão", email: "cidaddão@email.com", status: "presente" }
-];
+const participantes = [{
+  nome: "Fulaniho",
+  email: "fulaninho@email.com",
+  status: "presente"
+}, {
+  nome: "Alguem",
+  email: "alguem2@email.com",
+  status: "pendente"
+}, {
+  nome: "Cidadão",
+  email: "cidaddão@email.com",
+  status: "presente"
+}];
 
 // Números dos cartões (começam iguais ao protótipo)
-const totais = { inscritos: 128, presentes: 94, ausentes: 34 };
+const totais = {
+  inscritos: 128,
+  presentes: 94,
+  ausentes: 34
+};
 
 function desenharTabela() {
   tabela.innerHTML = ""; // limpa as linhas antigas antes de desenhar de novo
 
-  participantes.forEach(function (p) {
+  participantes.forEach(function(p) {
     // Cria os elementos pelo JS (createElement) em vez de montar texto HTML.
     // Usar textContent (e não innerHTML) com nomes digitados pelo usuário
     // é mais seguro: o navegador trata tudo como texto comum.
@@ -79,7 +95,7 @@ function desenharTabela() {
     } else {
       botaoAcao.textContent = "Validar →";
       // Clicar em "Validar" confirma a presença desse participante
-      botaoAcao.addEventListener("click", function () {
+      botaoAcao.addEventListener("click", function() {
         validarParticipante(p);
       });
     }
@@ -103,20 +119,19 @@ function validarParticipante(p) {
   if (p.status === "presente") return; // já estava presente, não faz nada
 
   p.status = "presente";
-  totais.presentes++;   // ++ soma 1
-  totais.ausentes--;    // -- subtrai 1
+  totais.presentes++; // ++ soma 1
+  totais.ausentes--; // -- subtrai 1
 
   desenharTabela();
   atualizarContadores();
   mensagem.textContent = p.nome + " foi validado(a).";
 }
 
-
 /* =====================================================
    3) VALIDAÇÃO MANUAL E INSCRIÇÃO RÁPIDA
    ===================================================== */
 
-document.getElementById("btn-validar").addEventListener("click", function () {
+document.getElementById("btn-validar").addEventListener("click", function() {
   const campoBusca = document.getElementById("busca-manual");
 
   /* trim() tira espaços das pontas; toLowerCase() deixa tudo em minúsculas.
@@ -130,9 +145,9 @@ document.getElementById("btn-validar").addEventListener("click", function () {
 
   /* find: percorre a lista e devolve o PRIMEIRO item que passar no teste.
      includes: verifica se um texto contém o outro. */
-  const encontrado = participantes.find(function (p) {
+  const encontrado = participantes.find(function(p) {
     return p.nome.toLowerCase().includes(termo) ||
-           p.email.toLowerCase().includes(termo);
+      p.email.toLowerCase().includes(termo);
   });
 
   if (encontrado) {
@@ -142,7 +157,7 @@ document.getElementById("btn-validar").addEventListener("click", function () {
   }
 });
 
-document.getElementById("btn-rapida").addEventListener("click", function () {
+document.getElementById("btn-rapida").addEventListener("click", function() {
   // prompt abre uma caixinha pedindo um texto (simples, só para o exemplo)
   const nome = prompt("Nome do participante:");
   if (!nome) return; // cancelou ou deixou vazio
@@ -163,7 +178,6 @@ document.getElementById("btn-rapida").addEventListener("click", function () {
 desenharTabela(); // primeira vez que a tabela aparece
 atualizarContadores();
 
-
 /* =====================================================
    4) QR CODE DESENHADO NO <canvas>
    =====================================================
@@ -179,8 +193,8 @@ const canvas = document.getElementById("qr");
    para pintar retângulos. */
 const pincel = canvas.getContext("2d");
 
-const QUADRADOS = 25;                       // o QR é uma grade 25 x 25
-const tamanho = canvas.width / QUADRADOS;   // tamanho de cada quadradinho em pixels
+const QUADRADOS = 25; // o QR é uma grade 25 x 25
+const tamanho = canvas.width / QUADRADOS; // tamanho de cada quadradinho em pixels
 
 // Desenha um "olho" do QR (os 3 quadrados grandes dos cantos): 7x7 quadradinhos
 function desenharOlho(coluna, linha) {
@@ -223,9 +237,9 @@ function gerarQrCode() {
     }
   }
 
-  desenharOlho(0, 0);                    // canto de cima à esquerda
-  desenharOlho(QUADRADOS - 7, 0);        // canto de cima à direita
-  desenharOlho(0, QUADRADOS - 7);        // canto de baixo à esquerda
+  desenharOlho(0, 0); // canto de cima à esquerda
+  desenharOlho(QUADRADOS - 7, 0); // canto de cima à direita
+  desenharOlho(0, QUADRADOS - 7); // canto de baixo à esquerda
 }
 
 document.getElementById("btn-qr").addEventListener("click", gerarQrCode);

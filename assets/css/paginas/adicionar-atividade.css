@@ -1,9 +1,18 @@
+/*
+ * Ajustes da página adicionar atividade. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ============================================================
    EAS — ADICIONAR ATIVIDADE
    Exclusivamente para adicionar-atividade.html.
    Todos os valores de cor vêm de variaveis.css.
    ============================================================ */
 
+/*
+ * Distribuição do conteúdo: Grid organiza linhas e colunas; Flexbox alinha itens em uma
+ * direção. gap cria espaço entre itens sem margens individuais.
+ */
 .estrutura-adicionar-atividade {
   display: grid;
   grid-template-columns: clamp(175px, 17vw, 220px) minmax(0, 1fr);
@@ -14,6 +23,10 @@
   padding-bottom: 72px;
 }
 
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
 .page-adicionar-atividade #navbarADM-container {
   min-width: 0;
   min-height: 1px;
@@ -60,6 +73,10 @@
   margin-bottom: 26px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .cabecalho-adicionar-atividade h1 {
   margin: 0 0 7px;
   font-family: var(--fonte-titulo);
@@ -90,6 +107,10 @@
   gap: 18px;
 }
 
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .page-adicionar-atividade .painel-formulario {
   min-width: 0;
   padding: 22px;
@@ -98,7 +119,9 @@
   box-shadow: none;
 }
 
-.page-adicionar-atividade .cabecalho-painel { margin-bottom: 18px; }
+.page-adicionar-atividade .cabecalho-painel {
+  margin-bottom: 18px;
+}
 
 .page-adicionar-atividade .cabecalho-painel h2 {
   margin: 0 0 5px;
@@ -120,7 +143,11 @@
   gap: 6px;
 }
 
-.page-adicionar-atividade .campo-formulario > label,
+.page-adicionar-atividade .campo-formulario>label,
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
 .page-adicionar-atividade .rotulo-foto {
   color: var(--texto-principal);
   font-size: 12px;
@@ -128,9 +155,9 @@
   font-weight: 700;
 }
 
-.page-adicionar-atividade .campo-formulario > input,
-.page-adicionar-atividade .campo-formulario > select,
-.page-adicionar-atividade .campo-formulario > textarea {
+.page-adicionar-atividade .campo-formulario>input,
+.page-adicionar-atividade .campo-formulario>select,
+.page-adicionar-atividade .campo-formulario>textarea {
   display: block;
   width: 100%;
   min-width: 0;
@@ -146,34 +173,58 @@
   font-weight: 400;
 }
 
-.page-adicionar-atividade .campo-formulario > textarea {
+.page-adicionar-atividade .campo-formulario>textarea {
   min-height: 56px;
   resize: vertical;
   background: var(--fundo-campo);
 }
 
-.page-adicionar-atividade .campo-formulario > :is(input,textarea)::placeholder {
+.page-adicionar-atividade .campo-formulario> :is(input, textarea)::placeholder {
   color: var(--texto-secundario);
   opacity: 1;
 }
 
-.page-adicionar-atividade .campo-formulario > :is(input,select,textarea):focus-visible {
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
+.page-adicionar-atividade .campo-formulario> :is(input, select, textarea):focus-visible {
   border-color: var(--marca-primaria);
   outline: 2px solid var(--marca-primaria);
   outline-offset: 2px;
 }
 
-.indicacao-obrigatorio { color: var(--marca-hover); }
+.indicacao-obrigatorio {
+  color: var(--marca-hover);
+}
 
-.campos-dados { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 16px; }
-.campo-largura-total { grid-column: 1 / -1; }
-.grade-horarios { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.campos-dados {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
 
-.campos-vinculacao { display: flex; flex-direction: column; gap: 16px; }
+.campo-largura-total {
+  grid-column: 1 / -1;
+}
 
-/* Seleção de 1 ou N palestrantes — apenas vínculo na atividade. */
+.grade-horarios {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.campos-vinculacao {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/*
+ * Seleção de 1 ou N palestrantes — apenas vínculo na atividade.
+ */
 .painel-palestrantes-selecao,
-.painel-salvamento { grid-column: 1 / -1; }
+.painel-salvamento {
+  grid-column: 1 / -1;
+}
 
 .cabecalho-palestrantes {
   display: flex;
@@ -182,6 +233,10 @@
   gap: 18px;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .page-adicionar-atividade .botao-novo-palestrante {
   width: auto;
   min-width: 232px;
@@ -254,9 +309,23 @@
   font-weight: 700;
 }
 
-.dados-opcao { display: flex; flex-direction: column; min-width: 0; gap: 4px; }
-.dados-opcao strong { font-size: 13px; line-height: 1.4; }
-.dados-opcao small { font-size: 11px; line-height: 1.45; color: var(--texto-secundario); }
+.dados-opcao {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+}
+
+.dados-opcao strong {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.dados-opcao small {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--texto-secundario);
+}
 
 .detalhe-selecao {
   display: flex;
@@ -268,8 +337,16 @@
   color: var(--texto-secundario);
 }
 
-.detalhe-selecao p { max-width: 460px; margin: 0; font-size: 11px; line-height: 1.5; }
-.detalhe-selecao strong { color: var(--texto-principal); }
+.detalhe-selecao p {
+  max-width: 460px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.detalhe-selecao strong {
+  color: var(--texto-principal);
+}
 
 .page-adicionar-atividade .painel-salvamento {
   display: flex;
@@ -278,42 +355,130 @@
   gap: 20px;
 }
 
-.painel-salvamento strong { display: block; margin-bottom: 6px; font-size: 13px; }
-.painel-salvamento .texto-auxiliar { font-size: 11px; max-width: 460px; }
+.painel-salvamento strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
 
-.acoes-atividade { display: flex; justify-content: flex-end; flex-shrink: 0; gap: 12px; }
+.painel-salvamento .texto-auxiliar {
+  font-size: 11px;
+  max-width: 460px;
+}
+
+.acoes-atividade {
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  gap: 12px;
+}
 
 .page-adicionar-atividade .acoes-atividade button:focus-visible {
   outline: 2px solid var(--marca-hover);
   outline-offset: 3px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 1150px) {
-  .estrutura-adicionar-atividade { grid-template-columns: 175px minmax(0,1fr); gap: 24px; }
-  .grade-adicionar-atividade { grid-template-columns: minmax(0,1.4fr) minmax(230px,1fr); }
+  .estrutura-adicionar-atividade {
+    grid-template-columns: 175px minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .grade-adicionar-atividade {
+    grid-template-columns: minmax(0, 1.4fr) minmax(230px, 1fr);
+  }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 950px) {
-  .estrutura-adicionar-atividade { grid-template-columns: minmax(0,1fr); gap: 18px; padding-top: 24px; }
-  .page-adicionar-atividade #navbarADM-container:empty { display: none; }
-  .grade-adicionar-atividade { grid-template-columns: minmax(0,1fr); }
-  .painel-palestrantes-selecao, .painel-salvamento { grid-column: auto; }
+  .estrutura-adicionar-atividade {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding-top: 24px;
+  }
+
+  .page-adicionar-atividade #navbarADM-container:empty {
+    display: none;
+  }
+
+  .grade-adicionar-atividade {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .painel-palestrantes-selecao,
+  .painel-salvamento {
+    grid-column: auto;
+  }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 760px) {
-  .grade-opcoes-palestrantes { grid-template-columns: minmax(0, 1fr); }
-  .page-adicionar-atividade .painel-salvamento { align-items: stretch; flex-direction: column; }
-  .acoes-atividade { justify-content: flex-start; }
+  .grade-opcoes-palestrantes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-adicionar-atividade .painel-salvamento {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .acoes-atividade {
+    justify-content: flex-start;
+  }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 560px) {
-  .estrutura-adicionar-atividade { padding-bottom: 48px; }
-  .cabecalho-adicionar-atividade { align-items: flex-start; flex-direction: column; gap: 12px; }
-  .page-adicionar-atividade .painel-formulario { padding: 18px; }
-  .campos-dados { grid-template-columns: minmax(0,1fr); }
-  .campo-largura-total { grid-column: auto; }
-  .cabecalho-palestrantes { align-items: stretch; flex-direction: column; }
-  .page-adicionar-atividade .botao-novo-palestrante { min-width: 0; width: 100%; }
-  .acoes-atividade { flex-direction: column; }
-  .acoes-atividade button { width: 100%; }
+  .estrutura-adicionar-atividade {
+    padding-bottom: 48px;
+  }
+
+  .cabecalho-adicionar-atividade {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page-adicionar-atividade .painel-formulario {
+    padding: 18px;
+  }
+
+  .campos-dados {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .campo-largura-total {
+    grid-column: auto;
+  }
+
+  .cabecalho-palestrantes {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .page-adicionar-atividade .botao-novo-palestrante {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .acoes-atividade {
+    flex-direction: column;
+  }
+
+  .acoes-atividade button {
+    width: 100%;
+  }
 }

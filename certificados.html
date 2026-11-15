@@ -1,77 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  Consulta e download dos certificados da conta. Um certificado só aparece depois de emitido
+  pela organização; o arquivo gerado é HTML imprimível.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Certificados | EAS</title>
-
-    <!-- Importação do Ionicons (já utilizado no seu script) -->
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-
-    <link rel="stylesheet" href="assets/css/paginas/certificados.css" />
-
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>
+      Certificados | EAS
+    </title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/componentes.css" rel="stylesheet">
+    <link href="assets/css/layout.css" rel="stylesheet">
+    <link href="assets/css/paginas/certificados.css" rel="stylesheet">
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
     <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet">
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body>
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
-
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
     <main class="certificados-main">
       <div class="certificados-container">
-        <h1 class="page-title">Certificados</h1>
-
-        <!-- Barra de Pesquisa -->
+        <h1 class="page-title">
+          Certificados
+        </h1>
         <div class="search-certificados-box">
-          <ion-icon name="search-outline" class="search-icon"></ion-icon>
+          <ion-icon class="search-icon" name="search-outline"></ion-icon>
           <div class="search-input-wrapper">
-            <label for="filtro-certificado" class="sr-only"
-              >Consultar Certificados</label
-            >
-            <input
-              type="text"
-              id="filtro-certificado"
-              placeholder="Consultar Certificados:"
-              autocomplete="off"
-            />
+            <label class="sr-only" for="filtro-certificado">
+              Consultar Certificados
+            </label>
+            <input autocomplete="off" id="filtro-certificado" placeholder="Consultar Certificados:" type="text">
           </div>
         </div>
-
-        <!-- Tabela de Certificados -->
         <div class="table-responsive">
+          <!--
+            Tabela de dados, com cabeçalhos no thead e registros no tbody. app.js substitui o
+            conteúdo de exemplo pelos certificados da conta.
+          -->
           <table class="certificados-table" id="tabela-certificados">
             <thead>
               <tr>
-                <th>Certificado</th>
-                <th>Tipo Evento</th>
-                <th>Data</th>
-                <th>Baixar</th>
+                <th scope="col">
+                  Certificado
+                </th>
+                <th scope="col">
+                  Tipo Evento
+                </th>
+                <th scope="col">
+                  Data
+                </th>
+                <th scope="col">
+                  Baixar
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Certificado de Ecologia</td>
-                <td>Evento de Ecologia</td>
-                <td>30/10/2026</td>
-                <td>
-                  <a
-                    href="arquivos/nomecertificado.pdf"
-                    download
-                    class="btn-download"
-                  >
-                    <ion-icon name="download-outline"></ion-icon>
-                    <span>nomecertificado.pdf</span>
-                  </a>
+                <td colspan="4">
+                  Carregando certificados...
                 </td>
               </tr>
             </tbody>
@@ -79,18 +90,26 @@
         </div>
       </div>
     </main>
-
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
-
-    <!-- Seu script principal que carrega header, footer e eventos -->
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
-    ></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

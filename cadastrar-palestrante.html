@@ -1,166 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  Cadastro e edição de palestrantes e suas fotos. A lista ao final permite consultar os
+  registros e editar os próprios cadastros.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Cadastre palestrantes e suas fotos para as atividades do EAS."
-    />
-    <title>Cadastrar palestrante | EAS</title>
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-    <link
-      rel="stylesheet"
-      href="assets/css/paginas/cadastrar-palestrante.css"
-    />
-
-    <script src="assets/js/tema.js" defer></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Cadastre palestrantes e suas fotos para as atividades do EAS." name="description">
+    <title>
+      Cadastrar palestrante | EAS
+    </title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/componentes.css" rel="stylesheet">
+    <link href="assets/css/layout.css" rel="stylesheet">
+    <link href="assets/css/paginas/cadastrar-palestrante.css" rel="stylesheet">
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script defer="" src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet">
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-home page-cadastrar-palestrante">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
     <div class="secao estrutura-cadastrar-palestrante">
-      <!-- Área reservada para a inclusão do menu administrativo por JS. -->
+      <!--
+        Área do menu do organizador. paineladm.js carrega os links e app.js acrescenta o seletor
+        de eventos e o contexto da URL.
+      -->
       <div id="painel-adm"></div>
+      <!--
+        Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+        são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+      -->
       <main class="conteudo-cadastrar-palestrante" id="conteudo-principal">
-        <nav
-          class="trilha-cadastrar-palestrante"
-          aria-label="Localização no painel"
-        >
+        <!--
+          nav reúne links de navegação. aria-label explica a finalidade deste conjunto quando há
+          mais de um menu na página.
+        -->
+        <nav aria-label="Localização no painel" class="trilha-cadastrar-palestrante">
           <ol>
-            <li>Painel do organizador</li>
-            <li>Criar evento</li>
-            <li>Adicionar atividade</li>
-            <li aria-current="page">Cadastrar palestrante</li>
+            <li>
+              Painel do organizador
+            </li>
+            <li>
+              Criar evento
+            </li>
+            <li>
+              Adicionar atividade
+            </li>
+            <li aria-current="page">
+              Cadastrar palestrante
+            </li>
           </ol>
         </nav>
         <div class="cabecalho-cadastrar-palestrante">
           <div>
-            <h1>Cadastrar palestrante</h1>
+            <h1>
+              Cadastrar palestrante
+            </h1>
             <p>
               Adicione um palestrante à sua lista para vinculá-lo às atividades
               do evento.
             </p>
           </div>
-          <span class="etiqueta etiqueta-modelo">Cadastro de palestrantes</span>
+          <span class="etiqueta etiqueta-modelo">
+            Cadastro de palestrantes
+          </span>
         </div>
-        <form
-          id="form-cadastrar-palestrante"
-          action="#"
-          method="post"
-          enctype="multipart/form-data"
-          class="grade grade-cadastrar-palestrante"
-        >
-          <section
-            class="cartao painel-formulario painel-dados-palestrante"
-            aria-labelledby="titulo-pessoais"
-          >
+        <!--
+          Formulário de entrada de dados. app.js intercepta submit com preventDefault, usa a
+          validação nativa e chama banco.js. required exige preenchimento; label com for
+          identifica o input correspondente.
+        -->
+        <form action="#" class="grade grade-cadastrar-palestrante" enctype="multipart/form-data" id="form-cadastrar-palestrante" method="post">
+          <!--
+            Seção temática: Informações do palestrante. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-pessoais" class="cartao painel-formulario painel-dados-palestrante">
             <header class="cabecalho-painel">
-              <h2 id="titulo-pessoais">Informações do palestrante</h2>
-              <p>Preencha os dados de identificação e contato.</p>
+              <h2 id="titulo-pessoais">
+                Informações do palestrante
+              </h2>
+              <p>
+                Preencha os dados de identificação e contato.
+              </p>
             </header>
             <div class="grade grade-campos-palestrante">
+              <!--
+                Grupo de campo: o rótulo explica o dado solicitado. O placeholder é apenas uma
+                dica visual; não substitui label. autocomplete ajuda o navegador a oferecer
+                preenchimento adequado.
+              -->
               <div class="campo-formulario campo-largura-total">
-                <label for="nome-palestrante"
-                  >Nome completo
-                  <span class="indicacao-obrigatorio" aria-hidden="true"
-                    >*</span
-                  ></label
-                >
-                <input
-                  type="text"
-                  id="nome-palestrante"
-                  name="nome"
-                  maxlength="150"
-                  placeholder="Ex.: Ana Paula Ribeiro"
-                  autocomplete="name"
-                  required
-                />
+                <label for="nome-palestrante">
+                  Nome completo
+                  <span aria-hidden="true" class="indicacao-obrigatorio">
+                    *
+                  </span>
+                </label>
+                <input autocomplete="name" id="nome-palestrante" maxlength="150" name="nome" placeholder="Ex.: Ana Paula Ribeiro" required="" type="text">
               </div>
               <div class="campo-formulario">
-                <label for="cargo-palestrante">Cargo ou especialidade</label>
-                <input
-                  type="text"
-                  id="cargo-palestrante"
-                  name="cargo"
-                  maxlength="150"
-                  placeholder="Ex.: Professora de Computação"
-                />
+                <label for="cargo-palestrante">
+                  Cargo ou especialidade
+                </label>
+                <input id="cargo-palestrante" maxlength="150" name="cargo" placeholder="Ex.: Professora de Computação" type="text">
               </div>
               <div class="campo-formulario">
-                <label for="instituicao-palestrante"
-                  >Instituição / organização</label
-                >
-                <input
-                  type="text"
-                  id="instituicao-palestrante"
-                  name="instituicao"
-                  maxlength="180"
-                  placeholder="Ex.: IF Goiano"
-                />
+                <label for="instituicao-palestrante">
+                  Instituição / organização
+                </label>
+                <input id="instituicao-palestrante" maxlength="180" name="instituicao" placeholder="Ex.: IF Goiano" type="text">
               </div>
               <div class="campo-formulario campo-largura-total">
-                <label for="email-palestrante">E-mail para contato</label>
-                <input
-                  type="email"
-                  id="email-palestrante"
-                  name="email"
-                  maxlength="180"
-                  placeholder="nome@exemplo.com"
-                  autocomplete="email"
-                />
+                <label for="email-palestrante">
+                  E-mail para contato
+                </label>
+                <input autocomplete="email" id="email-palestrante" maxlength="180" name="email" placeholder="nome@exemplo.com" type="email">
               </div>
             </div>
           </section>
-          <section
-            class="cartao painel-formulario painel-foto-palestrante"
-            aria-labelledby="titulo-foto"
-          >
+          <!--
+            Seção temática: Foto do palestrante. O agrupamento organiza o conteúdo; as classes
+            determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-foto" class="cartao painel-formulario painel-foto-palestrante">
             <header class="cabecalho-painel">
-              <h2 id="titulo-foto">Foto do palestrante</h2>
-              <p>Esta imagem poderá aparecer na programação do evento.</p>
+              <h2 id="titulo-foto">
+                Foto do palestrante
+              </h2>
+              <p>
+                Esta imagem poderá aparecer na programação do evento.
+              </p>
             </header>
+            <!--
+              Upload de imagem: input type=file abre o seletor, e accept sugere formatos. app.js
+              acrescenta prévia e remoção; banco.js também confere conteúdo e tamanho antes de
+              gravar.
+            -->
             <div class="area-imagem-palestrante">
-              <input
-                class="texto-oculto entrada-foto"
-                id="foto-palestrante"
-                name="foto"
-                type="file"
-                accept="image/png,image/jpeg,image/webp"
-                aria-describedby="orientacao-foto"
-              />
+              <input accept="image/png,image/jpeg,image/webp" aria-describedby="orientacao-foto" class="texto-oculto entrada-foto" id="foto-palestrante" name="foto" type="file">
               <label class="rotulo-upload" for="foto-palestrante">
-                <span class="icone-upload" aria-hidden="true">
-                  <svg
-                    viewBox="0 0 60 60"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="30" cy="21" r="10"></circle>
-                    <path d="M10 51v-4c0-11 9-20 20-20s20 9 20 20v4"></path>
+                <span aria-hidden="true" class="icone-upload">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 60 60">
+                    <circle cx="30" cy="21" r="10">
+                    </circle>
+                    <path d="M10 51v-4c0-11 9-20 20-20s20 9 20 20v4">
+                    </path>
                   </svg>
                 </span>
-                <span class="btn-segundario acao-upload">Selecionar foto</span>
-                <span class="texto-auxiliar" id="orientacao-foto"
-                  >JPG, PNG ou WEBP</span
-                >
+                <span class="btn-segundario acao-upload">
+                  Selecionar foto
+                </span>
+                <span class="texto-auxiliar" id="orientacao-foto">
+                  JPG, PNG ou WEBP
+                </span>
               </label>
             </div>
             <p class="nota-foto">
               Prefira uma foto nítida, centralizada e com o rosto visível.
             </p>
           </section>
-          <section
-            class="cartao painel-formulario painel-perfil-profissional"
-            aria-labelledby="titulo-profissional"
-          >
+          <!--
+            Seção temática: Apresentação profissional. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-profissional" class="cartao painel-formulario painel-perfil-profissional">
             <header class="cabecalho-painel">
-              <h2 id="titulo-profissional">Apresentação profissional</h2>
+              <h2 id="titulo-profissional">
+                Apresentação profissional
+              </h2>
               <p>
                 Essas informações poderão aparecer no perfil público do
                 palestrante.
@@ -168,53 +196,44 @@
             </header>
             <div class="grade grade-campos-profissionais">
               <div class="campo-formulario campo-largura-total">
-                <label for="biografia-palestrante">Mini biografia</label>
-                <textarea
-                  id="biografia-palestrante"
-                  name="biografia"
-                  maxlength="1500"
-                  rows="4"
-                  placeholder="Apresente a experiência, formação e principais áreas de atuação do palestrante."
-                ></textarea>
+                <label for="biografia-palestrante">
+                  Mini biografia
+                </label>
+                <textarea id="biografia-palestrante" maxlength="1500" name="biografia" placeholder="Apresente a experiência, formação e principais áreas de atuação do palestrante." rows="4"></textarea>
               </div>
               <div class="campo-formulario">
-                <label for="site-palestrante"
-                  >Site ou portfólio (opcional)</label
-                >
-                <input
-                  type="url"
-                  id="site-palestrante"
-                  name="site"
-                  placeholder="https://exemplo.com"
-                />
+                <label for="site-palestrante">
+                  Site ou portfólio (opcional)
+                </label>
+                <input id="site-palestrante" name="site" placeholder="https://exemplo.com" type="url">
               </div>
               <div class="campo-formulario">
-                <label for="linkedin-palestrante">LinkedIn (opcional)</label>
-                <input
-                  type="url"
-                  id="linkedin-palestrante"
-                  name="linkedin"
-                  placeholder="https://linkedin.com/in/perfil"
-                />
+                <label for="linkedin-palestrante">
+                  LinkedIn (opcional)
+                </label>
+                <input id="linkedin-palestrante" name="linkedin" placeholder="https://linkedin.com/in/perfil" type="url">
               </div>
             </div>
           </section>
-          <section
-            class="cartao painel-formulario painel-salvamento-palestrante"
-            aria-label="Ações do formulário"
-          >
+          <!--
+            Seção temática: Ações do formulário. O agrupamento organiza o conteúdo; as classes
+            determinam sua apresentação no CSS.
+          -->
+          <section aria-label="Ações do formulário" class="cartao painel-formulario painel-salvamento-palestrante">
             <div>
-              <strong>Pronto para vincular às atividades</strong>
+              <strong>
+                Pronto para vincular às atividades
+              </strong>
               <p class="texto-auxiliar">
                 O mesmo palestrante poderá participar de uma ou várias
-                atividades após a integração do cadastro.
+                atividades cadastradas no sistema.
               </p>
             </div>
             <div class="grupo-acoes acoes-palestrante">
-              <a href="adicionar-atividade.html" class="btn-segundario"
-                >Voltar à atividade</a
-              >
-              <button type="submit" class="btn-confirmacao">
+              <a class="btn-segundario" href="adicionar-atividade.html">
+                Voltar à atividade
+              </a>
+              <button class="btn-confirmacao" type="submit">
                 Salvar palestrante
               </button>
             </div>
@@ -222,16 +241,31 @@
         </form>
       </main>
     </div>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
+    <!--
+      Carrega o menu administrativo em escopo isolado e destaca a página atual. app.js aguarda
+      painelPronto antes de ajustar os destinos.
+    -->
     <script src="assets/js/paineladm.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
-    ></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js" type="module"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

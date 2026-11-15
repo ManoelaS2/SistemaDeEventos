@@ -1,17 +1,40 @@
-/* Recuperar senha — apenas particularidades desta página. */
+/*
+ * Ajustes da página recuperar senha. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
+/*
+ * Recuperar senha — apenas particularidades desta página.
+ */
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .page-recuperar-senha .cartao--recuperacao {
   --cartao-acesso-largura: var(--cartao-recuperacao-largura);
   --cartao-acesso-altura-minima: 465px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .page-recuperar-senha .mensagem-acesso {
   margin-top: 24px;
 }
 
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .page-recuperar-senha .formulario-acesso--centralizado {
   margin-top: 32px;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .page-recuperar-senha .formulario-acesso--centralizado .btn-confirmacao {
   margin-top: 28px;
 }

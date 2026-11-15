@@ -1,62 +1,77 @@
-/* EAS — Base global, sem regras específicas de página */
+/*
+ * Estabelece os padrões de elementos HTML. box-sizing inclui bordas e preenchimento na
+ * largura; estilos simples de texto e campos tornam a base consistente entre páginas.
+ */
+
+/*
+ * EAS — Base global, sem regras específicas de página
+ */
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    background: var(--fundo-pagina);
-    color: var(--texto-principal);
-    font-family: var(--fonte-corpo);
+  margin: 0;
+  background: var(--fundo-pagina);
+  color: var(--texto-principal);
+  font-family: var(--fonte-corpo);
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: var(--fonte-titulo);
+  font-family: var(--fonte-titulo);
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 button,
 input,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 ion-icon {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .texto-oculto {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    white-space: nowrap;
-    clip-path: inset(50%);
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
 }

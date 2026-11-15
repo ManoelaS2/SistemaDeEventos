@@ -1,0 +1,40 @@
+{
+  "versao": 1,
+  "imagens": [
+    {
+      "colecao": "eventos",
+      "registroId": "semana-tecnologia",
+      "campo": "capaId",
+      "midiaId": "midia-demo-semana-tecnologia",
+      "arquivo": "../../img/demonstracao/semana-tecnologia.jpg"
+    },
+    {
+      "colecao": "eventos",
+      "registroId": "encontro-web",
+      "campo": "capaId",
+      "midiaId": "midia-demo-encontro-web",
+      "arquivo": "../../img/demonstracao/encontro-web.jpg"
+    },
+    {
+      "colecao": "eventos",
+      "registroId": "oficina-robotica",
+      "campo": "capaId",
+      "midiaId": "midia-demo-oficina-robotica",
+      "arquivo": "../../img/demonstracao/oficina-robotica.jpg"
+    },
+    {
+      "colecao": "palestrantes",
+      "registroId": "palestrante-ana",
+      "campo": "fotoId",
+      "midiaId": "midia-demo-palestrante-ana",
+      "arquivo": "../../img/demonstracao/palestrante-ana.jpg"
+    },
+    {
+      "colecao": "palestrantes",
+      "registroId": "palestrante-carlos",
+      "campo": "fotoId",
+      "midiaId": "midia-demo-palestrante-carlos",
+      "arquivo": "../../img/demonstracao/palestrante-carlos.jpg"
+    }
+  ]
+}

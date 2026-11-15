@@ -1,51 +1,84 @@
 <!doctype html>
+<!--
+  Painel dos eventos que a conta pode consultar. Números e tabelas são calculados dos registros;
+  o evento selecionado define os atalhos administrativos.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programação</title>
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/paginas/gerenciamento-evento.css" />
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Gerenciar eventos | EAS</title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/paginas/gerenciamento-evento.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
     <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body>
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
     <main class="painel">
+      <!--
+        Área do menu do organizador. paineladm.js carrega os links e app.js acrescenta o seletor
+        de eventos e o contexto da URL.
+      -->
       <div id="painel-adm"></div>
       <div class="titulo-painel">
         <div class="texto-painel">
-          <h5 class="h5-fraco">PAINEL / EVENTOS / GERENCIAMENTO</h5>
+          <p class="h5-fraco">PAINEL / EVENTOS / GERENCIAMENTO</p>
           <h1>Gerenciar eventos</h1>
           <p>
             Acompanhe inscrições, pagamentos, mapas e atividades em um só lugar.
           </p>
         </div>
-        <button class="btn-confirmacao btn-painel">+ Novo evento</button>
+        <button class="btn-confirmacao btn-painel" type="button">
+          + Novo evento
+        </button>
       </div>
       <div class="card-informativos">
         <div class="card-informacao">
           <h5 class="h5-fraco">Eventos ativos</h5>
-          <h2>04</h2>
-          <h5 class="h5-fraco">2 com inscrições abertas</h5>
+          <h2>—</h2>
+          <h5 class="h5-fraco">Carregando registros…</h5>
         </div>
         <div class="card-informacao">
           <h5 class="h5-fraco">Inscritos</h5>
-          <h2>1.248</h2>
-          <h5 class="h5-fraco">+84 nos últimos 7 dias</h5>
+          <h2>—</h2>
+          <h5 class="h5-fraco">Carregando registros…</h5>
         </div>
         <div class="card-informacao">
           <h5 class="h5-fraco">Pagamentos</h5>
-          <h2>87%</h2>
-          <h5 class="h5-fraco">Das inscrições pagas</h5>
+          <h2>—</h2>
+          <h5 class="h5-fraco">Carregando registros…</h5>
         </div>
         <div class="card-informacao">
           <h5 class="h5-fraco">Credenciados</h5>
-          <h2>642</h2>
-          <h5 class="h5-fraco">Atualizado hoje</h5>
+          <h2>—</h2>
+          <h5 class="h5-fraco">Carregando registros…</h5>
         </div>
       </div>
       <div class="integrantes-equipe">
@@ -53,91 +86,66 @@
         <h5 class="h5-fraco">
           Selecione um evento para consultar ou gerenciar.
         </h5>
+        <!--
+          Tabela para dados com relação entre linhas e colunas. th com scope=col identifica os
+          cabeçalhos; tbody recebe os registros exibidos pela aplicação.
+        -->
         <table>
           <thead>
             <tr>
-              <th>Evento</th>
-              <th>Período</th>
-              <th>Inscritos</th>
-              <th>Pagamento</th>
-              <th>Situação</th>
-              <th>Ação</th>
+              <th scope="col">Evento</th>
+              <th scope="col">Período</th>
+              <th scope="col">Inscritos</th>
+              <th scope="col">Pagamento</th>
+              <th scope="col">Situação</th>
+              <th scope="col">Ação</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><h5>Semana de Tecnologia 2026</h5></td>
-              <td><p>20–22 nov</p></td>
-              <td><p>428 / 500</p></td>
-              <td><span class="elemento-table">Gratuito</span></td>
-              <td><span class="elemento-table">Publicado</span></td>
-              <td><a href="#">Gerenciar →</a></td>
-            </tr>
-            <tr>
-              <td><h5>Simpósio de Pesquisa</h5></td>
-              <td><p>04–05 dez</p></td>
-              <td><p>172 / 300</p></td>
-              <td><span class="elemento-table table-amrelo">Conferir</span></td>
-              <td><span class="elemento-table">Publicado</span></td>
-              <td><a href="#">Gerenciar →</a></td>
-            </tr>
-            <tr>
-              <td><h5>Oficina de Robótica</h5></td>
-              <td><p>13 dez</p></td>
-              <td><p>48 / 60</p></td>
-              <td><span class="elemento-table">Concluído</span></td>
-              <td><span class="elemento-table">Rascunho</span></td>
-              <td><a href="#">Editar →</a></td>
-            </tr>
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
       <div class="inscricoes">
-        <h3>Inscritos e pagamentos</h3>
-        <h5 class="h5-fraco">Evento selecionado: Semana de Tecnologia 2026</h5>
-        <h1 class="numero-inscritos">428</h1>
-        <h5 class="h5-fraco texto-inscritos">participantes inscritos</h5>
-        <span class="micro-table"
-          ><p>Validar entrada dos inscritos</p>
-          <span class="inscricoes-elemt">382</span></span
-        >
-        <span class="micro-table"
-          ><p>Criar e gerenciar eventos</p>
-          <span class="inscricoes-elemt elemt-amrelo">46</span></span
-        >
-        <button class="btn-segundario">Ver lista de inscritos</button>
+        <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
+        <p class="eas-carregamento" role="status">
+          Carregando inscrições do evento…
+        </p>
       </div>
       <div class="mapa-atividades">
-        <h3>Certificados da equipe</h3>
-        <h5 class="h5-fraco">
-          Emita certificados para quem cumpriu as funções.
-        </h5>
-        <div class="mapa-container">
-          <div class="mapa">
-            <span class="elemento-mapa">AUDITÓRIO</span>
-            <span class="elemento-mapa">LAB 02</span>
-          </div>
-          <div class="informacoes-extra">
-            <h4>12 atividades programadas</h4>
-            <h5 class="h5-fraco">4 locais cadastrados</h5>
-            <h5 class="h5-fraco">8 palestrantes confirmados</h5>
-            <button class="btn-confirmacao btn-cetificado">
-              Gerenciar atividades
-            </button>
-          </div>
-        </div>
+        <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
+        <p class="eas-carregamento" role="status">Carregando programação…</p>
       </div>
     </main>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
+    <!--
+      Carrega o menu administrativo em escopo isolado e destaca a página atual. app.js aguarda
+      painelPronto antes de ajustar os destinos.
+    -->
     <script src="assets/js/paineladm.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
     <script
-      type="module"
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
     ></script>
     <script
-      nomodule
+      nomodule=""
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
     ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

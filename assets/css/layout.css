@@ -1,3 +1,8 @@
+/*
+ * Organiza a estrutura comum de cabeçalho, navegação, rodapé e painel. As regras de largura e
+ * os pontos de quebra adaptam a estrutura aos tamanhos de tela.
+ */
+
 /* ============================================================
    EAS — LAYOUT GLOBAL
    Cabeçalho e rodapé compartilhados por todas as páginas.
@@ -23,14 +28,22 @@ body {
   flex-direction: column;
 }
 
-/* O footer é injetado pelo JavaScript neste contêiner. */
+/*
+ * O footer é injetado pelo JavaScript neste contêiner.
+ */
+/*
+ * Rodapé: mantém marca e links de apoio alinhados e permite reorganizá-los conforme a largura
+ * da tela.
+ */
 #footer-container {
   width: 100%;
   margin-top: auto;
 }
 
-/* Compatibilidade caso o footer seja usado diretamente no body. */
-body > .site-footer {
+/*
+ * Compatibilidade caso o footer seja usado diretamente no body.
+ */
+body>.site-footer {
   margin-top: auto;
 }
 
@@ -72,14 +85,14 @@ body > .site-footer {
   width: 100%;
   height: var(--header-height);
   color: var(--texto-fundo-escuro);
-  background: linear-gradient(
-    90deg,
-    var(--marca-secundaria),
-    var(--marca-primaria)
-  );
+  background: linear-gradient(90deg,
+      var(--marca-secundaria),
+      var(--marca-primaria));
 }
 
-/* Espaço deixado no fluxo normal para o header fixo. */
+/*
+ * Espaço deixado no fluxo normal para o header fixo.
+ */
 .spam-header {
   display: block;
   width: 100%;
@@ -98,7 +111,9 @@ body > .site-footer {
   margin: 0 auto;
 }
 
-/* Pesquisa */
+/*
+ * Pesquisa
+ */
 .header-search {
   display: flex;
   align-items: center;
@@ -133,7 +148,13 @@ body > .site-footer {
   color: var(--texto-fundo-escuro);
 }
 
-/* Navegação */
+/*
+ * Navegação
+ */
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
 .main-nav {
   display: flex;
   align-items: center;
@@ -185,7 +206,9 @@ body > .site-footer {
   font-size: 36px;
 }
 
-/* Botão do menu — visível também no desktop, como no protótipo. */
+/*
+ * Botão do menu — visível também no desktop, como no protótipo.
+ */
 .menu-toggle {
   display: inline-flex;
   align-items: center;
@@ -202,7 +225,9 @@ body > .site-footer {
   font-size: 43px;
 }
 
-/* Links visíveis conforme a página (classes no body). */
+/*
+ * Links visíveis conforme a página (classes no body).
+ */
 .home-only {
   display: none !important;
 }
@@ -226,11 +251,9 @@ body > .site-footer {
 .site-footer {
   width: 100%;
   min-height: var(--footer-height);
-  background: linear-gradient(
-    105deg,
-    var(--marca-secundaria),
-    var(--marca-primaria)
-  );
+  background: linear-gradient(105deg,
+      var(--marca-secundaria),
+      var(--marca-primaria));
   color: var(--texto-fundo-escuro);
 }
 
@@ -283,54 +306,66 @@ body > .site-footer {
    5. NAV BAR DO PAINEL DO ADM
    ============================================================ */
 
-/* Painel Organizador */
+/*
+ * Painel Organizador
+ */
 #painel-adm {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    background-color: var(--fundo-elevado);
-    padding: 0 1rem;
-    justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  background-color: var(--fundo-elevado);
+  padding: 0 1rem;
+  justify-self: end;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .h5-fraco {
-    font-weight: 400;
+  font-weight: 400;
 }
 
-h5, p, ul{
-    color: var(--texto-secundario);
+h5,
+p,
+ul {
+  color: var(--texto-secundario);
 }
 
 #painel-adm li {
-    list-style-type: none;  
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
 }
 
 #painel-adm ul {
-    padding: 5px .5rem;
+  padding: 5px .5rem;
 }
 
 #painel-adm a {
-    padding: .5rem; 
+  padding: .5rem;
 }
 
 .painel-selecionado {
-    background-color: #EAF7F2;
-    border-left: var(--marca-hover) 4px solid;
-    border-radius: 6px;
-    color: var(--marca-hover);
-    font-weight: 700;
-    width: 100%;
-    height: 2rem;
+  background-color: #EAF7F2;
+  border-left: var(--marca-hover) 4px solid;
+  border-radius: 6px;
+  color: var(--marca-hover);
+  font-weight: 700;
+  width: 100%;
+  height: 2rem;
 }
 
 /* ============================================================
    6. RESPONSIVIDADE
    ============================================================ */
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 1200px) {
   .header-inner {
     gap: 20px;
@@ -363,6 +398,10 @@ h5, p, ul{
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .header-inner {
     gap: 15px;
@@ -457,6 +496,10 @@ h5, p, ul{
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .header-search {
     display: none;

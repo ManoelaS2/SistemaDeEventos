@@ -1,17 +1,34 @@
+/*
+ * Ajustes da página cadastro. Este arquivo complementa os estilos globais; deve ser carregado
+ * depois de variaveis, base, componentes e layout.
+ */
+
 /* ============================================================
    EAS — CADASTRO
    Regras específicas; estilos reutilizáveis em componentes.css
    ============================================================ */
 
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .page-cadastro .cartao--cadastro {
   --cartao-acesso-largura: 620px;
   --cartao-acesso-padding-horizontal: 55px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .page-cadastro .titulo-acesso {
   margin-bottom: 28px;
 }
 
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .page-cadastro .formulario-acesso--cadastro {
   display: flex;
   flex-direction: column;
@@ -23,7 +40,11 @@
   text-align: center;
 }
 
-.page-cadastro .formulario-acesso--cadastro > .btn-confirmacao {
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
+.page-cadastro .formulario-acesso--cadastro>.btn-confirmacao {
   margin: 22px auto 0;
 }
 
@@ -43,6 +64,10 @@
   margin-top: 18px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 600px) {
   .page-cadastro .cartao--cadastro {
     --cartao-acesso-padding-horizontal: 26px;

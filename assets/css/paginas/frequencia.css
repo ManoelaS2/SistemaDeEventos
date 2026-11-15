@@ -1,3 +1,9 @@
+/*
+ * Ajustes da página frequencia. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout. Arquivo visual legado: a tela
+ * atual frequencia.html reutiliza credenciamento.css e funcionalidades.css.
+ */
+
 /* =====================================================
    frequencia.css - estilos SÓ da tela Frequência nas atividades
    (frequencia.html)
@@ -9,6 +15,10 @@
    Uma variável guarda um valor com um nome (--fundo) e é lida
    com var(--fundo). Para trocar de tema, o JS só muda o atributo
    data-tema do <html> e todas as cores mudam juntas. */
+/*
+ * Tema e valores compartilhados: variáveis de cor podem mudar no elemento ancestral e ser
+ * herdadas pelos componentes abaixo dele.
+ */
 :root {
   --fundo: #f1f1f1;
   --painel: #ffffff;
@@ -38,7 +48,10 @@
    2) BASE
    ----------------------------------------------------- */
 * {
-  box-sizing: border-box; /* padding e borda entram na largura total */
+  box-sizing: border-box;
+  /*
+   * padding e borda entram na largura total
+   */
   margin: 0;
   padding: 0;
 }
@@ -58,9 +71,19 @@ button {
 /* -----------------------------------------------------
    3) LAYOUT: menu lateral + conteúdo
    ----------------------------------------------------- */
+/*
+ * Distribuição do conteúdo: Grid organiza linhas e colunas; Flexbox alinha itens em uma
+ * direção. gap cria espaço entre itens sem margens individuais.
+ */
 .layout {
-  display: flex;             /* menu à esquerda, conteúdo à direita */
-  min-height: 100vh;         /* 100vh = altura inteira da tela */
+  display: flex;
+  /*
+   * menu à esquerda, conteúdo à direita
+   */
+  min-height: 100vh;
+  /*
+   * 100vh = altura inteira da tela
+   */
 }
 
 /* MENU LATERAL
@@ -69,6 +92,10 @@ button {
    - display: flex + flex-direction: column: empilha título, links e
      botão de tema na vertical.
    - flex-shrink: 0: impede o menu de ser espremido pelo conteúdo. */
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
 .menu-lateral {
   width: 200px;
   flex-shrink: 0;
@@ -96,11 +123,19 @@ button {
   flex: 1;
 }
 
+/*
+ * Rodapé: mantém marca e links de apoio alinhados e permite reorganizá-los conforme a largura
+ * da tela.
+ */
 .rodape-menu {
   border-top: 1px solid var(--borda);
   padding-top: 14px;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .btn-tema {
   width: 100%;
   background: var(--verde-claro);
@@ -130,7 +165,10 @@ button {
 .principal {
   flex: 1;
   padding: 24px 28px 36px;
-  min-width: 0;              /* evita que tabelas estiquem o layout flex */
+  min-width: 0;
+  /*
+   * evita que tabelas estiquem o layout flex
+   */
 }
 
 .migalhas {
@@ -138,6 +176,10 @@ button {
   color: var(--texto-suave);
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .principal h1 {
   font-size: 1.7rem;
   margin: 6px 0;
@@ -152,6 +194,10 @@ button {
 /* -----------------------------------------------------
    4) CARTÕES
    ----------------------------------------------------- */
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .cartao {
   background: var(--painel);
   border: 1px solid var(--borda);
@@ -164,7 +210,7 @@ button {
   font-size: 1rem;
 }
 
-.cartao > p {
+.cartao>p {
   color: var(--texto-suave);
   font-size: 0.75rem;
   margin-bottom: 12px;
@@ -206,7 +252,10 @@ button {
 
 .contadores {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 colunas iguais */
+  grid-template-columns: repeat(3, 1fr);
+  /*
+   * 3 colunas iguais
+   */
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -231,9 +280,16 @@ button {
 /* -----------------------------------------------------
    5) TABELA DE PARTICIPANTES
    ----------------------------------------------------- */
+/*
+ * Dados tabulares: separa cabeçalhos, células e linhas para facilitar a leitura. O contêiner
+ * com overflow permite rolar tabelas largas em telas pequenas.
+ */
 table {
   width: 100%;
-  border-collapse: collapse; /* junta as bordas das células */
+  border-collapse: collapse;
+  /*
+   * junta as bordas das células
+   */
   font-size: 0.8rem;
 }
 
@@ -310,7 +366,7 @@ canvas {
   align-items: flex-end;
 }
 
-.manual > div {
+.manual>div {
   flex: 1;
 }
 
@@ -326,10 +382,18 @@ canvas {
    -----------------------------------------------------
    @media aplica as regras só em telas de até 800px (celular):
    o menu lateral vira uma faixa no topo e as colunas empilham. */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 800px) {
   .layout {
-    flex-direction: column;  /* menu em cima, conteúdo embaixo */
+    flex-direction: column;
+    /*
+     * menu em cima, conteúdo embaixo
+     */
   }
+
   .menu-lateral {
     position: static;
     width: 100%;
@@ -337,22 +401,29 @@ canvas {
     border-right: none;
     border-bottom: 1px solid var(--borda);
   }
-  /* os links ficam lado a lado e dá para rolar para o lado */
+
+  /*
+   * os links ficam lado a lado e dá para rolar para o lado
+   */
   .menu-lateral nav {
     display: flex;
     gap: 6px;
     overflow-x: auto;
   }
+
   .menu-lateral a {
     white-space: nowrap;
   }
+
   .rodape-menu {
     margin-top: 10px;
   }
+
   .duas-colunas,
   .filtros {
     grid-template-columns: 1fr;
   }
+
   .manual {
     flex-direction: column;
     align-items: stretch;

@@ -1,66 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+  Cadastro e edição de uma atividade vinculada ao evento. A seleção usa IDs de palestrantes; um
+  rascunho temporário preserva campos durante a navegação.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta
-      content="Cadastre atividades no evento em criação e selecione um ou mais palestrantes já cadastrados."
-      name="description"
-    />
-    <title>Adicionar atividade ao evento | EAS</title>
-    <!-- Estilos compartilhados existentes, sem alterações. -->
-    <link href="assets/css/variaveis.css" rel="stylesheet" />
-    <link href="assets/css/base.css" rel="stylesheet" />
-    <link href="assets/css/componentes.css" rel="stylesheet" />
-    <link href="assets/css/layout.css" rel="stylesheet" />
-    <link href="assets/css/paginas/adicionar-atividade.css" rel="stylesheet" />
-
-    <script defer="" src="assets/js/tema.js"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Cadastre atividades no evento em criação e selecione um ou mais palestrantes já cadastrados." name="description">
+    <title>
+      Adicionar atividade ao evento | EAS
+    </title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet">
+    <link href="assets/css/base.css" rel="stylesheet">
+    <link href="assets/css/componentes.css" rel="stylesheet">
+    <link href="assets/css/layout.css" rel="stylesheet">
+    <link href="assets/css/paginas/adicionar-atividade.css" rel="stylesheet">
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script defer="" src="assets/js/tema.js">
+    </script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet">
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-home page-adicionar-atividade">
-    <div id="header-container"></div>
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
+    <div id="header-container">
+    </div>
     <div class="secao estrutura-adicionar-atividade">
-      <!-- O menu administrativo será injetado futuramente por JavaScript. -->
-      <div id="painel-adm"></div>
+      <!--
+        Área do menu do organizador. paineladm.js carrega os links e app.js acrescenta o seletor
+        de eventos e o contexto da URL.
+      -->
+      <div id="painel-adm">
+      </div>
+      <!--
+        Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+        são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+      -->
       <main class="conteudo-adicionar-atividade" id="conteudo-principal">
-        <nav
-          aria-label="Localização no painel"
-          class="trilha-adicionar-atividade"
-        >
+        <!--
+          nav reúne links de navegação. aria-label explica a finalidade deste conjunto quando há
+          mais de um menu na página.
+        -->
+        <nav aria-label="Localização no painel" class="trilha-adicionar-atividade">
           <ol>
-            <li>Painel do organizador</li>
-            <li>Criar evento</li>
-            <li aria-current="page">Adicionar atividade</li>
+            <li>
+              Painel do organizador
+            </li>
+            <li>
+              Criar evento
+            </li>
+            <li aria-current="page">
+              Adicionar atividade
+            </li>
           </ol>
         </nav>
         <div class="cabecalho-adicionar-atividade">
           <div>
-            <h1>Adicionar atividade</h1>
+            <h1>
+              Adicionar atividade
+            </h1>
             <p>
               Organize a programação do evento e vincule um ou mais palestrantes
               cadastrados.
             </p>
           </div>
-          <span class="etiqueta etiqueta-modelo"> Etapa: programação </span>
+          <span class="etiqueta etiqueta-modelo">
+            Etapa: programação
+          </span>
         </div>
-        <!--O vínculo com o evento em criação será controlado pelo fluxo de cadastro.-->
-        <form
-          action="#"
-          class="grade grade-adicionar-atividade"
-          id="form-adicionar-atividade"
-          method="post"
-        >
-          <section
-            aria-labelledby="titulo-dados"
-            class="cartao painel-formulario painel-dados"
-          >
+        <!--
+          Formulário de entrada de dados. app.js intercepta submit com preventDefault, usa a
+          validação nativa e chama banco.js. required exige preenchimento; label com for
+          identifica o input correspondente.
+        -->
+        <form action="#" class="grade grade-adicionar-atividade" id="form-adicionar-atividade" method="post">
+          <!--
+            Seção temática: Informações da atividade. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-dados" class="cartao painel-formulario painel-dados">
             <header class="cabecalho-painel">
-              <h2 id="titulo-dados">Informações da atividade</h2>
+              <h2 id="titulo-dados">
+                Informações da atividade
+              </h2>
               <p>
                 Preencha os detalhes que aparecerão na programação do evento.
               </p>
             </header>
             <div class="grade campos-dados">
+              <!--
+                Grupo de campo: o rótulo explica o dado solicitado. O placeholder é apenas uma
+                dica visual; não substitui label. autocomplete ajuda o navegador a oferecer
+                preenchimento adequado.
+              -->
               <div class="campo-formulario campo-largura-total">
                 <label for="nome-atividade">
                   Nome da atividade
@@ -68,14 +117,7 @@
                     *
                   </span>
                 </label>
-                <input
-                  id="nome-atividade"
-                  maxlength="180"
-                  name="nome_atividade"
-                  placeholder="Ex.: Inteligência Artificial no Dia a Dia"
-                  required=""
-                  type="text"
-                />
+                <input id="nome-atividade" maxlength="180" name="nome_atividade" placeholder="Ex.: Inteligência Artificial no Dia a Dia" required="" type="text">
               </div>
               <div class="campo-formulario">
                 <label for="tipo-atividade">
@@ -88,20 +130,40 @@
                   <option disabled="" selected="" value="">
                     Selecione o tipo
                   </option>
-                  <option value="palestra">Palestra</option>
-                  <option value="oficina">Oficina</option>
-                  <option value="minicurso">Minicurso</option>
-                  <option value="mesa-redonda">Mesa-redonda</option>
-                  <option value="workshop">Workshop</option>
-                  <option value="outros">Outros</option>
+                  <option value="palestra">
+                    Palestra
+                  </option>
+                  <option value="oficina">
+                    Oficina
+                  </option>
+                  <option value="minicurso">
+                    Minicurso
+                  </option>
+                  <option value="mesa-redonda">
+                    Mesa-redonda
+                  </option>
+                  <option value="workshop">
+                    Workshop
+                  </option>
+                  <option value="outros">
+                    Outros
+                  </option>
                 </select>
               </div>
               <div class="campo-formulario">
-                <label for="modalidade-atividade"> Modalidade </label>
+                <label for="modalidade-atividade">
+                  Modalidade
+                </label>
                 <select id="modalidade-atividade" name="modalidade">
-                  <option selected="" value="presencial">Presencial</option>
-                  <option value="online">Online</option>
-                  <option value="hibrida">Híbrida</option>
+                  <option selected="" value="presencial">
+                    Presencial
+                  </option>
+                  <option value="online">
+                    Online
+                  </option>
+                  <option value="hibrida">
+                    Híbrida
+                  </option>
                 </select>
               </div>
               <div class="campo-formulario">
@@ -111,12 +173,7 @@
                     *
                   </span>
                 </label>
-                <input
-                  id="data-atividade"
-                  name="data_atividade"
-                  required=""
-                  type="date"
-                />
+                <input id="data-atividade" name="data_atividade" required="" type="date">
               </div>
               <div class="grade grade-horarios">
                 <div class="campo-formulario">
@@ -126,12 +183,7 @@
                       *
                     </span>
                   </label>
-                  <input
-                    id="horario-inicio"
-                    name="horario_inicio"
-                    required=""
-                    type="time"
-                  />
+                  <input id="horario-inicio" name="horario_inicio" required="" type="time">
                 </div>
                 <div class="campo-formulario">
                   <label for="horario-termino">
@@ -140,111 +192,99 @@
                       *
                     </span>
                   </label>
-                  <input
-                    id="horario-termino"
-                    name="horario_termino"
-                    required=""
-                    type="time"
-                  />
+                  <input id="horario-termino" name="horario_termino" required="" type="time">
                 </div>
               </div>
               <div class="campo-formulario campo-largura-total">
-                <label for="local-atividade"> Local ou link de acesso </label>
-                <input
-                  id="local-atividade"
-                  maxlength="220"
-                  name="local_atividade"
-                  placeholder="Ex.: Auditório principal • Bloco B"
-                  type="text"
-                />
+                <label for="local-atividade">
+                  Local ou link de acesso
+                </label>
+                <input id="local-atividade" maxlength="220" name="local_atividade" placeholder="Ex.: Auditório principal • Bloco B" type="text">
               </div>
               <div class="campo-formulario campo-largura-total">
-                <label for="descricao-atividade"> Descrição </label>
-                <textarea
-                  id="descricao-atividade"
-                  maxlength="3000"
-                  name="descricao_atividade"
-                  placeholder="Apresente o objetivo, os conteúdos e o público-alvo da atividade."
-                  rows="3"
-                ></textarea>
+                <label for="descricao-atividade">
+                  Descrição
+                </label>
+                <textarea id="descricao-atividade" maxlength="3000" name="descricao_atividade" placeholder="Apresente o objetivo, os conteúdos e o público-alvo da atividade." rows="3"></textarea>
               </div>
             </div>
           </section>
-          <section
-            aria-labelledby="titulo-configuracoes"
-            class="cartao painel-formulario painel-vinculacao"
-          >
+          <!--
+            Seção temática: Inscrições e certificado. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-configuracoes" class="cartao painel-formulario painel-vinculacao">
             <header class="cabecalho-painel">
-              <h2 id="titulo-configuracoes">Inscrições e certificado</h2>
-              <p>Configure as vagas e a participação nesta atividade.</p>
+              <h2 id="titulo-configuracoes">
+                Inscrições e certificado
+              </h2>
+              <p>
+                Configure as vagas e a participação nesta atividade.
+              </p>
             </header>
             <div class="campos-vinculacao">
               <div class="campo-formulario">
-                <label for="limite-vagas-atividade"> Limite de vagas </label>
-                <input
-                  id="limite-vagas-atividade"
-                  min="1"
-                  name="limite_vagas"
-                  placeholder="Ex.: 50"
-                  step="1"
-                  type="number"
-                />
+                <label for="limite-vagas-atividade">
+                  Limite de vagas
+                </label>
+                <input id="limite-vagas-atividade" min="1" name="limite_vagas" placeholder="Ex.: 50" step="1" type="number">
               </div>
               <div class="campo-formulario">
                 <label for="inscricao-atividade">
                   Inscrição na atividade
                 </label>
                 <select id="inscricao-atividade" name="exige_inscricao">
-                  <option selected="" value="sim">Obrigatória</option>
-                  <option value="nao">Não obrigatória</option>
+                  <option selected="" value="sim">
+                    Obrigatória
+                  </option>
+                  <option value="nao">
+                    Não obrigatória
+                  </option>
                 </select>
               </div>
               <div class="campo-formulario">
-                <label for="certificado-atividade"> Certificado </label>
+                <label for="certificado-atividade">
+                  Certificado
+                </label>
                 <select id="certificado-atividade" name="certificado">
                   <option selected="" value="consolidado">
                     Integrar ao certificado do evento
                   </option>
-                  <option value="nao">Não contabilizar</option>
+                  <option value="nao">
+                    Não contabilizar
+                  </option>
                 </select>
               </div>
             </div>
           </section>
-          <section
-            aria-labelledby="titulo-palestrantes"
-            class="cartao painel-formulario painel-palestrantes-selecao"
-          >
+          <!--
+            Seção temática: Palestrantes da atividade. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-palestrantes" class="cartao painel-formulario painel-palestrantes-selecao">
             <div class="cabecalho-painel cabecalho-palestrantes">
               <div>
-                <h2 id="titulo-palestrantes">Palestrantes da atividade</h2>
+                <h2 id="titulo-palestrantes">
+                  Palestrantes da atividade
+                </h2>
                 <p>
                   Selecione um ou mais palestrantes já cadastrados para
                   participar desta atividade.
                 </p>
               </div>
-              <a
-                class="btn-confirmacao botao-novo-palestrante"
-                href="cadastrar-palestrante.html?origem=atividade"
-              >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="17"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  viewbox="0 0 24 24"
-                  width="17"
-                >
-                  <path d="M12 5v14M5 12h14"></path>
+              <a class="btn-confirmacao botao-novo-palestrante" href="cadastrar-palestrante.html?origem=atividade">
+                <svg aria-hidden="true" fill="none" height="17" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="17">
+                  <path d="M12 5v14M5 12h14">
+                  </path>
                 </svg>
                 Cadastrar novo palestrante
               </a>
             </div>
-            <fieldset
-              aria-describedby="ajuda-palestrantes"
-              class="lista-palestrantes"
-            >
+            <!--
+              fieldset agrupa campos relacionados; legend dá nome ao grupo. Checkboxes permitem
+              escolher várias opções, cujos values são lidos pelo JavaScript.
+            -->
+            <fieldset aria-describedby="ajuda-palestrantes" class="lista-palestrantes">
               <legend>
                 Selecionar palestrantes cadastrados
                 <span aria-hidden="true" class="indicacao-obrigatorio">
@@ -252,61 +292,17 @@
                 </span>
               </legend>
               <div class="grade grade-opcoes-palestrantes">
-                <label class="opcao-palestrante">
-                  <input
-                    checked=""
-                    name="palestrantes[]"
-                    type="checkbox"
-                    value="exemplo-01"
-                  />
-                  <span aria-hidden="true" class="avatar-iniciais"> AR </span>
-                  <span class="dados-opcao">
-                    <strong> Ana Paula Ribeiro </strong>
-                    <small> Professora · Inteligência Artificial </small>
-                  </span>
-                </label>
-                <label class="opcao-palestrante">
-                  <input
-                    checked=""
-                    name="palestrantes[]"
-                    type="checkbox"
-                    value="exemplo-02"
-                  />
-                  <span aria-hidden="true" class="avatar-iniciais"> CL </span>
-                  <span class="dados-opcao">
-                    <strong> Carlos Eduardo Lima </strong>
-                    <small> Pesquisador · Automação </small>
-                  </span>
-                </label>
-                <label class="opcao-palestrante">
-                  <input
-                    name="palestrantes[]"
-                    type="checkbox"
-                    value="exemplo-03"
-                  />
-                  <span aria-hidden="true" class="avatar-iniciais"> MC </span>
-                  <span class="dados-opcao">
-                    <strong> Mariana Costa Alves </strong>
-                    <small> Desenvolvedora · Segurança digital </small>
-                  </span>
-                </label>
-                <label class="opcao-palestrante">
-                  <input
-                    name="palestrantes[]"
-                    type="checkbox"
-                    value="exemplo-04"
-                  />
-                  <span aria-hidden="true" class="avatar-iniciais"> LF </span>
-                  <span class="dados-opcao">
-                    <strong> Lucas Ferreira </strong>
-                    <small> Engenheiro de software · Nuvem </small>
-                  </span>
-                </label>
+                <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
+                <p class="eas-carregamento" role="status">
+                  Carregando palestrantes cadastrados…
+                </p>
               </div>
             </fieldset>
             <div class="detalhe-selecao" id="ajuda-palestrantes">
               <p>
-                <strong> Escolha pelo menos 1 palestrante. </strong>
+                <strong>
+                  Escolha pelo menos 1 palestrante.
+                </strong>
                 Você pode marcar quantos forem necessários.
               </p>
               <p>
@@ -315,34 +311,26 @@
               </p>
             </div>
           </section>
-          <section
-            aria-label="Ações do formulário"
-            class="cartao painel-formulario painel-salvamento"
-          >
+          <!--
+            Seção temática: Ações do formulário. O agrupamento organiza o conteúdo; as classes
+            determinam sua apresentação no CSS.
+          -->
+          <section aria-label="Ações do formulário" class="cartao painel-formulario painel-salvamento">
             <div>
-              <strong> Atividade do evento em criação </strong>
+              <strong>
+                Atividade do evento em criação
+              </strong>
               <p class="texto-auxiliar">
-                No fluxo integrado, a atividade será associada automaticamente
+                A atividade será associada automaticamente
                 ao evento em criação. Você poderá adicionar outras atividades
                 antes de publicar.
               </p>
             </div>
             <div class="grupo-acoes acoes-atividade">
-              <button
-                class="btn-segundario"
-                formnovalidate=""
-                name="acao"
-                type="submit"
-                value="rascunho"
-              >
+              <button class="btn-segundario" formnovalidate="" name="acao" type="submit" value="rascunho">
                 Salvar rascunho
               </button>
-              <button
-                class="btn-confirmacao"
-                name="acao"
-                type="submit"
-                value="cadastrar"
-              >
+              <button class="btn-confirmacao" name="acao" type="submit" value="cadastrar">
                 Adicionar atividade
               </button>
             </div>
@@ -350,16 +338,37 @@
         </form>
       </main>
     </div>
-    <div id="footer-container"></div>
-    <script src="assets/js/componente.js"></script>
-    <script src="assets/js/paineladm.js"></script>
-    <script
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
-      type="module"
-    ></script>
-    <script
-      nomodule=""
-      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
-    ></script>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
+    <div id="footer-container">
+    </div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
+    <script src="assets/js/componente.js">
+    </script>
+    <!--
+      Carrega o menu administrativo em escopo isolado e destaca a página atual. app.js aguarda
+      painelPronto antes de ajustar os destinos.
+    -->
+    <script src="assets/js/paineladm.js">
+    </script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js" type="module">
+    </script>
+    <script nomodule="" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js">
+    </script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module">
+    </script>
   </body>
 </html>

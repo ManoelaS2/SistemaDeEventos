@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consultar banco de dados | EAS</title>
+  </head>
+  <body>
+    <!-- Página de consulta sem CSS e sem os componentes visuais da aplicação. -->
+    <main>
+      <h1>Dados salvos no navegador</h1>
+      <p>Cada coleção do banco aparece abaixo como uma tabela, com todos os campos salvos.</p>
+      <p>Abra esta página no mesmo navegador, endereço e porta utilizados no sistema.</p>
+      <p><a href="index.html">Voltar ao sistema</a></p>
+      <button id="atualizar-banco" type="button">Atualizar dados</button>
+      <p id="estado-consulta" role="status" aria-live="polite">Carregando banco…</p>
+      <nav aria-label="Coleções do banco">
+        <h2>Ir para uma coleção</h2>
+        <ul id="indice-colecoes"></ul>
+      </nav>
+      <!-- O JavaScript monta as tabelas a partir das coleções, sem dados fixos no HTML. -->
+      <div id="colecoes-banco" aria-busy="true"></div>
+      <noscript>Ative o JavaScript para consultar os registros do IndexedDB.</noscript>
+    </main>
+    <script type="module" src="assets/js/consultar-banco.js"></script>
+  </body>
+</html>

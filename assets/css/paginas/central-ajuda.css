@@ -1,21 +1,36 @@
+/*
+ * Ajustes da página central ajuda. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ============================================================
    EAS — AJUDA
    Somente regras específicas desta página.
    Cartão, lista, título e cores vêm de componentes.css e variaveis.css.
    ============================================================ */
 
+/*
+ * Perguntas e respostas: usa o estado open de details para apresentar o conteúdo expandido e
+ * alternar sinais visuais.
+ */
 .pagina-ajuda {
   max-width: 780px;
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .pagina-ajuda .titulo-acesso {
   margin-bottom: 32px;
   font-size: 30px;
 }
 
-/* ACORDEÃO */
+/*
+ * ACORDEÃO
+ */
 .ajuda-item {
   overflow: hidden;
 }
@@ -34,12 +49,18 @@
   display: none;
 }
 
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .ajuda-pergunta:focus-visible {
   outline: 2px solid var(--marca-hover);
   outline-offset: -2px;
 }
 
-/* Pergunta aberta: o corpo da resposta fica um tom mais escuro */
+/*
+ * Pergunta aberta: o corpo da resposta fica um tom mais escuro
+ */
 .ajuda-resposta {
   padding: 14px 24px 34px;
   background: color-mix(in srgb, var(--fundo-cartao), var(--texto-principal) 7%);
@@ -51,7 +72,9 @@
   line-height: 1.5;
 }
 
-/* Ícones: + quando fechado, − quando aberto */
+/*
+ * Ícones: + quando fechado, − quando aberto
+ */
 .ajuda-icone {
   font-size: 34px;
 }
@@ -65,7 +88,9 @@
   display: block;
 }
 
-/* PAGINAÇÃO */
+/*
+ * PAGINAÇÃO
+ */
 .ajuda-paginacao {
   display: flex;
   align-items: center;
@@ -84,7 +109,7 @@
   font-size: 24px;
 }
 
-.ajuda-paginacao button ion-icon + ion-icon {
+.ajuda-paginacao button ion-icon+ion-icon {
   margin-left: -14px;
 }
 
@@ -98,6 +123,10 @@
   cursor: not-allowed;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .pagina-ajuda {
     padding-top: 40px;
@@ -113,6 +142,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .pagina-ajuda {
     padding-top: 28px;
@@ -130,12 +163,16 @@
     font-size: 28px;
   }
 
-  
+
 }
 
 /* ============================================================
    MODAIS (Sobre, Contato, Termos)
    ============================================================ */
+/*
+ * Janelas de diálogo: delimita o conteúdo e escurece o fundo por meio de ::backdrop. O
+ * elemento dialog continua responsável pela interação nativa.
+ */
 .modal {
   width: min(670px, 92vw);
   padding: 0;
@@ -151,7 +188,9 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
-/* Impede a rolagem da página enquanto há um modal aberto */
+/*
+ * Impede a rolagem da página enquanto há um modal aberto
+ */
 body:has(.modal[open]) {
   overflow: hidden;
 }
@@ -203,21 +242,31 @@ body:has(.modal[open]) {
   padding-left: 22px;
 }
 
-.modal-corpo li + li {
+.modal-corpo li+li {
   margin-top: 6px;
 }
 
-.modal-corpo > :last-child {
+.modal-corpo> :last-child {
   margin-bottom: 0;
 }
 
-/* Botão da Central de Ajuda centralizado */
+/*
+ * Botão da Central de Ajuda centralizado
+ */
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .modal-acoes {
   display: flex;
   justify-content: center;
   margin-top: 28px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .modal-cabecalho {
     padding: 18px 20px;

@@ -1,9 +1,16 @@
+/*
+ * Ajustes da página certificados. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ============================================================
    EAS — CERTIFICADOS
    Visual limpo, flat e adaptado para Modo Claro/Escuro.
    ============================================================ */
 
-/* Layout principal */
+/*
+ * Layout principal
+ */
 .certificados-main {
   display: flex;
   flex-direction: column;
@@ -13,11 +20,16 @@
 
 .certificados-container {
   width: 100%;
-  max-width: 800px; /* Um pouco mais estreito para ficar igual ao print */
+  max-width: 800px;
+  /*
+   * Um pouco mais estreito para ficar igual ao print
+   */
   margin: 0 auto;
 }
 
-/* Título principal */
+/*
+ * Título principal
+ */
 .page-title {
   font-size: 1.3rem;
   font-weight: 700;
@@ -25,21 +37,36 @@
   margin: 0 0 24px 0;
 }
 
-/* Caixa de busca cinza arredondada (Estilo Flat) */
+/*
+ * Caixa de busca cinza arredondada (Estilo Flat)
+ */
 .search-certificados-box {
   display: flex;
   align-items: center;
   gap: 12px;
-  background-color: var(
-    --fundo-elevado
-  ); /* Cinza claro no modo claro, escuro no dark */
-  border-radius: 6px; /* Borda mais sutil que o cartão */
+  background-color: var(--fundo-elevado);
+  /*
+   * Cinza claro no modo claro, escuro no dark
+   */
+  border-radius: 6px;
+  /*
+   * Borda mais sutil que o cartão
+   */
   padding: 8px 16px;
   margin-bottom: 24px;
-  border: 1px solid transparent; /* Reserva espaço para borda no modo escuro */
+  border: 1px solid transparent;
+  /*
+   * Reserva espaço para borda no modo escuro
+   */
 }
 
-/* Efeito ao clicar na busca */
+/*
+ * Efeito ao clicar na busca
+ */
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .search-certificados-box:focus-within {
   border-color: var(--marca-primaria);
 }
@@ -71,7 +98,9 @@
   opacity: 1;
 }
 
-/* Acessibilidade */
+/*
+ * Acessibilidade
+ */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -83,13 +112,21 @@
   border: 0;
 }
 
-/* Responsividade da tabela */
+/*
+ * Responsividade da tabela
+ */
+/*
+ * Dados tabulares: separa cabeçalhos, células e linhas para facilitar a leitura. O contêiner
+ * com overflow permite rolar tabelas largas em telas pequenas.
+ */
 .table-responsive {
   width: 100%;
   overflow-x: auto;
 }
 
-/* Tabela de Certificados (Estilo Clássico com Bordas Finas) */
+/*
+ * Tabela de Certificados (Estilo Clássico com Bordas Finas)
+ */
 .certificados-table {
   width: 100%;
   border-collapse: collapse;
@@ -98,7 +135,9 @@
   background-color: var(--fundo-cartao);
 }
 
-/* Linha do Cabeçalho */
+/*
+ * Linha do Cabeçalho
+ */
 .certificados-table thead {
   background-color: var(--fundo-elevado);
 }
@@ -112,7 +151,9 @@
   border: 1px solid var(--borda-padrao);
 }
 
-/* Células da Tabela */
+/*
+ * Células da Tabela
+ */
 .certificados-table td {
   padding: 10px 12px;
   font-size: 0.85rem;
@@ -122,7 +163,9 @@
   border: 1px solid var(--borda-padrao);
 }
 
-/* Hover sutil nas linhas */
+/*
+ * Hover sutil nas linhas
+ */
 .certificados-table tbody tr {
   transition: background-color 0.2s ease;
 }
@@ -131,7 +174,13 @@
   background-color: var(--fundo-elevado);
 }
 
-/* Link / Botão de Download */
+/*
+ * Link / Botão de Download
+ */
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .btn-download {
   display: inline-flex;
   align-items: center;
@@ -155,7 +204,13 @@
   color: var(--marca-primaria);
 }
 
-/* Ajustes para telas menores */
+/*
+ * Ajustes para telas menores
+ */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 600px) {
   .certificados-main {
     padding: 25px 15px 40px;

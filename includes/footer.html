@@ -1,15 +1,35 @@
+<!--
+  Fragmento compartilhado de rodapé. Links com # navegam até seções identificadas pelo atributo
+  id em informacoes.html.
+-->
 <footer class="site-footer">
   <div class="footer-inner">
-    <a class="brand brand-footer" href="index.html" aria-label="EAS - Página inicial">
-      <img src="assets/img/logo-eas-transparente.png" alt="" width="76" height="83">
-      <span>EAS</span>
+    <a aria-label="EAS - Página inicial" class="brand brand-footer" href="index.html">
+      <img alt="" height="83" src="assets/img/logo-eas-transparente.png" width="76">
+      <span>
+        EAS
+      </span>
     </a>
-    <nav class="footer-nav" aria-label="Links do rodapé">
-      <a href="informacoes.html#sobre">Sobre</a>
-      <a href="informacoes.html#contato">Contato</a>
-      <a href="informacoes.html#termos">Termos</a>
-      <a href="central-ajuda.html">Ajuda</a>
+    <!--
+      nav reúne links de navegação. aria-label explica a finalidade deste conjunto quando há
+      mais de um menu na página.
+    -->
+    <nav aria-label="Links do rodapé" class="footer-nav">
+      <a href="informacoes.html#sobre">
+        Sobre
+      </a>
+      <a href="informacoes.html#contato">
+        Contato
+      </a>
+      <a href="informacoes.html#termos">
+        Termos
+      </a>
+      <a href="central-ajuda.html">
+        Ajuda
+      </a>
     </nav>
-    <small>© EAS 2026</small>
+    <small>
+      © EAS 2026
+    </small>
   </div>
 </footer>

@@ -1,81 +1,127 @@
 <!doctype html>
+<!--
+  Início da recuperação demonstrativa. O e-mail identifica a conta local; nenhum e-mail real é
+  enviado.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Recuperar senha | EAS</title>
-
-    <!-- Estilos compartilhados em todas as páginas -->
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-
-    <!-- Apenas particularidades da página -->
-    <link rel="stylesheet" href="assets/css/paginas/recuperar-senha.css" />
-
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/recuperar-senha.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
     <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
   </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-acesso page-recuperar-senha">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
-
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
     <main class="area-acesso" id="section-recuperar-senha">
+      <!--
+        Seção temática: Recuperar senha. O agrupamento organiza o conteúdo; as classes
+        determinam sua apresentação no CSS.
+      -->
       <section
-        class="cartao cartao--acesso cartao--recuperacao"
         aria-labelledby="titulo-recuperacao"
+        class="cartao cartao--acesso cartao--recuperacao"
       >
-        <div class="avatar avatar--acesso" aria-hidden="true">
+        <div aria-hidden="true" class="avatar avatar--acesso">
           <ion-icon name="lock-closed-outline"></ion-icon>
         </div>
-
         <h1 class="titulo-acesso" id="titulo-recuperacao">Recuperar senha</h1>
         <p class="mensagem-acesso">
           Esqueceu sua senha? Sem problemas. Digite o e-mail cadastrado na sua
-          conta e enviaremos um link para redefinir sua senha.
+          conta para gerar um código de redefinição nesta demonstração local.
         </p>
-
-        <!-- Protótipo estático: valida o formato do e-mail e navega para a próxima tela.
-           O input não tem name para NÃO enviar o e-mail na URL. -->
+        <!--
+          Formulário de entrada de dados. app.js intercepta submit com preventDefault, usa a
+          validação nativa e chama banco.js. required exige preenchimento; label com for
+          identifica o input correspondente.
+        -->
         <form
-          class="formulario-acesso formulario-acesso--centralizado"
           action="verificar-codigo.html"
-          method="get"
+          class="formulario-acesso formulario-acesso--centralizado"
           id="form-recuperar-senha"
+          method="get"
         >
+          <!--
+            Grupo de campo: o rótulo explica o dado solicitado. O placeholder é apenas uma dica
+            visual; não substitui label. autocomplete ajuda o navegador a oferecer preenchimento
+            adequado.
+          -->
           <div class="campo-linha">
-            <ion-icon name="person-add-outline" aria-hidden="true"></ion-icon>
-            <label for="campo-email" class="texto-oculto">E-mail</label>
+            <ion-icon aria-hidden="true" name="person-add-outline"></ion-icon>
+            <label class="texto-oculto" for="campo-email"> E-mail </label>
             <input
-              id="campo-email"
-              type="email"
-              placeholder="E-mail"
               autocomplete="email"
-              required
+              id="campo-email"
+              placeholder="E-mail"
+              required=""
+              type="email"
             />
           </div>
-          <button type="submit" class="btn-confirmacao">Enviar link</button>
+          <button class="btn-confirmacao" type="submit">Gerar código</button>
         </form>
-
-        <a href="login.html" class="link-retorno">
-          <span aria-hidden="true">&larr;</span> Voltar para o login
+        <a class="link-retorno" href="login.html">
+          <span aria-hidden="true"> ← </span>
+          Voltar para o login
         </a>
         <p class="texto-prototipo">
-          Protótipo: o formulário apenas abre a tela de verificação; nenhum
-          e-mail é enviado.
+          Demonstração local: os registros são mantidos neste navegador.
         </p>
       </section>
     </main>
-
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
-    <!-- JavaScript utilizado somente para os componentes de layout existentes -->
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
     <script
-      type="module"
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
     ></script>
     <script
-      nomodule
+      nomodule=""
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
     ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

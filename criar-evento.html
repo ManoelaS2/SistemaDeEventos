@@ -1,42 +1,68 @@
 <!doctype html>
+<!--
+  Criação e edição de eventos. O mesmo formulário atende rascunho e publicação; os botões
+  informam a ação pelo seu value.
+-->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      name="description"
       content="Cadastre e configure um novo evento na plataforma EAS."
+      name="description"
     />
     <title>Criar novo evento | EAS</title>
-
-    <!-- Componentes e identidade visual já existentes no projeto. -->
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-
-    <link rel="stylesheet" href="assets/css/paginas/criar-evento.css" />
-
-    <script src="assets/js/tema.js" defer></script>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/criar-evento.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script defer="" src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
   </head>
-
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-home page-criar-evento">
-    <!-- Cabeçalho compartilhado, injetado por componente.js. -->
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
-
     <div class="secao estrutura-criar-evento">
-      <!-- Reservado exclusivamente à injeção futura do menu lateral via JavaScript. -->
+      <!--
+        Área do menu do organizador. paineladm.js carrega os links e app.js acrescenta o seletor
+        de eventos e o contexto da URL.
+      -->
       <div id="painel-adm"></div>
-
+      <!--
+        Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+        são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+      -->
       <main class="conteudo-criar-evento" id="conteudo-principal">
-        <nav class="trilha-criar-evento" aria-label="Localização no painel">
+        <!--
+          nav reúne links de navegação. aria-label explica a finalidade deste conjunto quando há
+          mais de um menu na página.
+        -->
+        <nav aria-label="Localização no painel" class="trilha-criar-evento">
           <ol>
             <li>Painel do organizador</li>
             <li>Eventos</li>
             <li aria-current="page">Novo evento</li>
           </ol>
         </nav>
-
         <div class="cabecalho-criar-evento">
           <div>
             <h1>Criar novo evento</h1>
@@ -45,20 +71,27 @@
               publicação.
             </p>
           </div>
-          <span class="etiqueta etiqueta-modelo">Modelo de tela</span>
+          <span class="etiqueta etiqueta-modelo"> Demonstração local </span>
         </div>
-
-        <!-- Formulário estrutural: gravação e publicação dependem de um backend. -->
+        <!--
+          Formulário de entrada de dados. app.js intercepta submit com preventDefault, usa a
+          validação nativa e chama banco.js. required exige preenchimento; label com for
+          identifica o input correspondente.
+        -->
         <form
-          id="form-criar-evento"
-          class="grade grade-criar-evento"
           action="#"
-          method="post"
+          class="grade grade-criar-evento"
           enctype="multipart/form-data"
+          id="form-criar-evento"
+          method="post"
         >
+          <!--
+            Seção temática: Informações do evento. O agrupamento organiza o conteúdo; as classes
+            determinam sua apresentação no CSS.
+          -->
           <section
-            class="cartao painel-formulario painel-informacoes"
             aria-labelledby="titulo-informacoes"
+            class="cartao painel-formulario painel-informacoes"
           >
             <div class="cabecalho-painel">
               <h2 id="titulo-informacoes">Informações do evento</h2>
@@ -66,25 +99,28 @@
                 Preencha os dados principais que serão exibidos para o público.
               </p>
             </div>
-
             <div class="grade campos-informacoes">
+              <!--
+                Grupo de campo: o rótulo explica o dado solicitado. O placeholder é apenas uma
+                dica visual; não substitui label. autocomplete ajuda o navegador a oferecer
+                preenchimento adequado.
+              -->
               <div class="campo-formulario campo-largura-total">
-                <label for="nome-evento">Nome do evento</label>
+                <label for="nome-evento"> Nome do evento </label>
                 <input
-                  id="nome-evento"
-                  name="nome_evento"
-                  type="text"
-                  maxlength="150"
-                  placeholder="Escolha um nome para seu evento"
                   autocomplete="off"
-                  required
+                  id="nome-evento"
+                  maxlength="150"
+                  name="nome_evento"
+                  placeholder="Escolha um nome para seu evento"
+                  required=""
+                  type="text"
                 />
               </div>
-
               <div class="campo-formulario">
-                <label for="categoria-evento">Categoria</label>
-                <select id="categoria-evento" name="categoria" required>
-                  <option value="" selected disabled>
+                <label for="categoria-evento"> Categoria </label>
+                <select id="categoria-evento" name="categoria" required="">
+                  <option disabled="" selected="" value="">
                     Selecione uma categoria
                   </option>
                   <option value="tecnologia">Tecnologia</option>
@@ -96,169 +132,169 @@
                   <option value="outros">Outros</option>
                 </select>
               </div>
-
               <div class="campo-formulario">
-                <label for="modalidade-evento">Modalidade</label>
-                <select id="modalidade-evento" name="modalidade" required>
-                  <option value="presencial" selected>Presencial</option>
+                <label for="modalidade-evento"> Modalidade </label>
+                <select id="modalidade-evento" name="modalidade" required="">
+                  <option selected="" value="presencial">Presencial</option>
                   <option value="online">Online</option>
                   <option value="hibrido">Híbrido</option>
                 </select>
               </div>
-
               <div class="campo-formulario">
-                <label for="data-inicio">Data de início</label>
+                <label for="data-inicio"> Data de início </label>
                 <input
                   id="data-inicio"
                   name="data_inicio"
+                  required=""
                   type="date"
-                  required
                 />
               </div>
-
               <div class="campo-formulario">
-                <label for="data-termino">Data de término</label>
+                <label for="data-termino"> Data de término </label>
                 <input
                   id="data-termino"
                   name="data_termino"
+                  required=""
                   type="date"
-                  required
                 />
               </div>
-
               <div class="campo-formulario campo-largura-total">
-                <label for="local-evento">Local</label>
+                <label for="local-evento"> Local </label>
                 <input
                   id="local-evento"
-                  name="local"
-                  type="text"
                   maxlength="200"
+                  name="local"
                   placeholder="Ex.: Auditório principal"
-                  required
+                  required=""
+                  type="text"
                 />
               </div>
-
               <div class="campo-formulario campo-largura-total">
-                <label for="descricao-evento">Descrição</label>
+                <label for="descricao-evento"> Descrição </label>
                 <textarea
                   id="descricao-evento"
-                  name="descricao"
-                  rows="2"
                   maxlength="3000"
+                  name="descricao"
                   placeholder="Evento com palestras, oficinas e atividades acadêmicas."
+                  rows="2"
                 ></textarea>
               </div>
             </div>
           </section>
-
+          <!--
+            Seção temática: Identidade e publicação. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
           <section
-            class="cartao painel-formulario painel-identidade"
             aria-labelledby="titulo-identidade"
+            class="cartao painel-formulario painel-identidade"
           >
             <div class="cabecalho-painel">
               <h2 id="titulo-identidade">Identidade e publicação</h2>
               <p>Configure a apresentação visual.</p>
             </div>
-
+            <!--
+              Upload de imagem: input type=file abre o seletor, e accept sugere formatos. app.js
+              acrescenta prévia e remoção; banco.js também confere conteúdo e tamanho antes de
+              gravar.
+            -->
             <div class="area-imagem-capa">
               <input
+                accept="image/png,image/jpeg,image/webp"
+                aria-describedby="ajuda-imagem-capa"
                 class="entrada-capa texto-oculto"
                 id="imagem-capa"
                 name="imagem_capa"
                 type="file"
-                accept="image/png,image/jpeg,image/webp"
-                aria-describedby="ajuda-imagem-capa"
               />
               <label class="rotulo-imagem-capa" for="imagem-capa">
-                <strong>Imagem de capa</strong>
-                <span class="texto-auxiliar" id="ajuda-imagem-capa"
-                  >Arraste uma imagem ou selecione</span
-                >
-                <span class="btn-segundario seletor-imagem"
-                  >Selecionar arquivo</span
-                >
+                <strong> Imagem de capa </strong>
+                <span class="texto-auxiliar" id="ajuda-imagem-capa">
+                  Arraste uma imagem ou selecione
+                </span>
+                <span class="btn-segundario seletor-imagem">
+                  Selecionar arquivo
+                </span>
               </label>
             </div>
-
             <div class="campos-identidade">
               <div class="campo-formulario">
-                <label for="organizador-evento">Organizador</label>
+                <label for="organizador-evento"> Organizador </label>
                 <input
                   id="organizador-evento"
+                  maxlength="150"
                   name="organizador"
+                  required=""
                   type="text"
                   value="IF Goiano • Campus Ceres"
-                  maxlength="150"
-                  required
                 />
               </div>
-
               <div class="campo-formulario">
-                <label for="visibilidade-evento">Visibilidade</label>
-                <select id="visibilidade-evento" name="visibilidade" required>
-                  <option value="publico" selected>Público</option>
+                <label for="visibilidade-evento"> Visibilidade </label>
+                <select
+                  id="visibilidade-evento"
+                  name="visibilidade"
+                  required=""
+                >
+                  <option selected="" value="publico">Público</option>
                   <option value="privado">Privado</option>
                 </select>
               </div>
             </div>
           </section>
-
+          <!--
+            Seção temática: Inscrições e configurações. O agrupamento organiza o conteúdo; as
+            classes determinam sua apresentação no CSS.
+          -->
           <section
-            class="cartao painel-formulario painel-inscricoes"
             aria-labelledby="titulo-inscricoes"
+            class="cartao painel-formulario painel-inscricoes"
           >
             <div class="cabecalho-painel">
               <h2 id="titulo-inscricoes">Inscrições e configurações</h2>
               <p>Defina vagas, inscrições e informações opcionais.</p>
             </div>
-
             <div class="grade campos-inscricoes">
               <div class="campo-formulario">
-                <label for="limite-vagas">Limite de vagas</label>
+                <label for="limite-vagas"> Limite de vagas </label>
                 <input
                   id="limite-vagas"
-                  name="limite_vagas"
-                  type="number"
                   min="1"
+                  name="limite_vagas"
+                  required=""
                   step="1"
+                  type="number"
                   value="250"
-                  required
                 />
               </div>
-
               <div class="campo-formulario">
-                <label for="prazo-inscricao">Prazo de inscrição</label>
+                <label for="prazo-inscricao"> Prazo de inscrição </label>
                 <input
                   id="prazo-inscricao"
                   name="prazo_inscricao"
                   type="date"
                 />
               </div>
-
               <div class="campo-formulario">
-                <label for="taxa-inscricao">Taxa de inscrição</label>
+                <label for="taxa-inscricao"> Taxa de inscrição </label>
                 <select id="taxa-inscricao" name="taxa_inscricao">
-                  <option value="gratuito" selected>Gratuito</option>
+                  <option selected="" value="gratuito">Gratuito</option>
                   <option value="pago">Pago</option>
                 </select>
               </div>
-
               <div class="campo-formulario">
-                <label for="certificados-evento">Certificados</label>
+                <label for="certificados-evento"> Certificados </label>
                 <select id="certificados-evento" name="certificados">
-                  <option value="apos-evento" selected>
+                  <option selected="" value="apos-evento">
                     Emitir após o evento
                   </option>
                   <option value="sem-certificado">Não emitir</option>
                 </select>
               </div>
             </div>
-
-            <!-- Acesso visual à programação. A persistência do evento e das atividades
-               será implementada na integração com o backend. -->
             <section
-              class="atalho-programacao"
               aria-labelledby="titulo-programacao"
+              class="atalho-programacao"
             >
               <div>
                 <h3 id="titulo-programacao">Programação do evento</h3>
@@ -266,11 +302,10 @@
                   Organize palestras, oficinas e outras atividades deste evento.
                 </p>
               </div>
-              <a class="btn-segundario" href="adicionar-atividade.html"
-                >Adicionar atividade</a
-              >
+              <a class="btn-segundario" href="adicionar-atividade.html">
+                Adicionar atividade
+              </a>
             </section>
-
             <div class="rodape-formulario">
               <p class="texto-auxiliar">
                 Os campos poderão ser revisados antes da publicação.
@@ -278,17 +313,17 @@
               <div class="grupo-acoes acoes-criar-evento">
                 <button
                   class="btn-segundario"
-                  type="submit"
+                  formnovalidate=""
                   name="acao"
+                  type="submit"
                   value="rascunho"
-                  formnovalidate
                 >
                   Salvar rascunho
                 </button>
                 <button
                   class="btn-confirmacao"
-                  type="submit"
                   name="acao"
+                  type="submit"
                   value="publicar"
                 >
                   Publicar evento
@@ -299,19 +334,37 @@
         </form>
       </main>
     </div>
-
-    <!-- Rodapé compartilhado, injetado por componente.js. -->
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
-
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="assets/js/componente.js"></script>
+    <!--
+      Carrega o menu administrativo em escopo isolado e destaca a página atual. app.js aguarda
+      painelPronto antes de ajustar os destinos.
+    -->
     <script src="assets/js/paineladm.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
     <script
-      type="module"
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
     ></script>
     <script
-      nomodule
+      nomodule=""
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
     ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

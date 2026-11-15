@@ -1,0 +1,274 @@
+/*
+ * Complementa a apresentação dos elementos montados por app.js: mensagens, contexto do evento
+ * e listas dinâmicas. Importa imagens.css antes das regras normais.
+ */
+
+@import url('./imagens.css');
+
+/* O HTML reserva espaços; app.js os preenche com os registros do banco. */
+[hidden] { display: none !important; }
+.eas-convite { display: grid; justify-items: center; gap: 12px; padding: 24px 20px 0; text-align: center; }
+.eas-convite p { color: var(--texto-fundo-escuro); }
+.eas-carregamento { grid-column: 1 / -1; padding: 20px; }
+.eas-evento-titulo { display: flex; gap: 12px; align-items: center; text-align: left; }
+.eas-evento-titulo .eas-miniatura { border-radius: 8px; }
+.grade--categorias { grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.cartao--categoria { border: 1px solid var(--borda-padrao); cursor: pointer; }
+.cartao--categoria[aria-pressed="true"] { outline: 3px solid var(--marca-hover); }
+
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
+.eas-mensagem {
+  padding: 14px;
+  border-left: 4px solid var(--marca-hover);
+  background: var(--fundo-elevado);
+  color: var(--texto-principal);
+  grid-column: 1 / -1;
+  white-space: pre-line;
+}
+
+.eas-mensagem--erro {
+  border-color: var(--erro);
+}
+
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
+.eas-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.eas-menu-painel {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.eas-menu-painel li {
+  margin: 10px 0;
+}
+
+.eas-menu-painel a {
+  display: block;
+}
+
+.main-nav .eas-nav a {
+  padding: 0 8px;
+}
+
+.header-search {
+  flex-shrink: 1;
+  min-width: 100px;
+}
+
+.menu-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 28px;
+}
+
+.main-nav .theme-button {
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 30px;
+}
+
+.eas-sair {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 8px;
+}
+
+.eas-contexto {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  max-width: 240px;
+  padding: 12px 0;
+}
+
+.eas-contexto select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 8px;
+  background: var(--fundo-campo);
+  color: var(--texto-principal);
+}
+
+.eas-registro {
+  padding: 24px;
+  margin: 20px 0;
+}
+
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
+.eas-registro .campo-formulario {
+  gap: 10px;
+}
+
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
+.conta .eas-registro .grupo-acoes {
+  margin: 16px 0;
+}
+
+.conta .eas-registro input[type="file"] {
+  max-width: 100%;
+}
+
+.eas-vazio {
+  padding: 20px;
+  grid-column: 1 / -1;
+}
+
+.eas-participante {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--borda-padrao);
+}
+
+.participante-encontrado {
+  display: block;
+  max-height: 340px;
+  overflow: auto;
+}
+
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
+.eas-capa {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detalhe-evento-texto {
+  white-space: pre-line;
+}
+
+.lista-opcoes .opcao-info {
+  display: grid;
+  gap: 8px;
+}
+
+.eas-demo {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/*
+ * Dados tabulares: separa cabeçalhos, células e linhas para facilitar a leitura. O contêiner
+ * com overflow permite rolar tabelas largas em telas pequenas.
+ */
+.eas-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.eas-tabela td,
+.eas-tabela th {
+  padding: 12px;
+  border-bottom: 1px solid var(--borda-padrao);
+  text-align: left;
+}
+
+.grupo-acoes {
+  flex-wrap: wrap;
+}
+
+#eas-membro {
+  max-width: min(95vw, 600px);
+  background: var(--fundo-elevado);
+  color: var(--texto-principal);
+}
+
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
+.card-informativos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 12px;
+}
+
+.card-informacao {
+  min-width: 0;
+}
+
+.btn-painel {
+  height: auto;
+  min-height: 40px;
+}
+
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
+@media (max-width: 1000px) {
+  .painel {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+  }
+
+  #painel-adm {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .integrantes-equipe {
+    overflow-x: auto;
+  }
+
+  .titulo-painel {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .mapa-container {
+    flex-direction: column;
+  }
+
+  .mapa {
+    width: 100%;
+  }
+}
+
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
+@media (max-width: 850px) {
+  .eas-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
+@media print {
+
+  .site-header,
+  .site-footer,
+  #painel-adm {
+    display: none;
+  }
+}

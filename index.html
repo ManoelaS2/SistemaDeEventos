@@ -1,204 +1,138 @@
 <!doctype html>
+<!-- Página inicial: todos os eventos, capas e categorias são consultados no banco e inseridos por JavaScript. O HTML contém somente a estrutura da tela. -->
 <html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>EAS</title>
-
-    <!-- CSS compartilhado, nesta ordem -->
-    <link rel="stylesheet" href="assets/css/variaveis.css" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/componentes.css" />
-    <link rel="stylesheet" href="assets/css/layout.css" />
-
-    <!-- Somente o layout exclusivo da Home -->
-    <link rel="stylesheet" href="assets/css/paginas/home.css" />
-
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/home.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
     <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
   </head>
-
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
   <body class="page-home">
-    <!-- Injetados por assets/js/componente.js -->
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
     <div id="header-container"></div>
-
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
     <main>
-      <!-- Destaque: estrutura exclusiva da Home -->
-      <section class="destaque" aria-labelledby="hero-title">
+      <!--
+        Seção temática: Eventos em destaque. O agrupamento organiza o conteúdo; as classes
+        determinam sua apresentação no CSS.
+      -->
+      <section aria-labelledby="hero-title" class="destaque">
         <h1 class="destaque-titulo" id="hero-title">Eventos em destaque</h1>
         <div class="destaque-carrossel">
           <button
-            class="botao-icone botao-icone--carrossel"
-            type="button"
             aria-label="Evento anterior"
-          >
-            <ion-icon name="chevron-back" aria-hidden="true"></ion-icon>
-          </button>
-          <a
-            class="destaque-imagem"
-            href="evento.html?evento=A"
-            aria-label="Conhecer o evento em destaque"
-          ></a>
-          <button
             class="botao-icone botao-icone--carrossel"
             type="button"
-            aria-label="Próximo evento"
           >
-            <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
+            <ion-icon aria-hidden="true" name="chevron-back"> </ion-icon>
+          </button>
+          <a aria-label="Conhecer o evento em destaque" class="destaque-imagem">
+            Carregando destaque…
+          </a>
+          <button
+            aria-label="Próximo evento"
+            class="botao-icone botao-icone--carrossel"
+            type="button"
+          >
+            <ion-icon aria-hidden="true" name="chevron-forward"> </ion-icon>
           </button>
         </div>
+        <div class="eas-convite">
+          <p>Organize palestras, oficinas e outros encontros.</p>
+          <a class="btn-confirmacao" href="criar-evento.html"> Criar evento </a>
+        </div>
       </section>
-
-      <!-- Componentes reutilizáveis: seção + cabeçalho + grade + cartão -->
+      <!--
+        Seção temática: Conheça nossas categorias. O agrupamento organiza o conteúdo; as classes
+        determinam sua apresentação no CSS.
+      -->
       <section
-        class="secao secao--categorias"
         aria-labelledby="categories-title"
+        class="secao secao--categorias"
       >
         <div class="secao-cabecalho">
           <h2 id="categories-title">Conheça nossas categorias</h2>
-          <a class="link-destaque" href="#eventos">Ver tudo</a>
+          <a class="link-destaque" href="#eventos"> Ver tudo </a>
         </div>
         <div class="grade grade--categorias">
-          <a href="#eventos" class="cartao cartao--categoria">
-            <ion-icon name="mic-outline" aria-hidden="true"></ion-icon>
-            <span>Palestras e Seminários</span>
-          </a>
-          <a href="#eventos" class="cartao cartao--categoria">
-            <ion-icon name="ribbon-outline" aria-hidden="true"></ion-icon>
-            <span>Minicursos e Workshops</span>
-          </a>
-          <a href="#eventos" class="cartao cartao--categoria">
-            <ion-icon name="trophy-outline" aria-hidden="true"></ion-icon>
-            <span>Atléticas e Esportes</span>
-          </a>
-          <a href="#eventos" class="cartao cartao--categoria">
-            <ion-icon name="wine-outline" aria-hidden="true"></ion-icon>
-            <span>Festas Universitárias</span>
-          </a>
-          <a href="#eventos" class="cartao cartao--categoria">
-            <ion-icon name="laptop-outline" aria-hidden="true"></ion-icon>
-            <span>Hackathons e Maratonas</span>
-          </a>
-          <a
-            class="botao-icone botao-icone--proximo categorias-proximo"
-            href="#eventos"
-            aria-label="Mais categorias"
-          >
-            <ion-icon name="chevron-forward" aria-hidden="true"></ion-icon>
-          </a>
+          <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
+          <p class="eas-carregamento" role="status">Carregando categorias…</p>
         </div>
       </section>
-
+      <!--
+        Seção temática: Eventos em andamento. O agrupamento organiza o conteúdo; as classes
+        determinam sua apresentação no CSS.
+      -->
       <section
+        aria-labelledby="events-title"
         class="secao secao--eventos"
         id="eventos"
-        aria-labelledby="events-title"
       >
         <div class="secao-cabecalho">
-          <h2 id="events-title">Eventos em andamento</h2>
-          <a class="link-destaque" href="#eventos">Ver tudo</a>
+          <h2 id="events-title">Explore os eventos</h2>
+          <a class="link-destaque" href="#eventos"> Ver tudo </a>
         </div>
-        <div class="grade grade--eventos">
-          <a href="evento.html?evento=A" class="cartao cartao--evento">
-            <div class="cartao-imagem">
-              <span class="etiqueta etiqueta--evento"
-                ><ion-icon name="star" aria-hidden="true"></ion-icon>
-                Gratuito</span
-              >
-              <span>Imagem<br />Evento A</span>
-            </div>
-            <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Título Evento A</h3>
-              <p class="cartao-descricao">Local Evento A</p>
-              <span class="cartao-legenda">Inscreva-se de:</span>
-              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-            </div>
-          </a>
-          <a href="evento.html?evento=B" class="cartao cartao--evento">
-            <div class="cartao-imagem">
-              <span class="etiqueta etiqueta--evento">
-                <ion-icon name="star" aria-hidden="true"></ion-icon>
-                Gratuito</span
-              >
-              <span>Imagem<br />Evento B</span>
-            </div>
-            <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Título Evento B</h3>
-              <p class="cartao-descricao">Local Evento B</p>
-              <span class="cartao-legenda">Inscreva-se de:</span>
-              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-            </div>
-          </a>
-          <a href="evento.html?evento=C" class="cartao cartao--evento">
-            <div class="cartao-imagem">
-              <span class="etiqueta etiqueta--evento"
-                ><ion-icon name="star" aria-hidden="true"></ion-icon>
-                Gratuito</span
-              >
-              <span>Imagem<br />Evento C</span>
-            </div>
-            <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Título Evento C</h3>
-              <p class="cartao-descricao">Local Evento C</p>
-              <span class="cartao-legenda">Inscreva-se de:</span>
-              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-            </div>
-          </a>
-          <a href="evento.html?evento=D" class="cartao cartao--evento">
-            <div class="cartao-imagem">
-              <span class="etiqueta etiqueta--evento"
-                ><ion-icon name="star" aria-hidden="true"></ion-icon>
-                Gratuito</span
-              >
-              <span>Imagem<br />Evento D</span>
-            </div>
-            <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Título Evento D</h3>
-              <p class="cartao-descricao">Local Evento D</p>
-              <span class="cartao-legenda">Inscreva-se de:</span>
-              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-            </div>
-          </a>
-          <a href="evento.html?evento=E" class="cartao cartao--evento">
-            <div class="cartao-imagem">
-              <span class="etiqueta etiqueta--evento"
-                ><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span
-              >
-              <span>Imagem<br />Evento E</span>
-            </div>
-            <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Título Evento E</h3>
-              <p class="cartao-descricao">Local Evento E</p>
-              <span class="cartao-legenda">Inscreva-se de:</span>
-              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-            </div>
-          </a>
-          <a href="evento.html?evento=F" class="cartao cartao--evento">
-            <div class="cartao-imagem">
-              <span class="etiqueta etiqueta--evento"
-                ><ion-icon name="star" aria-hidden="true"></ion-icon> Pago</span
-              >
-              <span>Imagem<br />Evento F</span>
-            </div>
-            <div class="cartao-conteudo">
-              <h3 class="cartao-titulo">Título Evento F</h3>
-              <p class="cartao-descricao">Local Evento F</p>
-              <span class="cartao-legenda">Inscreva-se de:</span>
-              <strong class="cartao-dado">DD/MM/AA a DD/MM/AA</strong>
-            </div>
-          </a>
+        <div aria-busy="true" class="grade grade--eventos">
+          <!-- Conteúdo criado por app.js a partir dos registros do banco; não cadastre eventos diretamente neste HTML. -->
+          <p class="eas-carregamento" role="status">
+            Carregando eventos do banco…
+          </p>
         </div>
       </section>
     </main>
-
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
     <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
     <script src="./assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
     <script
-      type="module"
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
     ></script>
     <script
-      nomodule
+      nomodule=""
       src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
     ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
   </body>
 </html>

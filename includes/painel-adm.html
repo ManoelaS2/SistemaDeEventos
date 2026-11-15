@@ -1,27 +1,50 @@
-<h5 class="h5-fraco">PAINEL DO ORGANIZADOR</h5>
-<li>
-  <ul>
-    <a class="link-painel" href="/gerenciamento-evento.html">Meus eventos</a>
+<!--
+  Fragmento de navegação administrativa. paineladm.js o carrega; app.js inclui o ID do evento
+  nos destinos. ul agrupa itens li, e cada link representa um destino.
+-->
+<p class="h5-fraco">
+  PAINEL DO ORGANIZADOR
+</p>
+<!--
+  nav reúne links de navegação. aria-label explica a finalidade deste conjunto quando há mais de
+  um menu na página.
+-->
+<nav aria-label="Painel do organizador">
+  <ul class="eas-menu-painel">
+    <li>
+      <a class="link-painel" href="gerenciamento-evento.html">
+        Meus eventos
+      </a>
+    </li>
+    <li>
+      <a class="link-painel" href="criar-evento.html">
+        Criar evento
+      </a>
+    </li>
+    <li>
+      <a class="link-painel" href="gerenciamento-equipe.html">
+        Equipe
+      </a>
+    </li>
+    <li>
+      <a class="link-painel" href="frequencia.html">
+        Frequência
+      </a>
+    </li>
+    <li>
+      <a class="link-painel" href="programacao-evento.html">
+        Programação
+      </a>
+    </li>
+    <li>
+      <a class="link-painel" href="credenciamento.html">
+        Credenciamento
+      </a>
+    </li>
+    <li>
+      <a class="link-painel" href="cadastrar-palestrante.html">
+        Novo palestrante
+      </a>
+    </li>
   </ul>
-  <ul>
-    <a class="link-painel" href="/criar-evento.html">Criar evento</a>
-  </ul>
-
-  <ul>
-    <a class="link-painel" href="/gerenciamento-equipe.html">Equipe</a>
-  </ul>
-  <ul>
-    <a class="link-painel" href="#">Frequência</a>
-  </ul>
-  <ul>
-    <a class="link-painel" href="/programacao-evento.html">Programação</a>
-  </ul>
-  <ul>
-    <a class="link-painel" href="/credenciamento.html">Credenciamento</a>
-  </ul>
-  <ul>
-    <a class="link-painel" href="/cadastrar-palestrante.html"
-      >Novo palestrante</a
-    >
-  </ul>
-</li>
+</nav>
