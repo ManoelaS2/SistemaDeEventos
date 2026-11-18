@@ -1,10 +1,23 @@
+/*
+ * Ajustes da página login. Este arquivo complementa os estilos globais; deve ser carregado
+ * depois de variaveis, base, componentes e layout.
+ */
+
 /* EAS — Apenas as particularidades visuais da tela de Login.
    Cartão, campo, avatar, botões, separador e textos: componentes.css. */
 
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .page-login .cartao--login {
   min-height: 586px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .page-login .cartao--login h1 {
   margin: 0 0 46px;
   color: var(--texto-principal);
@@ -22,11 +35,19 @@
 }
 
 .page-login .link-recuperar:hover,
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .page-login .link-recuperar:focus-visible {
   color: var(--marca-hover);
   text-decoration: underline;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .page-login .botao-entrar {
   display: flex;
   margin: 0 auto;
@@ -37,7 +58,16 @@
   margin-inline: auto;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 600px) {
-  .page-login .cartao--login { min-height: 0; }
-  .page-login .cartao--login h1 { margin-bottom: 32px; }
+  .page-login .cartao--login {
+    min-height: 0;
+  }
+
+  .page-login .cartao--login h1 {
+    margin-bottom: 32px;
+  }
 }

@@ -1,11 +1,28 @@
-/* EAS — somente elementos e variações exclusivos da Home */
+/*
+ * Ajustes da página home. Este arquivo complementa os estilos globais; deve ser carregado
+ * depois de variaveis, base, componentes e layout.
+ */
 
-/* Destaque principal */
+/*
+ * EAS — somente elementos e variações exclusivos da Home
+ */
+
+/*
+ * Destaque principal
+ */
+/*
+ * Destaque de eventos: título e informações ficam acima da capa, em uma área
+ * independente. A imagem mantém seu próprio espaço sem cobrir o nome do evento.
+ */
 .destaque {
   background: var(--marca-hover);
   padding: 70px 0 105px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .destaque-titulo {
   margin: 0 0 24px;
   color: var(--texto-fundo-escuro);
@@ -26,29 +43,72 @@
 
 .destaque-imagem {
   display: block;
+  flex: 1;
+  min-width: 0;
   width: min(1150px, 85vw);
-  height: 516px;
+  height: auto;
   border-radius: 7px;
-  background: var(--fundo-pagina);
+  background: var(--fundo-elevado);
 }
 
+.destaque-evento-cabecalho {
+  padding: 22px 24px;
+  text-align: center;
+}
+
+.destaque-evento-nome {
+  margin: 0;
+  color: var(--texto-principal);
+  font-size: clamp(22px, 2.5vw, 34px);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.destaque-evento-meta {
+  margin: 10px 0 0;
+  color: var(--texto-secundario);
+  font-size: 16px;
+}
+
+.destaque-capa {
+  display: grid;
+  place-items: center;
+  height: 516px;
+  overflow: hidden;
+  background: var(--fundo-cartao);
+}
+
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .botao-icone--carrossel {
   width: 50px;
   height: 50px;
   font-size: 28px;
 }
 
-/* Categorias: usa secao, grade, cartao e botao-icone compartilhados */
+/*
+ * Categorias: usa secao, grade, cartao e botao-icone compartilhados
+ */
 .secao--categorias {
   padding-top: 85px;
   padding-bottom: 80px;
 }
 
+/*
+ * Distribuição do conteúdo: Grid organiza linhas e colunas; Flexbox alinha itens em uma
+ * direção. gap cria espaço entre itens sem margens individuais.
+ */
 .grade--categorias {
   grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
   align-items: center;
 }
 
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .cartao--categoria {
   display: flex;
   flex-direction: column;
@@ -82,7 +142,9 @@
   background: var(--marca-primaria);
 }
 
-/* Grade de eventos: reutiliza os cartões e suas subpartes */
+/*
+ * Grade de eventos: reutiliza os cartões e suas subpartes
+ */
 .secao--eventos {
   padding-bottom: 150px;
 }
@@ -124,7 +186,13 @@
   top: 12px;
 }
 
-/* Breakpoints seguindo o CSS antigo */
+/*
+ * Breakpoints seguindo o CSS antigo
+ */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 1200px) {
   .grade--categorias {
     gap: 12px;
@@ -135,6 +203,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .destaque {
     padding: 45px 0 65px;
@@ -151,6 +223,18 @@
 
   .destaque-imagem {
     width: 100%;
+    height: auto;
+  }
+
+  .destaque-evento-cabecalho {
+    padding: 18px 14px;
+  }
+
+  .destaque-evento-meta {
+    font-size: 14px;
+  }
+
+  .destaque-capa {
     height: clamp(180px, 40vw, 390px);
   }
 
@@ -196,6 +280,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .grade--categorias {
     grid-template-columns: repeat(2, minmax(0, 1fr));

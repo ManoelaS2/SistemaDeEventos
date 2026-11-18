@@ -1,4 +1,15 @@
-/* Verificar código — apenas particularidades desta página. */
+/*
+ * Ajustes da página verificar codigo. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
+/*
+ * Verificar código — apenas particularidades desta página.
+ */
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .page-verificar-codigo .cartao--verificacao {
   --cartao-acesso-largura: var(--cartao-verificacao-largura);
   --cartao-acesso-altura-minima: 520px;
@@ -17,10 +28,18 @@
   text-align: left;
 }
 
-.page-verificar-codigo .opcoes-codigo .texto-auxiliar + .texto-auxiliar {
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
+.page-verificar-codigo .opcoes-codigo .texto-auxiliar+.texto-auxiliar {
   margin-top: 8px;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .page-verificar-codigo .formulario-acesso--centralizado .btn-confirmacao {
   margin-top: 26px;
 }

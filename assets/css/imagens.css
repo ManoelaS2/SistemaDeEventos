@@ -1,0 +1,94 @@
+/*
+ * Apresenta prévias de upload, miniaturas e capas. O arquivo trata apenas da aparência;
+ * validação e persistência das imagens ficam em banco.js.
+ */
+
+/*
+ * Área de upload: destaca a seleção de arquivo e sua prévia. O estilo não torna um arquivo
+ * válido; o JavaScript ainda precisa verificar tipo, tamanho e conteúdo.
+ */
+.eas-upload-previa {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.eas-upload-previa[hidden] {
+  display: none;
+}
+
+.eas-upload-previa img {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  max-height: 230px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--fundo-campo);
+}
+
+.area-imagem-palestrante .eas-upload-previa img {
+  max-width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
+.area-imagem-capa>p,
+.area-imagem-palestrante>p {
+  padding: 12px;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.eas-arrastando {
+  outline: 3px dashed var(--marca-hover);
+  outline-offset: 4px;
+}
+
+.eas-miniatura {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+img.perfil-foto {
+  object-fit: cover;
+}
+
+/*
+ * Recorta somente o que ultrapassa as bordas arredondadas do cartão do carrossel.
+ * O título permanece no fluxo normal, acima da capa, conforme home.css.
+ */
+.destaque-imagem {
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
+.cartao--evento .cartao-imagem {
+  position: relative;
+  overflow: hidden;
+}
+
+.cartao--evento .cartao-imagem>img {
+  position: absolute;
+  inset: 0;
+}
+
+.eas-lista-palestrantes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+}

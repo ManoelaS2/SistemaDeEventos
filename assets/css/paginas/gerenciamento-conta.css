@@ -1,3 +1,8 @@
+/*
+ * Ajustes da página gerenciamento conta. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* =====================================================
    gerenciamento-conta.css - estilos SÓ da tela Gerenciamento de Conta
    =====================================================
@@ -144,6 +149,10 @@
    -----------------------------------------------------
    @media: estas regras só valem em telas de até 480px de largura.
    O rótulo vai para cima do campo para sobrar espaço. */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .conta-linha-campo {
     grid-template-columns: 1fr 24px;

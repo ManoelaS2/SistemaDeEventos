@@ -1,3 +1,8 @@
+/*
+ * Ajustes da página evento. Este arquivo complementa os estilos globais; deve ser carregado
+ * depois de variaveis, base, componentes e layout.
+ */
+
 /* ==========================================================
    EAS — PÁGINA DO EVENTO
    Somente estilos específicos desta página.
@@ -9,11 +14,21 @@
   padding-bottom: 50px;
 }
 
-/* A estrutura base vem das classes .cartao e .grade. */
+/*
+ * A estrutura base vem das classes .cartao e .grade.
+ */
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .cartao--detalhe-evento {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .detalhe-evento-descricao {
   min-width: 0;
 }
@@ -37,7 +52,13 @@
   gap: 14px;
 }
 
-/* Reutiliza .cartao-imagem, com tamanho específico da capa. */
+/*
+ * Reutiliza .cartao-imagem, com tamanho específico da capa.
+ */
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
 .detalhe-evento-capa {
   height: var(--evento-capa-altura);
   border-radius: var(--radius-button);
@@ -48,30 +69,62 @@
   gap: 20px;
 }
 
-/* Apenas o posicionamento das ações é exclusivo do evento. */
+/*
+ * Apenas o posicionamento das ações é exclusivo do evento.
+ */
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .grupo-acoes--evento {
   grid-column: 1 / -1;
   margin-top: 8px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .pagina-evento {
     padding-bottom: 45px;
   }
 
-  .pagina-evento-titulo { font-size: 25px; }
+  .pagina-evento-titulo {
+    font-size: 25px;
+  }
 
   .cartao--detalhe-evento {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .detalhe-evento-nome { font-size: 24px; }
-  .detalhe-evento-texto { font-size: 16px; }
-  .grupo-acoes--evento { grid-column: 1; }
+  .detalhe-evento-nome {
+    font-size: 24px;
+  }
+
+  .detalhe-evento-texto {
+    font-size: 16px;
+  }
+
+  .grupo-acoes--evento {
+    grid-column: 1;
+  }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
-  .pagina-evento-titulo { font-size: 23px; }
-  .detalhe-evento-capa { height: 220px; }
-  .detalhe-evento-palestrantes { gap: 10px; }
+  .pagina-evento-titulo {
+    font-size: 23px;
+  }
+
+  .detalhe-evento-capa {
+    height: 220px;
+  }
+
+  .detalhe-evento-palestrantes {
+    gap: 10px;
+  }
 }

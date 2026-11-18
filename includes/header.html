@@ -1,22 +1,58 @@
+<!--
+  Fragmento compartilhado: contém cabeçalho, busca e navegação. componente.js o insere no
+  contêiner header-container; não é um documento HTML completo.
+-->
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html" aria-label="EAS - Página inicial">
-      <img src="assets/img/logo-icon.png" alt="" width="46" height="50">
-      <span>EAS</span>
+    <a aria-label="EAS - Página inicial" class="brand" href="index.html">
+      <img alt="" height="50" src="assets/img/logo-icon.png" width="46">
+      <span>
+        EAS
+      </span>
     </a>
-    <form class="header-search" action="index.html" method="get" role="search">
-      <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-      <input type="search" name="busca" placeholder="Buscar eventos" aria-label="Buscar eventos">
+    <!--
+      Busca com nome acessível. O campo busca pode viajar na URL por GET porque contém um termo
+      de pesquisa, não uma senha.
+    -->
+    <form action="index.html" class="header-search" method="get" role="search">
+      <ion-icon aria-hidden="true" name="search-outline"></ion-icon>
+      <input aria-label="Buscar eventos" name="busca" placeholder="Buscar eventos" type="search">
     </form>
-    <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
-      <button class="nav-location" type="button"><ion-icon name="location"></ion-icon> Todos os lugares <ion-icon name="chevron-down-outline"></ion-icon></button>
-      <a class="home-only" href="editar-atividade-evento.html"><ion-icon name="calendar-outline"></ion-icon> Meus Eventos</a>
-      <a class="home-only" href="login.html"><ion-icon name="person-circle-outline"></ion-icon> Usuário</a>
-      <a class="login-only" href="cadastro.html"><ion-icon name="add-outline"></ion-icon> Criar conta</a>
-      <a class="login-only" href="login.html"><ion-icon name="log-in-outline"></ion-icon> Entrar</a>
-      <button class="theme-button" type="button" aria-label="Alternar tema"><ion-icon name="moon"></ion-icon></button>
+    <!--
+      nav reúne links de navegação. aria-label explica a finalidade deste conjunto quando há
+      mais de um menu na página.
+    -->
+    <nav aria-label="Navegação principal" class="main-nav" id="main-nav">
+      <button class="nav-location" type="button">
+        <ion-icon name="location"></ion-icon>
+        Todos os lugares
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </button>
+      <a class="home-only" href="editar-atividade-evento.html">
+        <ion-icon name="calendar-outline"></ion-icon>
+        Meus Eventos
+      </a>
+      <a class="home-only" href="login.html">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        Usuário
+      </a>
+      <a class="login-only" href="cadastro.html">
+        <ion-icon name="add-outline"></ion-icon>
+        Criar conta
+      </a>
+      <a class="login-only" href="login.html">
+        <ion-icon name="log-in-outline"></ion-icon>
+        Entrar
+      </a>
+      <button aria-label="Alternar tema" class="theme-button" type="button">
+        <ion-icon name="moon"></ion-icon>
+      </button>
     </nav>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menu"><ion-icon name="menu-outline"></ion-icon></button>
+    <button aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menu" class="menu-toggle" id="menu-toggle" type="button">
+      <span aria-hidden="true">
+        ☰
+      </span>
+    </button>
   </div>
 </header>
 <span class="spam-header"></span>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -111,4 +112,121 @@
   <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 </body>
+=======
+<!doctype html>
+<!--
+  Presença por atividade: escolher a atividade atualiza inscritos e totais. A presença exige que
+  o participante já esteja credenciado no evento.
+-->
+<html lang="pt-BR">
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Frequência nas atividades | EAS</title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/credenciamento.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
+  </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
+  <body class="page-details page-painel">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
+    <div id="header-container"></div>
+    <div class="painel-organizador">
+      <!--
+        Área do menu do organizador. paineladm.js carrega os links e app.js acrescenta o seletor
+        de eventos e o contexto da URL.
+      -->
+      <!--
+        Conteúdo complementar: painel-adm. O agrupamento organiza o conteúdo; as classes
+        determinam sua apresentação no CSS.
+      -->
+      <aside id="painel-adm"></aside>
+      <!--
+        Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+        são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+      -->
+      <main class="painel-conteudo">
+        <h1>Frequência nas atividades</h1>
+        <p>
+          Credencie o participante no evento antes de registrar a presença na
+          atividade.
+        </p>
+        <div class="campo-formulario">
+          <label for="atividade-frequencia"> Atividade </label>
+          <select id="atividade-frequencia"></select>
+        </div>
+        <p id="resumo-frequencia" role="status"></p>
+        <div class="tabela-rolagem">
+          <!--
+            Tabela para dados com relação entre linhas e colunas. th com scope=col identifica os
+            cabeçalhos; tbody recebe os registros exibidos pela aplicação.
+          -->
+          <table class="eas-tabela">
+            <thead>
+              <tr>
+                <th scope="col">Participante</th>
+                <th scope="col">Inscrição</th>
+                <th scope="col">Presença</th>
+              </tr>
+            </thead>
+            <!--
+              Linhas criadas por JavaScript conforme a atividade selecionada. O estado dos
+              checkboxes reflete a coleção presencas.
+            -->
+            <tbody id="lista-frequencia"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
+    <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
+    <script src="assets/js/componente.js"></script>
+    <!--
+      Carrega o menu administrativo em escopo isolado e destaca a página atual. app.js aguarda
+      painelPronto antes de ajustar os destinos.
+    -->
+    <script src="assets/js/paineladm.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
+    ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
+>>>>>>> e86d8b5e6e80685b1b1ad7c3077be049c43621e8
 </html>

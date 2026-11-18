@@ -1,6 +1,15 @@
-/* EAS — Componentes reutilizáveis em qualquer página */
+/*
+ * Contém peças visuais reutilizáveis, como cartões, botões, campos, perfis e grades.
+ * Reutilizar classes evita copiar a mesma aparência para cada página.
+ */
 
-/* SEÇÃO E CABEÇALHO */
+/*
+ * EAS — Componentes reutilizáveis em qualquer página
+ */
+
+/*
+ * SEÇÃO E CABEÇALHO
+ */
 .secao {
   width: 100%;
   max-width: var(--largura-secao);
@@ -16,28 +25,52 @@
   margin-bottom: 36px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .secao-cabecalho h2 {
   margin: 0;
   font-size: 38px;
   font-weight: 700;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .link-destaque {
   color: var(--marca-primaria);
   font-weight: 700;
 }
 
+/*
+ * Destaque de eventos: dimensiona a área principal e seus controles. Camadas posicionadas
+ * permitem colocar título sobre a imagem sem alterar o conteúdo salvo.
+ */
 .secao-cabecalho .link-destaque {
   font-size: 23px;
 }
 
-/* GRADES */
+/*
+ * GRADES
+ */
+/*
+ * Distribuição do conteúdo: Grid organiza linhas e colunas; Flexbox alinha itens em uma
+ * direção. gap cria espaço entre itens sem margens individuais.
+ */
 .grade {
   display: grid;
   gap: var(--espacamento-grade);
 }
 
-/* CARTÕES: o elemento base é compartilhado por todas as páginas */
+/*
+ * CARTÕES: o elemento base é compartilhado por todas as páginas
+ */
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .cartao,
 .login-card,
 .simple-card {
@@ -86,7 +119,9 @@
   font-size: 15px;
 }
 
-/* ETIQUETAS: uso em cards, estados ou destaques */
+/*
+ * ETIQUETAS: uso em cards, estados ou destaques
+ */
 .etiqueta {
   display: inline-flex;
   align-items: center;
@@ -101,7 +136,9 @@
   font-weight: 700;
 }
 
-/* BOTÕES DE ÍCONE: sliders, navegação, ações compactas */
+/*
+ * BOTÕES DE ÍCONE: sliders, navegação, ações compactas
+ */
 .botao-icone {
   display: inline-grid;
   place-items: center;
@@ -113,6 +150,10 @@
   text-decoration: none;
 }
 
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .botao-icone:focus-visible,
 .link-destaque:focus-visible,
 .cartao:focus-visible {
@@ -120,7 +161,9 @@
   outline-offset: 3px;
 }
 
-/* BOTÕES: nomes originais preservados conforme combinado */
+/*
+ * BOTÕES: nomes originais preservados conforme combinado
+ */
 .btn-confirmacao,
 .btn-segundario,
 .btn-aviso,
@@ -184,7 +227,13 @@
   cursor: not-allowed;
 }
 
-/* CAMPOS, AVATARES, CHECKBOX/RADIO - reutilizáveis em outras páginas */
+/*
+ * CAMPOS, AVATARES, CHECKBOX/RADIO - reutilizáveis em outras páginas
+ */
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
 .login-avatar,
 .simple-avatar {
   position: absolute;
@@ -198,6 +247,10 @@
 
 .field-row input,
 .simple-form input,
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .campo-email,
 .campo-codigo {
   min-height: var(--campo-altura);
@@ -286,7 +339,9 @@
   text-align: left;
 }
 
-/* Campo com ícone e linha inferior, reutilizado em todo formulário. */
+/*
+ * Campo com ícone e linha inferior, reutilizado em todo formulário.
+ */
 .campo-linha {
   display: flex;
   align-items: center;
@@ -326,7 +381,9 @@
   border-bottom-color: var(--marca-primaria);
 }
 
-/* Classe preservada porque o JavaScript compartilhado a utiliza. */
+/*
+ * Classe preservada porque o JavaScript compartilhado a utiliza.
+ */
 .password-toggle {
   position: absolute;
   right: 0;
@@ -366,7 +423,9 @@
   background: var(--borda-padrao);
 }
 
-/* O Google usa o mesmo tamanho global dos demais botões. */
+/*
+ * O Google usa o mesmo tamanho global dos demais botões.
+ */
 .btn-google {
   display: inline-flex;
   align-items: center;
@@ -404,6 +463,10 @@
   display: none;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 600px) {
   .area-acesso {
     padding: 85px 18px 50px;
@@ -426,7 +489,13 @@
   }
 }
 
-/* Ajustes globais de componentes no mobile */
+/*
+ * Ajustes globais de componentes no mobile
+ */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .secao {
     padding-inline: 18px;
@@ -596,6 +665,10 @@
   overflow-wrap: anywhere;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .titulo-acesso {
     font-size: 22px;
@@ -666,7 +739,9 @@
   outline-offset: 2px;
 }
 
-/* PERFIS — pessoas, palestrantes e membros de equipe */
+/*
+ * PERFIS — pessoas, palestrantes e membros de equipe
+ */
 .perfil {
   display: flex;
   flex-direction: column;
@@ -697,7 +772,9 @@
   font-weight: 700;
 }
 
-/* GRUPOS DE AÇÕES — links e botões com medidas padronizadas */
+/*
+ * GRUPOS DE AÇÕES — links e botões com medidas padronizadas
+ */
 .grupo-acoes {
   display: flex;
   align-items: center;
@@ -712,7 +789,9 @@
   gap: var(--espacamento-componentes);
 }
 
-/* Combina a classe já existente .checkbox-label com a nova variação. */
+/*
+ * Combina a classe já existente .checkbox-label com a nova variação.
+ */
 .checkbox-label.opcao-selecao {
   display: grid;
   grid-template-columns: var(--seletor-tamanho) minmax(0, 1fr);
@@ -803,7 +882,12 @@
   justify-items: center;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
+
   .pagina-evento,
   .pagina-atividades-evento {
     padding-top: 40px;
@@ -816,7 +900,12 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 600px) {
+
   .cartao--recuperacao,
   .cartao--verificacao {
     --cartao-acesso-padding-horizontal: 24px;
@@ -825,7 +914,12 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
+
   .pagina-evento,
   .pagina-atividades-evento {
     padding-top: 28px;
@@ -835,5 +929,143 @@
   .formulario-atividades-evento {
     gap: 22px;
     padding: 20px;
+  }
+}
+
+/* ========================================
+   MODAIS — Sobre, Contato e Termos (footer)
+======================================== */
+.modal {
+  width: min(670px, 92vw);
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--fundo-elevado);
+  color: var(--texto-principal);
+  box-shadow: var(--sombra-elevacao);
+  opacity: 0;
+  transform: translateY(16px) scale(0.96);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    overlay 0.25s allow-discrete,
+    display 0.25s allow-discrete;
+}
+
+.modal[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .modal[open] {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0);
+  transition:
+    background-color 0.25s ease,
+    overlay 0.25s allow-discrete,
+    display 0.25s allow-discrete;
+}
+
+.modal[open]::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@starting-style {
+  .modal[open]::backdrop {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+body:has(.modal[open]) {
+  overflow: hidden;
+}
+
+.modal-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 32px;
+  background: var(--marca-primaria);
+  color: var(--texto-fundo-escuro);
+}
+
+.modal-titulo {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.modal-fechar {
+  display: inline-grid;
+  place-items: center;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 28px;
+}
+
+.modal-fechar:focus-visible {
+  outline: 2px solid var(--texto-fundo-escuro);
+  outline-offset: 2px;
+}
+
+.modal-corpo {
+  padding: 28px 32px 36px;
+  font-family: var(--fonte-corpo);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.modal-corpo p {
+  margin: 0 0 16px;
+}
+
+.modal-corpo ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.modal-corpo li + li {
+  margin-top: 6px;
+}
+
+.modal-corpo > :last-child {
+  margin-bottom: 0;
+}
+
+.modal-acoes {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+@media (max-width: 480px) {
+  .modal-cabecalho {
+    padding: 18px 20px;
+  }
+
+  .modal-titulo {
+    font-size: 24px;
+  }
+
+  .modal-corpo {
+    padding: 22px 20px 28px;
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal::backdrop {
+    transition: none;
   }
 }

@@ -1,3 +1,9 @@
+/*
+ * Ajustes da página frequencia. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout. Arquivo visual legado: a tela
+ * atual frequencia.html reutiliza credenciamento.css e funcionalidades.css.
+ */
+
 /* =====================================================
    frequencia.css - estilos SÓ da tela Frequência nas atividades
    =====================================================
@@ -104,7 +110,10 @@
    ----------------------------------------------------- */
 .freq-contadores {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 colunas iguais */
+  grid-template-columns: repeat(3, 1fr);
+  /*
+   * 3 colunas iguais
+   */
   gap: 12px;
   margin-bottom: 16px;
 }

@@ -1,3 +1,11 @@
+/**
+ * Componentes compartilhados: evita repetir cabeçalho e rodapé em cada HTML. Use um servidor
+ * HTTP, pois fetch não funciona de forma confiável em file://.
+ */
+/**
+ * Busca um fragmento HTML local e coloca o conteúdo no contêiner indicado. Verifica a resposta
+ * HTTP antes de usar o texto; o fragmento é código confiável do próprio projeto.
+ */
 async function carregarComponente(id, arquivo) {
   const destino = document.getElementById(id);
   if (!destino) return;
@@ -6,48 +14,74 @@ async function carregarComponente(id, arquivo) {
   destino.innerHTML = await resposta.text();
 }
 
+/**
+ * Carrega cabeçalho e rodapé em paralelo e depois conecta menu e alternância de senha. A
+ * promessa componentesProntos permite que app.js aguarde a criação desses elementos.
+ */
 async function iniciar() {
   await Promise.all([
-    carregarComponente('header-container', 'includes/header.html'),
-    carregarComponente('footer-container', 'includes/footer.html')
+    carregarComponente("header-container", "includes/header.html"),
+    carregarComponente("footer-container", "includes/footer.html"),
   ]);
 
-  const menuButton = document.getElementById('menu-toggle');
-  const nav = document.getElementById('main-nav');
+  const menuButton = document.getElementById("menu-toggle");
+  const nav = document.getElementById("main-nav");
 
-  menuButton?.addEventListener('click', () => {
-    const aberto = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!aberto));
-    nav?.classList.toggle('open', !aberto);
+  menuButton?.addEventListener("click", () => {
+    const aberto = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!aberto));
+    nav?.classList.toggle("open", !aberto);
   });
 
-  const busca = document.querySelector('.header-search input');
-  const termo = new URLSearchParams(window.location.search).get('busca');
+  const busca = document.querySelector(".header-search input");
+  const termo = new URLSearchParams(window.location.search).get("busca");
   if (busca && termo) busca.value = termo;
 
-  document.querySelector('.password-toggle')?.addEventListener('click', function () {
-    const senha = document.getElementById('senha');
-    if (!senha) return;
-    const exibindo = senha.type === 'password';
-    senha.type = exibindo ? 'text' : 'password';
-    this.setAttribute('aria-label', exibindo ? 'Ocultar senha' : 'Mostrar senha');
-    this.querySelector('ion-icon')?.setAttribute('name', exibindo ? 'eye-outline' : 'eye-off-outline');
-  });
+  document
+    .querySelector(".password-toggle")
+    ?.addEventListener("click", function() {
+      const senha = document.getElementById("senha");
+      if (!senha) return;
+      const exibindo = senha.type === "password";
+      senha.type = exibindo ? "text" : "password";
+      this.setAttribute(
+        "aria-label",
+        exibindo ? "Ocultar senha" : "Mostrar senha",
+      );
+      this.querySelector("ion-icon")?.setAttribute(
+        "name",
+        exibindo ? "eye-outline" : "eye-off-outline",
+      );
+    });
 }
 
-iniciar();
+window.componentesProntos = iniciar();
 
-const eventName = document.querySelector('#event-detail-name');
-if (eventName) {
-  const key = new URLSearchParams(window.location.search).get('evento');
-  const eventId = /^[A-F]$/i.test(key || '') ? key.toUpperCase() : 'A';
-  eventName.textContent = `Evento ${eventId}:`;
-  document.title = `Evento ${eventId} | EAS`;
-}
-
-document.querySelectorAll('form[data-demo-redirect]').forEach(form => {
-  form.addEventListener('submit', event => {
+document.querySelectorAll("form[data-demo-redirect]").forEach((form) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (form.reportValidity()) window.location.href = form.dataset.demoRedirect;
   });
+});
+
+// Modais do footer (Sobre, Contato, Termos): abrem na própria página.
+const MODAIS_FOOTER = {
+  '#sobre': 'modal-sobre',
+  '#contato': 'modal-contato',
+  '#termos': 'modal-termos'
+};
+
+document.addEventListener('click', event => {
+  const link = event.target.closest('.site-footer a[href]');
+  const id = link && MODAIS_FOOTER[link.hash];
+  const modal = id && document.getElementById(id);
+
+  if (modal) {
+    event.preventDefault();
+    modal.showModal();
+    return;
+  }
+
+  // Clique no fundo escurecido (o alvo é o próprio <dialog>) fecha o modal.
+  if (event.target.classList.contains('modal')) event.target.close();
 });

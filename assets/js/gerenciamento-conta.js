@@ -1,3 +1,9 @@
+/**
+ * ARQUIVO LEGADO, mantido como exemplo de estudo. Não é carregado pelas páginas atuais. O
+ * comportamento em uso fica em app.js, a persistência em banco.js e o tema compartilhado em
+ * tema.js. Os exemplos abaixo usam estruturas antigas e não consultam o IndexedDB. Não
+ * adicione este script às páginas atuais: ele depende de outros IDs e temas.
+ */
 /* =====================================================
    gerenciamento-conta.js - comportamento SÓ da tela
    Gerenciamento de Conta
@@ -7,7 +13,6 @@
 
 const formulario = document.getElementById("form-conta");
 const mensagem = document.getElementById("mensagem");
-
 
 /* =====================================================
    1) LÁPIS: LEVA O CURSOR ATÉ O CAMPO
@@ -41,6 +46,7 @@ formulario.addEventListener("submit", function (evento) {
   // .value é o texto que está dentro do campo agora
   const usuario = document.getElementById("usuario").value.trim();
 
+  if (usuario === "") {
   if (usuario === "") {
     mensagem.textContent = "Preencha pelo menos o campo Usuário.";
   } else {

@@ -1,10 +1,21 @@
+/*
+ * Ajustes da página criar evento. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ============================================================
    EAS — CRIAÇÃO DE EVENTO
    Estilos restritos à página criar-evento.html.
    Identidade, cores e componentes vêm dos CSS compartilhados.
    ============================================================ */
 
-/* Reserva a coluna do menu administrativo sem implementar o menu. */
+/*
+ * Reserva a coluna do menu administrativo sem implementar o menu.
+ */
+/*
+ * Distribuição do conteúdo: Grid organiza linhas e colunas; Flexbox alinha itens em uma
+ * direção. gap cria espaço entre itens sem margens individuais.
+ */
 .estrutura-criar-evento {
   display: grid;
   grid-template-columns: clamp(175px, 17vw, 220px) minmax(0, 1fr);
@@ -15,6 +26,10 @@
   padding-bottom: 80px;
 }
 
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
 #navbarADM-container {
   min-width: 0;
   min-height: 1px;
@@ -25,7 +40,9 @@
   width: 100%;
 }
 
-/* Trilha de localização e título principal. */
+/*
+ * Trilha de localização e título principal.
+ */
 .trilha-criar-evento {
   margin-bottom: 12px;
   color: var(--texto-secundario);
@@ -62,6 +79,10 @@
   margin-bottom: 26px;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .cabecalho-criar-evento h1 {
   margin: 0 0 7px;
   font-family: var(--fonte-titulo);
@@ -86,13 +107,19 @@
   letter-spacing: 0.04em;
 }
 
-/* Cards e grade do formulário reutilizam .cartao e .grade. */
+/*
+ * Cards e grade do formulário reutilizam .cartao e .grade.
+ */
 .grade-criar-evento {
   grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1fr);
   gap: 18px;
   align-items: stretch;
 }
 
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
 .painel-formulario {
   min-width: 0;
   padding: 22px;
@@ -127,16 +154,16 @@
   min-width: 0;
 }
 
-.page-criar-evento .campo-formulario > label {
+.page-criar-evento .campo-formulario>label {
   color: var(--texto-principal);
   font-size: 12px;
   line-height: 1.4;
   font-weight: 700;
 }
 
-.page-criar-evento .campo-formulario > input,
-.page-criar-evento .campo-formulario > select,
-.page-criar-evento .campo-formulario > textarea {
+.page-criar-evento .campo-formulario>input,
+.page-criar-evento .campo-formulario>select,
+.page-criar-evento .campo-formulario>textarea {
   display: block;
   width: 100%;
   min-width: 0;
@@ -152,24 +179,32 @@
   font-weight: 400;
 }
 
-.page-criar-evento .campo-formulario > input::placeholder,
-.page-criar-evento .campo-formulario > textarea::placeholder {
+.page-criar-evento .campo-formulario>input::placeholder,
+.page-criar-evento .campo-formulario>textarea::placeholder {
   color: var(--texto-secundario);
   opacity: 1;
 }
 
-.page-criar-evento .campo-formulario > :is(input, select, textarea):focus-visible {
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
+.page-criar-evento .campo-formulario> :is(input, select, textarea):focus-visible {
   outline: 2px solid var(--marca-primaria);
   outline-offset: 2px;
   border-color: var(--marca-primaria);
 }
 
-.page-criar-evento .campo-formulario > textarea {
+.page-criar-evento .campo-formulario>textarea {
   min-height: 56px;
   resize: vertical;
   background: var(--fundo-campo);
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .campos-informacoes {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px 16px;
@@ -179,12 +214,22 @@
   grid-column: 1 / -1;
 }
 
-/* Seleção da imagem sem scripts de pré-visualização ou upload. */
+/*
+ * Seleção da imagem sem scripts de pré-visualização ou upload.
+ */
+/*
+ * Área de upload: destaca a seleção de arquivo e sua prévia. O estilo não torna um arquivo
+ * válido; o JavaScript ainda precisa verificar tipo, tamanho e conteúdo.
+ */
 .area-imagem-capa {
   position: relative;
   margin-bottom: 18px;
 }
 
+/*
+ * Imagens e identificação: medidas e object-fit controlam o enquadramento. cover pode recortar
+ * bordas para preencher a área; contain preserva a imagem inteira.
+ */
 .rotulo-imagem-capa {
   display: flex;
   flex-direction: column;
@@ -214,12 +259,14 @@
   font-size: 12px;
 }
 
-/* Botão herdado de .btn-segundario (dimensões e cores globais). */
+/*
+ * Botão herdado de .btn-segundario (dimensões e cores globais).
+ */
 .rotulo-imagem-capa .seletor-imagem {
   box-shadow: none;
 }
 
-.entrada-capa:focus-visible + .rotulo-imagem-capa {
+.entrada-capa:focus-visible+.rotulo-imagem-capa {
   outline: 2px solid var(--marca-primaria);
   outline-offset: 2px;
 }
@@ -230,7 +277,9 @@
   gap: 16px;
 }
 
-/* Configurações e ações, em toda a largura da segunda linha. */
+/*
+ * Configurações e ações, em toda a largura da segunda linha.
+ */
 .painel-inscricoes {
   grid-column: 1 / -1;
 }
@@ -240,6 +289,10 @@
   gap: 16px;
 }
 
+/*
+ * Rodapé: mantém marca e links de apoio alinhados e permite reorganizá-los conforme a largura
+ * da tela.
+ */
 .rodape-formulario {
   display: flex;
   align-items: center;
@@ -250,7 +303,7 @@
   border-top: 1px solid var(--borda-padrao);
 }
 
-.rodape-formulario > .texto-auxiliar {
+.rodape-formulario>.texto-auxiliar {
   max-width: 280px;
   font-size: 12px;
 }
@@ -266,7 +319,13 @@
   outline-offset: 3px;
 }
 
-/* O menu administrativo pode ser injetado no espaço reservado. */
+/*
+ * O menu administrativo pode ser injetado no espaço reservado.
+ */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 1150px) {
   .estrutura-criar-evento {
     grid-template-columns: 175px minmax(0, 1fr);
@@ -278,6 +337,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 900px) {
   .estrutura-criar-evento {
     grid-template-columns: minmax(0, 1fr);
@@ -285,7 +348,9 @@
     padding-top: 24px;
   }
 
-  /* Sem sidebar injetada, não reserva linha em branco no mobile. */
+  /*
+   * Sem sidebar injetada, não reserva linha em branco no mobile.
+   */
   #navbarADM-container:empty {
     display: none;
   }
@@ -303,6 +368,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 760px) {
   .campos-inscricoes {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -319,6 +388,10 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 560px) {
   .estrutura-criar-evento {
     padding-bottom: 48px;
@@ -357,7 +430,9 @@
 }
 
 
-/* Entrada para a etapa de programação do evento. */
+/*
+ * Entrada para a etapa de programação do evento.
+ */
 .atalho-programacao {
   display: flex;
   align-items: center;
@@ -395,10 +470,17 @@
   outline-offset: 3px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 560px) {
   .atalho-programacao {
     flex-direction: column;
     align-items: stretch;
   }
-  .page-criar-evento .atalho-programacao .btn-segundario { width: 100%; }
+
+  .page-criar-evento .atalho-programacao .btn-segundario {
+    width: 100%;
+  }
 }

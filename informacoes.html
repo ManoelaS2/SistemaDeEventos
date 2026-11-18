@@ -1,66 +1,141 @@
 <!doctype html>
+<!--
+  Informações institucionais e seções acessadas pelas âncoras do rodapé. Os IDs sobre, contato e
+  termos permitem navegar diretamente a cada assunto.
+-->
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Informações | EAS</title>
-
-  <!-- Estilos compartilhados de todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-
-  <!-- Somente os ajustes específicos desta página -->
-  <link rel="stylesheet" href="assets/css/paginas/informacoes.css">
-</head>
-<body class="page-info">
-  <div id="header-container"></div>
-
-  <main class="secao pagina-informacoes" id="conteudo-principal">
-    <div class="informacoes-conteudo">
-      <section class="informacoes-bloco" id="sobre" aria-labelledby="titulo-sobre">
-        <h1 id="titulo-sobre">Sobre o EAS</h1>
-        <p>
-          O EAS é um protótipo acadêmico de sistema para organização,
-          divulgação e participação em eventos.
-        </p>
-      </section>
-
-      <section class="informacoes-bloco" id="contato" aria-labelledby="titulo-contato">
-        <h2 id="titulo-contato">Contato</h2>
-        <p>
-          Informações de contato serão disponibilizadas pela equipe
-          responsável pelo projeto.
-        </p>
-      </section>
-
-      <section class="informacoes-bloco" id="termos" aria-labelledby="titulo-termos">
-        <h2 id="titulo-termos">Termos</h2>
-        <p>
-          Esta versão é uma demonstração acadêmica. Não há autenticação,
-          pagamentos ou inscrições reais.
-        </p>
-      </section>
-
-      <section class="informacoes-bloco" id="ajuda" aria-labelledby="titulo-ajuda">
-        <h2 id="titulo-ajuda">Ajuda</h2>
-        <p>
-          Para conhecer eventos, consulte a
-          <a class="link-destaque" href="index.html#eventos">lista de eventos</a>.
-          Para acessar sua conta, abra a
-          <a class="link-destaque" href="login.html">tela de login</a>.
-        </p>
-      </section>
-    </div>
-  </main>
-
-  <div id="footer-container"></div>
-
-  <!-- Scripts existentes: inclusão do header/footer e alternância de tema -->
-  <script src="assets/js/componente.js"></script>
-  <script src="assets/js/tema.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Informações | EAS</title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/informacoes.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
+  </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
+  <body class="page-info">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
+    <div id="header-container"></div>
+    <!--
+      Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+      são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+    -->
+    <main class="secao pagina-informacoes" id="conteudo-principal">
+      <div class="informacoes-conteudo">
+        <!--
+          Seção temática: Sobre o EAS. O agrupamento organiza o conteúdo; as classes determinam
+          sua apresentação no CSS.
+        -->
+        <section
+          aria-labelledby="titulo-sobre"
+          class="informacoes-bloco"
+          id="sobre"
+        >
+          <h1 id="titulo-sobre">Sobre o EAS</h1>
+          <p>
+            O EAS é um protótipo acadêmico de sistema para organização,
+            divulgação e participação em eventos.
+          </p>
+        </section>
+        <!--
+          Seção temática: Contato. O agrupamento organiza o conteúdo; as classes determinam sua
+          apresentação no CSS.
+        -->
+        <section
+          aria-labelledby="titulo-contato"
+          class="informacoes-bloco"
+          id="contato"
+        >
+          <h2 id="titulo-contato">Contato</h2>
+          <p>
+            Informações de contato serão disponibilizadas pela equipe
+            responsável pelo projeto.
+          </p>
+        </section>
+        <!--
+          Seção temática: Termos. O agrupamento organiza o conteúdo; as classes determinam sua
+          apresentação no CSS.
+        -->
+        <section
+          aria-labelledby="titulo-termos"
+          class="informacoes-bloco"
+          id="termos"
+        >
+          <h2 id="titulo-termos">Termos</h2>
+          <p>
+            Esta versão é uma demonstração acadêmica. Não há autenticação,
+            pagamentos ou inscrições reais.
+          </p>
+        </section>
+        <!--
+          Seção temática: Ajuda. O agrupamento organiza o conteúdo; as classes determinam sua
+          apresentação no CSS.
+        -->
+        <section
+          aria-labelledby="titulo-ajuda"
+          class="informacoes-bloco"
+          id="ajuda"
+        >
+          <h2 id="titulo-ajuda">Ajuda</h2>
+          <p>
+            Para conhecer eventos, consulte a
+            <a class="link-destaque" href="index.html#eventos">
+              lista de eventos
+            </a>
+            . Para acessar sua conta, abra a
+            <a class="link-destaque" href="login.html"> tela de login </a>
+            .
+          </p>
+        </section>
+      </div>
+    </main>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
+    <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
+    <script src="assets/js/componente.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
 </html>

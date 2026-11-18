@@ -1,172 +1,244 @@
 <!doctype html>
+<!--
+  Registro da chegada de inscritos ao evento. A busca e o histórico usam as inscrições salvas; a
+  área de QR é apenas demonstrativa.
+-->
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credenciamento | EAS</title>
-
-  <!-- Estilos compartilhados por todas as páginas -->
-  <link rel="stylesheet" href="assets/css/variaveis.css">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/componentes.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-
-  <!-- Estilos exclusivos do Credenciamento -->
-  <link rel="stylesheet" href="assets/css/paginas/credenciamento.css">
-</head>
-<body class="page-details page-painel">
-  <div id="header-container"></div>
-
-  <div class="painel-organizador">
-    <!-- Menu lateral do painel (links ainda sem página) -->
-    <aside class="painel-lateral" aria-label="Painel do organizador">
-      <p class="painel-lateral-titulo">Painel do organizador</p>
-      <nav aria-label="Seções do painel">
-        <ul class="painel-menu">
-          <li><a href="#">Visão geral</a></li>
-          <li><a href="#">Criar evento</a></li>
-          <li><a href="#">Gerenciar eventos</a></li>
-          <li><a href="#">Equipe</a></li>
-          <li><a href="#">Frequência</a></li>
-          <li><a href="#">Programação</a></li>
-          <li><a href="credenciamento.html" aria-current="page">Credenciamento</a></li>
-        </ul>
-      </nav>
-      <p class="texto-auxiliar painel-lateral-rodape">EAS • Protótipo acadêmico</p>
-    </aside>
-
-    <main class="painel-conteudo" id="conteudo-principal">
-      <p class="painel-trilha">Painel / Credenciamento</p>
-
-      <header class="painel-cabecalho">
-        <div>
-          <h1 class="pagina-evento-titulo">Credenciamento</h1>
-          <p class="texto-auxiliar">Registre a chegada dos inscritos via QR Code ou confirmação manual.</p>
-        </div>
-        <span class="painel-selo">Protótipo</span>
-      </header>
-
-      <!-- Resumo -->
-      <section class="grade painel-estatisticas" aria-label="Resumo do credenciamento">
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Inscritos</span>
-            <strong class="cartao-dado">428</strong>
+  <!--
+    Metadados do documento: UTF-8 permite acentos; viewport adapta a largura ao dispositivo;
+    title identifica a aba e a página para tecnologias assistivas.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Credenciamento | EAS</title>
+    <!--
+      Estilos em camadas: variáveis, base, componentes, layout e ajustes da página. A ordem
+      importa, pois regras posteriores podem complementar ou substituir regras anteriores.
+    -->
+    <link href="assets/css/variaveis.css" rel="stylesheet" />
+    <link href="assets/css/base.css" rel="stylesheet" />
+    <link href="assets/css/componentes.css" rel="stylesheet" />
+    <link href="assets/css/layout.css" rel="stylesheet" />
+    <link href="assets/css/paginas/credenciamento.css" rel="stylesheet" />
+    <!--
+      O tema é aplicado cedo para reduzir a troca de cores após a página aparecer. A preferência
+      fica em localStorage, separada dos registros do banco.
+    -->
+    <script src="assets/js/tema.js"></script>
+    <link href="assets/css/funcionalidades.css" rel="stylesheet" />
+  </head>
+  <!--
+    Conteúdo visível. Classes no body permitem que o CSS aplique ajustes somente a esta tela.
+  -->
+  <body class="page-details page-painel">
+    <!--
+      O cabeçalho não está repetido neste arquivo. componente.js busca includes/header.html e
+      preenche este contêiner antes de app.js montar a navegação.
+    -->
+    <div id="header-container"></div>
+    <div class="painel-organizador">
+      <!--
+        Área do menu do organizador. paineladm.js carrega os links e app.js acrescenta o seletor
+        de eventos e o contexto da URL.
+      -->
+      <div id="painel-adm"></div>
+      <!--
+        Região principal da página: main identifica o conteúdo central. Os IDs e classes também
+        são pontos de ligação com app.js; alterá-los exige revisar os seletores do script.
+      -->
+      <main class="painel-conteudo" id="conteudo-principal">
+        <p class="painel-trilha">Painel / Credenciamento</p>
+        <header class="painel-cabecalho">
+          <div>
+            <h1 class="pagina-evento-titulo">Credenciamento</h1>
+            <p class="texto-auxiliar">
+              Registre a chegada dos inscritos via QR Code ou confirmação
+              manual.
+            </p>
           </div>
-        </article>
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Credenciados</span>
-            <strong class="cartao-dado">316</strong>
-          </div>
-        </article>
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Aguardando</span>
-            <strong class="cartao-dado">112</strong>
-          </div>
-        </article>
-        <article class="cartao cartao--estatistica">
-          <div class="cartao-conteudo">
-            <span class="cartao-legenda">Taxa de entrada</span>
-            <strong class="cartao-dado">74%</strong>
-          </div>
-        </article>
-      </section>
-
-      <!-- Leitura de QR Code + credenciamento manual -->
-      <div class="grade painel-paineis">
-        <section class="cartao" aria-labelledby="titulo-qr">
-          <div class="cartao-conteudo">
-            <h2 class="cartao-titulo" id="titulo-qr">Leitura de QR Code</h2>
-            <p class="texto-auxiliar">Posicione o código do inscrito diante do leitor.</p>
-
-            <div class="leitor-qr">
-              <span class="leitor-linha"></span>
-              <span class="texto-auxiliar">Área ilustrativa de leitura</span>
+          <span class="painel-selo"> Protótipo </span>
+        </header>
+        <!--
+          Seção temática: Resumo do credenciamento. O agrupamento organiza o conteúdo; as
+          classes determinam sua apresentação no CSS.
+        -->
+        <section
+          aria-label="Resumo do credenciamento"
+          class="grade painel-estatisticas"
+        >
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda"> Inscritos </span>
+              <strong class="cartao-dado"> 428 </strong>
             </div>
-
-            <div class="grupo-acoes grupo-acoes--painel">
-              <button class="btn-confirmacao" type="button">Iniciar leitura</button>
-              <a class="btn-segundario" href="central-ajuda.html">Código inválido? Ajuda</a>
+          </article>
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda"> Credenciados </span>
+              <strong class="cartao-dado"> 316 </strong>
             </div>
-          </div>
+          </article>
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda"> Aguardando </span>
+              <strong class="cartao-dado"> 112 </strong>
+            </div>
+          </article>
+          <article class="cartao cartao--estatistica">
+            <div class="cartao-conteudo">
+              <span class="cartao-legenda"> Taxa de entrada </span>
+              <strong class="cartao-dado"> 74% </strong>
+            </div>
+          </article>
         </section>
-
-        <section class="cartao" aria-labelledby="titulo-manual">
-          <div class="cartao-conteudo">
-            <h2 class="cartao-titulo" id="titulo-manual">Credenciamento manual</h2>
-            <p class="texto-auxiliar">Pesquise e confirme a identidade do participante.</p>
-
-            <div class="campo-formulario">
-              <label for="busca-participante">Buscar nome, CPF ou e-mail</label>
-              <input id="busca-participante" type="text" placeholder="Ex.: lucas.yuji@exemplo.com">
-            </div>
-
-            <div class="participante-encontrado">
-              <div>
-                <strong class="participante-nome">Lucas Yuji</strong>
-                <p class="texto-auxiliar">Inscrição #EAS-0284 • Confirmada</p>
+        <div class="grade painel-paineis">
+          <!--
+            Seção temática: Leitura de QR Code. O agrupamento organiza o conteúdo; as classes
+            determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-qr" class="cartao">
+            <div class="cartao-conteudo">
+              <h2 class="cartao-titulo" id="titulo-qr">Leitura de QR Code</h2>
+              <p class="texto-auxiliar">
+                Posicione o código do inscrito diante do leitor.
+              </p>
+              <div class="leitor-qr">
+                <span class="leitor-linha"></span>
+                <span class="texto-auxiliar">
+                  Área ilustrativa de leitura
+                </span>
               </div>
-              <span class="etiqueta etiqueta--aguardando">Aguardando</span>
+              <div class="grupo-acoes grupo-acoes--painel">
+                <button class="btn-confirmacao" type="button">
+                  Iniciar leitura
+                </button>
+                <a class="btn-segundario" href="central-ajuda.html">
+                  Código inválido? Ajuda
+                </a>
+              </div>
             </div>
-
-            <div class="grupo-acoes grupo-acoes--painel">
-              <button class="btn-confirmacao" type="button">Confirmar credenciamento</button>
+          </section>
+          <!--
+            Seção temática: Credenciamento manual. O agrupamento organiza o conteúdo; as classes
+            determinam sua apresentação no CSS.
+          -->
+          <section aria-labelledby="titulo-manual" class="cartao">
+            <div class="cartao-conteudo">
+              <h2 class="cartao-titulo" id="titulo-manual">
+                Credenciamento manual
+              </h2>
+              <p class="texto-auxiliar">
+                Pesquise e confirme a identidade do participante.
+              </p>
+              <div class="campo-formulario">
+                <label for="busca-participante">
+                  Buscar nome, CPF ou e-mail
+                </label>
+                <input
+                  id="busca-participante"
+                  placeholder="Ex.: lucas.yuji@exemplo.com"
+                  type="text"
+                />
+              </div>
+              <div class="participante-encontrado">
+                <div>
+                  <strong class="participante-nome"> Lucas Yuji </strong>
+                  <p class="texto-auxiliar">Inscrição #EAS-0284 • Confirmada</p>
+                </div>
+                <span class="etiqueta etiqueta--aguardando"> Aguardando </span>
+              </div>
+              <div class="grupo-acoes grupo-acoes--painel">
+                <button class="btn-confirmacao" type="button">
+                  Confirmar credenciamento
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+        <!--
+          Seção temática: Últimos credenciamentos. O agrupamento organiza o conteúdo; as classes
+          determinam sua apresentação no CSS.
+        -->
+        <section aria-labelledby="titulo-ultimos" class="cartao">
+          <div class="cartao-conteudo">
+            <h2 class="cartao-titulo" id="titulo-ultimos">
+              Últimos credenciamentos
+            </h2>
+            <p class="texto-auxiliar">
+              Histórico de validação do evento selecionado.
+            </p>
+            <div class="tabela-rolagem">
+              <!--
+                Tabela para dados com relação entre linhas e colunas. th com scope=col
+                identifica os cabeçalhos; tbody recebe os registros exibidos pela aplicação.
+              -->
+              <table class="tabela-painel">
+                <thead>
+                  <tr>
+                    <th scope="col">Horário</th>
+                    <th scope="col">Participante</th>
+                    <th scope="col">Inscrição</th>
+                    <th scope="col">Método</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tabela-hora">09:41</td>
+                    <td class="tabela-destaque">Cleber Humberto</td>
+                    <td>#EAS-0281</td>
+                    <td>QR Code</td>
+                  </tr>
+                  <tr>
+                    <td class="tabela-hora">09:39</td>
+                    <td class="tabela-destaque">José Antônio</td>
+                    <td>#EAS-0204</td>
+                    <td>Manual</td>
+                  </tr>
+                  <tr>
+                    <td class="tabela-hora">09:37</td>
+                    <td class="tabela-destaque">Kalky Eduardo</td>
+                    <td>#EAS-0198</td>
+                    <td>QR Code</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
-      </div>
-
-      <!-- Histórico -->
-      <section class="cartao" aria-labelledby="titulo-ultimos">
-        <div class="cartao-conteudo">
-          <h2 class="cartao-titulo" id="titulo-ultimos">Últimos credenciamentos</h2>
-          <p class="texto-auxiliar">Histórico de validação do evento selecionado.</p>
-
-          <div class="tabela-rolagem">
-            <table class="tabela-painel">
-              <thead>
-                <tr>
-                  <th scope="col">Horário</th>
-                  <th scope="col">Participante</th>
-                  <th scope="col">Inscrição</th>
-                  <th scope="col">Método</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tabela-hora">09:41</td>
-                  <td class="tabela-destaque">Cleber Humberto</td>
-                  <td>#EAS-0281</td>
-                  <td>QR Code</td>
-                </tr>
-                <tr>
-                  <td class="tabela-hora">09:39</td>
-                  <td class="tabela-destaque">José Antônio</td>
-                  <td>#EAS-0204</td>
-                  <td>Manual</td>
-                </tr>
-                <tr>
-                  <td class="tabela-hora">09:37</td>
-                  <td class="tabela-destaque">Kalky Eduardo</td>
-                  <td>#EAS-0198</td>
-                  <td>QR Code</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <div id="footer-container"></div>
-
-  <!-- Somente componentes compartilhados e tema -->
-  <script src="assets/js/componente.js"></script>
-  <script src="assets/js/tema.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
-</body>
+      </main>
+    </div>
+    <!--
+      Este contêiner recebe includes/footer.html. Assim uma alteração no rodapé compartilhado
+      pode atender todas as páginas.
+    -->
+    <div id="footer-container"></div>
+    <!--
+      Carrega os fragmentos compartilhados e registra interações comuns. componentesProntos
+      informa quando cabeçalho e rodapé já estão disponíveis.
+    -->
+    <script src="assets/js/componente.js"></script>
+    <!--
+      Carrega o menu administrativo em escopo isolado e destaca a página atual. app.js aguarda
+      painelPronto antes de ajustar os destinos.
+    -->
+    <script src="assets/js/paineladm.js"></script>
+    <!--
+      Biblioteca externa para os elementos ion-icon. Os ícones são apresentação; informações
+      importantes também precisam de texto ou nome acessível.
+    -->
+    <script
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+      type="module"
+    ></script>
+    <script
+      nomodule=""
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+    <!--
+      Módulo principal: type=module permite import/export e aguarda a leitura do HTML. app.js
+      importa banco.js, verifica a sessão e conecta os controles desta página.
+    -->
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
 </html>

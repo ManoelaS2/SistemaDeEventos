@@ -1,3 +1,8 @@
+/*
+ * Ajustes da página credenciamento. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ============================================================
    EAS — CREDENCIAMENTO (painel do organizador)
    Somente regras específicas desta página.
@@ -5,7 +10,9 @@
    Todas as cores vêm de variaveis.css.
    ============================================================ */
 
-/* ESTRUTURA: menu lateral + conteúdo */
+/*
+ * ESTRUTURA: menu lateral + conteúdo
+ */
 .painel-organizador {
   display: grid;
   grid-template-columns: 190px minmax(0, 1fr);
@@ -23,7 +30,9 @@
   padding: 24px 28px 0;
 }
 
-/* MENU LATERAL */
+/*
+ * MENU LATERAL
+ */
 .painel-lateral {
   display: flex;
   flex-direction: column;
@@ -32,6 +41,10 @@
   background: var(--fundo-elevado);
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .painel-lateral-titulo {
   margin: 0;
   padding: 0 20px;
@@ -41,6 +54,10 @@
   text-transform: uppercase;
 }
 
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
 .painel-menu {
   display: flex;
   flex-direction: column;
@@ -61,6 +78,10 @@
   background: color-mix(in srgb, var(--marca-primaria) 8%, transparent);
 }
 
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .painel-menu a:focus-visible {
   outline: 2px solid var(--marca-hover);
   outline-offset: -2px;
@@ -73,6 +94,10 @@
   font-weight: 600;
 }
 
+/*
+ * Rodapé: mantém marca e links de apoio alinhados e permite reorganizá-los conforme a largura
+ * da tela.
+ */
 .painel-lateral-rodape {
   margin-top: auto;
   padding: 14px 20px 0;
@@ -80,7 +105,9 @@
   font-size: 11px;
 }
 
-/* CABEÇALHO DA PÁGINA */
+/*
+ * CABEÇALHO DA PÁGINA
+ */
 .painel-trilha {
   margin: 0;
   color: var(--texto-secundario);
@@ -109,7 +136,13 @@
   text-transform: uppercase;
 }
 
-/* CARTÕES DO PAINEL: fundo claro em vez do cinza padrão */
+/*
+ * CARTÕES DO PAINEL: fundo claro em vez do cinza padrão
+ */
+/*
+ * Cartões e painéis: agrupam informações relacionadas usando fundo, borda e espaçamento. Essas
+ * caixas visuais complementam a estrutura semântica do HTML.
+ */
 .painel-conteudo .cartao {
   border-radius: 8px;
   background: var(--fundo-elevado);
@@ -126,7 +159,9 @@
   font-size: 18px;
 }
 
-/* RESUMO */
+/*
+ * RESUMO
+ */
 .painel-estatisticas {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
@@ -151,7 +186,9 @@
   font-size: 26px;
 }
 
-/* QR CODE + MANUAL */
+/*
+ * QR CODE + MANUAL
+ */
 .painel-paineis {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -167,7 +204,9 @@
   background: var(--fundo-pagina);
 }
 
-/* Marcadores do topo e linha de leitura (ilustrativos) */
+/*
+ * Marcadores do topo e linha de leitura (ilustrativos)
+ */
 .leitor-qr::before,
 .leitor-qr::after {
   content: "";
@@ -195,12 +234,16 @@
   background: var(--marca-primaria);
 }
 
-.painel-conteudo .campo-formulario > label {
+/*
+ * Campos e formulários: organiza rótulos, entradas e opções. Bordas e espaçamentos ajudam a
+ * distinguir o campo sem depender somente da cor.
+ */
+.painel-conteudo .campo-formulario>label {
   font-size: 12px;
   font-weight: 700;
 }
 
-.painel-conteudo .campo-formulario > input {
+.painel-conteudo .campo-formulario>input {
   padding: 10px 12px;
   border: 0;
   border-radius: 6px;
@@ -231,19 +274,31 @@
   color: var(--texto-principal);
 }
 
-/* Botões ocupam a largura do cartão e ficam no rodapé dele */
+/*
+ * Botões ocupam a largura do cartão e ficam no rodapé dele
+ */
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .grupo-acoes--painel {
   flex-wrap: nowrap;
   gap: 10px;
   margin-top: auto;
 }
 
-.grupo-acoes--painel > * {
+.grupo-acoes--painel>* {
   flex: 1 1 0;
   min-width: 0;
 }
 
-/* TABELA */
+/*
+ * TABELA
+ */
+/*
+ * Dados tabulares: separa cabeçalhos, células e linhas para facilitar a leitura. O contêiner
+ * com overflow permite rolar tabelas largas em telas pequenas.
+ */
 .tabela-rolagem {
   overflow-x: auto;
 }
@@ -277,11 +332,21 @@
   font-weight: 700;
 }
 
+/*
+ * Destaque de eventos: dimensiona a área principal e seus controles. Camadas posicionadas
+ * permitem colocar título sobre a imagem sem alterar o conteúdo salvo.
+ */
 .tabela-destaque {
   font-weight: 700;
 }
 
-/* RESPONSIVO */
+/*
+ * RESPONSIVO
+ */
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .painel-organizador {
     grid-template-columns: minmax(0, 1fr);
@@ -292,7 +357,9 @@
     padding: 20px 18px 0;
   }
 
-  /* Menu lateral vira uma faixa horizontal rolável */
+  /*
+   * Menu lateral vira uma faixa horizontal rolável
+   */
   .painel-lateral {
     gap: 8px;
     padding: 14px 0 0;
@@ -328,12 +395,16 @@
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .grupo-acoes--painel {
     flex-wrap: wrap;
   }
 
-  .grupo-acoes--painel > * {
+  .grupo-acoes--painel>* {
     flex-basis: 100%;
   }
 }

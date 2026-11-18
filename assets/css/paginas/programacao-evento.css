@@ -1,143 +1,177 @@
+/*
+ * Ajustes da página programacao evento. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
+/*
+ * Distribuição do conteúdo: Grid organiza linhas e colunas; Flexbox alinha itens em uma
+ * direção. gap cria espaço entre itens sem margens individuais.
+ */
 .painel {
-    display: grid;
-    grid-template-areas: 
-        'menu titulo titulo'
-        'menu evento evento'
-        'menu agenda mapa'
-        'menu agenda informacoes'
-    ;
-    gap: 1.5rem;
+  display: grid;
+  grid-template-areas:
+    'menu titulo titulo'
+    'menu evento evento'
+    'menu agenda mapa'
+    'menu agenda informacoes'
+  ;
+  gap: 1.5rem;
 }
 
-/* Painel de Adminstração */
+/*
+ * Painel de Adminstração
+ */
+/*
+ * Navegação: organiza os links e o contexto selecionado. O estado de menu aberto é aplicado
+ * pelo JavaScript; as regras determinam como ele aparece.
+ */
 #painel-adm {
-    grid-area: menu;
+  grid-area: menu;
 }
 
 
-/* Titulo do painel */
+/*
+ * Titulo do painel
+ */
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .titulo-organizador {
-    grid-area: titulo;
+  grid-area: titulo;
 }
 
-/* Nome do evento */
+/*
+ * Nome do evento
+ */
 
 .titulo-evento {
-    width: 98%;
-    background-color: var(--fundo-elevado);
-    padding: 1rem 1.5rem;
-    grid-area: evento;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 10px;
+  width: 98%;
+  background-color: var(--fundo-elevado);
+  padding: 1rem 1.5rem;
+  grid-area: evento;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
 }
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .btn-segundario {
-    color: var(--marca-hover);
+  color: var(--marca-hover);
 }
 
-/* Agenda do evento */
+/*
+ * Agenda do evento
+ */
 .agenda-evento {
-    grid-area: agenda;
-    border-radius: 10px;
-    background-color: var(--fundo-elevado);
-    padding: 1rem 1.5rem;
-    margin-bottom: 1.5rem;
+  grid-area: agenda;
+  border-radius: 10px;
+  background-color: var(--fundo-elevado);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .evento {
-    border-bottom: 2px solid var(--borda-padrao);
-    display: flex;
-    align-items: center;
-    padding: 1rem  10px;
+  border-bottom: 2px solid var(--borda-padrao);
+  display: flex;
+  align-items: center;
+  padding: 1rem 10px;
 }
 
 .horario-evento {
-    background-color: #F6F9F7;
-    color: var(--marca-hover);
-    font-weight: 800;
-    border-radius: 6px;
-    padding: .5rem .5rem;
-    margin: 1.5rem;
+  background-color: #F6F9F7;
+  color: var(--marca-hover);
+  font-weight: 800;
+  border-radius: 6px;
+  padding: .5rem .5rem;
+  margin: 1.5rem;
 }
 
 .tipo-evento {
-    background-color: #FFF0D7;
-    color: var(--aviso);
-    border-radius: 100px;
-    padding: .5rem 1.5rem;
-    font-weight: 800;
-    max-width: 200px;
-    display: block;
-    text-align: center;
+  background-color: #FFF0D7;
+  color: var(--aviso);
+  border-radius: 100px;
+  padding: .5rem 1.5rem;
+  font-weight: 800;
+  max-width: 200px;
+  display: block;
+  text-align: center;
 }
 
 .evento-verde {
-    background-color: #EAF7F2;
-    color: var(--marca-hover);
-    border-radius: 100px;
-    padding: .5rem 1.5rem;
-    font-weight: 800;
-    max-width: 200px;
-    display: block;
-    text-align: center;
+  background-color: #EAF7F2;
+  color: var(--marca-hover);
+  border-radius: 100px;
+  padding: .5rem 1.5rem;
+  font-weight: 800;
+  max-width: 200px;
+  display: block;
+  text-align: center;
 }
-/* Mapa do evento */
+
+/*
+ * Mapa do evento
+ */
 .mapa-eventos {
-    grid-area: mapa;
-    background-color: var(--fundo-elevado);
-    border-radius: 10px;
-    padding: 1rem 1.5rem;
-    width: 95%;
+  grid-area: mapa;
+  background-color: var(--fundo-elevado);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  width: 95%;
 }
 
 .mapa {
-    display: flex;
-    width: 90%;
-    height: 50%;
-    background-color: var(--fundo-cartao);
-    border: 2px solid var(--borda-padrao);
-    border-radius: 7px;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+  display: flex;
+  width: 90%;
+  height: 50%;
+  background-color: var(--fundo-cartao);
+  border: 2px solid var(--borda-padrao);
+  border-radius: 7px;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .elemento-mapa {
-    width: 40%;
-    height: 40%;
-    background-color: #EAF7F2;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    color: var(--marca-hover);
+  width: 40%;
+  height: 40%;
+  background-color: #EAF7F2;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: var(--marca-hover);
 }
 
 .btn-extendido {
-    width: 90%;
+  width: 90%;
 }
 
-/* Informacoes do evento */
+/*
+ * Informacoes do evento
+ */
 .informacoes-uteis {
-    grid-area: informacoes;
-    background-color: var(--fundo-elevado);
-    border-radius: 10px;
-    width: 95%;
-    margin-bottom: 1.5rem;
-    padding: 1rem 1.5rem;
+  grid-area: informacoes;
+  background-color: var(--fundo-elevado);
+  border-radius: 10px;
+  width: 95%;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 
 .informacoes-uteis li {
-    display: flex;
-    flex-direction: column;
+  display: list-item;
+  margin-block: 8px;
 }
 
 .informacoes-uteis ul {
-    color: var(--texto-principal);
-    list-style-type: disc;
+  color: var(--texto-principal);
+  list-style-type: disc;
 }

@@ -1,30 +1,20 @@
-async function carregarComponente(id, arquivo) {
-  const destino = document.getElementById(id);
-  if (!destino) return;
-  const resposta = await fetch(arquivo);
-  if (!resposta.ok) throw new Error(`Erro ao carregar ${arquivo}`);
-  destino.innerHTML = await resposta.text();
-}
-
-async function iniciar() {
-  await Promise.all([
-    carregarComponente('painel-adm', 'includes/painel-adm.html'),
-    ]);
-const arquivo = window.location.pathname
-
-console.log(arquivo)
-
-const nav = document.querySelectorAll(".link-painel");
-
-console.log(nav)
-
-    nav.forEach(elemento => {
-        if (elemento.getAttribute("href") === arquivo){
-            elemento.classList.add("painel-selecionado")
-        } 
+/**
+ * Menu do organizador: esta função autoexecutável cria um escopo próprio, evitando nomes
+ * globais em conflito. painelPronto informa ao app.js quando os links já existem no DOM.
+ */
+(() => {
+  window.painelPronto = (async () => {
+    const painel = document.getElementById('painel-adm');
+    if (!painel) return;
+    const resposta = await fetch('includes/painel-adm.html');
+    if (!resposta.ok) throw new Error('Não foi possível carregar o painel.');
+    painel.innerHTML = await resposta.text();
+    const pagina = location.pathname.split('/').pop();
+    painel.querySelectorAll('a').forEach(a => {
+      if (a.getAttribute('href') === pagina) {
+        a.classList.add('painel-selecionado');
+        a.setAttribute('aria-current', 'page');
+      }
     });
-
-    
-}
-
-iniciar();
+  })();
+})();

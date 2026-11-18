@@ -1,3 +1,8 @@
+/*
+ * Ajustes da página informacoes. Este arquivo complementa os estilos globais; deve ser
+ * carregado depois de variaveis, base, componentes e layout.
+ */
+
 /* ==========================================================
    EAS — INFORMAÇÕES
    Somente layout específico. Componentes compartilhados:
@@ -5,6 +10,10 @@
    Todas as cores são definidas em variaveis.css.
    ========================================================== */
 
+/*
+ * Controles de ação: estabelece tamanho, alinhamento e aparência dos botões ou links. A classe
+ * CSS não muda a função HTML: navegar usa a; enviar usa button type=submit.
+ */
 .pagina-informacoes {
   padding-top: 48px;
   padding-bottom: 78px;
@@ -26,6 +35,10 @@
   border-bottom: 0;
 }
 
+/*
+ * Textos e hierarquia visual: tamanho, peso e espaçamento diferenciam títulos e explicações. O
+ * nível semântico do título deve vir do HTML, não do tamanho da fonte.
+ */
 .informacoes-bloco h1,
 .informacoes-bloco h2 {
   margin: 0 0 18px;
@@ -44,41 +57,64 @@
   line-height: 1.65;
 }
 
-/* O visual dos links vem de .link-destaque em componentes.css. */
+/*
+ * O visual dos links vem de .link-destaque em componentes.css.
+ */
+/*
+ * Destaque de eventos: dimensiona a área principal e seus controles. Camadas posicionadas
+ * permitem colocar título sobre a imagem sem alterar o conteúdo salvo.
+ */
 .informacoes-bloco .link-destaque:hover {
   text-decoration: underline;
 }
 
+/*
+ * Acessibilidade: preserva rótulos e foco para navegação por teclado ou leitores de tela.
+ * Ocultar visualmente um texto não deve removê-lo da informação acessível.
+ */
 .informacoes-bloco .link-destaque:focus-visible {
   outline: 2px solid var(--marca-hover);
   outline-offset: 3px;
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 850px) {
   .pagina-informacoes {
     padding-top: 32px;
     padding-bottom: 56px;
   }
+
   .informacoes-bloco {
     padding-inline: 12px;
   }
+
   .informacoes-bloco h1,
   .informacoes-bloco h2 {
     font-size: 24px;
   }
+
   .informacoes-bloco p {
     font-size: 16px;
   }
 }
 
+/*
+ * Responsividade: estas regras só valem quando a condição de largura ou impressão abaixo é
+ * atendida. Elas ajustam o layout, preservando o conteúdo.
+ */
 @media (max-width: 480px) {
   .pagina-informacoes {
     padding-top: 20px;
     padding-bottom: 36px;
   }
+
   .informacoes-bloco {
     padding: 20px 4px 28px;
   }
+
   .informacoes-bloco h1,
   .informacoes-bloco h2 {
     font-size: 22px;
