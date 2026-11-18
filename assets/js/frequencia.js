@@ -1,38 +1,13 @@
 /* =====================================================
    frequencia.js - comportamento SÓ da tela Frequência nas
    atividades (frequencia.html)
+   O tema claro/escuro agora é feito pelo tema.js (igual nas outras
+   páginas), por isso não tem mais código de tema aqui.
    ===================================================== */
 
 
 /* =====================================================
-   1) TEMA CLARO / ESCURO
-   ===================================================== */
-
-const html = document.documentElement;          // a tag <html>
-const botaoTema = document.getElementById("btn-tema");
-
-/* localStorage: "gavetinha" do navegador que guarda textos mesmo
-   depois de fechar a página. Guardamos o tema escolhido.
-   O "|| 'claro'" é o valor padrão caso ainda não tenha nada salvo. */
-aplicarTema(localStorage.getItem("tema") || "claro");
-
-function aplicarTema(tema) {
-  // Muda o atributo data-tema do <html>; o CSS troca as cores sozinho.
-  html.dataset.tema = tema;
-  botaoTema.textContent = tema === "escuro" ? "☀️ Tema claro" : "🌙 Tema escuro";
-  localStorage.setItem("tema", tema);
-}
-
-botaoTema.addEventListener("click", function () {
-  /* addEventListener: roda a função toda vez que o evento
-     (aqui, "click") acontece no elemento. */
-  const novoTema = html.dataset.tema === "escuro" ? "claro" : "escuro";
-  aplicarTema(novoTema);
-});
-
-
-/* =====================================================
-   2) LISTA DE PARTICIPANTES
+   1) LISTA DE PARTICIPANTES
    ===================================================== */
 
 const tabela = document.getElementById("tabela-participantes");
@@ -45,7 +20,7 @@ const mensagem = document.getElementById("mensagem");
 const participantes = [
   { nome: "Fulaniho", email: "fulaninho@email.com", status: "presente" },
   { nome: "Alguem", email: "alguem2@email.com", status: "pendente" },
-  { nome: "Cidadão", email: "cidaddão@email.com", status: "presente" }
+  { nome: "Cidadão", email: "cidadao@email.com", status: "presente" }
 ];
 
 // Números dos cartões (começam iguais ao protótipo)
@@ -66,13 +41,13 @@ function desenharTabela() {
 
     const colunaStatus = document.createElement("td");
     const etiqueta = document.createElement("span");
-    etiqueta.className = p.status === "presente" ? "etiqueta" : "etiqueta pendente";
+    etiqueta.className = p.status === "presente" ? "etiqueta" : "etiqueta freq-pendente";
     etiqueta.textContent = p.status === "presente" ? "Presente" : "Pendente";
     colunaStatus.appendChild(etiqueta);
 
     const colunaAcao = document.createElement("td");
     const botaoAcao = document.createElement("button");
-    botaoAcao.className = "btn-acao";
+    botaoAcao.className = "freq-btn-acao";
 
     if (p.status === "presente") {
       botaoAcao.textContent = "Ver registro";
@@ -100,7 +75,11 @@ function atualizarContadores() {
 }
 
 function validarParticipante(p) {
-  if (p.status === "presente") return; // já estava presente, não faz nada
+  if (p.status === "presente") {
+    // já estava presente: só avisa, sem somar de novo nos contadores
+    mensagem.textContent = p.nome + " já estava presente.";
+    return;
+  }
 
   p.status = "presente";
   totais.presentes++;   // ++ soma 1
@@ -113,7 +92,7 @@ function validarParticipante(p) {
 
 
 /* =====================================================
-   3) VALIDAÇÃO MANUAL E INSCRIÇÃO RÁPIDA
+   2) VALIDAÇÃO MANUAL E INSCRIÇÃO RÁPIDA
    ===================================================== */
 
 document.getElementById("btn-validar").addEventListener("click", function () {
@@ -165,7 +144,7 @@ atualizarContadores();
 
 
 /* =====================================================
-   4) QR CODE DESENHADO NO <canvas>
+   3) QR CODE DESENHADO NO <canvas>
    =====================================================
    ATENÇÃO: é só uma IMAGEM DE EXEMPLO parecida com um QR Code, para
    a tela ficar igual ao protótipo. Ele NÃO pode ser lido por leitores

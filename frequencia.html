@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequência nas atividades | EAS</title>
+
+  <!-- Estilos compartilhados por todas as páginas (nesta ordem, uma vez só) -->
+  <link rel="stylesheet" href="assets/css/variaveis.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/componentes.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+
+  <!-- Estilos exclusivos da Frequência -->
+  <link rel="stylesheet" href="assets/css/paginas/frequencia.css">
+</head>
+<body class="page-details">
+  <!-- O cabeçalho (com o botão de tema) é carregado aqui pelo componente.js -->
+  <div id="header-container"></div>
+
+  <div class="freq-pagina">
+
+    <!-- O menu lateral do painel é carregado aqui pelo paineladm.js
+         (o arquivo includes/painel-adm.html é o mesmo para todas as páginas do painel) -->
+    <div id="painel-adm"></div>
+
+    <!-- ============ CONTEÚDO PRINCIPAL ============ -->
+    <main class="freq-conteudo">
+      <h5 class="h5-fraco">PAINEL / FREQUÊNCIA</h5>
+      <h1>Frequência nas atividades</h1>
+      <p class="freq-subtitulo">Valide a participação, gere QR Codes e permita inscrições de última hora.</p>
+
+      <!-- Escolher atividade -->
+      <section class="cartao freq-cartao">
+        <h2>Escolher atividade</h2>
+        <p>Use o filtro para selecionar uma sessão e consultar seus participantes.</p>
+        <div class="freq-filtros">
+          <div>
+            <label for="atividade">Atividade</label>
+            <input id="atividade" type="text" value="Oficina: Introdução à Inteligência Artificial" readonly>
+          </div>
+          <div>
+            <label for="horario">Horário</label>
+            <input id="horario" type="text" value="21/01/2027 • 14h às 17h" readonly>
+          </div>
+        </div>
+      </section>
+
+      <!-- Controle de presença + QR Code lado a lado -->
+      <div class="freq-duas-colunas">
+
+        <section class="cartao freq-cartao">
+          <h2>Controle de presença</h2>
+          <p>Inscritos na atividade selecionada.</p>
+
+          <!-- Os números ficam em <strong> com id.
+               O JS troca o texto deles quando alguém é validado. -->
+          <div class="freq-contadores">
+            <div class="freq-contador"><strong id="total-inscritos">128</strong><span>Inscritos</span></div>
+            <div class="freq-contador"><strong id="total-presentes">94</strong><span>Presentes</span></div>
+            <div class="freq-contador"><strong id="total-ausentes">34</strong><span>Ausentes</span></div>
+          </div>
+
+          <div class="freq-rolagem">
+            <table class="freq-tabela">
+              <thead>
+                <tr><th>Participante</th><th>Status</th><th>Ação</th></tr>
+              </thead>
+              <!-- O corpo da tabela começa vazio: o JS desenha as linhas
+                   a partir da lista de participantes (array). -->
+              <tbody id="tabela-participantes"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="cartao freq-cartao freq-qr-area">
+          <h2>Validação por QR Code</h2>
+          <p>Escaneie ou exiba o código na entrada.</p>
+          <!-- <canvas> é uma "folha de desenho". O JS desenha o QR nela. -->
+          <canvas id="qr" width="200" height="200"></canvas>
+          <button class="btn-confirmacao" id="btn-qr" type="button">Gerar novo QR Code</button>
+        </section>
+      </div>
+
+      <!-- Validação manual -->
+      <section class="cartao freq-cartao">
+        <h2>Validação manual e inscrição de última hora</h2>
+        <p>Busque um participante ou cadastre uma nova inscrição com autorização.</p>
+        <div class="freq-manual">
+          <div>
+            <label for="busca-manual">Nome, CPF ou e-mail</label>
+            <input id="busca-manual" type="text" placeholder="Buscar participante...">
+          </div>
+          <button class="btn-confirmacao" id="btn-validar" type="button">Validar manualmente</button>
+          <button class="btn-segundario" id="btn-rapida" type="button">+ Inscrição rápida</button>
+        </div>
+        <p class="freq-mensagem" id="mensagem" role="status"></p>
+      </section>
+    </main>
+  </div>
+
+  <!-- O rodapé é carregado aqui pelo componente.js -->
+  <div id="footer-container"></div>
+
+  <!-- componente.js = cabeçalho e rodapé | paineladm.js = menu do painel
+       tema.js = tema claro/escuro | frequencia.js = esta página -->
+  <script src="assets/js/componente.js"></script>
+  <script src="assets/js/paineladm.js"></script>
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/frequencia.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

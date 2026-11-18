@@ -1,63 +1,49 @@
 /* =====================================================
-   gerenciamento-conta.js - comportamento da tela
+   gerenciamento-conta.js - comportamento SÓ da tela
    Gerenciamento de Conta
-   ===================================================== */
+   =====================================================
+   O tema claro/escuro agora é feito pelo tema.js (igual nas outras
+   páginas), então aqui só ficam o lápis e o salvar. */
 
-const botaoTema = document.getElementById("btn-tema");
+const formulario = document.getElementById("form-conta");
 const mensagem = document.getElementById("mensagem");
 
 
 /* =====================================================
-   1) TEMA CLARO / ESCURO
+   1) LÁPIS: LEVA O CURSOR ATÉ O CAMPO
    ===================================================== */
 
-/* localStorage: "gavetinha" do navegador. Guarda um texto mesmo depois
-   de fechar a página. Aqui guardamos "escuro" para lembrar o tema.
-   Este if roda assim que a página abre. */
-if (localStorage.getItem("tema") == "escuro") {
-  document.body.classList.add("escuro");
-  botaoTema.textContent = "☀️";
-}
+/* querySelectorAll: pega TODOS os lápis da página.
+   forEach: repete o código para cada lápis encontrado. */
+document.querySelectorAll(".conta-lapis").forEach(function (lapis) {
+  lapis.addEventListener("click", function () {
+    /* lapis.dataset.campo lê o atributo data-campo do HTML
+       (ex.: data-campo="usuario"). Ele guarda o id do campo ligado ao lápis. */
+    const campo = document.getElementById(lapis.dataset.campo);
 
-// Esta função é chamada pelo onclick="trocarTema()" do botão
-function trocarTema() {
-  /* classList.toggle("escuro"): se o body NÃO tem a classe "escuro",
-     coloca; se já tem, tira. No CSS, body.escuro muda as cores. */
-  document.body.classList.toggle("escuro");
-
-  // classList.contains: pergunta "o body tem essa classe agora?"
-  if (document.body.classList.contains("escuro")) {
-    botaoTema.textContent = "☀️";
-    localStorage.setItem("tema", "escuro");
-  } else {
-    botaoTema.textContent = "🌙";
-    localStorage.setItem("tema", "claro");
-  }
-}
+    // focus(): coloca o cursor dentro do campo, pronto para digitar
+    campo.focus();
+  });
+});
 
 
 /* =====================================================
-   2) EDITAR E SALVAR
+   2) SALVAR
    ===================================================== */
 
-// Chamada pelo lápis: onclick="editar('usuario')" (o id do campo chega aqui)
-function editar(idDoCampo) {
-  // focus(): coloca o cursor dentro do campo, pronto para digitar
-  document.getElementById(idDoCampo).focus();
-}
-
-// Chamada quando o formulário é enviado: onsubmit="salvar(event)"
-function salvar(evento) {
+/* "submit" acontece quando o formulário é enviado
+   (clicando no botão ou apertando Enter). */
+formulario.addEventListener("submit", function (evento) {
   /* Por padrão, enviar um formulário recarrega a página e apaga o que foi
      digitado. preventDefault() cancela isso, para o JS cuidar de tudo. */
   evento.preventDefault();
 
   // .value é o texto que está dentro do campo agora
-  const usuario = document.getElementById("usuario").value;
+  const usuario = document.getElementById("usuario").value.trim();
 
-  if (usuario == "") {
+  if (usuario === "") {
     mensagem.textContent = "Preencha pelo menos o campo Usuário.";
   } else {
     mensagem.textContent = "Alterações salvas.";
   }
-}
+});
