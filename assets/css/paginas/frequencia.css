@@ -22,7 +22,6 @@
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding-bottom: 50px;
 }
 
 /* O seletor com "#painel-adm" ganha do layout.css (que alinha o menu à direita) */

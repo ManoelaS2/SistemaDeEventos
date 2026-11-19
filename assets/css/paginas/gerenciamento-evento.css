@@ -16,7 +16,7 @@
     'menu inscricoes mapa'
   ;
   gap: 1.5rem;
-  margin-right: 1rem;
+  margin: 0 auto;
 }
 
 /*
@@ -97,7 +97,6 @@
 
 .integrante {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -110,7 +109,6 @@
   height: 45px;
   border-radius: 100%;
   display: block;
-  background-color: var(--fundo-cartao);
 }
 
 .elemento-table {
@@ -150,6 +148,15 @@
   padding: 1rem 1.5rem;
 }
 
+.inscricoes a {
+  margin-left: 1rem;
+}
+
+.grupo-acoes {
+  margin: 0;
+  margin-top: 1rem;
+}
+
 .inscricoes-elemt {
   background-color: var(--fundo-cartao);
   border-radius: 100px;
@@ -176,6 +183,7 @@
   border-radius: 10px;
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
+  display: grid;
 }
 
 .mapa-container {
@@ -197,6 +205,12 @@
   margin-bottom: 1.5rem;
 }
 
+.mapa-atividades button {
+  margin: 1em;
+  display: block;
+  justify-self: center;
+}
+
 .elemento-mapa {
   width: 40%;
   height: 40%;
@@ -208,3 +222,9 @@
   font-weight: 600;
   color: var(--marca-hover);
 }
+
+img {
+  margin-right: 1rem;
+}
+
+

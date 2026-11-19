@@ -16,6 +16,7 @@
     'menu agenda informacoes'
   ;
   gap: 1.5rem;
+  margin: 0 auto;
 }
 
 /*
@@ -83,7 +84,7 @@
 }
 
 .horario-evento {
-  background-color: #F6F9F7;
+  background-color: var(--fundo-painel-adm);
   color: var(--marca-hover);
   font-weight: 800;
   border-radius: 6px;
@@ -92,7 +93,7 @@
 }
 
 .tipo-evento {
-  background-color: #FFF0D7;
+  background-color: var(--fundo-painel-adm);
   color: var(--aviso);
   border-radius: 100px;
   padding: .5rem 1.5rem;
@@ -103,7 +104,7 @@
 }
 
 .evento-verde {
-  background-color: #EAF7F2;
+  background-color: var(--fundo-painel-adm);
   color: var(--marca-hover);
   border-radius: 100px;
   padding: .5rem 1.5rem;
@@ -126,8 +127,6 @@
 
 .mapa {
   display: flex;
-  width: 90%;
-  height: 50%;
   background-color: var(--fundo-cartao);
   border: 2px solid var(--borda-padrao);
   border-radius: 7px;
@@ -137,10 +136,9 @@
   margin-bottom: 1.5rem;
 }
 
-.elemento-mapa {
-  width: 40%;
-  height: 40%;
-  background-color: #EAF7F2;
+.elemento-mapa {  
+  padding: 1.5rem;
+  background-color: var(--fundo-painel-adm);
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -175,3 +173,7 @@
   color: var(--texto-principal);
   list-style-type: disc;
 }
+
+button, a {
+  margin-left: 0.6%;
+} 

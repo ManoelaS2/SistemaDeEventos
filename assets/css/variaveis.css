@@ -27,7 +27,7 @@
   --container: 1440px;
   --content-width: 1120px;
   --largura-secao: 1290px;
-  --header-height: 50px;
+  --header-height: 75px;
   --footer-height: 200px;
 
   /*
@@ -97,6 +97,7 @@
   --fundo-cartao: #e2e2e2;
   --fundo-campo: #f1f1f1;
   --fundo-elevado: #ffffff;
+  --fundo-painel-adm: #eAf7e2;
 }
 
 [data-theme="dark"] {
@@ -110,6 +111,7 @@
   --fundo-cartao: #242b29;
   --fundo-campo: #202624;
   --fundo-elevado: #2d3532;
+  --fundo-painel-adm: #21231f;
 }
 
 /*

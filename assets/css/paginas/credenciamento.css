@@ -19,7 +19,7 @@
   width: 100%;
   max-width: 1040px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  
 }
 
 .painel-conteudo {
@@ -27,7 +27,7 @@
   flex-direction: column;
   gap: 20px;
   min-width: 0;
-  padding: 24px 28px 0;
+  padding: 24px 28px;
 }
 
 /*

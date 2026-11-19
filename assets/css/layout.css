@@ -88,6 +88,7 @@ body>.site-footer {
   background: linear-gradient(90deg,
       var(--marca-secundaria),
       var(--marca-primaria));
+
 }
 
 /*
@@ -110,6 +111,7 @@ body>.site-footer {
   padding: 0 31px;
   margin: 0 auto;
 }
+
 
 /*
  * Pesquisa
@@ -342,15 +344,16 @@ ul {
 }
 
 #painel-adm ul {
-  padding: 5px .5rem;
+  padding: 0 .5rem;
 }
 
 #painel-adm a {
   padding: .5rem;
+  text-wrap: nowrap;
 }
 
 .painel-selecionado {
-  background-color: #EAF7F2;
+  background-color: var(--fundo-painel-adm);
   border-left: var(--marca-hover) 4px solid;
   border-radius: 6px;
   color: var(--marca-hover);

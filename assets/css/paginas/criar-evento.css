@@ -22,8 +22,6 @@
   align-items: start;
   gap: 30px;
   flex: 1;
-  padding-top: 28px;
-  padding-bottom: 80px;
 }
 
 /*
@@ -44,6 +42,7 @@
  * Trilha de localização e título principal.
  */
 .trilha-criar-evento {
+  margin-top: 26px;
   margin-bottom: 12px;
   color: var(--texto-secundario);
   font-family: var(--fonte-corpo);
@@ -114,6 +113,7 @@
   grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1fr);
   gap: 18px;
   align-items: stretch;
+  margin-bottom: 26px;
 }
 
 /*
